@@ -8,6 +8,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+# Use Bootstrap framework for CSS
+gem 'bootstrap-sass', '3.3.7'
+# Include Font Awesome Icons
+gem 'font-awesome-sass', '~> 5.0.9'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
