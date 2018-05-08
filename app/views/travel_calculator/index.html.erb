@@ -1,0 +1,85 @@
+<% provide(:title, "Calculadora de rutas") %>
+
+<script>
+$(document).ready(function(){
+    $("#btn1").click(function(){
+        $("#btn2").show();
+        $("#btn1").hide();
+        $("#sea").show();
+        $("#land").hide();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#btn2").click(function(){
+        $("#btn1").show();
+        $("#btn2").hide();
+        $("#land").show();
+        $("#sea").hide();
+    });
+});
+</script>
+<script>
+var maxAppend = 0;
+$(document).ready(function(){
+    $("#btn3").click(function(){
+        if (maxAppend >= 3) $("#btn3").hide();;
+        $("#btn3").before('<%=j select_tag "obs[]", options_for_select(@obstacle_type) %>');
+    maxAppend++;
+    });
+});
+</script>
+
+<h1><%= yield(:title) %></h1>
+<div class="center">
+    <div class="path-box">
+      <button type="button" id="btn2" style="display: none" class="btn btn-big btn-append"><i class="fas fa-chess-knight"></i></button> 
+      <button type="button" id="btn1" style="display: none" class="btn btn-big btn-append"><i class="fas fa-ship"></i></button> 
+      <div id="land">
+      <%= form_with url: travel_calculator_calculate_path, local: true do |form| %>
+        <p>
+          <%= form.label :from, "Desde" %>: <%= form.text_field :from %>
+          <%= form.label :to, "Hasta" %>: <%= form.text_field :to %>
+        </p>
+        <p>
+          <%= form.label :size, "Número de ejércitos" %>: <%= form.number_field :size %>
+          <%= form.label :carts, "¿Carretas?" %>: <%= form.check_box :carts, {}, 5, 0  %>
+        </p>
+        <p>
+            <%= form.label :hex, "Distancia" %>: <%= form.number_field :hex1 %>
+            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select(:dif1, options_for_select(@terrain_type)) %>
+            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select(:speed, options_for_select(@walking_type)) %>
+          </p>
+          <p>
+            <button type="button" id="btn3" class="btn"><i class="fas fa-plus-circle"></i> Añadir obstáculo</button> 
+          </p>
+        <p>
+          <%= form.submit "Calcular" %>
+        </p>
+        <% end %>
+        </div>
+      <div id="sea" style="display:none">
+      <%= form_with url: travel_calculator_calculate_path, local: true do |form| %>
+        <p>
+          <%= form.label :from, "Desde" %>: <%= form.text_field :from %>
+          <%= form.label :to, "Hasta" %>: <%= form.text_field :to %>
+        </p>
+        <p>
+          <%= form.label :size, "Número de flotas" %>: <%= form.number_field :size %>
+          <%= form.label :carts, "Tipo de bacos" %>: <%= form.select(:ship, options_for_select(@ship_type))  %>
+        </p>
+        <p>
+            <%= form.label :hex, "Distancia" %>: <%= form.number_field :hex1 %>
+            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select(:speed, options_for_select(@walking_type)) %>
+          </p>
+          <p>
+            <button type="button" id="btn4" class="btn"><i class="fas fa-plus-circle"></i> Añadir obstáculo</button> 
+          </p>
+        <p>
+          <%= form.submit "Calcular" %>
+        </p>
+        <% end %>
+        </div>
+    </div>
+</div>
