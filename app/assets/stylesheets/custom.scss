@@ -124,7 +124,7 @@ footer {
 }
 
 .tool-box {
-	display: inline-block;
+  display: inline-block;
   padding: 20px;
 }
 
@@ -167,4 +167,18 @@ textarea {
 .path-title {
   position:absolute; left:-18px;
   transform: rotate(270deg);
+}
+
+.dropdown div {
+    display: inline-block;
+}
+
+.dropdown select {
+  border: 0 !important;  /*Removes border*/
+  -webkit-appearance: none;  /*Removes default chrome and safari style*/
+  -moz-appearance: none; /* Removes Default Firefox style*/
+  background: url('dropdown_arrow.jpg') no-repeat;  /*Adds background-image*/
+  background-position: 80px 8px;  /*Position of the background-image*/
+  cursor: pointer;
+  
 }
