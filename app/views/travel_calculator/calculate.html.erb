@@ -3,7 +3,7 @@
 <h1><%= yield(:title) %></h1>
 
 <div>
-    <p>Un ejército de tamaño <%= @size %> necesita <%= "#{@days} #{@days_word} y" unless @days == 0 %> <%=@hours %> horas para ir desde <%=@from %> hasta <%=@to %></p>
+    <p>Un ejército de tamaño <%= @size %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%="y #{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
     <p class="col-md-offset-1">Cruzará <%= @step1[0] %> hexágono<%="s" unless @step1[0].to_i==1 %> de <%= @step1[1].downcase %> <%= "y un #{@step1[3].downcase}" unless @step1[3] == "Ninguno" %> en <%= @time1 %> horas marchando <%= @walking_adj[@step1[2].to_sym] %></p>
     <% if @steps_total >= 2 %>
         <p class="col-md-offset-1">Cruzará <%= @step2[0] %> hexágono<%="s" unless @step2[0].to_i==1 %> de <%= @step2[1].downcase %> <%= "y un #{@step2[3].downcase}" unless @step2[3] == "Ninguno" %> en <%= @time2 %> horas marchando <%= @walking_adj[@step2[2].to_sym] %></p>
