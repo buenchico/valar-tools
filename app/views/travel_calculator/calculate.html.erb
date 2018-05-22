@@ -3,20 +3,10 @@
 <h1><%= yield(:title) %></h1>
 
 <div>
-    <p>Un ejército de tamaño <%= @size %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%="y #{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
-    <p class="col-md-offset-1">Cruzará <%= @step1[0] %> hexágono<%="s" unless @step1[0].to_i==1 %> de <%= @step1[1].downcase %> <%= "y un #{@step1[3].downcase}" unless @step1[3] == "Ninguno" %> en <%= @time1 %> horas marchando <%= @walking_adj[@step1[2].to_sym] %></p>
-    <% if @steps_total >= 2 %>
-        <p class="col-md-offset-1">Cruzará <%= @step2[0] %> hexágono<%="s" unless @step2[0].to_i==1 %> de <%= @step2[1].downcase %> <%= "y un #{@step2[3].downcase}" unless @step2[3] == "Ninguno" %> en <%= @time2 %> horas marchando <%= @walking_adj[@step2[2].to_sym] %></p>
-    <% end %>
-    <% if @steps_total >= 3 %>
-        <p class="col-md-offset-1">Cruzará <%= @step3[0] %> hexágono<%="s" unless @step3[0].to_i==1 %> de <%= @step3[1].downcase %> <%= "y un #{@step3[3].downcase}" unless @step3[3] == "Ninguno" %> en <%= @time3 %> horas marchando <%= @walking_adj[@step3[2].to_sym] %></p>
-    <% end %>
-    <% if @steps_total >= 4 %>
-        <p class="col-md-offset-1">Cruzará <%= @step4[0] %> hexágono<%="s" unless @step4[0].to_i==1 %> de <%= @step4[1].downcase %> <%= "y un #{@step4[3].downcase}" unless @step4[3] == "Ninguno" %> en <%= @time4 %> horas marchando <%= @walking_adj[@step4[2].to_sym] %></p>
+    <p>Un <%= @size == 0 ? "pequeño grupo" : "ejército de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%="y #{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
+    <% 0.upto(@step.length - 1) do |x| %>
+        <% if @step[x.to_s][0] != "" %> 
+            <p class="col-md-offset-1">Cruzará <%= @step[x.to_s][0] %> hexágono<%="s" unless @step[x.to_s][0].to_i==1 %> de <%= @step[x.to_s][1].downcase %> <%= "y un #{@step[x.to_s][3].downcase}" unless @step[x.to_s][3] == "Ninguno" %> en <%= @time[x] %> horas marchando <%= @walking_adj[@step[x.to_s][2].to_sym] %></p>
+        <% end %>    
     <% end %>
 </div>
-
-<p><%=  %></p>
-<p><%=  %></p>
-<p><%=  %></p>
-<p><%=  %></p>

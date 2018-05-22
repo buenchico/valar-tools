@@ -1,26 +1,35 @@
-<% provide(:title, "Calculadora de rutas") %>
-
 <script>
 $(document).ready(function(){
-    var step_id = 1;
+    var step_id = 0;
     $("#add_step").click(function(){
         step_id++;
-        $("#step" + step_id).show();
-        if (step_id == 4) $("#add_step").prop( "disabled", true );
+        $('<p/>', {
+            'id' : 'step' + step_id, html: `<%=j label_tag(:hex, "Distancia") + ": " + number_field_tag("X", nil, {class: "form-control", placeholder: "en hexágonos", id: nil}) %>
+                                               <%=j label_tag(:dif, "Tipo de terreno") + ": " + select_tag("X", options_for_select(@terrain_type), {id: nil, class: "form-control"}) %>
+                                               <%=j label_tag(:speed, "Tipo de marcha") + ": " + select_tag("X", options_for_select(@walking_type), {id: nil, class: "form-control"}) %>
+                                               <%=j label_tag(:obs, "Obstáculo") + ": " + select_tag("X", options_for_select(@obstacle_type), {id: nil, class: "form-control"}) %>`
+                     }).insertAfter('#step' + parseInt(step_id - 1));
+        $('form [name="X"]').attr("name","step["+step_id+"][]")
+        if (step_id == 10) $("#add_step").prop( "disabled", true );
     });
     $("#rem_step").click(function(){
         $("#step" + step_id).hide();
         step_id--;
-        if (step_id != 4) $("#add_step").prop( "disabled", false );
+        if (step_id != 10) $("#add_step").prop( "disabled", false );
     });    
 });
 </script>
 
-<h1><%= yield(:title) %></h1>
+<% provide(:title, "Calculadora de rutas") %>
+<% provide(:description, "Con esta herramienta pueden calcularse los tiempos de viaje de acuerdo a las reglas de la partida") %>
 
-<div class="center">
-    <div class="path-box">
-      <div id="land">
+
+<p class="tool-title">
+    <i class="fas fa-map-signs white"></i>
+    <%= yield(:title) %>
+</p>
+
+<div>
       <%= form_with url: travel_calculator_calculate_path, class: "form-inline", local: true do |form| %>
         <p>
           <%= form.label :from, "Desde" %>: <%= form.text_field :from, class: "form-control", placeholder: "origen" %>
@@ -30,38 +39,18 @@ $(document).ready(function(){
           <%= form.label :size, "Número de ejércitos" %>: <%= form.number_field :size, class: "form-control", placeholder: "0 para personajes" %>
           <%= form.label :carts, "¿Carretas?" %>: <%= form.check_box :carts, {class: "form-check"} %>
         </p>
-        <p id="step1">
-            <%= form.label :hex, "Distancia" %>: <%= form.number_field "step1[]", class: "form-control", placeholder: "en hexágonos" %>
-            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select("step1[]", options_for_select(@terrain_type), {}, {class: "form-control"}) %>
-            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select("step1[]", options_for_select(@walking_type), {}, {class: "form-control"}) %>
-            <%= form.label :obs, "Obstáculo" %>: <%= form.select("step1[]", options_for_select(@obstacle_type), {}, {class: "form-control"}) %>
-        </p>
-        <p id="step2" style="display: none">
-            <%= form.label :hex, "Distancia" %>: <%= form.number_field "step2[]", class: "form-control", placeholder: "en hexágonos" %>
-            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select("step2[]", options_for_select(@terrain_type), {}, {class: "form-control"}) %>
-            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select("step2[]", options_for_select(@walking_type), {}, {class: "form-control"}) %>
-            <%= form.label :obs, "Obstáculo" %>: <%= form.select("step2[]", options_for_select(@obstacle_type), {}, {class: "form-control"}) %>
-        </p>
-        <p id="step3" style="display: none">
-            <%= form.label :hex, "Distancia" %>: <%= form.number_field "step3[]", class: "form-control", placeholder: "en hexágonos" %>
-            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select("step3[]", options_for_select(@terrain_type), {}, {class: "form-control"}) %>
-            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select("step3[]", options_for_select(@walking_type), {}, {class: "form-control"}) %>
-            <%= form.label :obs, "Obstáculo" %>: <%= form.select("step3[]", options_for_select(@obstacle_type), {}, {class: "form-control"}) %>
-        </p>
-        <p id="step4" style="display: none">
-            <%= form.label :hex, "Distancia" %>: <%= form.number_field "step4[]", class: "form-control", placeholder: "en hexágonos" %>
-            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select("step4[]", options_for_select(@terrain_type), {}, {class: "form-control"}) %>
-            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select("step4[]", options_for_select(@walking_type), {}, {class: "form-control"}) %>
-            <%= form.label :obs, "Obstáculo" %>: <%= form.select("step4[]", options_for_select(@obstacle_type), {}, {class: "form-control"}) %>
+        <p id="step0">
+            <%= form.label :hex, "Distancia" %>: <%= form.number_field "step[0][]", class: "form-control", placeholder: "en hexágonos" %>
+            <%= form.label :dif, "Tipo de terreno" %>: <%= form.select("step[0][]", options_for_select(@terrain_type), {}, {class: "form-control"}) %>
+            <%= form.label :speed, "Tipo de marcha" %>: <%= form.select("step[0][]", options_for_select(@walking_type), {}, {class: "form-control"}) %>
+            <%= form.label :obs, "Obstáculo" %>: <%= form.select("step[0][]", options_for_select(@obstacle_type), {}, {class: "form-control"}) %>
         </p>
         <p>
-            <button type="button" id="add_step" class="btn"><i class="fas fa-plus-circle"></i> Añadir etapa</button>  <button type="button" id="rem_step" class="btn"><i class="fas fa-times-circle"></i> Eliminar etapa</button> 
+            <button type="button" id="add_step" class="form-control"><i class="fas fa-plus-circle"></i> Añadir etapa</button>  <button type="button" id="rem_step" class="form-control"><i class="fas fa-times-circle"></i> Eliminar etapa</button> 
 
         </p>
         <p>
-          <%= form.submit "Calcular", class: "form-control" %>
+          <%= form.submit "Calcular", class: "form-control", id: "calculate" %>
         </p>
         <% end %>
-        </div>
-    </div>
 </div>

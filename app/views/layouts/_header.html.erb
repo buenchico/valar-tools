@@ -1,17 +1,8 @@
 <header class="navbar navbar-fixed-top">
-  <nav class="container navbar navbar-default navbar-expand-lg navbar-light bg-light">
-   <%= link_to "Valar Tools", root_path, id: "logo" %>
-     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <nav class="container navbar navbar-default navbar-light bg-light">
+   <%= link_to image_tag("tools.png", :alt => "Valar Tools", id: "logo"), root_path, id: "logo" %>
+    <div>
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><%= link_to "Valar",    "http://www.valar.es" %></li>
-        <li class="nav-item"><%= link_to "About",    about_path %></li>
-        <li class="nav-item"><%= link_to "Contacto", contact_path %></li>
       </ul>
     </div>
   </nav>

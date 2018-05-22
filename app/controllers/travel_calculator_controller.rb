@@ -1,4 +1,5 @@
 class TravelCalculatorController < ApplicationController
+  
   def index
     @terrain_type = [ 'Llanuras', 'Caminos', 'Bosques', 'Desiertos', 'Montañas' ]
     @walking_type = [ 'Normal', 'Marchas forzadas', 'Marcha cuidadosa' ]
@@ -11,15 +12,9 @@ class TravelCalculatorController < ApplicationController
     @to = params[:to] != "" ? params[:to] : "Destino"
     @size = params[:size].to_i
     @carts = params[:carts].to_i * 5
+    
+    @step = params[:step].to_unsafe_h
 
-    @step1 = params[:step1]
-    @step2 = params[:step2]
-    @step3 = params[:step3]
-    @step4 = params[:step4]    
-
-#    @speed = params[:speed].map(&:to_i)
-
-#    @hex = params[:hex].map(&:to_i)
   #base speed
     @base = 10
 
@@ -43,21 +38,16 @@ class TravelCalculatorController < ApplicationController
          else
            @size_mod = -2
     end
-
-  #number of steps
-    @steps = [ @step1[0], @step2[0], @step3[0], @step4[0] ]
-    @steps_total = ( 4 - @steps.count("") )
     
-    @time1 = @step1[0].to_i * ( @base + @terrain_speed[@step1[1].to_sym] + @walking_speed[@step1[2].to_sym] + @carts + @size_mod ) + @obstacle_speed[@step1[3].to_sym]
-    @time2 = @step2[0].to_i * ( @base + @terrain_speed[@step2[1].to_sym] + @walking_speed[@step2[2].to_sym] + @carts + @size_mod ) + @obstacle_speed[@step2[3].to_sym]
-    @time3 = @step3[0].to_i * ( @base + @terrain_speed[@step3[1].to_sym] + @walking_speed[@step3[2].to_sym] + @carts + @size_mod ) + @obstacle_speed[@step3[3].to_sym]
-    @time4 = @step4[0].to_i * ( @base + @terrain_speed[@step4[1].to_sym] + @walking_speed[@step4[2].to_sym] + @carts + @size_mod ) + @obstacle_speed[@step4[3].to_sym]
+  #time calculations  
+    @time = []
+    0.upto(@step.length - 1) do |x|
+        @time << @step[x.to_s][0].to_i * ( @base + @terrain_speed[@step[x.to_s][1].to_sym] + @walking_speed[@step[x.to_s][2].to_sym] + @carts + @size_mod ) + @obstacle_speed[@step[x.to_s][3].to_sym].to_i
+    end    
 
-    @time_total = @time1 + @time2 + @time3 + @time4
-  
-    @days = @time_total / 24
+    @days = @time.sum / 24
     @days_word = @days == 1 ? "día" : "días"
-    @hours = @time_total %  24
-  
+    @hours = @time.sum %  24
+
   end
 end
