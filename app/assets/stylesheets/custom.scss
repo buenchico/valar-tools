@@ -1,5 +1,3 @@
-$container-large-desktop: 1129px;
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -116,6 +114,13 @@ p {
   }
 }
 
+.nav-icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  max-height: 36px;
+}
+
 /* footer */
 
 footer {
@@ -171,22 +176,6 @@ footer {
 }
 
 /* forms */
-
-input {
-  color: black;
-}
-
-textarea {
-  color: black;
-}
-
-.btn-big {
-  font-size:300%;
-}
-
-.btn-append {
-  position:absolute; top:0px; right:0px;
-}
 
 .path-box {
   margin: 0 auto;
