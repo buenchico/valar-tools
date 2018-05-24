@@ -10,14 +10,14 @@ ruby '2.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Bootstrap framework for CSS
-gem 'bootstrap-sass', '3.3.7'
-gem 'autoprefixer-rails'
+gem 'bootstrap', '>= 4.1.1'
+gem 'autoprefixer-rails', '>= 6.0.3' 
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.0.9'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass', '~> 3.5.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery
