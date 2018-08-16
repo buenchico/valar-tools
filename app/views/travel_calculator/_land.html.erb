@@ -1,0 +1,8 @@
+<div>
+    <p>Un <%= @size == 0 ? "pequeño grupo" : "ejército de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
+    <% 0.upto(@step.length - 1) do |x| %>
+        <% if @step[x.to_s][:hex] != "" %> 
+            <p class="col-md-offset-1">Cruzará <%= @step[x.to_s][:hex] %> hexágono<%="s" unless @step[x.to_s][:hex].to_i==1 %> de <%= @step[x.to_s][:terrain].downcase %> <%= "y un #{@step[x.to_s][:obstacle].downcase}" unless @step[x.to_s][:obstacle] == "Ninguno" %> en <%= @time[x] %> horas marchando <%= @walking_adj[@step[x.to_s][:speed].to_sym] %></p>
+        <% end %>    
+    <% end %>
+</div>

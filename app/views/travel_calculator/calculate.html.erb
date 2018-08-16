@@ -2,11 +2,10 @@
 
 <h1><%= yield(:title) %></h1>
 
-<div>
-    <p>Un <%= @size == 0 ? "pequeño grupo" : "ejército de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%="y #{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
-    <% 0.upto(@step.length - 1) do |x| %>
-        <% if @step[x.to_s][0] != "" %> 
-            <p class="col-md-offset-1">Cruzará <%= @step[x.to_s][0] %> hexágono<%="s" unless @step[x.to_s][0].to_i==1 %> de <%= @step[x.to_s][1].downcase %> <%= "y un #{@step[x.to_s][3].downcase}" unless @step[x.to_s][3] == "Ninguno" %> en <%= @time[x] %> horas marchando <%= @walking_adj[@step[x.to_s][2].to_sym] %></p>
-        <% end %>    
-    <% end %>
-</div>
+<% if @step == 0 %>   
+    <%= render 'travel_calculator/sea' %>
+<% elsif @step_sea == 0  %>   
+    <%= render 'travel_calculator/land' %>
+<% else %>
+    <%= "<p>ERROR</p>" %>
+<% end %>
