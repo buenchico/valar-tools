@@ -115,6 +115,8 @@ $(document).ready(function(){
 </script>
 
 <% provide(:title, "Calculadora de rutas") %>
+<% provide(:version, "0.01") %>
+
 
 <div style="float: right; padding-top: 10px">
     <div class="form-check checkbox-slider--a checkbox-slider--path checkbox-slider-lg">
@@ -270,3 +272,5 @@ $(document).ready(function(){
         </div>
     <% end %>
 </div>
+
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
