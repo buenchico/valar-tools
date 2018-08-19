@@ -1,6 +1,17 @@
-<div id="accordion">
-  <h3>First header</h3>
-  <div>First content panel</div>
-  <h3>Second header</h3>
-  <div>Second content panel</div>
+<% provide(:title, "Contacto") %>
+
+<div class="tool-title">
+    <i class="fas fa-question"></i>
+    <%= yield(:title) %></span>
+</div>
+
+<div class="center">
+  <div class="tool-box">
+    <h1><%= link_to "", "https://www.valar.es", class: "white giant-icon far fa-comments" %></h1>
+    <p>Pregunta a la comunidad<p>
+  </div>
+  <div class="tool-box">
+    <h1><%= link_to "", "mailto:admin@valar.es", class: "white giant-icon far fa-envelope" %></h1>
+    <p>Escribe al equipo en admin@gmail.com<p>
+  </div>
 </div>

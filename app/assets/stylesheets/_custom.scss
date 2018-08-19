@@ -54,6 +54,7 @@ a.nav-text-icon:hover {
 
 .tool-box {
   display: inline-block;
+  text-align: center;
   padding: 20px;
 }
 
@@ -103,6 +104,12 @@ a.nav-text-icon:hover {
 .checkbox-slider--path input + span::after {
 	content: "Tierra" !important;
 	background-color: #885723 !important;
+}
+
+/* ICONOS CONTACT  */
+
+.giant-icon {
+  font-size: 300%;
 }
 
 /* STEP TITLE*/

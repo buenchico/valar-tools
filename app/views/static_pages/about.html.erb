@@ -1,3 +1,14 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
-<a href="#" data-confirm="Are you sure?">I want to code for 20 hrs today.</a>
+<% provide(:title, "Acerca de Valar Tools") %>
+
+<div class="tool-title">
+    <i class="fas fa-user-friends"></i>
+    <%= yield(:title) %></span>
+</div>
+
+<div>
+    <p>Valar Tools es un conjunto de herramientas para mejorar la experiencia de juego en <a href="https://www.valar.es">Valar</a>, la comunidad de juegos de rol y estrategia en el mundo de Canción de Hielo y Fuego.</p>
+    <p>Si quieres saber más sobre nosotros lo mejor es dirigirse a <a href="https://www.valar.es/c/introduccion">nuestro foro</a> y presentarte.</p>
+    <p>Valar Tools está en constante desarollo.</p>
+    <p>En caso de un error crítico o un asunto urgente referente a este sitio, por favor, contáctanos en <a href="mailto:admin@valar.es">admin@valar.es</a></a>.</p>
+    <p>El contenido está protegido por la licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attribution-NonCommercial-ShareAlike 4.0 International</a>.</p>
+</div>
