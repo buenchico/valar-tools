@@ -1,0 +1,9 @@
+$('#result').html(`<% if @step == 0 %>   
+        <%= j render 'travel_calculator/sea' %>
+    <% elsif @step_sea == 0  %>   
+        <%= j render 'travel_calculator/land' %>
+    <% else %>
+        <%= "<p>ERROR</p>" %>
+    <% end %>
+`);
+$('#result').slideDown(350);
