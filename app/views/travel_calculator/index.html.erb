@@ -117,7 +117,6 @@ $(document).ready(function(){
 <% provide(:title, "Calculadora de rutas") %>
 <% provide(:version, "0.01") %>
 
-
 <div style="float: right; padding-top: 10px">
     <div class="form-check checkbox-slider--a checkbox-slider--path checkbox-slider-lg">
 	    <label>
@@ -131,8 +130,10 @@ $(document).ready(function(){
     <%= yield(:title) %> <span class="land">— Tierra</span><span class="sea">— Mar</span>
 </div>
 
+<div id="result" class="card text-white bg-primary mb-3" style="display: none; max-width: 480px;"></div>
+
 <div class="land">
-  <%= form_with url: travel_calculator_calculate_path, local: true do |form| %>
+  <%= form_with url: travel_calculator_calculate_path, remote: true do |form| %>
     <div class="form-group form-inline">
         <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -203,7 +204,7 @@ $(document).ready(function(){
 </div>
 
 <div class="sea">
-  <%= form_with url: travel_calculator_calculate_path, local: true do |form| %>
+  <%= form_with url: travel_calculator_calculate_path, remote: true do |form| %>
     <div class="form-group form-inline">
         <div class="input-group mb-2">
             <div class="input-group-prepend">

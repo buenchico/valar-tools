@@ -1,8 +1,20 @@
-<div>
-    <p>Un <%= @size == 0 ? "pequeño grupo" : "ejército de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
+<script>
+$(document).ready(function(){
+    $("#delete_result").on("click", function(){
+        $("#result").hide();
+    });
+});
+</script>
+
+<div class="card-header">Desde <%=@from %> hasta <%=@to %></div>
+<div style="position: absolute; right: 0px; top: 0px;">
+    <button type="button" id="delete_result" class="btn btn-link text-white"><i class="fas fa-times-circle"></i></button>
+</div>
+<div class="card-body">
+    <p class="card-text">Un <%= @size == 0 ? "pequeño grupo" : "ejército de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
     <% 0.upto(@step.length - 1) do |x| %>
-        <% if @step[x.to_s][:hex] != "" %> 
-            <p class="col-md-offset-1">Cruzará <%= @step[x.to_s][:hex] %> hexágono<%="s" unless @step[x.to_s][:hex].to_i==1 %> de <%= @step[x.to_s][:terrain].downcase %> <%= "y un #{@step[x.to_s][:obstacle].downcase}" unless @step[x.to_s][:obstacle] == "Ninguno" %> en <%= @time[x] %> horas marchando <%= @walking_adj[@step[x.to_s][:speed].to_sym] %></p>
-        <% end %>    
+        <% if @step[x.to_s][:hex] != "" %>
+            <p class="card-text">Cruzará <%= @step[x.to_s][:hex] %> hexágono<%="s" unless @step[x.to_s][:hex].to_i==1 %> de <%= @step[x.to_s][:terrain].downcase %> <%= "y un #{@step[x.to_s][:obstacle].downcase}" unless @step[x.to_s][:obstacle] == "Ninguno" %> en <%= @time[x] %> horas marchando <%= @walking_adj[@step[x.to_s][:speed].to_sym] %></p>
+        <% end %>
     <% end %>
 </div>

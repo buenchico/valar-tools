@@ -1,9 +1,21 @@
-<div>
-    <p>Una <%= @size == 0 ? "flotilla" : "flota de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
+<script>
+$(document).ready(function(){
+    $("#delete_result").on("click", function(){
+        $("#result").hide();
+    });
+});
+</script>
+
+<div class="card-header">Desde <%=@from %> hasta <%=@to %></div>
+<div style="position: absolute; right: 0px; top: 0px;">
+    <button type="button" id="delete_result" class="btn btn-link text-white"><i class="fas fa-times-circle"></i></button>
+</div>
+<div class="card-body">
+    <p class="card-text">Una <%= @size == 0 ? "flotilla" : "flota de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
     <% 0.upto(@step_sea.length - 1) do |x| %>
         <% if @step_sea[x.to_s][:hex] != "" %> 
-            <p class="col-md-offset-1">Cruzará <%= @step_sea[x.to_s][:hex] %> hexágono<%="s" unless @step_sea[x.to_s][:hex].to_i == 1 %> de <%= @step_sea[x.to_s][:terrain].downcase %> 
-            en <%= @time[x] %> horas navegando  <%= @walking_adj[@step_sea[x.to_s][:speed].to_sym] %><%= " tras embarcar o desembarcar" if @step_sea[x.to_s][:board].to_i == 1 %></p>    
-        <% end %>    
+            <p class="card-text">Cruzará <%= @step_sea[x.to_s][:hex] %> hexágono<%="s" unless @step_sea[x.to_s][:hex].to_i == 1 %> de <%= @step_sea[x.to_s][:terrain].downcase %> 
+            en <%= @time[x] %> horas navegando  <%= @walking_adj[@step_sea[x.to_s][:speed].to_sym] %><%= " tras embarcar o desembarcar" if @step_sea[x.to_s][:board].to_i == 1 %></p>   
+        <% end %>
     <% end %>
 </div>

@@ -11,6 +11,8 @@ class TravelCalculatorController < ApplicationController
   end
 
   def calculate
+    respond_to :html, :js
+  
   #get info about the journey from the form
     @from = params[:from] != "" ? params[:from] : "Origen"
     @to = params[:to] != "" ? params[:to] : "Destino"
@@ -29,7 +31,7 @@ class TravelCalculatorController < ApplicationController
     @terrain_speed = {'Llanuras': 0, 'Caminos': -3, 'Bosques': 3, 'Desiertos': 3, 'Montañas': 8, 'Costa': 0, 'Mar Abierto': 3, 'Río': 3 }
     @walking_speed = {'Normal': 0, 'Forzada': -3, 'Cuidadosa': 3 , 'Forrajeando': 8 }
     @obstacle_speed = {'Ninguno': 0,'Vado': 8, 'Puente': 3, 'Río': 24, 'Estrecho': 24 }
-    @fleet_speed = {'Rápida': -1, 'Normal': 0, 'Lenta': 2 }
+    @fleet_speed = {'Rápida': 0, 'Normal': 1, 'Lenta': 3 }
 
   #walking adjetive
     @walking_adj = {'Normal': 'normalmente', 'Forzada': 'forzadamente', 'Cuidadosa': 'sigilosamente' , 'Forrajeando': 'forrajeando'}
@@ -53,7 +55,7 @@ class TravelCalculatorController < ApplicationController
     
     if @step == 0
       0.upto(@step_sea.length - 1) do |x|
-        @time << @step_sea[x.to_s][:hex].to_i * ( @base_sea + @fleet_speed[@fleet_type.to_sym] + @terrain_speed[@step_sea[x.to_s][:terrain].to_sym] + @walking_speed[@step_sea[x.to_s][:speed].to_sym] + @size_mod ) + (( @step_sea[x.to_s][:board].to_i + @fleet_speed[@fleet_type.to_sym] ) * 4 )
+        @time << @step_sea[x.to_s][:hex].to_i * ( @base_sea + @fleet_speed[@fleet_type.to_sym] + @terrain_speed[@step_sea[x.to_s][:terrain].to_sym] + @walking_speed[@step_sea[x.to_s][:speed].to_sym] + @size_mod ) + ((4 + @fleet_speed[@fleet_type.to_sym] * 2 ) * @step_sea[x.to_s][:board].to_i )
       end
     elsif @step_sea == 0
       0.upto(@step.length - 1) do |x|
