@@ -127,6 +127,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.1.6)
       actionpack (= 5.1.6)
       activesupport (= 5.1.6)
@@ -200,6 +205,7 @@ DEPENDENCIES
   pg (= 0.20.0)
   puma (~> 3.7)
   rails (~> 5.1.4)
+  rails_12factor
   sass (~> 3.5.2)
   selenium-webdriver
   spring
@@ -214,4 +220,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
