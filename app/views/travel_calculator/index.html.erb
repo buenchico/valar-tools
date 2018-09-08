@@ -146,13 +146,13 @@ $(document).ready(function(){
             <div class="input-group-prepend">
               <div class="input-group-text">Origen</div>
             </div>
-          <%= form.text_field :from, class: "custom-control ui-autocomplete-input auto-source", data: {autocomplete_source: travel_calculator_location_list_path}, placeholder: "origen"%>
+          <%= form.text_field :from, class: "custom-control ui-autocomplete-input auto-source", placeholder: "origen"%>
         </div>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text">Destino</div>
             </div>
-          <%= form.text_field :to, class: "custom-control ui-autocomplete-input auto-source", data: {autocomplete_source: travel_calculator_location_list_path}, placeholder: "destino" %>
+          <%= form.text_field :to, class: "custom-control ui-autocomplete-input auto-source", placeholder: "destino" %>
         </div>
     </div>
     <div class="form-group form-inline">
