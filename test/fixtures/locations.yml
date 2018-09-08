@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  LID: 1
+  NAME_ES: MyString
+  NAME_EN: MyString
+  HOUSE: MyString
+  HID: 1
+  TYPE: MyString
+  KINGDOM: MyString
+
+two:
+  LID: 1
+  NAME_ES: MyString
+  NAME_EN: MyString
+  HOUSE: MyString
+  HID: 1
+  TYPE: MyString
+  KINGDOM: MyString

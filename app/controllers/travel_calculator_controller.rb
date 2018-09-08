@@ -1,13 +1,19 @@
 class TravelCalculatorController < ApplicationController
   
   def index
-    @terrain_type = [ 'Llanuras', 'Caminos', 'Bosques', 'Desiertos', 'Montañas' ]
+    @terrain_type = [ 'Llanuras', 'Caminos', 'Abrupto', 'Montañas' ]
     @walking_type = [ 'Normal', 'Forzada', 'Cuidadosa', 'Forrajeando' ]
     @sailing_type = [ 'Normal', 'Forzada', 'Cuidadosa' ]
     @obstacle_type = ['Ninguno', 'Vado', 'Puente', 'Río', 'Estrecho']
     
     @sea_type = [ 'Costa', 'Mar Abierto', 'Río']
     @fleet_type = ['Rápida', 'Normal', 'Lenta']
+  end
+  
+  def location_list
+    @locations_list = Location.order(:NAME_ES).where("NAME_ES like ?", "%#{params[:term]}%")
+    @locations_list  = @locations_list.limit(20)
+    render json: @locations_list.map(&:NAME_ES)  
   end
 
   def calculate
@@ -28,8 +34,9 @@ class TravelCalculatorController < ApplicationController
     @base_sea = 4
 
   #speed modificators
-    @terrain_speed = {'Llanuras': 0, 'Caminos': -3, 'Bosques': 3, 'Desiertos': 3, 'Montañas': 8, 'Costa': 0, 'Mar Abierto': 3, 'Río': 3 }
+    @terrain_speed = {'Llanuras': 0, 'Caminos': -3, 'Abrupto': 3, 'Montañas': 8, 'Costa': 0, 'Mar Abierto': 3, 'Río': 3 }
     @walking_speed = {'Normal': 0, 'Forzada': -3, 'Cuidadosa': 3 , 'Forrajeando': 8 }
+    @sailing_speed = {'Normal': 0, 'Forzada': -1, 'Cuidadosa': 1 }
     @obstacle_speed = {'Ninguno': 0,'Vado': 8, 'Puente': 3, 'Río': 24, 'Estrecho': 24 }
     @fleet_speed = {'Rápida': 0, 'Normal': 1, 'Lenta': 3 }
 
@@ -55,7 +62,7 @@ class TravelCalculatorController < ApplicationController
     
     if @step == 0
       0.upto(@step_sea.length - 1) do |x|
-        @time << @step_sea[x.to_s][:hex].to_i * ( @base_sea + @fleet_speed[@fleet_type.to_sym] + @terrain_speed[@step_sea[x.to_s][:terrain].to_sym] + @walking_speed[@step_sea[x.to_s][:speed].to_sym] + @size_mod ) + ((4 + @fleet_speed[@fleet_type.to_sym] * 2 ) * @step_sea[x.to_s][:board].to_i )
+        @time << @step_sea[x.to_s][:hex].to_i * ( @base_sea + @fleet_speed[@fleet_type.to_sym] + @terrain_speed[@step_sea[x.to_s][:terrain].to_sym] + @sailing_speed[@step_sea[x.to_s][:speed].to_sym] + @size_mod ) + ((4 + @fleet_speed[@fleet_type.to_sym] * 2 ) * @step_sea[x.to_s][:board].to_i )
       end
     elsif @step_sea == 0
       0.upto(@step.length - 1) do |x|
