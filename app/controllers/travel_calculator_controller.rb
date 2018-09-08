@@ -11,9 +11,9 @@ class TravelCalculatorController < ApplicationController
   end
   
   def location_list
-    @locations_list = Location.order(:LID).where("LID like ?", "%#{params[:term]}%")
+    @locations_list = Location.order(:NAME_ES).where('NAME_ES like ?', '%#{params[:term]}%')
     @locations_list  = @locations_list.limit(20)
-    render json: @locations_list.map(&:LID)  
+    render json: @locations_list.map(&:NAME_ES)  
   end
 
   def calculate
