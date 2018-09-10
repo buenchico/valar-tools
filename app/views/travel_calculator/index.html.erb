@@ -114,11 +114,11 @@ $(document).ready(function(){
 });
 </script>
 <script>
-  $( function() {
-    $( ".auto-source" ).autocomplete({
+$(document).ready(function(){
+    $(".auto-source").autocomplete({
       source: $('.auto-source').data('autocomplete-source')
     });
-  } );
+  });
 </script>
 
 <% provide(:title, "Calculadora de rutas") %>
