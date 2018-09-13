@@ -44,7 +44,7 @@ $(document).ready(function(){
         if (step_id != 9) $("#add_step").prop( "disabled", false );
         if (step_id == 0) $("#rem_step").prop( "disabled", true );
     });
-});
+});    
 </script>
 <script>
 $(document).ready(function(){
@@ -99,27 +99,9 @@ $(document).ready(function(){
     });
 });
 </script>
-<script>
-$(document).ready(function(){
-    $("#path-type").click(function(){
-        if (this.checked) {
-            $(".land").hide();
-            $(".sea").show();
-        }
-        else {
-            $(".sea").hide();
-            $(".land").show();
-        }
-    });
-});
-</script>
-<script>
-$(document).ready(function(){
-    $(".auto-source").autocomplete({
-      source: $('.auto-source').data('autocomplete-source')
-    });
-  });
-</script>
+
+<%= javascript_include_tag "travel_calculator" %>
+<%= javascript_include_tag "common" %>
 
 <% provide(:title, "Calculadora de rutas") %>
 <% provide(:version, "9.03") %>
