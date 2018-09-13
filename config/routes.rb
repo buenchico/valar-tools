@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # resources :locations
 
   root 'static_pages#home'
@@ -6,8 +7,10 @@ Rails.application.routes.draw do
   get  '/about', to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
 
+  get 'missions/', to: 'missions#index'
+  post 'missions/calculate', to: 'missions#calculate'
+
   get 'travel_calculator', to: 'travel_calculator#index'
-  get 'travel_calculator/calculate', to: 'travel_calculator#index' 
   post 'travel_calculator/calculate', to: 'travel_calculator#calculate'
   get 'travel_calculator/location_list', to: 'travel_calculator#location_list'
 #  resources :travel_calculator

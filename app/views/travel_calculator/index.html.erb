@@ -120,6 +120,12 @@ $(document).ready(function(){
     });
   });
 </script>
+<script>
+$(document).ready(function(){  
+  var clipboard = new Clipboard('.clipboard-btn');
+  console.log(clipboard);
+});
+</script>
 
 <% provide(:title, "Calculadora de rutas") %>
 <% provide(:version, "9.03") %>

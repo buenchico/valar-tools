@@ -17,8 +17,3 @@
 //= require bootstrap
 //= require clipboard
 //= require_tree .
-
-$(document).ready(function(){  
-  var clipboard = new Clipboard('.clipboard-btn');
-  console.log(clipboard);
-});

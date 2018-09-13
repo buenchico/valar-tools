@@ -14,7 +14,7 @@ class TravelCalculatorController < ApplicationController
   #Column name must be between double quotes because, by default, pgsql column names are always lowercase
     @locations_list = Location.order(:NAME_ES).where('LOWER("NAME_ES") like ?', "%#{params[:term].downcase}%")
     @locations_list  = @locations_list.limit(20)
-    render json: @locations_list.map(&:NAME_ES)  
+    render json: @locations_list.map(&:NAME_ES)
   end
 
   def calculate
