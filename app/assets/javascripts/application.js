@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery-ui/widgets/autocomplete
-//= require jquery-ui/widgets/selectmenu
 //= require rails-ujs
+//= require bootstrap
 //= require turbolinks
 //= require clipboard
 //= require_tree .
