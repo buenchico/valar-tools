@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/selectmenu
 //= require rails-ujs
 //= require turbolinks
 //= require clipboard
