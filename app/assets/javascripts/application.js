@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/widgets/autocomplete
 //= require rails-ujs
-//= require jquery-ui
 //= require turbolinks
 //= require clipboard
 //= require_tree .
