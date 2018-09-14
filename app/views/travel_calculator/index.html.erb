@@ -44,7 +44,7 @@ $(document).ready(function(){
         if (step_id != 9) $("#add_step").prop( "disabled", false );
         if (step_id == 0) $("#rem_step").prop( "disabled", true );
     });
-});    
+});
 </script>
 <script>
 $(document).ready(function(){
@@ -100,8 +100,9 @@ $(document).ready(function(){
 });
 </script>
 
-<%= javascript_include_tag "travel_calculator" %>
-<%= javascript_include_tag "common" %>
+<%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
+
 
 <% provide(:title, "Calculadora de rutas") %>
 <% provide(:version, "9.03") %>

@@ -3,7 +3,7 @@ $(document).ready(function(){
     source: $('.auto-source').data('autocomplete-source')
   });
 });
-  
+
 $(document).ready(function(){  
   var clipboard = new Clipboard('.clipboard-btn');
 });
