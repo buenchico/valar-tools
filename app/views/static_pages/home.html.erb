@@ -1,10 +1,8 @@
 <div class="center">
-  <div class="tool-box">
-    <h1><%= link_to "", travel_calculator_path, class: "white giant-icon fas fa-map-signs" %></h1>
-    <p>Ruta<p>
-  </div>
-  <div class="tool-box">
-    <h1><%= link_to "", missions_path, class: "white giant-icon fas fa-dice" %></h1>
-    <p>Misiones<p>
-  </div>
+  <% $tools.each do |k,v| %>
+    <div class="tool-box">
+      <h1><%= link_to "", $tools[k][:path], class: $tools[k][:icon] %></h1>
+      <p><%= $tools[k][:short_title] %></p>
+    </div>
+  <% end -%>
 </div>
