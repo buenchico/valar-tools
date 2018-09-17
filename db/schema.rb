@@ -25,9 +25,4 @@ ActiveRecord::Schema.define(version: 20180914160210) do
     t.string "DESCRIPTION"
   end
 
-  create_table "tools", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
