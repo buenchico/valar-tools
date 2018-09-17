@@ -105,6 +105,8 @@ $(document).ready(function(){
 
 <% provide(:title, $tools[:routes][:title]) %>
 <% provide(:version, $tools[:routes][:version]) %>
+<% provide(:icon, $tools[:routes][:icon]) %>
+
 
 <div style="float: right; padding-top: 10px">
     <div class="form-check checkbox-slider--a checkbox-slider--path checkbox-slider-lg">
@@ -115,7 +117,7 @@ $(document).ready(function(){
 </div>
 
 <div class="tool-title">
-    <i class="fas fa-map-signs white"></i>
+    <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %> <span class="land">— Tierra</span><span class="sea">— Mar</span>
 </div>
 

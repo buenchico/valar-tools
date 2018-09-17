@@ -49,11 +49,12 @@ $(document).ready(function(){
 });
 </script>
 
-<% provide(:title, "Calculadora de misiones") %>
-<% provide(:version, "9.01") %>
+<% provide(:title, $tools[:missions][:title]) %>
+<% provide(:version, $tools[:missions][:version]) %>
+<% provide(:icon, $tools[:missions][:icon]) %>
 
 <div class="tool-title">
-    <i class="fas fa-dice white"></i>
+    <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
 </div>
 

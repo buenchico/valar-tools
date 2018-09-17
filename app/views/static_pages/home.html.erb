@@ -1,7 +1,7 @@
 <div class="center">
   <% $tools.each do |k,v| %>
     <div class="tool-box">
-      <h1><%= link_to "", $tools[k][:path], class: $tools[k][:icon] %></h1>
+      <h1><%= link_to "", $tools[k][:path], class: "white giant-icon #{$tools[k][:icon]}" %></h1>
       <p><%= $tools[k][:short_title] %></p>
     </div>
   <% end -%>
