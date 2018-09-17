@@ -49,6 +49,8 @@ $(document).ready(function(){
 });
 </script>
 
+<%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
+
 <% provide(:title, $tools[:missions][:title]) %>
 <% provide(:version, $tools[:missions][:version]) %>
 <% provide(:icon, $tools[:missions][:icon]) %>
