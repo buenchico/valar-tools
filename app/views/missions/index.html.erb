@@ -48,8 +48,16 @@ $(document).ready(function(){
     });
 });
 </script>
+<script>
+$('#recipe-select').on('change',function(){
+    var recipe = $(this).val();
+    $('#recipe-desc').html("<%= j render 'missions/recipe' %>")
+})
+</script>
 
 <%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'missions', 'data-turbolinks-track': 'reload' %>
+
 
 <% provide(:title, $tools[:missions][:title]) %>
 <% provide(:version, $tools[:missions][:version]) %>
@@ -66,23 +74,23 @@ $(document).ready(function(){
     <div class="row">
         <div class="col">
             <%= form_with url: missions_calculate_path, remote: true do |form| %>
-            <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">Receta</div>
-            </div>
-          <%= form.select("step[0][terrain]", options_for_select(@test), {}, {class: "custom-select"}) %>
-        </div>
-            <div class="form-group form-inline">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <div class="input-group-text">Dificultad</div>
+                        <div class="input-group-text">Receta</div>
                     </div>
-                  <%= form.number_field :dif, class: "custom-control", value: 0, min: -3, max: +6 %>
+                <%= form.select("recipe", options_for_select(Recipe.all.map(&:NAME)), {}, {class: "custom-select", id: "recipe-select"}) %>
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">Miscelánea</div>
+                <div class="form-group form-inline">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Dificultad</div>
+                        </div>
+                    <%= form.number_field :dif, class: "custom-control", value: 0, min: -3, max: +6 %>
                     </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Miscelánea</div>
+                        </div>
                   <%= form.number_field :misc, class: "custom-control", placeholder: "Otros modificadores", min: -3, max: +3 %>
                 </div> 
                 <div class="input-group mb-2">
@@ -96,47 +104,47 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>    
-            <div id="token0" class="form-group form-inline container">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">Token</div>
+                <div id="token0" class="form-group form-inline container">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Token</div>
+                        </div>
+                        <%= form.text_field "token[0][name]", class: "custom-control", placeholder: "Nombre del token"%>
                     </div>
-                    <%= form.text_field "token[0][name]", class: "custom-control", placeholder: "Nombre del token"%>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">¿Mejorado?</div>
+                        </div>
+                        <div class="form-check checkbox-slider--a checkbox-slider-lg">
+	                        <label>
+		                        <%= form.check_box "token[0][improve]", {class: "custom-checkbox"} %><span>&nbsp;</span>
+	                        </label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">¿Dañado?</div>
+                        </div>
+                        <div class="form-check checkbox-slider--a checkbox-slider-lg">
+	                        <label>
+		                        <%= form.check_box "token[0][damaged]", {class: "custom-checkbox"} %><span>&nbsp;</span>
+	                        </label>
+                        </div>
+                    </div>        
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">¿Mejorado?</div>
-                    </div>
-                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
-	                    <label>
-		                    <%= form.check_box "token[0][improve]", {class: "custom-checkbox"} %><span>&nbsp;</span>
-	                    </label>
-                    </div>
+                <div class="form-group form-inline">
+                    <button type="button" id="add_token" class="btn btn-success"><i class="fas fa-plus-circle"></i> Añadir token</button>
+                    <button type="button" disabled id="rem_token" class="btn btn-danger"><i class="fas fa-times-circle"></i> Eliminar token</button> 
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">¿Dañado?</div>
-                    </div>
-                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
-	                    <label>
-		                    <%= form.check_box "token[0][damaged]", {class: "custom-checkbox"} %><span>&nbsp;</span>
-	                    </label>
-                    </div>
-                </div>        
-            </div>
-            <div class="form-group form-inline">
-                <button type="button" id="add_token" class="btn btn-success"><i class="fas fa-plus-circle"></i> Añadir token</button>
-                <button type="button" disabled id="rem_token" class="btn btn-danger"><i class="fas fa-times-circle"></i> Eliminar token</button> 
-            </div>
-            <div class="form-group form-inline">
-                <%= form.submit "Calcular", class: "btn btn-primary", id: "calculate" %>
-            </div>
+                <div class="form-group form-inline">
+                    <%= form.submit "Calcular", class: "btn btn-primary", id: "calculate" %>
+                </div>
             <% end %>
         </div>
         <div class="col card bg-secondary">
-            <div class="card-header">Título de la receta</div>
+            <div id="recipe-title" class="card-header">Miscelánea</div>
             <div class="card-body">
-                <p class="card-text">test</p>
+                <p id="recipe-desc" class="card-text">test</p>
             </div>
         </div>
     </div>

@@ -1,9 +1,13 @@
 class MissionsController < ApplicationController
   def index
-    @test = ['test1', 'test2']
+    @recipes = Recipe.all
   end
 
-  def missions_list
+  def recipe
+    template = params[:recipe] || 'new'
+    respond_to do |format|
+      format.html { render template }
+    end
   end
 
   def calculate
