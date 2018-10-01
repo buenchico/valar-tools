@@ -8,6 +8,7 @@ class CreateLocations < ActiveRecord::Migration[5.1]
       t.integer :HID
       t.string :TYPE
       t.string :KINGDOM
+      t.string :DESCRIPTION
 
       t.timestamps
     end

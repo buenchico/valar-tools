@@ -6,6 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Recipe.create([
+{
+NAME: "Miscelánea", DESCRIPTION: "Receta genérica para resolver misiones no cubiertas por otras recetas"    
+},
+{
+NAME: "test1", DESCRIPTION: "Este es el test 1"  
+},
+{
+NAME: "test2", DESCRIPTION: "Este es el test 1"  
+},
+{
+NAME: "test3", DESCRIPTION: "Este es el test 1"
+},
+{
+NAME: "test4", DESCRIPTION: "Este es el test 1"
+}
+])
+
 Location.create([
 {
 LID: 200001,NAME_ES: "Nido de las Águilas",NAME_EN: "The Eyrie",HOUSE: "Arryn",HID: 300002,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""

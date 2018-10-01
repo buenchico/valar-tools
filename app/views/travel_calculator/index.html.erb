@@ -77,7 +77,7 @@ $(document).ready(function(){
                                                                                 <div class="form-check checkbox-slider--a checkbox-slider-lg">
 	                                                                               <label>
 		                                                                                <input name="board" value="0" type="hidden">
-		                                                                                <%=j check_box_tag 'board', '1', false, class: "custom-checkbox", id: nil %><span>&nbsp;</span>
+		                                                                                <%=j check_box_tag 'board', '1', false, id: nil %><span>&nbsp;</span>
 	                                                                               </label>
                                                                                 </div>
                                                                             </div>`
@@ -152,7 +152,7 @@ $(document).ready(function(){
             </div>
             <div class="form-check checkbox-slider--a checkbox-slider-lg">
 	            <label>
-		            <%= form.check_box :carts, {class: "custom-checkbox"} %><span>&nbsp;</span>
+		            <%= form.check_box :carts %><span>&nbsp;</span>
 	            </label>
             </div>
         </div>
@@ -250,7 +250,7 @@ $(document).ready(function(){
             </div>
             <div class="form-check checkbox-slider--a checkbox-slider-lg">
 	            <label>
-		            <%= form.check_box "step_sea[0][board]", {class: "custom-checkbox"} %><span>&nbsp;</span>
+		            <%= form.check_box "step_sea[0][board]" %><span>&nbsp;</span>
                 </label>
             </div>
         </div>
