@@ -13,23 +13,23 @@
 ActiveRecord::Schema.define(version: 20180918083827) do
 
   create_table "locations", force: :cascade do |t|
-    t.integer "LID"
-    t.string "NAME_ES"
-    t.string "NAME_EN"
-    t.string "HOUSE"
-    t.integer "HID"
-    t.string "TYPE"
-    t.string "KINGDOM"
-    t.string "DESCRIPTION"
+    t.integer "lid"
+    t.string "name_es"
+    t.string "name_en"
+    t.string "house"
+    t.integer "hid"
+    t.string "location_type"
+    t.string "kingdom"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "NAME"
-    t.string "DESCRIPTION"
-    t.integer "DIFFICULTY"
-    t.string "TIME"
+    t.string "name"
+    t.string "description"
+    t.integer "difficulty"
+    t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

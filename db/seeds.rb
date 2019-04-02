@@ -8,789 +8,789 @@
 
 Recipe.create([
 {
-NAME: "Miscelánea", DESCRIPTION: "Receta genérica para resolver misiones no cubiertas por otras recetas"    
+name: "Miscelánea", description: "Receta genérica para resolver misiones no cubiertas por otras recetas"    
 },
 {
-NAME: "test1", DESCRIPTION: "Este es el test 1"  
+name: "test1", description: "Este es el test 1"  
 },
 {
-NAME: "test2", DESCRIPTION: "Este es el test 1"  
+name: "test2", description: "Este es el test 1"  
 },
 {
-NAME: "test3", DESCRIPTION: "Este es el test 1"
+name: "test3", description: "Este es el test 1"
 },
 {
-NAME: "test4", DESCRIPTION: "Este es el test 1"
+name: "test4", description: "Este es el test 1"
 }
 ])
 
 Location.create([
 {
-LID: 200001,NAME_ES: "Nido de las Águilas",NAME_EN: "The Eyrie",HOUSE: "Arryn",HID: 300002,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200001,name_es: "Nido de las Águilas",name_en: "The Eyrie",house: "Arryn",hid: 300002,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200002,NAME_ES: "Puertas de la Sangre",NAME_EN: "The Bloody Gate",HOUSE: "Arryn",HID: 300206,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200002,name_es: "Puertas de la Sangre",name_en: "The Bloody Gate",house: "Arryn",hid: 300206,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200003,NAME_ES: "Rapsodia",NAME_EN: "Strongsong",HOUSE: "Belmore",HID: 300003,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200003,name_es: "Rapsodia",name_en: "Strongsong",house: "Belmore",hid: 300003,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200004,NAME_ES: "Acantilado Negro",NAME_EN: "",HOUSE: "Sunderland",HID: 300004,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200004,name_es: "Acantilado Negro",name_en: "",house: "Sunderland",hid: 300004,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200005,NAME_ES: "Aguasrecias",NAME_EN: "",HOUSE: "Longthorpe",HID: 300004,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200005,name_es: "Aguasrecias",name_en: "",house: "Longthorpe",hid: 300004,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200006,NAME_ES: "Rompeolas",NAME_EN: "",HOUSE: "Borrell",HID: 300005,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200006,name_es: "Rompeolas",name_en: "",house: "Borrell",hid: 300005,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200007,NAME_ES: "Marea Roja",NAME_EN: "",HOUSE: "Torrent",HID: 300008,TYPE: "Torre",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200007,name_es: "Marea Roja",name_en: "",house: "Torrent",hid: 300008,location_type: "Torre",kingdom: "Valle",description: ""
 },
 {
-LID: 200008,NAME_ES: "Villahermana",NAME_EN: "Sisterton",HOUSE: "Sunderland",HID: 300009,TYPE: "Pueblo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200008,name_es: "Villahermana",name_en: "Sisterton",house: "Sunderland",hid: 300009,location_type: "Pueblo",kingdom: "Valle",description: ""
 },
 {
-LID: 200009,NAME_ES: "Hogar",NAME_EN: "Heart's Home",HOUSE: "Corbray",HID: 300010,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200009,name_es: "Hogar",name_en: "Heart's Home",house: "Corbray",hid: 300010,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200010,NAME_ES: "Los Senos",NAME_EN: "The Paps",HOUSE: "Elesham",HID: 300010,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200010,name_es: "Los Senos",name_en: "The Paps",house: "Elesham",hid: 300010,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200011,NAME_ES: "Puerto Gaviota",NAME_EN: "Gulltown",HOUSE: "Grafton",HID: 300010,TYPE: "Ciudad",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200011,name_es: "Puerto Gaviota",name_en: "Gulltown",house: "Grafton",hid: 300010,location_type: "Ciudad",kingdom: "Valle",description: ""
 },
 {
-LID: 200012,NAME_ES: "Nuevo Torreon",NAME_EN: "New Keep",HOUSE: "Hersy",HID: 300011,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200012,name_es: "Nuevo Torreon",name_en: "New Keep",house: "Hersy",hid: 300011,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200013,NAME_ES: "Arcolargo",NAME_EN: "Longbow Hall",HOUSE: "Hunter",HID: 300012,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200013,name_es: "Arcolargo",name_en: "Longbow Hall",house: "Hunter",hid: 300012,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200014,NAME_ES: "Bosque de la Serpiente",NAME_EN: "Snakewood",HOUSE: "Lynderly",HID: 300013,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200014,name_es: "Bosque de la Serpiente",name_en: "Snakewood",house: "Lynderly",hid: 300013,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200015,NAME_ES: "Varadero Viejo",NAME_EN: "Old Anchor",HOUSE: "Melcom",HID: 300014,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200015,name_es: "Varadero Viejo",name_en: "Old Anchor",house: "Melcom",hid: 300014,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200016,NAME_ES: "Guijarro",NAME_EN: "Pebble",HOUSE: "Pryor",HID: 300016,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200016,name_es: "Guijarro",name_en: "Pebble",house: "Pryor",hid: 300016,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200017,NAME_ES: "Fuerterrojo",NAME_EN: "Redfort",HOUSE: "Redfort",HID: 300017,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200017,name_es: "Fuerterrojo",name_en: "Redfort",house: "Redfort",hid: 300017,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200018,NAME_ES: "Puertas de la Luna",NAME_EN: "Gates of the Moon",HOUSE: "Royce",HID: 300021,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200018,name_es: "Puertas de la Luna",name_en: "Gates of the Moon",house: "Royce",hid: 300021,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200019,NAME_ES: "Piedra de las Runas",NAME_EN: "Runestone",HOUSE: "Royce",HID: 300022,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200019,name_es: "Piedra de las Runas",name_en: "Runestone",house: "Royce",hid: 300022,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200020,NAME_ES: "Comezón de Aguasfrías",NAME_EN: "Coldwater",HOUSE: "Coldwater",HID: 300023,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200020,name_es: "Comezón de Aguasfrías",name_en: "Coldwater",house: "Coldwater",hid: 300023,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200021,NAME_ES: "Torre Gaviota",NAME_EN: "Gull Tower",HOUSE: "Shett",HID: 300024,TYPE: "Torre",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200021,name_es: "Torre Gaviota",name_en: "Gull Tower",house: "Shett",hid: 300024,location_type: "Torre",kingdom: "Valle",description: ""
 },
 {
-LID: 200022,NAME_ES: "Soto Gris",NAME_EN: "Grey Glen",HOUSE: "Tollet",HID: 300025,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200022,name_es: "Soto Gris",name_en: "Grey Glen",house: "Tollet",hid: 300025,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200023,NAME_ES: "Nuevestrellas",NAME_EN: "Ninestars",HOUSE: "Templeton",HID: 300028,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200023,name_es: "Nuevestrellas",name_en: "Ninestars",house: "Templeton",hid: 300028,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200024,NAME_ES: "Isla de la Bruja",NAME_EN: "Witch Isle",HOUSE: "Upcliff",HID: 300027,TYPE: "Castillo pequeño",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200024,name_es: "Isla de la Bruja",name_en: "Witch Isle",house: "Upcliff",hid: 300027,location_type: "Castillo pequeño",kingdom: "Valle",description: ""
 },
 {
-LID: 200025,NAME_ES: "Serbaledo",NAME_EN: "Wickenden",HOUSE: "Waxley",HID: 300029,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200025,name_es: "Serbaledo",name_en: "Wickenden",house: "Waxley",hid: 300029,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200026,NAME_ES: "Roble de hierro",NAME_EN: "Ironoaks",HOUSE: "Waynwood",HID: 300030,TYPE: "Castillo",KINGDOM: "Valle",DESCRIPTION: ""
+lid: 200026,name_es: "Roble de hierro",name_en: "Ironoaks",house: "Waynwood",hid: 300030,location_type: "Castillo",kingdom: "Valle",description: ""
 },
 {
-LID: 200027,NAME_ES: "Invernalia",NAME_EN: "Winterfell",HOUSE: "Stark",HID: 300031,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200027,name_es: "Invernalia",name_en: "Winterfell",house: "Stark",hid: 300031,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200028,NAME_ES: "Fuerte Terror",NAME_EN: "The Dreadfort",HOUSE: "Bolton",HID: 300033,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200028,name_es: "Fuerte Terror",name_en: "The Dreadfort",house: "Bolton",hid: 300033,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200029,NAME_ES: "Pozanegra",NAME_EN: "Blackpool",HOUSE: "Slate",HID: 300035,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200029,name_es: "Pozanegra",name_en: "Blackpool",house: "Slate",hid: 300035,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200030,NAME_ES: "Cerwyn",NAME_EN: "Cerwyn",HOUSE: "Cerwyn",HID: 300036,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200030,name_es: "Cerwyn",name_en: "Cerwyn",house: "Cerwyn",hid: 300036,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200031,NAME_ES: "Fuerte Túmulo",NAME_EN: "Barrowton",HOUSE: "Dustin",HID: 300037,TYPE: "Pueblo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200031,name_es: "Fuerte Túmulo",name_en: "Barrowton",house: "Dustin",hid: 300037,location_type: "Pueblo",kingdom: "Norte",description: ""
 },
 {
-LID: 200032,NAME_ES: "Valdehierba",NAME_EN: "Grassy Vale",HOUSE: "Stout",HID: 300038,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200032,name_es: "Valdehierba",name_en: "Grassy Vale",house: "Stout",hid: 300038,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200033,NAME_ES: "Dedo de Pedernal",NAME_EN: "Flint's Finger",HOUSE: "Flint",HID: 300039,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200033,name_es: "Dedo de Pedernal",name_en: "Flint's Finger",house: "Flint",hid: 300039,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200034,NAME_ES: "Atalaya de la Viuda",NAME_EN: "Widow's Watch",HOUSE: "Flint",HID: 300092,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200034,name_es: "Atalaya de la Viuda",name_en: "Widow's Watch",house: "Flint",hid: 300092,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200035,NAME_ES: "Bosqueespeso",NAME_EN: "Deepwood Motte",HOUSE: "Glover",HID: 300041,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200035,name_es: "Bosqueespeso",name_en: "Deepwood Motte",house: "Glover",hid: 300041,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200036,NAME_ES: "Ironrath",NAME_EN: "Ironrath",HOUSE: "Forrester",HID: 300042,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200036,name_es: "Ironrath",name_en: "Ironrath",house: "Forrester",hid: 300042,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200037,NAME_ES: "Puerta del Carnero",NAME_EN: "Ramsgate",HOUSE: "Holdstock",HID: 300043,TYPE: "Torre",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200037,name_es: "Puerta del Carnero",name_en: "Ramsgate",house: "Holdstock",hid: 300043,location_type: "Torre",kingdom: "Norte",description: ""
 },
 {
-LID: 200038,NAME_ES: "Hornwood",NAME_EN: "Hornwood",HOUSE: "Hornwood",HID: 300044,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200038,name_es: "Hornwood",name_en: "Hornwood",house: "Hornwood",hid: 300044,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200039,NAME_ES: "Bastión Kar",NAME_EN: "Karhold",HOUSE: "Karstark",HID: 300045,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200039,name_es: "Bastión Kar",name_en: "Karhold",house: "Karstark",hid: 300045,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200040,NAME_ES: "Castiviejo",NAME_EN: "Oldcastle",HOUSE: "Locke",HID: 300046,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200040,name_es: "Castiviejo",name_en: "Oldcastle",house: "Locke",hid: 300046,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200041,NAME_ES: "Puerto Blanco",NAME_EN: "White Harbor",HOUSE: "Manderly",HID: 300047,TYPE: "Ciudad",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200041,name_es: "Puerto Blanco",name_en: "White Harbor",house: "Manderly",hid: 300047,location_type: "Ciudad",kingdom: "Norte",description: ""
 },
 {
-LID: 200042,NAME_ES: "Isla del Oso",NAME_EN: "Bear Island",HOUSE: "Mormont",HID: 300048,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200042,name_es: "Isla del Oso",name_en: "Bear Island",house: "Mormont",hid: 300048,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200043,NAME_ES: "Atalaya de Aguasgrises",NAME_EN: "Greywater Watch",HOUSE: "Reed",HID: 300049,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200043,name_es: "Atalaya de Aguasgrises",name_en: "Greywater Watch",house: "Reed",hid: 300049,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200044,NAME_ES: "Los Riachuelos",NAME_EN: "The Rills",HOUSE: "Ryswell",HID: 300051,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200044,name_es: "Los Riachuelos",name_en: "The Rills",house: "Ryswell",hid: 300051,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200045,NAME_ES: "Rillwater Crossing",NAME_EN: "Rillwater Crossing",HOUSE: "Glenmore",HID: 300052,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200045,name_es: "Rillwater Crossing",name_en: "Rillwater Crossing",house: "Glenmore",hid: 300052,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200046,NAME_ES: "Ciudadela de Torrhen",NAME_EN: "Torrhen's Square",HOUSE: "Tallhart",HID: 300053,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200046,name_es: "Ciudadela de Torrhen",name_en: "Torrhen's Square",house: "Tallhart",hid: 300053,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200047,NAME_ES: "Highpoint",NAME_EN: "Highpoint",HOUSE: "Whitehill",HID: 300054,TYPE: "Castillo pequeño",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200047,name_es: "Highpoint",name_en: "Highpoint",house: "Whitehill",hid: 300054,location_type: "Castillo pequeño",kingdom: "Norte",description: ""
 },
 {
-LID: 200048,NAME_ES: "Último Hogar",NAME_EN: "Last Hearth",HOUSE: "Umber",HID: 300054,TYPE: "Castillo",KINGDOM: "Norte",DESCRIPTION: ""
+lid: 200048,name_es: "Último Hogar",name_en: "Last Hearth",house: "Umber",hid: 300054,location_type: "Castillo",kingdom: "Norte",description: ""
 },
 {
-LID: 200049,NAME_ES: "Aguasdulces",NAME_EN: "Riverrun",HOUSE: "Tully",HID: 300055,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200049,name_es: "Aguasdulces",name_en: "Riverrun",house: "Tully",hid: 300055,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200050,NAME_ES: "Árbol de los Cuervos",NAME_EN: "Raventree Hall",HOUSE: "Blackwood",HID: 300057,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200050,name_es: "Árbol de los Cuervos",name_en: "Raventree Hall",house: "Blackwood",hid: 300057,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200051,NAME_ES: "Seto de Piedra",NAME_EN: "Stone Hedge",HOUSE: "Bracken",HID: 300058,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200051,name_es: "Seto de Piedra",name_en: "Stone Hedge",house: "Bracken",hid: 300058,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200052,NAME_ES: "El Cántaro",NAME_EN: "",HOUSE: "Butterwell",HID: 300059,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200052,name_es: "El Cántaro",name_en: "",house: "Butterwell",hid: 300059,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200053,NAME_ES: "Salinas",NAME_EN: "Saltpans",HOUSE: "Cox",HID: 300060,TYPE: "Pueblo",KINGDOM: "Ríos",DESCRIPTION: "Castillo"
+lid: 200053,name_es: "Salinas",name_en: "Saltpans",house: "Cox",hid: 300060,location_type: "Pueblo",kingdom: "Ríos",description: "Castillo"
 },
 {
-LID: 200054,NAME_ES: "Darry",NAME_EN: "Darry",HOUSE: "Darry",HID: 300062,TYPE: "Castillo pequeño",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200054,name_es: "Darry",name_en: "Darry",house: "Darry",hid: 300062,location_type: "Castillo pequeño",kingdom: "Ríos",description: ""
 },
 {
-LID: 200055,NAME_ES: "Los Gemelos",NAME_EN: "The Twins",HOUSE: "Frey",HID: 300063,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200055,name_es: "Los Gemelos",name_en: "The Twins",house: "Frey",hid: 300063,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200056,NAME_ES: "Pantano de la Bruja",NAME_EN: "Hag's Mire",HOUSE: "Nayland",HID: 300064,TYPE: "Torre",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200056,name_es: "Pantano de la Bruja",name_en: "Hag's Mire",house: "Nayland",hid: 300064,location_type: "Torre",kingdom: "Ríos",description: ""
 },
 {
-LID: 200057,NAME_ES: "Buenmercado",NAME_EN: "Fairmarket",HOUSE: "Goodbrook",HID: 300065,TYPE: "Pueblo",KINGDOM: "Ríos",DESCRIPTION: "Torre"
+lid: 200057,name_es: "Buenmercado",name_en: "Fairmarket",house: "Goodbrook",hid: 300065,location_type: "Pueblo",kingdom: "Ríos",description: "Torre"
 },
 {
-LID: 200058,NAME_ES: "Septo de Piedra",NAME_EN: "Stoney Sept",HOUSE: "Keath",HID: 300067,TYPE: "Pueblo",KINGDOM: "Ríos",DESCRIPTION: "Torre"
+lid: 200058,name_es: "Septo de Piedra",name_en: "Stoney Sept",house: "Keath",hid: 300067,location_type: "Pueblo",kingdom: "Ríos",description: "Torre"
 },
 {
-LID: 200059,NAME_ES: "Varamar",NAME_EN: "Seagard",HOUSE: "Mallister",HID: 300066,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200059,name_es: "Varamar",name_en: "Seagard",house: "Mallister",hid: 300066,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200060,NAME_ES: "Poza de la Doncella",NAME_EN: "Maidenpool",HOUSE: "Mooton",HID: 300068,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200060,name_es: "Poza de la Doncella",name_en: "Maidenpool",house: "Mooton",hid: 300068,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200061,NAME_ES: "Princesa Rosada",NAME_EN: "Pinkmaiden",HOUSE: "Piper",HID: 300070,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200061,name_es: "Princesa Rosada",name_en: "Pinkmaiden",house: "Piper",hid: 300070,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200062,NAME_ES: "Aldea de Lord Harroway",NAME_EN: "Lort Harroway's Town",HOUSE: "Roote",HID: 300069,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200062,name_es: "Aldea de Lord Harroway",name_en: "Lort Harroway's Town",house: "Roote",hid: 300069,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200063,NAME_ES: "Bosque de Sauces",NAME_EN: "Willow Wood",HOUSE: "Ryger",HID: 300071,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200063,name_es: "Bosque de Sauces",name_en: "Willow Wood",house: "Ryger",hid: 300071,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200064,NAME_ES: "Torreón Bellota",NAME_EN: "Acorn Hall",HOUSE: "Smallwood",HID: 300072,TYPE: "Castillo pequeño",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200064,name_es: "Torreón Bellota",name_en: "Acorn Hall",house: "Smallwood",hid: 300072,location_type: "Castillo pequeño",kingdom: "Ríos",description: ""
 },
 {
-LID: 200065,NAME_ES: "Atranta",NAME_EN: "Atranta",HOUSE: "Vance",HID: 300073,TYPE: "Castillo pequeño",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200065,name_es: "Atranta",name_en: "Atranta",house: "Vance",hid: 300073,location_type: "Castillo pequeño",kingdom: "Ríos",description: ""
 },
 {
-LID: 200066,NAME_ES: "Descanso del Caminante",NAME_EN: "Wayfarer's Rest",HOUSE: "Vance",HID: 300074,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200066,name_es: "Descanso del Caminante",name_en: "Wayfarer's Rest",house: "Vance",hid: 300074,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200067,NAME_ES: "Harrenhal",NAME_EN: "Harrenhal",HOUSE: "Whent",HID: 300075,TYPE: "Castillo",KINGDOM: "Ríos",DESCRIPTION: ""
+lid: 200067,name_es: "Harrenhal",name_en: "Harrenhal",house: "Whent",hid: 300075,location_type: "Castillo",kingdom: "Ríos",description: ""
 },
 {
-LID: 200068,NAME_ES: "Roca Casterly",NAME_EN: "Casterly Rock",HOUSE: "Lannister",HID: 300076,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200068,name_es: "Roca Casterly",name_en: "Casterly Rock",house: "Lannister",hid: 300076,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200069,NAME_ES: "Lannisport",NAME_EN: "Lannisport",HOUSE: "Lannister",HID: 300077,TYPE: "Ciudad",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200069,name_es: "Lannisport",name_en: "Lannisport",house: "Lannister",hid: 300077,location_type: "Ciudad",kingdom: "Occidente",description: ""
 },
 {
-LID: 200070,NAME_ES: "Fuerte Desolación",NAME_EN: "Banefort",HOUSE: "Banefort",HID: 300078,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200070,name_es: "Fuerte Desolación",name_en: "Banefort",house: "Banefort",hid: 300078,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200071,NAME_ES: "Valdecuerno",NAME_EN: "Hornvale",HOUSE: "Brax",HID: 300079,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200071,name_es: "Valdecuerno",name_en: "Hornvale",house: "Brax",hid: 300079,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200072,NAME_ES: "Refugio Quebrado",NAME_EN: "Crakehall",HOUSE: "Crakehall",HID: 300080,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200072,name_es: "Refugio Quebrado",name_en: "Crakehall",house: "Crakehall",hid: 300080,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200073,NAME_ES: "Salón del Viento",NAME_EN: "Wyndhall",HOUSE: "Estren",HID: 300081,TYPE: "Castillo pequeño",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200073,name_es: "Salón del Viento",name_en: "Wyndhall",house: "Estren",hid: 300081,location_type: "Castillo pequeño",kingdom: "Occidente",description: ""
 },
 {
-LID: 200074,NAME_ES: "Torrelabella",NAME_EN: "Faircastle",HOUSE: "Farman",HID: 300084,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200074,name_es: "Torrelabella",name_en: "Faircastle",house: "Farman",hid: 300084,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200075,NAME_ES: "Greenfield",NAME_EN: "Greenfield",HOUSE: "Greenfield",HID: 300086,TYPE: "Castillo pequeño",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200075,name_es: "Greenfield",name_en: "Greenfield",house: "Greenfield",hid: 300086,location_type: "Castillo pequeño",kingdom: "Occidente",description: ""
 },
 {
-LID: 200076,NAME_ES: "Kayce",NAME_EN: "Kayce",HOUSE: "Kenning",HID: 300083,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200076,name_es: "Kayce",name_en: "Kayce",house: "Kenning",hid: 300083,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200077,NAME_ES: "Colmillo Dorado",NAME_EN: "Golden Tooth",HOUSE: "Lefford",HID: 300082,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200077,name_es: "Colmillo Dorado",name_en: "Golden Tooth",house: "Lefford",hid: 300082,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200078,NAME_ES: "Cuevahonda",NAME_EN: "Deep Den",HOUSE: "Lydden",HID: 300085,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200078,name_es: "Cuevahonda",name_en: "Deep Den",house: "Lydden",hid: 300085,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200079,NAME_ES: "Marcaceniza",NAME_EN: "Ashemark",HOUSE: "Marbrand",HID: 300088,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200079,name_es: "Marcaceniza",name_en: "Ashemark",house: "Marbrand",hid: 300088,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200080,NAME_ES: "Las Hogueras",NAME_EN: "Feastfires",HOUSE: "Prester",HID: 300089,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200080,name_es: "Las Hogueras",name_en: "Feastfires",house: "Prester",hid: 300089,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200081,NAME_ES: "Sarsfield",NAME_EN: "Sarsfield",HOUSE: "Sarsfield",HID: 300090,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200081,name_es: "Sarsfield",name_en: "Sarsfield",house: "Sarsfield",hid: 300090,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200082,NAME_ES: "Refugio de Plata",NAME_EN: "Silverhill",HOUSE: "Serret",HID: 300091,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200082,name_es: "Refugio de Plata",name_en: "Silverhill",house: "Serret",hid: 300091,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200083,NAME_ES: "Maizal",NAME_EN: "Cornfield",HOUSE: "Swyft",HID: 300093,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200083,name_es: "Maizal",name_en: "Cornfield",house: "Swyft",hid: 300093,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200084,NAME_ES: "El Risco",NAME_EN: "The Crag",HOUSE: "Westerling",HID: 300094,TYPE: "Castillo",KINGDOM: "Occidente",DESCRIPTION: ""
+lid: 200084,name_es: "El Risco",name_en: "The Crag",house: "Westerling",hid: 300094,location_type: "Castillo",kingdom: "Occidente",description: ""
 },
 {
-LID: 200085,NAME_ES: "Pyke",NAME_EN: "Pyke",HOUSE: "Greyjoy",HID: 300095,TYPE: "Castillo",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200085,name_es: "Pyke",name_en: "Pyke",house: "Greyjoy",hid: 300095,location_type: "Castillo",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200207,NAME_ES: "Puerto Noble",NAME_EN: "Lordsport",HOUSE: "Botley",HID: 300095,TYPE: "Pueblo",KINGDOM: "Islas del Hierro",DESCRIPTION: "Torre"
+lid: 200207,name_es: "Puerto Noble",name_en: "Lordsport",house: "Botley",hid: 300095,location_type: "Pueblo",kingdom: "Islas del Hierro",description: "Torre"
 },
 {
-LID: 200087,NAME_ES: "Castroferro",NAME_EN: "Iron Holt",HOUSE: "Wynch",HID: 300095,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200087,name_es: "Castroferro",name_en: "Iron Holt",house: "Wynch",hid: 300095,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200088,NAME_ES: "Marea Negra",NAME_EN: "Blacktyde",HOUSE: "Blacktyde",HID: 300095,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200088,name_es: "Marea Negra",name_en: "Blacktyde",house: "Blacktyde",hid: 300095,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200089,NAME_ES: "Monteorca",NAME_EN: "Orkwood",HOUSE: "Orkwood",HID: 300095,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200089,name_es: "Monteorca",name_en: "Orkwood",house: "Orkwood",hid: 300095,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200206,NAME_ES: "Guijarra",NAME_EN: "Pebbleton",HOUSE: "Merlyn",HID: 300099,TYPE: "Pueblo",KINGDOM: "Islas del Hierro",DESCRIPTION: "Torre"
+lid: 200206,name_es: "Guijarra",name_en: "Pebbleton",house: "Merlyn",hid: 300099,location_type: "Pueblo",kingdom: "Islas del Hierro",description: "Torre"
 },
 {
-LID: 200090,NAME_ES: "Lago del Cadaver",NAME_EN: "Castle Goodbrother",HOUSE: "Goodbrother",HID: 300096,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200090,name_es: "Lago del Cadaver",name_en: "Castle Goodbrother",house: "Goodbrother",hid: 300096,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200091,NAME_ES: "Torreón Pico de Cuervo",NAME_EN: "Crow Spike Keep",HOUSE: "Goodbrother",HID: 300097,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200091,name_es: "Torreón Pico de Cuervo",name_en: "Crow Spike Keep",house: "Goodbrother",hid: 300097,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200092,NAME_ES: "Fosa",NAME_EN: "Downdelving",HOUSE: "Goodbrother",HID: 300131,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200092,name_es: "Fosa",name_en: "Downdelving",house: "Goodbrother",hid: 300131,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200093,NAME_ES: "Cuerno martillo",NAME_EN: "Hammerhorn",HOUSE: "Goodbrother",HID: 300098,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200093,name_es: "Cuerno martillo",name_en: "Hammerhorn",house: "Goodbrother",hid: 300098,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200095,NAME_ES: "Punta piel de foca",NAME_EN: "Sealskin Point",HOUSE: "Farwynd",HID: 300100,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200095,name_es: "Punta piel de foca",name_en: "Sealskin Point",house: "Farwynd",hid: 300100,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200096,NAME_ES: "Drumm",NAME_EN: "Drumm",HOUSE: "Drumm",HID: 300101,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200096,name_es: "Drumm",name_en: "Drumm",house: "Drumm",hid: 300101,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200097,NAME_ES: "Piedraquebrada",NAME_EN: "Shatterstone",HOUSE: "Goodbrother",HID: 300102,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200097,name_es: "Piedraquebrada",name_en: "Shatterstone",house: "Goodbrother",hid: 300102,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200098,NAME_ES: "Luz Solitaria",NAME_EN: "Lonely Light",HOUSE: "Farwynd",HID: 300103,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200098,name_es: "Luz Solitaria",name_en: "Lonely Light",house: "Farwynd",hid: 300103,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200099,NAME_ES: "Acantilado de Sal",NAME_EN: "Saltcliffe",HOUSE: "Saltcliffe",HID: 300104,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200099,name_es: "Acantilado de Sal",name_en: "Saltcliffe",house: "Saltcliffe",hid: 300104,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200100,NAME_ES: "Diez Torres",NAME_EN: "Ten Towers",HOUSE: "Harlaw",HID: 300105,TYPE: "Castillo",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200100,name_es: "Diez Torres",name_en: "Ten Towers",house: "Harlaw",hid: 300105,location_type: "Castillo",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200101,NAME_ES: "Colina de la Bruja",NAME_EN: "Harridan Hill",HOUSE: "Harlaw",HID: 300106,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200101,name_es: "Colina de la Bruja",name_en: "Harridan Hill",house: "Harlaw",hid: 300106,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200102,NAME_ES: "Torre del Resplandor",NAME_EN: "Tower of Glimmering",HOUSE: "Harlaw",HID: 300108,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200102,name_es: "Torre del Resplandor",name_en: "Tower of Glimmering",house: "Harlaw",hid: 300108,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200103,NAME_ES: "Jardín Gris",NAME_EN: "Grey Garden",HOUSE: "Harlaw",HID: 300109,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200103,name_es: "Jardín Gris",name_en: "Grey Garden",house: "Harlaw",hid: 300109,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200204,NAME_ES: "Salón de Harlaw",NAME_EN: "Harlaw Hall",HOUSE: "Harlaw",HID: 300109,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200204,name_es: "Salón de Harlaw",name_en: "Harlaw Hall",house: "Harlaw",hid: 300109,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200205,NAME_ES: "Volmark",NAME_EN: "Volmark",HOUSE: "Volmark",HID: 300110,TYPE: "Castillo pequeño",KINGDOM: "Islas del Hierro",DESCRIPTION: ""
+lid: 200205,name_es: "Volmark",name_en: "Volmark",house: "Volmark",hid: 300110,location_type: "Castillo pequeño",kingdom: "Islas del Hierro",description: ""
 },
 {
-LID: 200106,NAME_ES: "Desembarco del Rey",NAME_EN: "King's Landing",HOUSE: "Baratheon",HID: 300111,TYPE: "Ciudad",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200106,name_es: "Desembarco del Rey",name_en: "King's Landing",house: "Baratheon",hid: 300111,location_type: "Ciudad",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200107,NAME_ES: "Vallepardo",NAME_EN: "Dyre Den",HOUSE: "Brune",HID: 300112,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200107,name_es: "Vallepardo",name_en: "Dyre Den",house: "Brune",hid: 300112,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200108,NAME_ES: "Malacosta",NAME_EN: "Brownhollow",HOUSE: "Brune",HID: 300113,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200108,name_es: "Malacosta",name_en: "Brownhollow",house: "Brune",hid: 300113,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200109,NAME_ES: "Las Astas",NAME_EN: "Antlers",HOUSE: "Buckwell",HID: 300114,TYPE: "Castillo",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200109,name_es: "Las Astas",name_en: "Antlers",house: "Buckwell",hid: 300114,location_type: "Castillo",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200110,NAME_ES: "La Zarpa",NAME_EN: "Crackclaw",HOUSE: "Crabb",HID: 300115,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200110,name_es: "La Zarpa",name_en: "Crackclaw",house: "Crabb",hid: 300115,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200111,NAME_ES: "Hayford",NAME_EN: "Hayford Castle",HOUSE: "Hayford",HID: 300116,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200111,name_es: "Hayford",name_en: "Hayford Castle",house: "Hayford",hid: 300116,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200112,NAME_ES: "Cuerno de la Puerca",NAME_EN: "Sow's Horn",HOUSE: "Hogg",HID: 300117,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200112,name_es: "Cuerno de la Puerca",name_en: "Sow's Horn",house: "Hogg",hid: 300117,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200113,NAME_ES: "Rosby",NAME_EN: "Rosby",HOUSE: "Rosby",HID: 300118,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200113,name_es: "Rosby",name_en: "Rosby",house: "Rosby",hid: 300118,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200114,NAME_ES: "Valleoscuro",NAME_EN: "Duskendale",HOUSE: "Rykker",HID: 300119,TYPE: "Pueblo",KINGDOM: "Tierras de la Corona",DESCRIPTION: "Castillo"
+lid: 200114,name_es: "Valleoscuro",name_en: "Duskendale",house: "Rykker",hid: 300119,location_type: "Pueblo",kingdom: "Tierras de la Corona",description: "Castillo"
 },
 {
-LID: 200115,NAME_ES: "Grajal",NAME_EN: "Rook's Rest",HOUSE: "Staunton",HID: 300119,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200115,name_es: "Grajal",name_en: "Rook's Rest",house: "Staunton",hid: 300119,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200116,NAME_ES: "Stokeworth",NAME_EN: "Stokeworth",HOUSE: "Stokeworth",HID: 300120,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Corona",DESCRIPTION: ""
+lid: 200116,name_es: "Stokeworth",name_en: "Stokeworth",house: "Stokeworth",hid: 300120,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-LID: 200117,NAME_ES: "Rocadragon",NAME_EN: "Dragonstone",HOUSE: "Baratheon",HID: 300121,TYPE: "Castillo",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200117,name_es: "Rocadragon",name_en: "Dragonstone",house: "Baratheon",hid: 300121,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200118,NAME_ES: "Punta Aguda",NAME_EN: "Sharp Point",HOUSE: "Bar Emmon",HID: 300122,TYPE: "Castillo",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200118,name_es: "Punta Aguda",name_en: "Sharp Point",house: "Bar Emmon",hid: 300122,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200119,NAME_ES: "Isla Zarpa",NAME_EN: "Claw Isle",HOUSE: "Celtigar",HID: 300123,TYPE: "Castillo",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200119,name_es: "Isla Zarpa",name_en: "Claw Isle",house: "Celtigar",hid: 300123,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200120,NAME_ES: "Piedratormenta",NAME_EN: "Stonedance",HOUSE: "Massey",HID: 300124,TYPE: "Castillo",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200120,name_es: "Piedratormenta",name_en: "Stonedance",house: "Massey",hid: 300124,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200121,NAME_ES: "Puerto Plácido",NAME_EN: "Sweetport Sound",HOUSE: "Sunglass",HID: 300125,TYPE: "Castillo pequeño",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200121,name_es: "Puerto Plácido",name_en: "Sweetport Sound",house: "Sunglass",hid: 300125,location_type: "Castillo pequeño",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200122,NAME_ES: "Marcaderiva",NAME_EN: "Driftmark",HOUSE: "Velaryon",HID: 300126,TYPE: "Castillo pequeño",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200122,name_es: "Marcaderiva",name_en: "Driftmark",house: "Velaryon",hid: 300126,location_type: "Castillo pequeño",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 200123,NAME_ES: "Bastión de Tormentas",NAME_EN: "Storm's End",HOUSE: "Baratheon",HID: 300127,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200123,name_es: "Bastión de Tormentas",name_en: "Storm's End",house: "Baratheon",hid: 300127,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200124,NAME_ES: "Puertabronce",NAME_EN: "Bronzegate",HOUSE: "Buckler",HID: 300128,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200124,name_es: "Puertabronce",name_en: "Bronzegate",house: "Buckler",hid: 300128,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200125,NAME_ES: "Fawnton",NAME_EN: "Fawnton",HOUSE: "Cafferen",HID: 300129,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200125,name_es: "Fawnton",name_en: "Fawnton",house: "Cafferen",hid: 300129,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200126,NAME_ES: "Canto Nocturno",NAME_EN: "Nightsong",HOUSE: "Caron",HID: 300130,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200126,name_es: "Canto Nocturno",name_en: "Nightsong",house: "Caron",hid: 300130,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200127,NAME_ES: "Nido de Grifos",NAME_EN: "Griffin's Roost",HOUSE: "Connington",HID: 300132,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200127,name_es: "Nido de Grifos",name_en: "Griffin's Roost",house: "Connington",hid: 300132,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200128,NAME_ES: "Refugio Negro",NAME_EN: "Blackhaven",HOUSE: "Dondarrion",HID: 300133,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200128,name_es: "Refugio Negro",name_en: "Blackhaven",house: "Dondarrion",hid: 300133,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200129,NAME_ES: "Pazo Pajar",NAME_EN: "Haystack Hall",HOUSE: "Errol",HID: 300134,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200129,name_es: "Pazo Pajar",name_en: "Haystack Hall",house: "Errol",hid: 300134,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200130,NAME_ES: "Piedraverde",NAME_EN: "Greenstone",HOUSE: "Estermont",HID: 300135,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200130,name_es: "Piedraverde",name_en: "Greenstone",house: "Estermont",hid: 300135,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200131,NAME_ES: "Bosquealto",NAME_EN: "Felwood",HOUSE: "Fell",HID: 300136,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200131,name_es: "Bosquealto",name_en: "Felwood",house: "Fell",hid: 300136,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200132,NAME_ES: "Buenavista",NAME_EN: "Grandview",HOUSE: "Grandison",HID: 300137,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200132,name_es: "Buenavista",name_en: "Grandview",house: "Grandison",hid: 300137,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200133,NAME_ES: "Bosqueumbrío",NAME_EN: "Mistwood",HOUSE: "Mertyns",HID: 300138,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200133,name_es: "Bosqueumbrío",name_en: "Mistwood",house: "Mertyns",hid: 300138,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200134,NAME_ES: "Nido de Cuervo",NAME_EN: "Crow's Nest",HOUSE: "Morrigen",HID: 300139,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200134,name_es: "Nido de Cuervo",name_en: "Crow's Nest",house: "Morrigen",hid: 300139,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200135,NAME_ES: "Campoverde",NAME_EN: "Poddingfield",HOUSE: "Peasebury",HID: 300140,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200135,name_es: "Campoverde",name_en: "Poddingfield",house: "Peasebury",hid: 300140,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200136,NAME_ES: "Los Pergaminos",NAME_EN: "Parchments",HOUSE: "Penrose",HID: 300141,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200136,name_es: "Los Pergaminos",name_en: "Parchments",house: "Penrose",hid: 300141,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200137,NAME_ES: "Amberly",NAME_EN: "Amberly",HOUSE: "Rogers",HID: 300142,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200137,name_es: "Amberly",name_en: "Amberly",house: "Rogers",hid: 300142,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200138,NAME_ES: "Torreón Cosecha",NAME_EN: "Harvest Hall",HOUSE: "Selmy",HID: 300143,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200138,name_es: "Torreón Cosecha",name_en: "Harvest Hall",house: "Selmy",hid: 300143,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200139,NAME_ES: "Arco Ancho",NAME_EN: "Broad Arch",HOUSE: "Staedmon",HID: 300143,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200139,name_es: "Arco Ancho",name_en: "Broad Arch",house: "Staedmon",hid: 300143,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200140,NAME_ES: "Timón de Piedra",NAME_EN: "Stonehelm",HOUSE: "Swann",HID: 300143,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200140,name_es: "Timón de Piedra",name_en: "Stonehelm",house: "Swann",hid: 300143,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200141,NAME_ES: "Castillo del Atardecer",NAME_EN: "Evenfall Hall",HOUSE: "Tarth",HID: 300143,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200141,name_es: "Castillo del Atardecer",name_en: "Evenfall Hall",house: "Tarth",hid: 300143,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200142,NAME_ES: "Gallowsgrey",NAME_EN: "Gallowsgrey",HOUSE: "Trant",HID: 300144,TYPE: "Castillo pequeño",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200142,name_es: "Gallowsgrey",name_en: "Gallowsgrey",house: "Trant",hid: 300144,location_type: "Castillo pequeño",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200143,NAME_ES: "Villallorosa",NAME_EN: "Weeping Tower",HOUSE: "Whitehead",HID: 300145,TYPE: "Pueblo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: "Castillo pequeño"
+lid: 200143,name_es: "Villallorosa",name_en: "Weeping Tower",house: "Whitehead",hid: 300145,location_type: "Pueblo",kingdom: "Tierras de la Tormenta",description: "Castillo pequeño"
 },
 {
-LID: 200144,NAME_ES: "Aguasmil",NAME_EN: "Rain House",HOUSE: "Wylde",HID: 300146,TYPE: "Castillo",KINGDOM: "Tierras de la Tormenta",DESCRIPTION: ""
+lid: 200144,name_es: "Aguasmil",name_en: "Rain house",house: "Wylde",hid: 300146,location_type: "Castillo",kingdom: "Tierras de la Tormenta",description: ""
 },
 {
-LID: 200145,NAME_ES: "Altojardín",NAME_EN: "Highgarden",HOUSE: "Tyrell",HID: 300147,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200145,name_es: "Altojardín",name_en: "Highgarden",house: "Tyrell",hid: 300147,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200146,NAME_ES: "Appleton",NAME_EN: "Appleton",HOUSE: "Appleton",HID: 300148,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200146,name_es: "Appleton",name_en: "Appleton",house: "Appleton",hid: 300148,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200147,NAME_ES: "Vado Ceniza",NAME_EN: "Ashford",HOUSE: "Ashford",HID: 300149,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200147,name_es: "Vado Ceniza",name_en: "Ashford",house: "Ashford",hid: 300149,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200148,NAME_ES: "Bandallon",NAME_EN: "Bandallon",HOUSE: "Blackbar",HID: 300150,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200148,name_es: "Bandallon",name_en: "Bandallon",house: "Blackbar",hid: 300150,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200149,NAME_ES: "Hammerhal",NAME_EN: "Hammerhal",HOUSE: "Cordwayner",HID: 300151,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200149,name_es: "Hammerhal",name_en: "Hammerhal",house: "Cordwayner",hid: 300151,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200150,NAME_ES: "Lago Rojo",NAME_EN: "Red Lake",HOUSE: "Crane",HID: 300152,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200150,name_es: "Lago Rojo",name_en: "Red Lake",house: "Crane",hid: 300152,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200151,NAME_ES: "Torreón de Aguasclaras",NAME_EN: "Brightwater Keep",HOUSE: "Florent",HID: 300153,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200151,name_es: "Torreón de Aguasclaras",name_en: "Brightwater Keep",house: "Florent",hid: 300153,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200152,NAME_ES: "Ladera",NAME_EN: "Tumbleton",HOUSE: "Footy",HID: 300154,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200152,name_es: "Ladera",name_en: "Tumbleton",house: "Footy",hid: 300154,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200153,NAME_ES: "La Sidra",NAME_EN: "Cider Hall",HOUSE: "Fossoway",HID: 300155,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200153,name_es: "La Sidra",name_en: "Cider Hall",house: "Fossoway",hid: 300155,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200154,NAME_ES: "Nuevo Barril",NAME_EN: "New Barrel",HOUSE: "Fossoway",HID: 300156,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200154,name_es: "Nuevo Barril",name_en: "New Barrel",house: "Fossoway",hid: 300156,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200155,NAME_ES: "Granmesa",NAME_EN: "Longtable",HOUSE: "Merryweather",HID: 300157,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200155,name_es: "Granmesa",name_en: "Longtable",house: "Merryweather",hid: 300157,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200156,NAME_ES: "Holyhall",NAME_EN: "Holyhall",HOUSE: "Graceford",HID: 300159,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200156,name_es: "Holyhall",name_en: "Holyhall",house: "Graceford",hid: 300159,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200157,NAME_ES: "Antigua",NAME_EN: "Oldtown",HOUSE: "Hightower",HID: 300160,TYPE: "Ciudad",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200157,name_es: "Antigua",name_en: "Oldtown",house: "Hightower",hid: 300160,location_type: "Ciudad",kingdom: "Dominio",description: ""
 },
 {
-LID: 200158,NAME_ES: "Sotomiel",NAME_EN: "Honeyholt",HOUSE: "Beesbury",HID: 300165,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200158,name_es: "Sotomiel",name_en: "Honeyholt",house: "Beesbury",hid: 300165,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200159,NAME_ES: "Corona Negra",NAME_EN: "Blackcrown",HOUSE: "Bulwer",HID: 300161,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200159,name_es: "Corona Negra",name_en: "Blackcrown",house: "Bulwer",hid: 300161,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200160,NAME_ES: "Tres Torres",NAME_EN: "Three Towers",HOUSE: "Costayne",HID: 300162,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200160,name_es: "Tres Torres",name_en: "Three Towers",house: "Costayne",hid: 300162,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200161,NAME_ES: "Refugio del Girasol",NAME_EN: "Sunflower Hall",HOUSE: "Cuy",HID: 300163,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200161,name_es: "Refugio del Girasol",name_en: "Sunflower Hall",house: "Cuy",hid: 300163,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200162,NAME_ES: "Tierras Altas",NAME_EN: "Uplands",HOUSE: "Mullendore",HID: 300164,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200162,name_es: "Tierras Altas",name_en: "Uplands",house: "Mullendore",hid: 300164,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200163,NAME_ES: "Salón de la Hiedra",NAME_EN: "Ivy Hall",HOUSE: "Kidwell",HID: 300167,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200163,name_es: "Salón de la Hiedra",name_en: "Ivy Hall",house: "Kidwell",hid: 300167,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200164,NAME_ES: "Puenteamargo",NAME_EN: "Bitterbridge",HOUSE: "Caswell",HID: 300168,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200164,name_es: "Puenteamargo",name_en: "Bitterbridge",house: "Caswell",hid: 300168,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200165,NAME_ES: "Valdehierba",NAME_EN: "Grassy Vale",HOUSE: "Meadows",HID: 300169,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200165,name_es: "Valdehierba",name_en: "Grassy Vale",house: "Meadows",hid: 300169,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200166,NAME_ES: "Viejo Roble",NAME_EN: "Old Oak",HOUSE: "Oakheart",HID: 300170,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200166,name_es: "Viejo Roble",name_en: "Old Oak",house: "Oakheart",hid: 300170,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200167,NAME_ES: "Picaestrella",NAME_EN: "Starpike",HOUSE: "Peake",HID: 300171,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200167,name_es: "Picaestrella",name_en: "Starpike",house: "Peake",hid: 300171,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200168,NAME_ES: "Sotodeoro",NAME_EN: "Goldengrove",HOUSE: "Rowan",HID: 300172,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200168,name_es: "Sotodeoro",name_en: "Goldengrove",house: "Rowan",hid: 300172,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200169,NAME_ES: "Tiesa",NAME_EN: "Standfast",HOUSE: "Osgrey",HID: 300172,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200169,name_es: "Tiesa",name_en: "Standfast",house: "Osgrey",hid: 300172,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200170,NAME_ES: "Fosafría",NAME_EN: "Coldmoat",HOUSE: "Webber",HID: 300174,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200170,name_es: "Fosafría",name_en: "Coldmoat",house: "Webber",hid: 300174,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200171,NAME_ES: "El Rejo",NAME_EN: "The Arbor",HOUSE: "Redwyne",HID: 300175,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200171,name_es: "El Rejo",name_en: "The Arbor",house: "Redwyne",hid: 300175,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200172,NAME_ES: "Puerto Ryam",NAME_EN: "Ryamsport",HOUSE: "Redwyne",HID: 300176,TYPE: "Pueblo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200172,name_es: "Puerto Ryam",name_en: "Ryamsport",house: "Redwyne",hid: 300176,location_type: "Pueblo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200173,NAME_ES: "Viñaparra",NAME_EN: "Vinetown",HOUSE: "Redwyne",HID: 300177,TYPE: "Pueblo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200173,name_es: "Viñaparra",name_en: "Vinetown",house: "Redwyne",hid: 300177,location_type: "Pueblo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200174,NAME_ES: "Estrella de Mar",NAME_EN: "Starfish Harbor",HOUSE: "Redwyne",HID: 300180,TYPE: "Pueblo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200174,name_es: "Estrella de Mar",name_en: "Starfish Harbor",house: "Redwyne",hid: 300180,location_type: "Pueblo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200175,NAME_ES: "Anillo",NAME_EN: "Ring",HOUSE: "Roxton",HID: 300181,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200175,name_es: "Anillo",name_en: "Ring",house: "Roxton",hid: 300181,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200176,NAME_ES: "Smithyton",NAME_EN: "Smithyton",HOUSE: "Shermer",HID: 300182,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200176,name_es: "Smithyton",name_en: "Smithyton",house: "Shermer",hid: 300182,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200177,NAME_ES: "Colina Cuerno",NAME_EN: "Horn Hill",HOUSE: "Tarly",HID: 300183,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200177,name_es: "Colina Cuerno",name_en: "Horn Hill",house: "Tarly",hid: 300183,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200178,NAME_ES: "Darkdell",NAME_EN: "Darkdell",HOUSE: "Vyrwell",HID: 300184,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200178,name_es: "Darkdell",name_en: "Darkdell",house: "Vyrwell",hid: 300184,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200179,NAME_ES: "Escudo Verde",NAME_EN: "Greenshield",HOUSE: "Chester",HID: 300185,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200179,name_es: "Escudo Verde",name_en: "Greenshield",house: "Chester",hid: 300185,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200180,NAME_ES: "Escudo Gris",NAME_EN: "Greyshield",HOUSE: "Grimm",HID: 300186,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200180,name_es: "Escudo Gris",name_en: "Greyshield",house: "Grimm",hid: 300186,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200181,NAME_ES: "Escudo de Roble",NAME_EN: "Oakenshield",HOUSE: "Hewett",HID: 300187,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200181,name_es: "Escudo de Roble",name_en: "Oakenshield",house: "Hewett",hid: 300187,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200182,NAME_ES: "Escudo Sur",NAME_EN: "Southshield",HOUSE: "Serry",HID: 300188,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200182,name_es: "Escudo Sur",name_en: "Southshield",house: "Serry",hid: 300188,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200183,NAME_ES: "Lanza del Sol",NAME_EN: "Sunspear",HOUSE: "Martell",HID: 300189,TYPE: "Ciudad",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200183,name_es: "Lanza del Sol",name_en: "Sunspear",house: "Martell",hid: 300189,location_type: "Ciudad",kingdom: "Dorne",description: ""
 },
 {
-LID: 200184,NAME_ES: "Rocagris",NAME_EN: "Ghaston Grey",HOUSE: "Martell",HID: 300190,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200184,name_es: "Rocagris",name_en: "Ghaston Grey",house: "Martell",hid: 300190,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200185,NAME_ES: "Bondadivina",NAME_EN: "Godsgrace",HOUSE: "Allyrion",HID: 300191,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200185,name_es: "Bondadivina",name_en: "Godsgrace",house: "Allyrion",hid: 300191,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200186,NAME_ES: "Montenegro",NAME_EN: "Blackmont",HOUSE: "Blackmont",HID: 300192,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200186,name_es: "Montenegro",name_en: "Blackmont",house: "Blackmont",hid: 300192,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200187,NAME_ES: "Limonar",NAME_EN: "Lemonwood",HOUSE: "Dalt",HID: 300193,TYPE: "Castillo pequeño",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200187,name_es: "Limonar",name_en: "Lemonwood",house: "Dalt",hid: 300193,location_type: "Castillo pequeño",kingdom: "Dorne",description: ""
 },
 {
-LID: 200188,NAME_ES: "Campoestrella",NAME_EN: "Starfall",HOUSE: "Dayne",HID: 300194,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200188,name_es: "Campoestrella",name_en: "Starfall",house: "Dayne",hid: 300194,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200189,NAME_ES: "Ermita Alta",NAME_EN: "High Hermitage",HOUSE: "Dayne",HID: 300195,TYPE: "Castillo pequeño",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200189,name_es: "Ermita Alta",name_en: "High Hermitage",house: "Dayne",hid: 300195,location_type: "Castillo pequeño",kingdom: "Dorne",description: ""
 },
 {
-LID: 200190,NAME_ES: "Dominio del Cielo",NAME_EN: "Skyreach",HOUSE: "Fowler",HID: 300195,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200190,name_es: "Dominio del Cielo",name_en: "Skyreach",house: "Fowler",hid: 300195,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200191,NAME_ES: "Costa Salada",NAME_EN: "Salt Shore",HOUSE: "Gargalen",HID: 300196,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200191,name_es: "Costa Salada",name_en: "Salt Shore",house: "Gargalen",hid: 300196,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200192,NAME_ES: "Tor",NAME_EN: "The Tor",HOUSE: "Jordayne",HID: 300197,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200192,name_es: "Tor",name_en: "The Tor",house: "Jordayne",hid: 300197,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200193,NAME_ES: "Sepulcro del Rey",NAME_EN: "Kingsgrave",HOUSE: "Manwoody",HID: 300198,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200193,name_es: "Sepulcro del Rey",name_en: "Kingsgrave",house: "Manwoody",hid: 300198,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200194,NAME_ES: "Asperón",NAME_EN: "Sandstone",HOUSE: "Qorgyle",HID: 300199,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200194,name_es: "Asperón",name_en: "Sandstone",house: "Qorgyle",hid: 300199,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200195,NAME_ES: "Bosquepinto",NAME_EN: "Spottswood",HOUSE: "Santagar",HID: 300200,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200195,name_es: "Bosquepinto",name_en: "Spottswood",house: "Santagar",hid: 300200,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200196,NAME_ES: "Colina Fantasma",NAME_EN: "Ghost Hill",HOUSE: "Toland",HID: 300201,TYPE: "Castillo pequeño",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200196,name_es: "Colina Fantasma",name_en: "Ghost Hill",house: "Toland",hid: 300201,location_type: "Castillo pequeño",kingdom: "Dorne",description: ""
 },
 {
-LID: 200197,NAME_ES: "Sotoinferno",NAME_EN: "Hellholt",HOUSE: "Uller",HID: 300202,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200197,name_es: "Sotoinferno",name_en: "Hellholt",house: "Uller",hid: 300202,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200198,NAME_ES: "Dunas Rojas",NAME_EN: "Vaith",HOUSE: "Vaith",HID: 300203,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200198,name_es: "Dunas Rojas",name_en: "Vaith",house: "Vaith",hid: 300203,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200199,NAME_ES: "Wyl",NAME_EN: "Wyl",HOUSE: "Wyl",HID: 300204,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200199,name_es: "Wyl",name_en: "Wyl",house: "Wyl",hid: 300204,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200200,NAME_ES: "Palosanto",NAME_EN: "Yronwood",HOUSE: "Yronwood",HID: 300205,TYPE: "Castillo",KINGDOM: "Dorne",DESCRIPTION: ""
+lid: 200200,name_es: "Palosanto",name_en: "Yronwood",house: "Yronwood",hid: 300205,location_type: "Castillo",kingdom: "Dorne",description: ""
 },
 {
-LID: 200201,NAME_ES: "Dunstonbury",NAME_EN: "Dunstonbury",HOUSE: "Dunn",HID: 300206,TYPE: "Castillo",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200201,name_es: "Dunstonbury",name_en: "Dunstonbury",house: "Dunn",hid: 300206,location_type: "Castillo",kingdom: "Dominio",description: ""
 },
 {
-LID: 200202,NAME_ES: "Sotoblanco",NAME_EN: "Whitegrove",HOUSE: "Ambrose",HID: 300207,TYPE: "Castillo pequeño",KINGDOM: "Dominio",DESCRIPTION: ""
+lid: 200202,name_es: "Sotoblanco",name_en: "Whitegrove",house: "Ambrose",hid: 300207,location_type: "Castillo pequeño",kingdom: "Dominio",description: ""
 },
 {
-LID: 200203,NAME_ES: "Marea Alta",NAME_EN: "High Tide",HOUSE: "Velaryon",HID: 300208,TYPE: "Castillo",KINGDOM: "Islas del Mar Angosto",DESCRIPTION: ""
+lid: 200203,name_es: "Marea Alta",name_en: "High Tide",house: "Velaryon",hid: 300208,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
-LID: 400001,NAME_ES: "Braavos",NAME_EN: "Braavos",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400001,name_es: "Braavos",name_en: "Braavos",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400002,NAME_ES: "Lorath",NAME_EN: "Lorath",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400002,name_es: "Lorath",name_en: "Lorath",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400003,NAME_ES: "Pentos",NAME_EN: "Pentos",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400003,name_es: "Pentos",name_en: "Pentos",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400004,NAME_ES: "Myr",NAME_EN: "Myr",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400004,name_es: "Myr",name_en: "Myr",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400005,NAME_ES: "Tyrosh",NAME_EN: "Tyrosh",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400005,name_es: "Tyrosh",name_en: "Tyrosh",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400006,NAME_ES: "Lys",NAME_EN: "Lys",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400006,name_es: "Lys",name_en: "Lys",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400007,NAME_ES: "Volantis",NAME_EN: "Volantis",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400007,name_es: "Volantis",name_en: "Volantis",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400008,NAME_ES: "Qohor",NAME_EN: "Qohor",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400008,name_es: "Qohor",name_en: "Qohor",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400009,NAME_ES: "Norvos",NAME_EN: "Norvos",HOUSE: "Essos",HID: "",TYPE: "Ciudad",KINGDOM: "",DESCRIPTION: ""
+lid: 400009,name_es: "Norvos",name_en: "Norvos",house: "Essos",hid: "",location_type: "Ciudad",kingdom: "",description: ""
 },
 {
-LID: 400010,NAME_ES: "Los Susurros",NAME_EN: "The Whispers",HOUSE: "Tierras de la Corona",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400010,name_es: "Los Susurros",name_en: "The Whispers",house: "Tierras de la Corona",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400011,NAME_ES: "Murosblancos",NAME_EN: "Whitewalls",HOUSE: "Ríos",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400011,name_es: "Murosblancos",name_en: "Whitewalls",house: "Ríos",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400012,NAME_ES: "Castamere",NAME_EN: "Castamere",HOUSE: "Occidente",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400012,name_es: "Castamere",name_en: "Castamere",house: "Occidente",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400013,NAME_ES: "Salón de Tarbeck",NAME_EN: "Tarbeck Hall",HOUSE: "Occidente",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400013,name_es: "Salón de Tarbeck",name_en: "Tarbeck Hall",house: "Occidente",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400014,NAME_ES: "Foso Cailin",NAME_EN: "Moat Cailin",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400014,name_es: "Foso Cailin",name_en: "Moat Cailin",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400015,NAME_ES: "Sima de Nunn",NAME_EN: "Nunn's Deep",HOUSE: "Occidente",HID: "",TYPE: "Mina",KINGDOM: "",DESCRIPTION: ""
+lid: 400015,name_es: "Sima de Nunn",name_en: "Nunn's Deep",house: "Occidente",hid: "",location_type: "Mina",kingdom: "",description: ""
 },
 {
-LID: 400016,NAME_ES: "Colinas de Pendric",NAME_EN: "Pendric Hills",HOUSE: "Occidente",HID: "",TYPE: "Mina",KINGDOM: "",DESCRIPTION: ""
+lid: 400016,name_es: "Colinas de Pendric",name_en: "Pendric Hills",house: "Occidente",hid: "",location_type: "Mina",kingdom: "",description: ""
 },
 {
-LID: 400017,NAME_ES: "Minas de los Manderly",NAME_EN: "Manderly Mines",HOUSE: "Norte",HID: "",TYPE: "Mina",KINGDOM: "",DESCRIPTION: ""
+lid: 400017,name_es: "Minas de los Manderly",name_en: "Manderly Mines",house: "Norte",hid: "",location_type: "Mina",kingdom: "",description: ""
 },
 {
-LID: 400018,NAME_ES: "Refugio Estival",NAME_EN: "Summerhall",HOUSE: "Tierras de la Tormenta",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400018,name_es: "Refugio Estival",name_en: "Summerhall",house: "Tierras de la Tormenta",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400019,NAME_ES: "",NAME_EN: "",HOUSE: "Ríos",HID: "",TYPE: "Puente",KINGDOM: "",DESCRIPTION: ""
+lid: 400019,name_es: "",name_en: "",house: "Ríos",hid: "",location_type: "Puente",kingdom: "",description: ""
 },
 {
-LID: 400020,NAME_ES: "",NAME_EN: "",HOUSE: "Ríos",HID: "",TYPE: "Puente",KINGDOM: "",DESCRIPTION: ""
+lid: 400020,name_es: "",name_en: "",house: "Ríos",hid: "",location_type: "Puente",kingdom: "",description: ""
 },
 {
-LID: 400021,NAME_ES: "",NAME_EN: "",HOUSE: "Dominio",HID: "",TYPE: "Puente",KINGDOM: "",DESCRIPTION: ""
+lid: 400021,name_es: "",name_en: "",house: "Dominio",hid: "",location_type: "Puente",kingdom: "",description: ""
 },
 {
-LID: 400022,NAME_ES: "",NAME_EN: "",HOUSE: "Dominio",HID: "",TYPE: "Puente",KINGDOM: "",DESCRIPTION: ""
+lid: 400022,name_es: "",name_en: "",house: "Dominio",hid: "",location_type: "Puente",kingdom: "",description: ""
 },
 {
-LID: 400023,NAME_ES: "",NAME_EN: "",HOUSE: "Dominio",HID: "",TYPE: "Puente",KINGDOM: "",DESCRIPTION: ""
+lid: 400023,name_es: "",name_en: "",house: "Dominio",hid: "",location_type: "Puente",kingdom: "",description: ""
 },
 {
-LID: 400024,NAME_ES: "Vado del Titiritero",NAME_EN: "Mummer's Ford",HOUSE: "Ríos",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400024,name_es: "Vado del Titiritero",name_en: "Mummer's Ford",house: "Ríos",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400025,NAME_ES: "Molino de Piedra",NAME_EN: "Stone Mill",HOUSE: "Ríos",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400025,name_es: "Molino de Piedra",name_en: "Stone Mill",house: "Ríos",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400026,NAME_ES: "Vado Tridente",NAME_EN: "Trident Ford",HOUSE: "Ríos",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400026,name_es: "Vado Tridente",name_en: "Trident Ford",house: "Ríos",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400027,NAME_ES: "",NAME_EN: "",HOUSE: "Dorne",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400027,name_es: "",name_en: "",house: "Dorne",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400028,NAME_ES: "",NAME_EN: "",HOUSE: "Norte",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400028,name_es: "",name_en: "",house: "Norte",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400029,NAME_ES: "",NAME_EN: "",HOUSE: "Norte",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400029,name_es: "",name_en: "",house: "Norte",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400030,NAME_ES: "",NAME_EN: "",HOUSE: "Ríos",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400030,name_es: "",name_en: "",house: "Ríos",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400031,NAME_ES: "",NAME_EN: "",HOUSE: "Valle",HID: "",TYPE: "Vado",KINGDOM: "",DESCRIPTION: ""
+lid: 400031,name_es: "",name_en: "",house: "Valle",hid: "",location_type: "Vado",kingdom: "",description: ""
 },
 {
-LID: 400032,NAME_ES: "Torreón de Craster",NAME_EN: "Craster's Keep",HOUSE: "Más-allá-del-muro",HID: "",TYPE: "Torre",KINGDOM: "",DESCRIPTION: ""
+lid: 400032,name_es: "Torreón de Craster",name_en: "Craster's Keep",house: "Más-allá-del-muro",hid: "",location_type: "Torre",kingdom: "",description: ""
 },
 {
-LID: 400033,NAME_ES: "Casa Austera",NAME_EN: "Hardhome",HOUSE: "Más-allá-del-muro",HID: "",TYPE: "Pueblo",KINGDOM: "",DESCRIPTION: ""
+lid: 400033,name_es: "Casa Austera",name_en: "Hardhome",house: "Más-allá-del-muro",hid: "",location_type: "Pueblo",kingdom: "",description: ""
 },
 {
-LID: 400034,NAME_ES: "Guardaoccidente del Río",NAME_EN: "Westwatch-by-the-Bridge",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400034,name_es: "Guardaoccidente del Río",name_en: "Westwatch-by-the-Bridge",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400035,NAME_ES: "Torre Sombría",NAME_EN: "The Shadow Tower",HOUSE: "Norte",HID: "",TYPE: "Torre",KINGDOM: "",DESCRIPTION: ""
+lid: 400035,name_es: "Torre Sombría",name_en: "The Shadow Tower",house: "Norte",hid: "",location_type: "Torre",kingdom: "",description: ""
 },
 {
-LID: 400036,NAME_ES: "Garita",NAME_EN: "Sentinel Guard",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400036,name_es: "Garita",name_en: "Sentinel Guard",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400037,NAME_ES: "Guardiagrís",NAME_EN: "Greyguard",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400037,name_es: "Guardiagrís",name_en: "Greyguard",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400038,NAME_ES: "Puerta Piedra",NAME_EN: "Stonedoor",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400038,name_es: "Puerta Piedra",name_en: "Stonedoor",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400039,NAME_ES: "Colina Escarcha",NAME_EN: "Hoarfrost Hill",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400039,name_es: "Colina Escarcha",name_en: "Hoarfrost Hill",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400040,NAME_ES: "Marcahielo",NAME_EN: "Icemark",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400040,name_es: "Marcahielo",name_en: "Icemark",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400041,NAME_ES: "Fuerte de la Noche",NAME_EN: "The Nightfort",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400041,name_es: "Fuerte de la Noche",name_en: "The Nightfort",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400042,NAME_ES: "Lago Hondo",NAME_EN: "Deeplake",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400042,name_es: "Lago Hondo",name_en: "Deeplake",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400043,NAME_ES: "Puerta de la Reina",NAME_EN: "Queensgate",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400043,name_es: "Puerta de la Reina",name_en: "Queensgate",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400044,NAME_ES: "Castillo Negro",NAME_EN: "Castle Black",HOUSE: "Norte",HID: "",TYPE: "Castillo",KINGDOM: "",DESCRIPTION: ""
+lid: 400044,name_es: "Castillo Negro",name_en: "Castle Black",house: "Norte",hid: "",location_type: "Castillo",kingdom: "",description: ""
 },
 {
-LID: 400045,NAME_ES: "Escudo de Roble",NAME_EN: "Oakenshield",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400045,name_es: "Escudo de Roble",name_en: "Oakenshield",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400046,NAME_ES: "Guardabosque del Lago",NAME_EN: "Woodswatch-by-the-Pool",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400046,name_es: "Guardabosque del Lago",name_en: "Woodswatch-by-the-Pool",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400047,NAME_ES: "Fortaleza de Azabache",NAME_EN: "Sable Hall",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400047,name_es: "Fortaleza de Azabache",name_en: "Sable Hall",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400048,NAME_ES: "Puertaescarcha",NAME_EN: "Rimegate",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400048,name_es: "Puertaescarcha",name_en: "Rimegate",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400049,NAME_ES: "Túmulo Largo",NAME_EN: "Long Barrow",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400049,name_es: "Túmulo Largo",name_en: "Long Barrow",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400050,NAME_ES: "Antorchas",NAME_EN: "The Torches",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400050,name_es: "Antorchas",name_en: "The Torches",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400051,NAME_ES: "Guardiaverde",NAME_EN: "Greenguard",HOUSE: "Norte",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400051,name_es: "Guardiaverde",name_en: "Greenguard",house: "Norte",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 },
 {
-LID: 400052,NAME_ES: "Guardiaoriente del Mar",NAME_EN: "Eastwatch-by-the-Sea",HOUSE: "Norte",HID: "",TYPE: "Castillo",KINGDOM: "",DESCRIPTION: ""
+lid: 400052,name_es: "Guardiaoriente del Mar",name_en: "Eastwatch-by-the-Sea",house: "Norte",hid: "",location_type: "Castillo",kingdom: "",description: ""
 },
 {
-LID: 400053,NAME_ES: "Puño de los Primeros Hombres",NAME_EN: "Fist of the First Men",HOUSE: "Más-allá-del-muro",HID: "",TYPE: "Ruinas",KINGDOM: "",DESCRIPTION: ""
+lid: 400053,name_es: "Puño de los Primeros Hombres",name_en: "Fist of the First Men",house: "Más-allá-del-muro",hid: "",location_type: "Ruinas",kingdom: "",description: ""
 }
 ])
