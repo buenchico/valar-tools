@@ -4,15 +4,13 @@
       <%= link_to image_tag("tools.png", :alt => "Valar Tools", id: "logo"), root_path, class: "navbar-brand" %>
       <div class="navbar-collapse justify-content-stretch">
         <ul class="navbar-nav ml-auto">
+          <% if current_user.nil? %>
+            <li class="nav-item">
+              <%= link_to ' Iniciar sesión', login_path, class: "btn btn-primary black" %>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %></li>
-          </li>
-          <li class="nav-item">
-            <% if current_user %>
-              Logged in as <%= current_user.house %>. <%= link_to 'Log Out', logout_path %>
-            <% else %>
-              <%= link_to 'Log In', login_path %>
-            <% end %>
           </li>
           <li class="nav-item dropdown">
           <%= link_to "", "#", id: "navbarDropdown", class: "nav-link dropdown-toggle fas fa-bars nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
@@ -25,7 +23,16 @@
                 <%= link_to key, value, class: "dropdown-item" %>
               <% end %>
             </div>
-        </li>
+          </li>
+          <li class="nav-item dropdown">
+            <% if current_user %>
+              <%= link_to "", "#", id: "navbarUser", class: "nav-link dropdown-toggle fas fa-user nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
+                <div class="dropdown-menu" aria-labelledby="navbarUser">
+                  <a href="<%= edit_user_path(current_user) %>" class="dropdown-item"><i class="fas fa-user"></i> <%= current_user.house %></a>
+                  <a href="<%= logout_path %>" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></i>  Cerrar sesión</a>
+                </div>
+            <% end %>
+          </li>
         </ul>
       </div>
     </nav>

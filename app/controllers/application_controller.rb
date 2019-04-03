@@ -7,13 +7,21 @@ class ApplicationController < ActionController::Base
             #  'armies': {'title': 'Lista de Ejércitos', 'short_title': 'Ejércitos', 'version': '10.01', 'path': '/armies', 'icon': 'fas fa-chess-knight'},
               }
     
+    $master_tools = {'players': {'title': 'Lista de jugadores', 'short_title': 'Jugadores', 'version': '10.03', 'path': '/users', 'icon': 'fas fa-user'},
+              }
+    
     $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
 
   def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
+      @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+  end
+  
+  def authorize
+    if current_user.nil?
+      redirect_to login_url, alert: "Not authorized"
+    elsif current_user.house == 'Master'
     else
-      @current_user = nil
+      redirect_to root_url, alert: "Not authorized"
     end
   end
   
