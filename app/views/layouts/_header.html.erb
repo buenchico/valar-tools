@@ -7,13 +7,6 @@
           <li class="nav-item">
             <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %></li>
           </li>
-          <li class="nav-item">
-            <% if current_user %>
-              Logged in as <%= current_user.house %>. <%= link_to 'Log Out', logout_path %>
-            <% else %>
-              <%= link_to 'Log In', login_path %>
-            <% end %>
-          </li>
           <li class="nav-item dropdown">
           <%= link_to "", "#", id: "navbarDropdown", class: "nav-link dropdown-toggle fas fa-bars nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
