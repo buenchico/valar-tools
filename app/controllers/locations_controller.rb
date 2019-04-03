@@ -69,6 +69,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:LID, :NAME_ES, :NAME_EN, :HOUSE, :HID, :TYPE, :KINGDOM)
+      params.require(:location).permit(:lid, :name_es, :name_en, :house, :hid, :location_type, :kingdom)
     end
 end
