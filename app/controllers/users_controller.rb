@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize, except: [:index]
+  before_action :correct_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   # GET /users

@@ -16,12 +16,18 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
   end
   
-  def authorize
+  def logged_in_user
     if current_user.nil?
-      redirect_to login_url, alert: "Not authorized"
-    elsif current_user.house == 'Master'
-    else
-      redirect_to root_url, alert: "Not authorized"
+      flash[:danger] = "Por favor, inicia sesión."
+      redirect_to login_url
+    end
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    if @user != current_user && current_user.house != 'Master'
+      redirect_to(root_url)
+      flash[:danger] = "No tienes permisos para acceder a esta página."
     end
   end
   
