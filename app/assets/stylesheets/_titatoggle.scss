@@ -16,6 +16,20 @@ $slider-text-unchecked-color: #000;
 $slider-text-checked: "Sí";
 $slider-text-checked-color: #fff;
 
+/*********************************************************
+Unnicessary variables
+
+$success: "";
+$border-radius: "";
+$border-radius-sm: "";
+$border-radius-lg: "";
+$gray-500: "";
+$primary: "";
+$info: "";
+$warning: "";
+$danger: "";
+***********************************************************/
+
 /*******************************************************
 Animation
 *******************************************************/
@@ -72,7 +86,7 @@ Main Slider basics
 
     &:focus + *:before
     {
-      outline:solid $input-focus-border-color 2px;
+      outline:solid 2px;
     }
   }
 
