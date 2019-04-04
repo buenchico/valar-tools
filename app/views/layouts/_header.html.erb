@@ -1,3 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Login">Iniciar sesión</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with url: sessions_path do |form| %>
+        <div class="modal-body">
+          <div class="form-group form-inline">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Jugador</div>
+                </div>
+                <%= form.text_field :player, class: "custom-control" %>
+              </div>
+          </div>
+          <div class="form-group form-inline">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Contraseña</div>
+                </div>
+                <%= form.password_field :password, class: "custom-control" %>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Login', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <header class="bg-black">
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark">
@@ -5,9 +43,10 @@
       <div class="navbar-collapse justify-content-stretch">
         <ul class="navbar-nav ml-auto">
           <% if current_user.nil? %>
-            <li class="nav-item">
-              <%= link_to ' Iniciar sesión', login_path, class: "btn btn-primary black" %>
-            </li>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#loginModal"><i class="fas fa-user"></i>
+              Iniciar sesión
+            </button> 
           <% end %>
           <li class="nav-item">
             <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %></li>
