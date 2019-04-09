@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @user.player + ' — ' + @user.house) %>
+<% provide(:icon, $tools[:players][:icon]) %>
 
-<p>
-  <strong>Player:</strong>
-  <%= @user.player %>
-</p>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-<p>
-  <strong>House:</strong>
-  <%= @user.house %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="ml-3">
+    
+</div>

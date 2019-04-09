@@ -6,8 +6,7 @@
     </div>
   <% end -%>
 
-  <% if current_user.nil? %>
-  <% elsif current_user.house == 'Master' %>
+  <% if current_user.try(:is_master?) %>
     <% $master_tools.each do |k,v| %>
       <div class="tool-box">
         <h1><%= link_to "", $master_tools[k][:path], class: "white giant-icon #{$master_tools[k][:icon]}" %></h1>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403202809) do
+ActiveRecord::Schema.define(version: 20190405084916) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "lid"

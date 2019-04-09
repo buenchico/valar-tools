@@ -1,29 +1,58 @@
-<p id="notice"><%= notice %></p>
+<%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
 
-<h1>Users</h1>
+<% provide(:title, $tools[:players][:title]) %>
+<% provide(:version, $tools[:players][:version]) %>
+<% provide(:icon, $tools[:players][:icon]) %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Player</th>
-      <th>House</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.player %></td>
-        <td><%= user.house %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de jugadores</caption>
+      <thead>
+        <tr>
+          <th scope="col">Jugador <i class="fas fa-sort"></i></th>
+          <th scope="col">Casa <i class="fas fa-sort"></i></th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.player %></td>
+            <td><%= user.house %></td>
+            <% if current_user.try(:is_admin?) then %>
+              <td><%= link_to '', edit_user_path(user), class: 'fas fa-edit white' %></td>
+              <td><%= link_to '', user, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
 
-<br>
+<% if current_user.try(:is_admin?) then %>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newuserModal"><i class="fas fa-plus-circle"></i> Añadir jugador</button>
+<% end %>
 
-<%= link_to 'New User', new_user_path %>
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
+
+<!-- Modal -->
+<div class="modal fade" id="newuserModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Login">Nuevo jugador</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', user: @user_new %>
+      </div>
+    </div>
+  </div>
+</div>

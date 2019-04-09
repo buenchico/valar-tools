@@ -1,37 +1,54 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <% if user.errors.any? %>
+    <div id="error_explanation" class="container mx-auto text-center alert alert-danger">
+      <h2>Se ha encontrado un error</h2>
+      <ul class="list-unstyled text-left">
+      <% user.errors.messages.values.each do |msg| %>
+        <%msg.each do  |m| %>
+          <li><%= m %></li>
+        <%end %>
       <% end %>
+
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :player %>
-    <%= form.text_field :player, id: :user_player %>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-user"></i>&nbsp;</div>
+      </div>
+      <%= form.text_field :player, class: "custom-control", placeholder: "Nombre del jugador"  %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :house %>
-    <%= form.text_field :house, id: :user_house %>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-flag"></i></div>
+      </div>
+      <%= form.select :house, options_for_select(@active_houses), {}, {class: "custom-select"}  %>
+    </div>
+  </div>
+  
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-lock"></i>&nbsp;</div>
+      </div>
+      <%= form.password_field :password, class: "custom-control", placeholder: "Contraseña" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password %>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-lock"></i>&nbsp;</div>
+      </div>
+      <%= form.password_field :password_confirmation, class: "custom-control", placeholder: "Confirmar contraseña" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

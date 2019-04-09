@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+' .'
     else
-      render 'new'
+      redirect_to login_url
       flash[:danger] = 'Jugador o contraseña erróneos.' # Not quite right!
     end
   end

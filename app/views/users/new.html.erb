@@ -1,5 +1,11 @@
-<h1>New User</h1>
+<% provide(:title, 'Añadir jugador') %>
+<% provide(:icon, $tools[:players][:icon]) %>
 
-<%= render 'form', user: @user %>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-<%= link_to 'Back', users_path %>
+<div class="ml-3">
+    <%= render 'form', user: @user %>
+</div>
