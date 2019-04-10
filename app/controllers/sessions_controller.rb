@@ -1,15 +1,13 @@
 class SessionsController < ApplicationController
-  def new
-  end
 
   def create
-    user = User.find_by_player(params[:player])
+    user = User.where('LOWER("PLAYER") = ?', "#{params[:player].downcase}").first
     if user && user.authenticate(params[:password])
       cookies.permanent[:auth_token] = user.auth_token
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+' .'
     else
-      redirect_to login_url
+      redirect_back(fallback_location: root_path)
       flash[:danger] = 'Jugador o contraseña erróneos.' # Not quite right!
     end
   end

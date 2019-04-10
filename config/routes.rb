@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   
   resources :users
 
-  resources :sessions, only: [:new, :create, :destroy]
-  
-  get 'login', to: 'sessions#new', as: 'login'
+  # Login and logout routes
+  post 'login', to: 'sessions#create', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :locations
