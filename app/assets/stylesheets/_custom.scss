@@ -135,3 +135,16 @@ a.nav-text-icon:hover {
 float: left;
 
 }
+
+// Best in place error messages
+
+.purr {
+  position: fixed;
+  top: 30px;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  @extend .text-center;
+  @extend .alert;
+  @extend .alert-danger;
+}

@@ -4,6 +4,10 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore secrets
+/config/secrets.yml
+/config/initializers/recaptcha.rb
+
 # Ignore public config.
 /public
 
@@ -24,3 +28,5 @@
 /yarn-error.log
 
 .byebug_history
+# Ignore encrypted secrets key file.
+config/secrets.yml.key

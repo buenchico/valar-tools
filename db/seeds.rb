@@ -24,6 +24,12 @@ name: "test4", description: "Este es el test 1"
 }
 ])
 
+User.create([
+{
+player: "Valar", house: "Admin", password: Rails.application.secrets[:admin_password]
+}
+])
+
 Location.create([
 {
 lid: 200001,name_es: "Nido de las Águilas",name_en: "The Eyrie",house: "Arryn",hid: 300002,location_type: "Castillo",kingdom: "Valle",description: ""

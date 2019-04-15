@@ -6,12 +6,4 @@
     </div>
   <% end -%>
 
-  <% if current_user.try(:is_master?) %>
-    <% $master_tools.each do |k,v| %>
-      <div class="tool-box">
-        <h1><%= link_to "", $master_tools[k][:path], class: "white giant-icon #{$master_tools[k][:icon]}" %></h1>
-        <p><%= $master_tools[k][:short_title] %></p>
-      </div>
-    <% end -%>
-  <% end %>
 </div>

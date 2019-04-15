@@ -10,5 +10,22 @@
     <%= link_to 'https://www.valar.es/u/'+@user.player do %>
         <i class="fab fa-discourse"></i> <%= @user.player %>
     <% end %>
-    mis tropas
+    // mis tropas
+    // 
+</div>
+
+<div class="tool-title">
+    <i class="fas fa-tools white"></i>
+    Herramientas de máster
+</div>
+
+<div class="ml-3">
+  <% if current_user.try(:is_master?) %>
+    <% $master_tools.each do |k,v| %>
+      <div class="tool-box">
+        <h1><%= link_to "", $master_tools[k][:path], class: "white giant-icon #{$master_tools[k][:icon]}" %></h1>
+        <p><%= $master_tools[k][:short_title] %></p>
+      </div>
+    <% end -%>
+  <% end %>
 </div>

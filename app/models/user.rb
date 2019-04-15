@@ -12,9 +12,9 @@ class User < ApplicationRecord
   
   # this method return true or false
   def is_admin?
-    self.house.include? 'Admin'
+    self.house == 'Admin'
   end
   def is_master?
-    self.house.include? 'Master'
+    self.house == 'Master' || self.house == 'Admin'
   end
 end

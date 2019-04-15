@@ -55,3 +55,12 @@ function get_column_index(element) {
     // alert('Row: ' + myRow + ', Column: ' + myCol);
     return myCol;
 };
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
+
+$(document).ready(function() {
+  $('.highlight_on_success').bind("ajax:success", function(){$(this).closest('tr').effect('highlight', {color:"#669966"} ); });
+});

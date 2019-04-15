@@ -51,6 +51,10 @@ es:
               blank: "La contraseña no puede estar en blanco"
             password_confirmation:
               confirmation: "Por favor, asegúrese la contraseña y su confirmación coinciden"
+        house:
+          attributes:
+            hid:
+              not_a_number: "House ID debe ser un número"
   helpers:
     submit:
       create: "Crear %{model}"

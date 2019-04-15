@@ -91,7 +91,8 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def active_houses
-      @active_houses = [ 'Master', 'Mallister', 'Hoare' ]
+      @active_houses = ["Master"]
+      (@active_houses << House.where(active: true).order(:name_es).pluck(:name_es)).flatten! # SELECT house.name_es FROM house WHERE active = true
     end
 
     def set_user

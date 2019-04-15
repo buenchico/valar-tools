@@ -4,7 +4,7 @@
       <h2>Se ha encontrado un error</h2>
       <ul class="list-unstyled text-left">
       <% user.errors.messages.values.each do |msg| %>
-        <%msg.each do  |m| %>
+        <%msg.each do |m| %>
           <li><%= m %></li>
         <%end %>
       <% end %>

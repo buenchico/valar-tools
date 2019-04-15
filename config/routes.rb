@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   
   resources :users
+  resources :houses
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'

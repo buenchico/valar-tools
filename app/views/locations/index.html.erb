@@ -20,7 +20,7 @@
     <% @locations.each do |location| %>
       <tr>
         <td><%= location.lid %></td>
-        <td><%= location.name_es %></td>
+        <td><%= best_in_place location, :name_es %></td>
         <td><%= location.name_en %></td>
         <td><%= location.house %></td>
         <td><%= location.hid %></td>

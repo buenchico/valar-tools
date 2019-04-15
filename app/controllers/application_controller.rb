@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
             #  'armies': {'title': 'Lista de Ejércitos', 'short_title': 'Ejércitos', 'version': '10.01', 'path': '/armies', 'icon': 'fas fa-chess-knight'},
               }
     
-    $master_tools = {'games': {'title': 'Lista de partidas', 'short_title': 'Partidas', 'version': '10.01', 'path': '/games', 'icon': 'fas fa-dice'},
+    $master_tools = {'houses': {'title': 'Lista de casas', 'short_title': 'Casas', 'version': '10.01', 'path': '/houses', 'icon': 'fas fa-flag'},
               }
     
     $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
 
   def current_user
-      @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+      @current_user ||= User.where("auth_token = ?", cookies[:auth_token]).first if cookies[:auth_token]
   end
   
 end
