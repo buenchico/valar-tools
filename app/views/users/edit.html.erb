@@ -1,3 +1,10 @@
-<h1>Editing User</h1>
+<% provide(:title, @user.player + ' — ' + @user.house) %>
+<% provide(:icon, $tools[:players][:icon]) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+    <%= link_to 'Back', users_path, class: "btn btn-danger" %>    
+</div>
 
 <%= render 'form', user: @user %>

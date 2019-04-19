@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   
   resources :users
+  get 'users/:id/change_password' => 'users#change_password'
+  patch 'users/:id/change_password' => 'users#change_password'  
+  
   resources :houses, :except => [:show]
 
   # Login and logout routes
