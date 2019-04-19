@@ -1,43 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Login">Iniciar sesión</h5>
-        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <%= form_with url: login_path, remote: false do |form| %>
-        <div class="modal-body">
-          <div class="form-group form-inline">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-user"></i></div>
-                </div>
-                <%= form.text_field :player, class: "custom-control", placeholder: "Nombre de jugador" %>
-              </div>
-          </div>
-          <div class="form-group form-inline">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                </div>
-                <%= form.password_field :password, class: "custom-control", placeholder: "Contraseña"  %>
-              </div>
-          </div>
-          <div class="form-group form-inline">
-              <div class="input-group mb-2">
-                <%= recaptcha_tags %>
-              </div>
-          </div>          
-        </div>
-        <div class="modal-footer">
-          <%= form.submit 'Login', class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+      <%= render 'layouts/login' %>
 </div>
 
 <header class="bg-black">
@@ -58,6 +21,16 @@
           <li class="nav-item dropdown">
           <%= link_to "", "#", id: "navbarDropdown", class: "nav-link dropdown-toggle fas fa-bars nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% if current_user %>
+                <a href="/users/<%= current_user.id %>" class="dropdown-item"><i class="fas fa-user"></i> <%= current_user.house %></a>
+                <div class="dropdown-divider"></div>
+                <% if current_user.is_master? %>
+                  <% $master_tools.each do |k, v|  %>
+                    <%= link_to $master_tools[k][:title], $master_tools[k][:path], class: "dropdown-item" %>
+                  <% end %>                
+                  <div class="dropdown-divider"></div>
+                <% end %>
+              <% end %>
               <% $tools.each do |k, v|  %>
                 <%= link_to $tools[k][:title], $tools[k][:path], class: "dropdown-item" %>
               <% end %>
@@ -65,16 +38,10 @@
               <% $static_pages.each do |key, value|  %>
                 <%= link_to key, value, class: "dropdown-item" %>
               <% end %>
+              <% if current_user %>
+                <a href="<%= logout_path %>" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></i>  Cerrar sesión</a>
+              <% end %>              
             </div>
-          </li>
-          <li class="nav-item dropdown">
-            <% if current_user %>
-              <%= link_to "", "#", id: "navbarUser", class: "nav-link dropdown-toggle fas fa-user nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
-                <div class="dropdown-menu" aria-labelledby="navbarUser">
-                  <a href="/users/<%= current_user.id %>" class="dropdown-item"><i class="fas fa-user"></i> <%= current_user.house %></a>
-                  <a href="<%= logout_path %>" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></i>  Cerrar sesión</a>
-                </div>
-            <% end %>
           </li>
         </ul>
       </div>
