@@ -11,7 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require best_in_place
+//= require best_in_place.purr
+//= require jquery.purr
 //= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/effects/effect-highlight
+//= require best_in_place.jquery-ui
+//= require jquery-tablesorter
 //= require rails-ujs
 //= require bootstrap
 //= require turbolinks

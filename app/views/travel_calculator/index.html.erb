@@ -100,13 +100,11 @@ $(document).ready(function(){
 });
 </script>
 
-<%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
 
 <% provide(:title, $tools[:routes][:title]) %>
 <% provide(:version, $tools[:routes][:version]) %>
 <% provide(:icon, $tools[:routes][:icon]) %>
-
 
 <div style="float: right; padding-top: 10px">
     <div class="form-check checkbox-slider--a checkbox-slider--path checkbox-slider-lg">

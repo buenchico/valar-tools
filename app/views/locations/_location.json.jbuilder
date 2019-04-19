@@ -1,2 +1,2 @@
-json.extract! location, :id, :LID, :NAME_ES, :NAME_EN, :HOUSE, :HID, :TYPE, :KINGDOM, :created_at, :updated_at
+json.extract! location, :id, :lid, :name_es, :name_en, :house, :hid, :location_type, :kingdom, :description, :created_at, :updated_at
 json.url location_url(location, format: :json)

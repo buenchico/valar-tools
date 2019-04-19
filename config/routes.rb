@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   
-  # resources :users
-  # resources :sessions, only: [:new, :create, :destroy]
-  
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
+  resources :users
+  resources :houses, :except => [:show]
+
+  # Login and logout routes
+  post 'login', to: 'sessions#create', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   # resources :locations

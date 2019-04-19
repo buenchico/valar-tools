@@ -1,0 +1,64 @@
+<% provide(:title, $master_tools[:houses][:title]) %>
+<% provide(:version, $master_tools[:houses][:version]) %>
+<% provide(:icon, $master_tools[:houses][:icon]) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de casas</caption>
+      <thead>
+        <tr>
+          <th scope="col">HID <i class="fas fa-sort"></i></th>
+          <th scope="col">Casa <i class="fas fa-sort"></i></th>
+          <th scope="col">¿Activa? <i class="fas fa-sort"></i></th>          
+          <th scope="col" colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @houses.each do |house| %>
+          <tr>
+            <td><%= house.hid %></td>
+            <td><%= house.name %></td>
+            <td class="text-center">
+              <% if house.active == true  %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </td>
+            <% if current_user.try(:is_master?) then %>
+              <td><%= link_to '', edit_house_path(house), class: 'fas fa-edit white' %></td>
+              <td><%= link_to '', house, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<% if current_user.try(:is_master?) then %>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newhouseModal"><i class="fas fa-plus-circle"></i> Añadir casa</button>
+<% end %>
+
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
+
+<!-- Modal -->
+<div class="modal fade" id="newhouseModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Login">Nuevo casa</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', house: @house_new %>
+      </div>
+    </div>
+  </div>
+</div>

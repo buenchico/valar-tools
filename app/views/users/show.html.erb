@@ -1,14 +1,35 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @user.player + ' — ' + @user.house) %>
+<% provide(:icon, $tools[:players][:icon]) %>
 
-<p>
-  <strong>Player:</strong>
-  <%= @user.player %>
-</p>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-<p>
-  <strong>House:</strong>
-  <%= @user.house %>
-</p>
+<div class="center">
+  <div class="tool-box">
+    <h1><%= link_to "", 'https://www.valar.es/u/'+@user.player, class: "white giant-icon fab fa-discourse" %></h1>
+    <p>Discourse</p>
+  </div>
+  <div class="tool-box">
+    <h1><%= link_to "", "#", class: "white giant-icon fas fa-lock", "data-toggle" => "modal", "data-target" => "#passwordchangeModal" %></h1>
+    <p>Cambiar contraseña</p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<!-- Modal -->
+<div class="modal fade" id="passwordchangeModal" tabindex="-1" role="dialog" aria-labelledby="Password" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Login">Cambiar contraseña</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'password', user: @user %>
+      </div>
+    </div>
+  </div>
+</div>

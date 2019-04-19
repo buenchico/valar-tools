@@ -1,5 +1,5 @@
-<% provide(:title, 'Añadir jugador') %>
-<% provide(:icon, $tools[:players][:icon]) %>
+<% provide(:title, 'Añadir casa') %>
+<% provide(:icon, $master_tools[:houses][:icon]) %>
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
@@ -7,5 +7,5 @@
 </div>
 
 <div class="ml-3">
-    <%= render 'form', user: @user %>
+    <%= render 'form', house: @house %>
 </div>

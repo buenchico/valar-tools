@@ -1,0 +1,11 @@
+<% provide(:title, 'Editar — ' + @house.name) %>
+<% provide(:version, $master_tools[:houses][:version]) %>
+<% provide(:icon, $master_tools[:houses][:icon]) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+    <%= link_to 'Back', houses_path, class: "btn btn-danger" %>    
+</div>
+
+<%= render 'form', house: @house %>
