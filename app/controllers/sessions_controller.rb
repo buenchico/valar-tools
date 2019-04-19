@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
       flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+' .'
     else
       redirect_back(fallback_location: root_path)
-      flash[:danger] = 'Jugador o contraseña erróneos.' # Not quite right!
+      unless user && user.authenticate(params[:password])
+        flash[:danger] = 'Jugador o contraseña erróneos.' # Not quite right!
+      else
+        flash[:danger] = 'Por favor, verifica que eres humano.' # Not quite right!
+      end
     end
   end
 

@@ -1,11 +1,13 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
+  before_action :master_user
 
   # GET /houses
   # GET /houses.json
   def index
     @houses = House.all
     @house_new = House.new
+    @next_id = House.maximum(:hid) + 1
   end
 
   # GET /houses/1
@@ -16,6 +18,7 @@ class HousesController < ApplicationController
   # GET /houses/new
   def new
     @house = House.new
+    @next_id = House.maximum(:hid) + 1
   end
 
   # GET /houses/1/edit
@@ -29,7 +32,7 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.save
-        format.html { redirect_to @house, notice: 'House was successfully created.' }
+        format.html { redirect_to houses_url, notice: 'Casa añadida correctamente.' }
         format.json { render :show, status: :created, location: @house }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class HousesController < ApplicationController
   def update
     respond_to do |format|
       if @house.update(house_params)
-        format.html { redirect_to @house, success: 'Location was successfully updated.' }
+        format.html { redirect_to @house, success: 'Casa editada correctamente.' }
         format.json { respond_with_bip @house }
       else
         format.html { render :edit }
@@ -61,7 +64,18 @@ class HousesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  # Check if user is master or admin
+  def master_user
+    if current_user.nil?
+      flash[:danger] = "Por favor, inicia sesión."
+      redirect_to root_url
+    elsif !current_user.is_master? && !current_user.is_admin?
+      redirect_to(root_url)
+      flash[:danger] = "No tienes permisos para acceder a esta página."
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_house
@@ -70,6 +84,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:hid, :name_es, :name_en, :active)
+      params.require(:house).permit(:hid, :name, :active)
     end
 end

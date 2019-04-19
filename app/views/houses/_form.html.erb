@@ -1,22 +1,46 @@
 <%= form_with(model: house, local: true) do |form| %>
   <% if house.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(house.errors.count, "error") %> prohibited this house from being saved:</h2>
-
-      <ul>
-      <% house.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div id="error_explanation" class="container mx-auto text-center alert alert-danger">
+      <h2>Se ha encontrado un error</h2>
+      <ul class="list-unstyled text-left">
+      <% house.errors.messages.values.each do |msg| %>
+        <%msg.each do |m| %>
+          <li><%= m %></li>
+        <%end %>
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name_es %>
-    <%= form.text_field :name_es, id: :house_name_es %>
-  </div
+  <% end %>      
   
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+      </div>
+      <%= form.number_field :hid, class: "custom-control", readonly: true, value: @house.nil? || house.hid.nil? ? @next_id : house.hid %>
+    </div>
+  </div>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+      </div>
+      <%= form.text_field :name, class: "custom-control", placeholder: 'Nombre de la casa' %>
+    </div>
+  </div>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">¿Activa?</div>
+      </div>
+      <div class="form-check checkbox-slider--a checkbox-slider-lg">
+  	    <label>
+	        <%= form.check_box :active, default: 'no'  %><span>&nbsp;</span>
+	      </label>
+      </div>
+    </div> 
+  </div> 
+  <div class="form-group form-inline">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

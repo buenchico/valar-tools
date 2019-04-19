@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, success: 'Jugador añadido correctamente.' }
+        format.html { redirect_to users_url, success: 'Jugador añadido correctamente.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user.nil?
       flash[:danger] = "Por favor, inicia sesión."
-      redirect_to login_url
+      redirect_to root_url
     elsif @user != current_user && !current_user.is_master? && !current_user.is_admin?
       redirect_to(root_url)
       flash[:danger] = "No tienes permisos para acceder a esta página."
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   def master_user
     if current_user.nil?
       flash[:danger] = "Por favor, inicia sesión."
-      redirect_to login_url
+      redirect_to root_url
     elsif !current_user.is_master? && !current_user.is_admin?
       redirect_to(root_url)
       flash[:danger] = "No tienes permisos para acceder a esta página."
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def active_houses
       @active_houses = ["Master"]
-      (@active_houses << House.where(active: true).order(:name_es).pluck(:name_es)).flatten! # SELECT house.name_es FROM house WHERE active = true
+      (@active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     end
 
     def set_user

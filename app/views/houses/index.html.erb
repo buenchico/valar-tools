@@ -12,17 +12,25 @@
     <caption>Lista de casas</caption>
       <thead>
         <tr>
+          <th scope="col">HID <i class="fas fa-sort"></i></th>
           <th scope="col">Casa <i class="fas fa-sort"></i></th>
-          <th scope="col">Activa <i class="fas fa-sort"></i></th>
+          <th scope="col">¿Activa? <i class="fas fa-sort"></i></th>          
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
       <tbody>
         <% @houses.each do |house| %>
           <tr>
-            <td><%= best_in_place house, :name_es, :as => :input, :class => 'highlight_on_success' %></td>
-            <td><%= best_in_place house, :active, as: :checkbox, collection: {false: 'NO', true: 'YES'} %></td>
-            <% if current_user.try(:is_admin?) then %>
+            <td><%= house.hid %></td>
+            <td><%= house.name %></td>
+            <td class="text-center">
+              <% if house.active == true  %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </td>
+            <% if current_user.try(:is_master?) then %>
               <td><%= link_to '', edit_house_path(house), class: 'fas fa-edit white' %></td>
               <td><%= link_to '', house, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
             <% end %>
@@ -32,7 +40,7 @@
   </table>
 </div>
 
-<% if current_user.try(:is_admin?) then %>
+<% if current_user.try(:is_master?) then %>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newhouseModal"><i class="fas fa-plus-circle"></i> Añadir casa</button>
 <% end %>
 

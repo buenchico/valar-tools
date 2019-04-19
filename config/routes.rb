@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   
   resources :users
-  resources :houses
+  resources :houses, :except => [:show]
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'

@@ -1,5 +1,11 @@
-<h1>New House</h1>
+<% provide(:title, 'Añadir casa') %>
+<% provide(:icon, $master_tools[:houses][:icon]) %>
 
-<%= render 'form', house: @house %>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-<%= link_to 'Back', houses_path %>
+<div class="ml-3">
+    <%= render 'form', house: @house %>
+</div>

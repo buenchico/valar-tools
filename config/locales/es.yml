@@ -55,6 +55,11 @@ es:
           attributes:
             hid:
               not_a_number: "House ID debe ser un número"
+              taken: "House ID debe ser único"
+              blank: "House ID es necesario"
+            name:
+              blank: "El nombre de la casa es necesario"
+              taken: "El nombre de la casa debe ser único"
   helpers:
     submit:
       create: "Crear %{model}"
@@ -62,3 +67,10 @@ es:
       user:
         create: "Añadir jugador"
         update: "Guardar jugador"
+      house:
+        create: "Añadir casa"
+        update: "Guardar casa"
+        
+  recaptcha:
+    errors:
+      verification_failed: 'Por favor, verifica que eres humano.'
