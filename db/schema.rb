@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190410105127) do
+ActiveRecord::Schema.define(version: 20190426142551) do
+
+  create_table "armies", force: :cascade do |t|
+    t.integer "aid"
+    t.string "visibility"
+    t.string "kingdom"
+    t.string "location"
+    t.string "lord"
+    t.string "name"
+    t.string "position"
+    t.string "mission"
+    t.string "status"
+    t.string "type"
+    t.integer "num"
+    t.integer "vet"
+    t.integer "armour"
+    t.integer "morale"
+    t.boolean "infantry"
+    t.boolean "cavalry"
+    t.boolean "marine"
+    t.integer "boat"
+    t.boolean "flagship"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "houses", force: :cascade do |t|
     t.integer "hid"

@@ -31,12 +31,6 @@
 
 es:
   activerecord:
-    attributes:
-      user:
-        player: "Nombre de jugador"
-        house: "Casa"
-        password: "Contraseña"
-        password_confirmation: "Confirmar contraseña"
     errors:
       models:
         user:
@@ -60,9 +54,27 @@ es:
             name:
               blank: "El nombre de la casa es necesario"
               taken: "El nombre de la casa debe ser único"
+        army:
+          attributes:
+            aid:
+              not_a_number: "Army ID debe ser un número"
+              taken: "Army ID debe ser único"
+              blank: "Army ID es necesario"
+            kingdom:
+              blank: "El reino del ejército es necesario"
+            location:
+              blank: "El asentamiento del ejército es necesario"
+            lord:
+              blank: "El señor del ejército es necesario"
+            name:
+              blank: "El nombre del ejército es necesario"
+            status:
+              blank: "El estado del ejército es necesario"
+            type:
+              blank: "El tipo del ejército es necesario"
   helpers:
     submit:
-      create: "Crear %{model}"
+      create: "Añadir %{model}"
       update: "Guardar %{model}"
       user:
         create: "Añadir jugador"
@@ -70,6 +82,9 @@ es:
       house:
         create: "Añadir casa"
         update: "Guardar casa"
+      army:
+        create: "Añadir ejército"
+        update: "Guardar ejército"        
         
   recaptcha:
     errors:
