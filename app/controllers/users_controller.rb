@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :show]
-  before_action :master_user, except: [:index, :show, :edit]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :show, :password]
+  before_action :master_user, except: [:index, :show, :edit, :password]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :password]
   before_action :active_houses
   
   # GET /users
@@ -64,6 +64,28 @@ class UsersController < ApplicationController
     end
   end
   
+  def password
+    if @user and @user.authenticate(params[:user][:old_password])
+      if params[:user][:password] == params[:user][:password_confirmation]
+        respond_to do |format|
+          if @user.update(user_params)
+            format.html { redirect_to @user, success: 'Contraseña cambiada correctamente.' }
+            format.json { render :show, status: :ok, location: @user }
+          else
+            format.html { render :show }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end        
+        end  
+      else
+        flash.now[:danger] = "Las contraseñas no son iguales."
+        render 'show'
+      end
+    else
+      flash.now[:danger] = "Contraseña incorrecta."
+      render 'show'
+    end
+  end
+  
   # Check if user is current user, master or admin
   def correct_user
     @user = User.find(params[:id])
@@ -100,7 +122,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:player, :house, :old_password, :password, :password_confirmation)
+      params.require(:user).permit(:player, :house, :password, :password_confirmation)
     end
-
 end

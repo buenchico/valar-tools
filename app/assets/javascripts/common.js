@@ -1,6 +1,6 @@
 // Autocomplete
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $(".auto-source").autocomplete({
     source: $('.auto-source').data('autocomplete-source')
   });

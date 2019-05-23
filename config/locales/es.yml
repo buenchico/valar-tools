@@ -43,6 +43,8 @@ es:
               blank: "Por favor, seleccione una casa"
             password:
               blank: "La contraseña no puede estar en blanco"
+              too_short: "La contraseña es demasiado corta, por favor, use al menos 6 caracteres"
+              too_long: "La contraseña es demasiado larga, por favor, use menos de 20 caracteres"
             password_confirmation:
               confirmation: "Por favor, asegúrese la contraseña y su confirmación coinciden"
         house:

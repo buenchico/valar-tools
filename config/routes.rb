@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   match "/500", :to => "errors#internal_server_error", :via => :all
   
   resources :users
+  patch '/users/:id/password', to: 'users#password', as: 'password'
+  # post 'users/(/:id)/password', to: 'users#password', as: 'password'
+  
   resources :houses, :except => [:show]
 
   # Login and logout routes
