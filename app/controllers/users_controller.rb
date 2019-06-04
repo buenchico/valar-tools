@@ -64,6 +64,8 @@ class UsersController < ApplicationController
     end
   end
   
+  # PATCH/PUT /users/1/password
+  # PATCH/PUT /users/1/password.json
   def password
     if @user and @user.authenticate(params[:user][:old_password])
       if params[:user][:password] == params[:user][:password_confirmation]
