@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :armies
   root 'static_pages#home'
   
   match "/404", :to => "errors#not_found", :via => :all

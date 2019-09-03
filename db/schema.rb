@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190426142551) do
+ActiveRecord::Schema.define(version: 20190604171615) do
 
-  create_table "armies", force: :cascade do |t|
-    t.integer "aid"
+  create_table "armies", primary_key: "aid", force: :cascade do |t|
     t.string "visibility"
+    t.boolean "visible"
     t.string "kingdom"
     t.string "location"
     t.string "lord"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20190426142551) do
     t.string "position"
     t.string "mission"
     t.string "status"
-    t.string "type"
+    t.string "armytype"
     t.integer "num"
     t.integer "vet"
     t.integer "armour"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20190426142551) do
     t.boolean "infantry"
     t.boolean "cavalry"
     t.boolean "marine"
-    t.integer "boat"
+    t.string "boat"
     t.boolean "flagship"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

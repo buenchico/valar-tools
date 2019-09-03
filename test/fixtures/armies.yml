@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aid: 
+  visibility: MyString
+  visible: false
+  kingdom: MyString
+  location: MyString
+  lord: MyString
+  name: MyString
+  position: MyString
+  mission: MyString
+  status: MyString
+  armytype: MyString
+  num: 1
+  vet: 1
+  armour: 1
+  morale: 1
+  infantry: false
+  cavalry: false
+  marine: false
+  boat: MyString
+  flagship: false
+  notes: MyText
+
+two:
+  aid: 
+  visibility: MyString
+  visible: false
+  kingdom: MyString
+  location: MyString
+  lord: MyString
+  name: MyString
+  position: MyString
+  mission: MyString
+  status: MyString
+  armytype: MyString
+  num: 1
+  vet: 1
+  armour: 1
+  morale: 1
+  infantry: false
+  cavalry: false
+  marine: false
+  boat: MyString
+  flagship: false
+  notes: MyText

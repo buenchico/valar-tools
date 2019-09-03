@@ -1,0 +1,110 @@
+<% provide(:title, $tools[:armies][:title]) %>
+<% provide(:version, $tools[:armies][:version]) %>
+<% provide(:icon, $tools[:armies][:icon]) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de ejércitos</caption>
+      <thead>
+        <tr>
+          <th scope="col">Ejército <i class="fas fa-sort"></i></th>
+          <th scope="col">Rasgos <i class="fas fa-sort"></i></th>
+          <th scope="col">Posición <i class="fas fa-sort"></i></th>
+          <th scope="col">Misión <i class="fas fa-sort"></i></th>
+          <th scope="col">Estado <i class="fas fa-sort"></i></th>
+          <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @armies.each do |army| %>
+          <tr>
+            <td><%= army.army_title %></td>
+            <td><%= army.army_traits %></td>
+            <td><%= army.position %></td>
+            <td><%= army.mission %></td>
+            <td><%= army.status %></td>
+            <td><%= army.visibility %></td>
+            <td><%= link_to '', army, class: 'far fa-eye white', remote: true %></td>
+            <% if current_user.try(:is_master?) then %>
+              <td><%= link_to '', edit_army_path(army), class: 'fas fa-edit white' %></td>
+              <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aid</th>
+      <th>Visibility</th>
+      <th>Visible</th>
+      <th>Kingdom</th>
+      <th>Location</th>
+      <th>Lord</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Mission</th>
+      <th>Status</th>
+      <th>Armytype</th>
+      <th>Num</th>
+      <th>Vet</th>
+      <th>Armour</th>
+      <th>Morale</th>
+      <th>Infantry</th>
+      <th>Cavalry</th>
+      <th>Marine</th>
+      <th>Boat</th>
+      <th>Flagship</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @armies.each do |army| %>
+      <tr>
+        <td><%= army.aid %></td>
+        <td><%= army.visibility %></td>
+        <td><%= army.visible %></td>
+        <td><%= army.kingdom %></td>
+        <td><%= army.location %></td>
+        <td><%= army.lord %></td>
+        <td><%= army.name %></td>
+        <td><%= army.position %></td>
+        <td><%= army.mission %></td>
+        <td><%= army.status %></td>
+        <td><%= army.armytype %></td>
+        <td><%= army.num %></td>
+        <td><%= army.vet %></td>
+        <td><%= army.armour %></td>
+        <td><%= army.morale %></td>
+        <td><%= army.infantry %></td>
+        <td><%= army.cavalry %></td>
+        <td><%= army.marine %></td>
+        <td><%= army.boat %></td>
+        <td><%= army.flagship %></td>
+        <td><%= army.notes %></td>
+        <td><%= link_to 'Show', army %></td>
+        <td><%= link_to 'Edit', edit_army_path(army) %></td>
+        <td><%= link_to 'Destroy', army, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Army', new_army_path %>
+
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
+
+<div id='army-content'></div>

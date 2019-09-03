@@ -1,0 +1,122 @@
+<%= form_with(model: army, local: true) do |form| %>
+  <% if army.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(army.errors.count, "error") %> prohibited this army from being saved:</h2>
+
+      <ul>
+      <% army.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :aid %>
+    <%= form.text_field :aid, id: :army_aid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visibility %>
+    <%= form.text_field :visibility, id: :army_visibility %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visible %>
+    <%= form.check_box :visible, id: :army_visible %>
+  </div>
+
+  <div class="field">
+    <%= form.label :kingdom %>
+    <%= form.text_field :kingdom, id: :army_kingdom %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :army_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lord %>
+    <%= form.text_field :lord, id: :army_lord %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :army_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position, id: :army_position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mission %>
+    <%= form.text_field :mission, id: :army_mission %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :army_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :armytype %>
+    <%= form.text_field :armytype, id: :army_armytype %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num %>
+    <%= form.number_field :num, id: :army_num %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vet %>
+    <%= form.number_field :vet, id: :army_vet %>
+  </div>
+
+  <div class="field">
+    <%= form.label :armour %>
+    <%= form.number_field :armour, id: :army_armour %>
+  </div>
+
+  <div class="field">
+    <%= form.label :morale %>
+    <%= form.number_field :morale, id: :army_morale %>
+  </div>
+
+  <div class="field">
+    <%= form.label :infantry %>
+    <%= form.check_box :infantry, id: :army_infantry %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cavalry %>
+    <%= form.check_box :cavalry, id: :army_cavalry %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marine %>
+    <%= form.check_box :marine, id: :army_marine %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boat %>
+    <%= form.text_field :boat, id: :army_boat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flagship %>
+    <%= form.check_box :flagship, id: :army_flagship %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :army_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
