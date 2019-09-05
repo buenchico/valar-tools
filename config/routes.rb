@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :armies
   root 'static_pages#home'
   
   match "/404", :to => "errors#not_found", :via => :all
@@ -11,6 +10,9 @@ Rails.application.routes.draw do
   # post 'users/(/:id)/password', to: 'users#password', as: 'password'
   
   resources :houses, :except => [:show]
+  
+  resources :armies
+  get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'

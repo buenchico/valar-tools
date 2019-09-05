@@ -17,23 +17,27 @@
           <th scope="col">Posición <i class="fas fa-sort"></i></th>
           <th scope="col">Misión <i class="fas fa-sort"></i></th>
           <th scope="col">Estado <i class="fas fa-sort"></i></th>
-          <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
+          <th scope="col">Visible <i class="fas fa-sort"></i></th>
           <th scope="col" colspan="3"></th>
         </tr>
       </thead>
       <tbody>
         <% @armies.each do |army| %>
           <tr>
-            <td><%= army.army_title %></td>
+            <td><%= link_to army.army_title, army, remote: true, class: "link-unstyled" %></td>
             <td><%= army.army_traits %></td>
-            <td><%= army.position %></td>
-            <td><%= army.mission %></td>
-            <td><%= army.status %></td>
-            <td><%= army.visibility %></td>
-            <td><%= link_to '', army, class: 'far fa-eye white', remote: true %></td>
+            <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
+            <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
+            <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => ["Movilizado","Desmovilizado","Aniquilado"], :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
+              <td width = "100px"><%= army.visibility %></td>
               <td><%= link_to '', edit_army_path(army), class: 'fas fa-edit white' %></td>
               <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
+            <% end %>
+            <% if !army.notes.empty? then %>
+              <td><%= link_to '', army_note_path(army), remote:true, class: 'fas fa-sticky-note green' %></td>
+            <% else %>
+              <td><%= link_to '', army_note_path(army), remote:true, class: 'fas fa-sticky-note white' %></td>
             <% end %>
           </tr>
         <% end %>

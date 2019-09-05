@@ -8,15 +8,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= current_user.try(:is_master?) ? @army.aid : nil %>
-        <p>
-  <strong>Aid:</strong>
-  <%= @army.aid %>
-</p>
+        <% if current_user.try(:is_master?) then %>
+          <div class="form-group form-inline">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+              </div>
+              <input class="form-control" type="text" placeholder= <%= @army.aid %>  readonly>
+            </div>
+          </div>
+        <% end %>     
+        
+
 
 <p>
   <strong>Visibility:</strong>
-  <%= @army.visibility %>
+  <%= @army.aid %>
 </p>
 
 <p>

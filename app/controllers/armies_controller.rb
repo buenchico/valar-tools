@@ -21,8 +21,17 @@ class ArmiesController < ApplicationController
     @army = Army.find(params[:id])    
     respond_to do |format|
       format.js
+      format.html { redirect_to armies_url }
     end
   end
+
+  def notes
+    @army = Army.find(params[:id])    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to armies_url }
+    end
+  end  
 
   # GET /armies/new
   def new
@@ -54,8 +63,8 @@ class ArmiesController < ApplicationController
   def update
     respond_to do |format|
       if @army.update(army_params)
-        format.html { redirect_to @army, notice: 'Army was successfully updated.' }
-        format.json { render :show, status: :ok, location: @army }
+        format.html { redirect_to armies_url, success: 'Ejército editado correctamente' }
+        format.json { render :index, status: :ok, location: @army }
       else
         format.html { render :edit }
         format.json { render json: @army.errors, status: :unprocessable_entity }
