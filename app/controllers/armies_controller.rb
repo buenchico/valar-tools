@@ -1,10 +1,10 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:show, :edit, :update, :destroy]
+  before_action :set_variables
 
   # GET /armies
   # GET /armies.json
   def index
-    @test = 5 
     if current_user.nil?
       flash[:danger] = "Por favor, inicia sesión."
       redirect_to root_url
@@ -13,6 +13,7 @@ class ArmiesController < ApplicationController
     else
       @armies = Army.where('"visibility" like ? and "visible" == ?', current_user.house.downcase, true)
     end
+    @next_id = Army.maximum(:aid) + 1
   end
   
   # GET /armies/1
@@ -86,6 +87,12 @@ class ArmiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_army
       @army = Army.find(params[:id])
+    end
+    
+    def set_variables
+      @status = {"Movilizado": "Movilizado", "Desmovilizado": "Desmovilizado", "Aniquilado": "Aniquilado"}
+      @type = {"Leva": "Leva", "Sangrado": "Sangrado", "Mercenario": "Mercenario", "Guardia": "Guardia"}
+      @boat = {"No": "No", "Barcoluengos": "Barcoluengos", "Galeras": "Galeras", "Galeras mercantes": "Galeras mercantes", "Dromones": "Dromones"}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

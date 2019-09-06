@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <%= form.text_area :notes, class: "form-control", rows: 5, value: @army.notes %>
+          <%= form.text_area :notes, class: "form-control", rows: 5, value: @army.notes, placeholder: "Notas" %>
         </div>
         <%= form.button '<i class="fa fa-check-circle" aria-hidden="true"></i>'.html_safe, class: "btn btn-success btn-text-area" %>
       </div>

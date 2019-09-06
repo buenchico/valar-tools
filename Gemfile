@@ -13,7 +13,7 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap', '>= 4.1.1'
 gem 'autoprefixer-rails', '>= 6.0.3' 
 # Include Font Awesome Icons
-gem 'font-awesome-sass', '~> 5.0.9'
+gem 'font-awesome-sass', '~> 5.9.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

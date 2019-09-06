@@ -28,7 +28,7 @@
             <td><%= army.army_traits %></td>
             <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
             <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
-            <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => ["Movilizado","Desmovilizado","Aniquilado"], :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
+            <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
               <td width = "100px"><%= army.visibility %></td>
               <td><%= link_to '', edit_army_path(army), class: 'fas fa-edit white' %></td>

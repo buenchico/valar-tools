@@ -1,122 +1,225 @@
-<%= form_with(model: army, local: true) do |form| %>
-  <% if army.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(army.errors.count, "error") %> prohibited this army from being saved:</h2>
-
-      <ul>
-      <% army.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="modal fade" id="armyModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title"><%= army.name.nil? ? 'Nuevo ejército' : army.army_title %></h5>
+        <%= form_with(model: army, local: true) do |form| %>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                <div class="form-group form-inline">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="modal-body">
+            <% if army.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(army.errors.count, "error") %> prohibited this army from being saved:</h2>
+                <ul>
+                  <% army.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <% if current_user.try(:is_master?) then %>
+            <div class="form-group container">
+              <div class="form-group form-inline">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :aid, class: "custom-control", disabled: true, value: army.aid.nil? ? @next_id : army.aid %>
+                </div>
+              </div>
+              <div class="form-group form-inline">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-eye"></i>&nbsp;</div>
+                  </div>
+                  <%= form.text_field :visibility, class: "custom-control col-6", value: army.visibility %>
+                </div>
+              </div>
+              <div class="form-group form-inline">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">¿Visible?</div>
+                  </div>
+                  <div class="form-check checkbox-slider--a checkbox-slider-lg">
+    	              <label>
+	                    <%= form.check_box :visible, default: 'no'  %><span>&nbsp;</span>
+	                  </label>
+                  </div>
+                </div> 
+              </div>
+              <hr/>
+            </div>
+            <% end %>
+            <div class="row">
+              <div class="col-md-6 right-separator">
+                <h3>Características</h3>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+                    </div>
+                        <%= form.text_field :kingdom, class: "custom-control", disabled: current_user.try(:is_master?) ? false : true, value: army.kingdom %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fab fa-fort-awesome"></i>&nbsp;</div>
+                    </div>
+                    <%= form.text_field :location, class: "custom-control", disabled: current_user.try(:is_master?) ? false : true, value: army.location %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-crown"></i>&nbsp;</div>
+                    </div>
+                    <%= form.text_field :lord, class: "custom-control", disabled: current_user.try(:is_master?) ? false : true, value: army.lord %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-chess-knight"></i>&nbsp;</div>
+                    </div>
+                    <%= form.text_field :name, class: "custom-control", value: army.name %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-map-marked-alt"></i>&nbsp;</div>
+                    </div>
+                    <%= form.text_field :position, class: "custom-control", value: army.position %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-bullseye"></i>&nbsp;</div>
+                    </div>
+                    <%= form.text_field :mission, class: "custom-control", value: army.mission %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Estado</div>
+                    </div>
+                    <%= form.select :status, options_for_select(@status, army.status), {}, class: "custom-select"  %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Tipo</div>
+                    </div>
+                    <%= form.select :armytype, options_for_select(@type, army.armytype), {}, class: "custom-select", disabled: current_user.try(:is_master?) ? false : true %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h3>Rasgos</h3>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Numero</div>
+                    </div>
+                    <%= form.number_field :num, class: "custom-control", value: army.num %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Veteranía</div>
+                    </div>
+                    <%= form.number_field :vet, class: "custom-control", value: army.vet %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Armadura</div>
+                    </div>
+                    <%= form.number_field :armour, class: "custom-control", value: army.armour %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Moral</div>
+                    </div>
+                    <%= form.number_field :morale, class: "custom-control", value: army.morale %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Infantería</div>
+                    </div>
+                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
+  	                  <label>
+	                      <%= form.check_box :infantry, default: army.infantry  %><span>&nbsp;</span>
+	                    </label>
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Caballería</div>
+                    </div>
+                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
+      	              <label>
+	                      <%= form.check_box :cavalry, default: army.cavalry  %><span>&nbsp;</span>
+	                    </label>
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Marino</div>
+                    </div>
+                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
+      	              <label>
+	                      <%= form.check_box :marine, default: army.marine  %><span>&nbsp;</span>
+	                    </label>
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">¿Embarcado?</div>
+                    </div>
+                    <%= form.select :boat, options_for_select(@boat, army.boat), {}, class: "custom-select"  %>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Buque insignia</div>
+                    </div>
+                    <div class="form-check checkbox-slider--a checkbox-slider-lg">
+  	                  <label>
+	                      <%= form.check_box :flagship, default: army.flagship  %><span>&nbsp;</span>
+    	                </label>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>                
+            <div class="form-group form-inline">
+              <%= form.text_area :notes, class: "form-control col-12", rows: 5, value: @army.notes, placeholder: "Notas" %>
+            </div>
+          <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :aid %>
-    <%= form.text_field :aid, id: :army_aid %>
   </div>
-
-  <div class="field">
-    <%= form.label :visibility %>
-    <%= form.text_field :visibility, id: :army_visibility %>
-  </div>
-
-  <div class="field">
-    <%= form.label :visible %>
-    <%= form.check_box :visible, id: :army_visible %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kingdom %>
-    <%= form.text_field :kingdom, id: :army_kingdom %>
-  </div>
-
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, id: :army_location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lord %>
-    <%= form.text_field :lord, id: :army_lord %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :army_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :position %>
-    <%= form.text_field :position, id: :army_position %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mission %>
-    <%= form.text_field :mission, id: :army_mission %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :army_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :armytype %>
-    <%= form.text_field :armytype, id: :army_armytype %>
-  </div>
-
-  <div class="field">
-    <%= form.label :num %>
-    <%= form.number_field :num, id: :army_num %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vet %>
-    <%= form.number_field :vet, id: :army_vet %>
-  </div>
-
-  <div class="field">
-    <%= form.label :armour %>
-    <%= form.number_field :armour, id: :army_armour %>
-  </div>
-
-  <div class="field">
-    <%= form.label :morale %>
-    <%= form.number_field :morale, id: :army_morale %>
-  </div>
-
-  <div class="field">
-    <%= form.label :infantry %>
-    <%= form.check_box :infantry, id: :army_infantry %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cavalry %>
-    <%= form.check_box :cavalry, id: :army_cavalry %>
-  </div>
-
-  <div class="field">
-    <%= form.label :marine %>
-    <%= form.check_box :marine, id: :army_marine %>
-  </div>
-
-  <div class="field">
-    <%= form.label :boat %>
-    <%= form.text_field :boat, id: :army_boat %>
-  </div>
-
-  <div class="field">
-    <%= form.label :flagship %>
-    <%= form.check_box :flagship, id: :army_flagship %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes, id: :army_notes %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
