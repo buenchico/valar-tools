@@ -7,13 +7,17 @@ class HousesController < ApplicationController
   # GET /houses.json
   def index
     @houses = House.all
-    @house_new = House.new
   end
 
   # GET /houses/1
   # GET /houses/1.json
   def show
-  end
+    @house = Army.find(params[:id])    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to houses_url }
+    end
+  end  
 
   # GET /houses/new
   def new
@@ -31,7 +35,7 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.save
-        format.html { redirect_to houses_url, notice: 'Casa añadida correctamente.' }
+        format.html { redirect_to houses_url, success: 'Casa añadida correctamente.' }
         format.json { render :show, status: :created, location: @house }
       else
         format.html { render :new }

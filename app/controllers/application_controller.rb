@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     $active_houses = ["Master"]
     ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     
-    $kingdoms = ["Dominio","Norte","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Valle"]
+    $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Tormenta","Valle"]
     
   def current_user
       @current_user ||= User.where("auth_token = ?", cookies[:auth_token]).first if cookies[:auth_token]

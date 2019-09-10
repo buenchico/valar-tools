@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   
   resources :houses, :except => [:show]
   
-  resources :armies
+  resources :armies, :except => [:show]
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
 
   # Login and logout routes

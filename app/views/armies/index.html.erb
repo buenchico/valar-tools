@@ -24,7 +24,7 @@
       <tbody>
         <% @armies.each do |army| %>
           <tr>
-            <td width = "300px"><%= link_to army.army_title, army, remote: true, class: "link-unstyled" %></td>
+            <td width = "300px"><%= link_to army.army_title, edit_army_path(army), remote: true, class: "link-unstyled" %></td>
             <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
             <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
             <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
@@ -45,7 +45,7 @@
   </table>
 </div>
 
-<div><%= link_to 'Añadir ejército', new_army_path, remote:true, class: "btn btn-primary"%></div>
+<div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir ejército'.html_safe, new_army_path, remote:true, class: "btn btn-primary"%></div>
 
 <div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 

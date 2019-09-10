@@ -49,7 +49,7 @@ class ArmiesController < ApplicationController
 
     respond_to do |format|
       if @army.save
-        format.html { redirect_to @army, notice: 'Army was successfully created.' }
+        format.html { redirect_to @army, success: 'Ejército añadido correctamente.' }
         format.json { render :show, status: :created, location: @army }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class ArmiesController < ApplicationController
   def update
     respond_to do |format|
       if @army.update(army_params)
-        format.html { redirect_to armies_url, success: 'Ejército editado correctamente' }
+        format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
         format.json { render :index, status: :ok, location: @army }
       else
         format.html { render :edit }

@@ -31,7 +31,7 @@
               <% end %>
             </td>
             <% if current_user.try(:is_master?) then %>
-              <td><%= link_to '', edit_house_path(house), class: 'fas fa-edit white' %></td>
+              <td><%= link_to '', edit_house_path(house), remote: true, class: 'fas fa-edit white' %></td>
               <td><%= link_to '', house, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
             <% end %>
           </tr>
@@ -41,24 +41,11 @@
 </div>
 
 <% if current_user.try(:is_master?) then %>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newhouseModal"><i class="fas fa-plus-circle"></i> Añadir casa</button>
+  <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir casa'.html_safe, new_house_path, remote:true, class: "btn btn-primary"%></div>
 <% end %>
 
 <div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 
 <!-- Modal -->
-<div class="modal fade" id="newhouseModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Login">Nueva casa</h5>
-        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'form', house: @house_new %>
-      </div>
-    </div>
-  </div>
-</div>
+
+<div id='house-content'></div>

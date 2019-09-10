@@ -1,0 +1,5 @@
+$('#house-content').html("<%= j render 'form', house: @house %>");
+$('#houseModal').modal('show');
+$(".auto-source").autocomplete({
+    source: $('.auto-source').data('autocomplete-source')
+});
