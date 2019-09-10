@@ -1,2 +1,8 @@
 $('#army-content').html("<%= j render 'form', army: @army %>");
 $('#armyModal').modal('show');
+$(".auto-source").autocomplete({
+    source: $('.auto-source').data('autocomplete-source')
+});
+$(".auto-source2").autocomplete({
+    source: $('.auto-source2').data('autocomplete-source2')
+});

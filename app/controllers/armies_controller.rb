@@ -1,6 +1,6 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:show, :edit, :update, :destroy]
-  before_action :set_variables
+  before_action :set_variables, except: [:location_list]
 
   # GET /armies
   # GET /armies.json
@@ -13,7 +13,6 @@ class ArmiesController < ApplicationController
     else
       @armies = Army.where('"visibility" like ? and "visible" == ?', current_user.house.downcase, true)
     end
-    @next_id = Army.maximum(:aid) + 1
   end
   
   # GET /armies/1
@@ -90,6 +89,7 @@ class ArmiesController < ApplicationController
     end
     
     def set_variables
+      @next_id = Army.maximum(:aid).nil? ? '100001' : Army.maximum(:aid) + 1
       @status = {"Movilizado": "Movilizado", "Desmovilizado": "Desmovilizado", "Aniquilado": "Aniquilado"}
       @type = {"Leva": "Leva", "Sangrado": "Sangrado", "Mercenario": "Mercenario", "Guardia": "Guardia"}
       @boat = {"No": "No", "Barcoluengos": "Barcoluengos", "Galeras": "Galeras", "Galeras mercantes": "Galeras mercantes", "Dromones": "Dromones"}
@@ -97,6 +97,6 @@ class ArmiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
-      params.require(:army).permit(:aid, :visibility, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
+      params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
     end
 end

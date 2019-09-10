@@ -201,8 +201,18 @@ float: left;
   right:16px;
 }
 
-// Vertical separator to the right
+// Colums separators to the right
 
 .right-separator {
   border-right: solid darkgray; margin-bottom: 10px;
+}
+
+.bottom-separator {
+  border-bottom: solid darkgray;
+}
+
+// Autocomplete in modals
+
+.ui-autocomplete {
+    z-index: 1500;
 }

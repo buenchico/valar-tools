@@ -13,8 +13,27 @@ class ApplicationController < ActionController::Base
               }
     
     $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
-
+    
+    $active_houses = ["Master"]
+    ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
+    
+    $kingdoms = ["Dominio","Norte","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Valle"]
+    
   def current_user
       @current_user ||= User.where("auth_token = ?", cookies[:auth_token]).first if cookies[:auth_token]
   end
+  
+  def location_list
+  #Column name must be between double quotes because, by default, pgsql column names are always lowercase
+    @locations_list = Location.order(:name_es).where('LOWER("NAME_ES") like ?', "%#{params[:term].downcase}%")
+    @locations_list  = @locations_list.limit(20)
+    render json: @locations_list.map(&:name_es)
+  end
+  
+  def family_list
+  #Column name must be between double quotes because, by default, pgsql column names are always lowercase
+    @families_list = Location.order(:house).where('LOWER("HOUSE") like ?', "%#{params[:term].downcase}%")
+    @families_list  = @families_list.limit(20)
+    render json: @families_list.map(&:house)
+  end  
 end

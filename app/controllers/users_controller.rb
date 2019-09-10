@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :show, :password]
   before_action :master_user, except: [:index, :show, :edit, :password]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :password]
-  before_action :active_houses
-  
+
   # GET /users
   # GET /users.json
   def index
@@ -113,11 +112,6 @@ class UsersController < ApplicationController
   
   private
     # Use callbacks to share common setup or constraints between actions.
-    def active_houses
-      @active_houses = ["Master"]
-      (@active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
-    end
-
     def set_user
       @user = User.find(params[:id])
     end

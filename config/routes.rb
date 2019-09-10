@@ -29,7 +29,12 @@ Rails.application.routes.draw do
 
   get 'travel_calculator', to: 'travel_calculator#index'
   post 'travel_calculator/calculate', to: 'travel_calculator#calculate'
-  get 'travel_calculator/location_list', to: 'travel_calculator#location_list'
+  # get 'travel_calculator/location_list', to: 'travel_calculator#location_list'
+  
+  # Render JSON lists for autocomplete 
+  
+  get 'location_list', to: 'application#location_list'
+  get 'family_list', to: 'application#family_list'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

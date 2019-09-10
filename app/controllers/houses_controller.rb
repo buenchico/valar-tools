@@ -1,13 +1,13 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
   before_action :master_user
+  before_action :set_variables
 
   # GET /houses
   # GET /houses.json
   def index
     @houses = House.all
     @house_new = House.new
-    @next_id = House.maximum(:hid) + 1
   end
 
   # GET /houses/1
@@ -18,7 +18,6 @@ class HousesController < ApplicationController
   # GET /houses/new
   def new
     @house = House.new
-    @next_id = House.maximum(:hid) + 1
   end
 
   # GET /houses/1/edit
@@ -46,7 +45,7 @@ class HousesController < ApplicationController
   def update
     respond_to do |format|
       if @house.update(house_params)
-        format.html { redirect_to @house, success: 'Casa editada correctamente.' }
+        format.html { redirect_to houses_url, success: 'Casa editada correctamente.' }
         format.json { respond_with_bip @house }
       else
         format.html { render :edit }
@@ -80,6 +79,10 @@ class HousesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
+    end
+    
+    def set_variables
+      @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

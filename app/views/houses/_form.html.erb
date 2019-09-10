@@ -17,7 +17,7 @@
       <div class="input-group-prepend">
         <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
       </div>
-      <%= form.number_field :hid, class: "custom-control", disabled: true, value: @house.nil? || house.hid.nil? ? @next_id : house.hid %>
+      <%= form.number_field :hid, class: "custom-control", readonly: true, value: @house.nil? || house.hid.nil? ? @next_id : house.hid %>
     </div>
   </div>
   <div class="form-group form-inline">
@@ -25,7 +25,7 @@
       <div class="input-group-prepend">
         <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
       </div>
-      <%= form.text_field :name, class: "custom-control", placeholder: 'Nombre de la casa' %>
+      <%= form.text_field :name, class: "custom-control ui-autocomplete-input auto-source", data: {autocomplete_source: family_list_path}, placeholder: 'Nombre de la casa' %>
     </div>
   </div>
   <div class="form-group form-inline">

@@ -1,7 +1,7 @@
 class CreateArmies < ActiveRecord::Migration[5.1]
   def change
     create_table(:armies, :primary_key => 'aid') do |t|
-      t.string :visibility
+      t.string :visibility, array: true
       t.boolean :visible
       t.string :kingdom
       t.string :location

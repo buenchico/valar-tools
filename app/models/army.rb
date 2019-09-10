@@ -1,4 +1,6 @@
 class Army < ApplicationRecord
+    serialize :visibility, Array    
+    
     def army_title
         self.name + ' de los ' + self.lord + ' (' + self.location + ') '
     end
