@@ -3,7 +3,6 @@ class ArmiesController < ApplicationController
   before_action :set_variables, except: [:location_list]
 
   # GET /armies
-  # GET /armies.json
   def index
     if current_user.nil?
       flash[:danger] = "Por favor, inicia sesión."
@@ -16,7 +15,6 @@ class ArmiesController < ApplicationController
   end
   
   # GET /armies/1
-  # GET /armies/1.json
   def show
     @army = Army.find(params[:id])    
     respond_to do |format|
@@ -43,42 +41,34 @@ class ArmiesController < ApplicationController
   end
 
   # POST /armies
-  # POST /armies.json
   def create
     @army = Army.new(army_params)
 
     respond_to do |format|
       if @army.save
         format.html { redirect_to armies_url, success: 'Ejército añadido correctamente.' }
-        format.json { render :show, status: :created, location: @army }
       else
         format.html { render :new }
-        format.json { render json: @army.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /armies/1
-  # PATCH/PUT /armies/1.json
   def update
     respond_to do |format|
       if @army.update(army_params)
         format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
-        format.json { render :index, status: :ok, location: @army }
       else
         format.html { render :edit }
-        format.json { render json: @army.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /armies/1
-  # DELETE /armies/1.json
   def destroy
     @army.destroy
     respond_to do |format|
       format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
-      format.json { head :no_content }
     end
   end
   
