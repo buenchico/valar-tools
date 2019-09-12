@@ -11,7 +11,7 @@ class ArmiesController < ApplicationController
     elsif current_user.is_master? || current_user.is_admin?
       @armies = Army.all
     else
-      @armies = Army.where('"visibility" like ? and "visible" == ?', current_user.house.downcase, true)
+      @armies = Army.where('"visibility" like ? and "visible" == ?', "%#{current_user.house.downcase}%", true)
     end
   end
   

@@ -14,6 +14,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 Rails.application.config.assets.precompile += %w( travel_calculator.js )
+Rails.application.config.assets.precompile += %w( armies.js )
 Rails.application.config.assets.precompile += %w( missions.js )
 Rails.application.config.assets.precompile += %w( common.js )
 Rails.application.config.assets.precompile += %w( errors.scss )
