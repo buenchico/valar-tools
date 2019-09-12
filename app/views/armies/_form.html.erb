@@ -33,7 +33,6 @@
               </div>
               <%= form.select :visibility, options_for_select($active_houses[1..-1], army.visibility), {}, multiple: true, class: "custom-select" %>
             </div>
-            <%= army.visibility.reject(&:blank?) %>
             <div class="form-group form-inline">
               <div class="input-group mb-3 ml-0">
                 <div class="input-group-prepend">

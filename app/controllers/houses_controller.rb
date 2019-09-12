@@ -12,12 +12,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
-    @house = Army.find(params[:id])    
-    respond_to do |format|
-      format.js
-      format.html { redirect_to houses_url }
-    end
-  end  
+  end
 
   # GET /houses/new
   def new

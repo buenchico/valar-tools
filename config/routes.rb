@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   
   resources :houses, :except => [:show]
   
-  resources :armies, :except => [:show]
+  resources :armies, :except => [:show] do
+    collection do
+      put 'update_multiple'
+      post 'edit_multiple'
+    end
+  end
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
 
   # Login and logout routes

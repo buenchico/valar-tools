@@ -49,7 +49,7 @@ class ArmiesController < ApplicationController
 
     respond_to do |format|
       if @army.save
-        format.html { redirect_to @army, success: 'Ejército añadido correctamente.' }
+        format.html { redirect_to armies_url, success: 'Ejército añadido correctamente.' }
         format.json { render :show, status: :created, location: @army }
       else
         format.html { render :new }
@@ -77,9 +77,28 @@ class ArmiesController < ApplicationController
   def destroy
     @army.destroy
     respond_to do |format|
-      format.html { redirect_to armies_url, notice: 'Army was successfully destroyed.' }
+      format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
       format.json { head :no_content }
     end
+  end
+  
+  def edit_multiple
+    @armies = Army.find(params[:army_ids])    
+  end
+  
+  def update_multiple
+    @armies = Army.find(params[:army_ids])
+    if params[:army][:visibility] == [""] then
+      @armies.each do |army|
+        army.update_attributes(army_params.except(:visibility).reject { |k,v| v.blank? })
+      end
+    else
+      @armies.each do |army|
+        army.update_attributes(army_params.reject { |k,v| v.blank? })
+      end
+    end
+    flash[:success] = "Ejércitos actualizados correctamente."
+    redirect_to armies_path
   end
   
   private

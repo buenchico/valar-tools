@@ -1,0 +1,5 @@
+$('#army-content').html("<%= j render 'multiple', army: @army %>");
+$('#armyModal').modal('show');
+$(".auto-source").autocomplete({
+    source: $('.auto-source').data('autocomplete-source')
+});

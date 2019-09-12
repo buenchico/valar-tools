@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.where.not(house: "Admin")
-    @user_new = User.new
   end
 
   # GET /users/1
