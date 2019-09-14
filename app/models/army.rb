@@ -1,8 +1,23 @@
 class Army < ApplicationRecord
-    serialize :visibility, Array    
+    serialize :visibility, Array
     
     def army_title
-        self.name + ' de los ' + self.lord + ' (' + self.location + ') '
+        if self.name.nil?
+            @name = ''
+        else
+            @name = self.name
+        end
+        if self.lord.nil?
+            @lord = ''
+        else
+            @lord = self.lord
+        end
+        if self.location.nil?
+           @location = ''
+        else
+            @location = self.location
+        end
+        @name + ' de los ' + @lord + ' (' + @location + ')'
     end
 
     def number_to_trait(value)
@@ -44,5 +59,23 @@ class Army < ApplicationRecord
         self.cavalry == true ? 'Caballería' : nil,
         self.marine == true ? 'Marino' : nil
         ].compact.join(', ')
+    end
+    
+    def self.to_csv
+        wanted_columns = [:aid, :visibility, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes]
+        CSV.generate do |csv|
+            csv << wanted_columns
+            all.each do |army|
+                csv << army.attributes.with_indifferent_access.values_at(*wanted_columns)
+            end
+        end
+    end
+
+    def self.import(file)
+        CSV.foreach(file.path, headers: true, converters: [-> field, info { 'visibility' == info.header ? field.split(",") : field.nil? ? blank : field }]) do |row|
+            army = find_by("aid = ?", row["aid"]) || new
+            army.attributes = row.to_hash
+            army.save!
+        end
     end
 end

@@ -54,3 +54,15 @@ $(document).on('turbolinks:load', function(e) {
     // Stop propagation make the code to work inside a table
     e.stopPropagation();
 });
+
+// Filter tables
+
+
+$(document).on('turbolinks:load', function() {
+  $("#filter").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#table_body tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});

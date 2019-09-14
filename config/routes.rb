@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       put 'update_multiple'
       post 'edit_multiple'
+      post 'import'
     end
   end
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'

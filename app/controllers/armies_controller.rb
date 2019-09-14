@@ -9,6 +9,10 @@ class ArmiesController < ApplicationController
       redirect_to root_url
     elsif current_user.is_master? || current_user.is_admin?
       @armies = Army.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data @armies.to_csv, filename: "armies-#{Date.today}.csv" }
+      end
     else
       @armies = Army.where('"visibility" like ? and "visible" == ?', "%#{current_user.house.downcase}%", true)
     end
@@ -90,7 +94,13 @@ class ArmiesController < ApplicationController
     flash[:success] = "Ejércitos actualizados correctamente."
     redirect_to armies_path
   end
-  
+
+  def import
+    Army.import(params[:file])
+    flash[:success] = "Ejércitos importados."
+    redirect_to armies_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_army

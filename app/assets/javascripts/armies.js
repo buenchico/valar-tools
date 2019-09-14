@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function(){
             //Loop through all checked CheckBoxes in GridView.
             $("#army_list input[type=checkbox]:checked").each(function () {
                 var row = $(this).closest("tr")[0];
-                if ($(this).closest("tr")[0].id != "table-title") {
+                if ($(this).closest("tr")[0].id != "table_title") {
                   message += row.cells[1].textContent;
                   if (row.cells[2].textContent != "n/a") message += " (" + row.cells[2].textContent + ")";
                   if (row.cells[3].textContent != "n/a") message += ", en " + row.cells[3].textContent;

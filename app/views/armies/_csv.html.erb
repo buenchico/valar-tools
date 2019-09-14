@@ -1,0 +1,29 @@
+<div class="modal fade" id="csvModal" tabindex="-1" role="dialog" aria-labelledby="CSV" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title">Importar/Exportar</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger">
+          <div class="float-left mr-2"><i class="fas fa-exclamation-triangle fa-3x"></i></div>
+          <p>
+            Por favor, descarga la lista de ejército antes de importar un nuevo archivo para poder deshacer cualquier cambio. 
+            Si el campo <strong>AID</strong> está vacío un nuevo ejército será creado, si su valor corresponde al <strong>AID</strong> 
+            de un ejército existente los atributos del ejército serán actualizados.
+          </p>
+        </div>
+        <%= link_to "Descargar CSV", armies_path(format: "csv"), class: "btn btn-warning" %>
+        <%= link_to "Plantilla *.odf", armies_path(format: "csv"), class: "btn btn-primary" %>
+        <%= link_to "Plantilla *.xls", armies_path(format: "csv"), class: "btn btn-primary" %>
+        <%= form_tag import_armies_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Importar", class: "btn btn-danger" %>
+        <% end %>        
+      </div>
+    </div>
+  </div>
+</div>  
