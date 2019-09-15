@@ -1,5 +1,8 @@
 class Army < ApplicationRecord
-    
+    # Serialize is necessary in development*sqlite3 but make array not working in production/pg
+    if ENV['RAILS_ENV'] != "production" then
+        serialize :visibility, Array
+    end
     
     def army_title
         if self.name.nil?
