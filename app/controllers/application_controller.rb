@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   
   def location_list
   #Column name must be between double quotes because, by default, pgsql column names are always lowercase
-    @locations_list = Location.order(:name_es).where('LOWER("NAME_ES") like ?', "%#{params[:term].downcase}%")
+    @locations_list = Location.order(:name_es).where('LOWER("name_es") like ?', "%#{params[:term].downcase}%")
     @locations_list  = @locations_list.limit(20)
     render json: @locations_list.map(&:name_es)
   end
