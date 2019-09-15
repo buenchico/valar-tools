@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.where('LOWER("PLAYER") = ?', "#{params[:player].downcase}").first
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password]) && verify_recaptcha(model: @user)
       cookies.permanent[:auth_token] = user.auth_token
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+' .'
