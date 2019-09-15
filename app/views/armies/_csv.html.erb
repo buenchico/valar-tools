@@ -16,13 +16,15 @@
             de un ejército existente los atributos del ejército serán actualizados.
           </p>
         </div>
-        <%= link_to "Descargar CSV", armies_path(format: "csv"), class: "btn btn-warning" %>
-        <%= link_to "Plantilla *.odf", armies_path(format: "csv"), class: "btn btn-primary" %>
-        <%= link_to "Plantilla *.xls", armies_path(format: "csv"), class: "btn btn-primary" %>
-        <%= form_tag import_armies_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Importar", class: "btn btn-danger" %>
-        <% end %>        
+        <div class="mb-2">
+          <%= link_to "Descargar CSV", armies_path(format: "csv"), class: "btn btn-warning" %>
+          <%= link_to "Plantilla *.odf", armies_path(format: "csv"), class: "btn btn-primary" %>
+          <%= link_to "Plantilla *.xls", armies_path(format: "csv"), class: "btn btn-primary" %>
+        </div>
+          <%= form_tag import_armies_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Importar", class: "btn btn-danger" %>
+          <% end %>
       </div>
     </div>
   </div>
