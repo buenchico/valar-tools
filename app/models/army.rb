@@ -1,5 +1,6 @@
 class Army < ApplicationRecord
-
+    
+    
     def army_title
         if self.name.nil?
             @name = ''

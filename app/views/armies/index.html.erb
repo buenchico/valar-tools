@@ -57,7 +57,7 @@
             <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
             <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
-              <td width = "100px"><%= army.visibility.reject(&:blank?).compact.join(', ') %></td>
+              <td width = "100px"><%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %></td>
               <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
             <% end %>
             <td><%= link_to '', edit_army_path(army), remote: true, class: 'fas fa-edit white' %></td>
