@@ -6,24 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Recipe.create([
-{
-name: "Miscelánea", description: "Receta genérica para resolver misiones no cubiertas por otras recetas"    
-},
-{
-name: "test1", description: "Este es el test 1"  
-},
-{
-name: "test2", description: "Este es el test 1"  
-},
-{
-name: "test3", description: "Este es el test 1"
-},
-{
-name: "test4", description: "Este es el test 1"
-}
-])
-
 User.create([
 {
 player: "Valar", house: "Admin", password: Rails.application.secrets[:admin_password]
