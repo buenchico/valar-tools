@@ -1,6 +1,5 @@
 class Army < ApplicationRecord
-    serialize :visibility, Array
-    
+
     def army_title
         if self.name.nil?
             @name = ''
