@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
     
     $active_houses = ["Master"]
-    $active_houses << House.where(active: true).order(:name).pluck(:name) # SELECT house.name_es FROM house WHERE active = true
+    ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     
     $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Tormenta","Valle"]
     
