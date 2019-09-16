@@ -14,9 +14,11 @@ class ArmiesController < ApplicationController
         format.csv { send_data @armies.to_csv, filename: "armies-#{Date.today}.csv" }
       end
     else
-      @armies = Army.where('"visibility" like ? and "visible" == ?', "%#{current_user.house}%", true)
+      @armies = Army.where("array_to_string(visibility, '|') and visible == ?", "%#{current_user.house}%", true)
     end
   end
+  
+  Book.where("array_to_string(categories, '||') ILIKE :name", name: "%action%")
   
   # GET /armies/1
   def show
