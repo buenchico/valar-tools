@@ -14,7 +14,7 @@ class ArmiesController < ApplicationController
         format.csv { send_data @armies.to_csv, filename: "armies-#{Date.today}.csv" }
       end
     else
-      @armies = Army.where('"visibility" like ? and "visible" == ?', "%#{current_user.house.downcase}%", true)
+      @armies = Army.where('"visibility" like ? and "visible" == ?', "%#{current_user.house}%", true)
     end
   end
   
