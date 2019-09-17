@@ -64,6 +64,14 @@ class Army < ApplicationRecord
         ].compact.join(', ')
     end
     
+    def army_str
+        if self.boat == "No"
+            10 + (self.vet * 2) + (self.armour * 1) + (self.morale * 1) + ( 2 unless self.infantry = false)
+        else
+            11
+        end
+    end
+    
     def self.to_csv
         wanted_columns = [:aid, :visibility, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes]
         CSV.generate do |csv|
