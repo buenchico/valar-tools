@@ -80,6 +80,13 @@ class ArmiesController < ApplicationController
   
   def edit_multiple
     @armies = Army.find(params[:army_ids])    
+    if params[:button] == "delete" then
+      @armies.each do |army|
+        army.destroy
+      end
+      flash[:success] = "Ejércitos borrados correctamente."
+      redirect_to armies_path    
+    end
   end
   
   def update_multiple

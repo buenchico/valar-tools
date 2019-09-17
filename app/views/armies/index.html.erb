@@ -26,6 +26,9 @@
       <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true, value: "visibility") do %>
         <i class="fas fa-eye"></i> Editar visibilidad
       <% end %>
+      <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", data: { confirm: '¿Estás seguro?' }, disabled: true, value: "delete") do %>
+        <i class="fas fa-trash-alt"></i> Borrar todos
+      <% end %>      
       <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
     <% end %>
     <input id="filter" class="ml-auto form-control-sm" type="text" placeholder="Filtrar...">

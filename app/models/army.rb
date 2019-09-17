@@ -4,6 +4,10 @@ class Army < ApplicationRecord
         serialize :visibility, Array
     end
     
+    before_create do
+        self.aid = [100001, self.class.maximum(:aid).to_i + 1].max if self.aid.nil?
+    end
+    
     def army_title
         if self.name.nil?
             @name = ''
@@ -66,9 +70,9 @@ class Army < ApplicationRecord
     
     def army_str
         if self.boat == "No"
-            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? 0 : 2 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10
+            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? -2 : 0 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10
         else
-            11
+            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.cavalry? == true ? -2 : 0 ) + ( self.marine? == true ? 4 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10            
         end
     end
     
