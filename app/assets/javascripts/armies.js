@@ -8,10 +8,11 @@ $(document).on('turbolinks:load', function(){
             $("#army_list input[type=checkbox]:checked").each(function () {
                 var row = $(this).closest("tr")[0];
                 if ($(this).closest("tr")[0].id != "table_title") {
-                  message += row.cells[1].textContent;
-                  if (row.cells[2].textContent != "n/a") message += " (" + row.cells[2].textContent + ")";
-                  if (row.cells[3].textContent != "n/a") message += ", en " + row.cells[3].textContent;
-                  if (row.cells[4].textContent != "n/a") message += " [" + row.cells[4].textContent + "]";
+                  message += row.cells[2].textContent;
+                  if (row.cells[3].textContent != "n/a") message += " (" + row.cells[3].textContent + ")";
+                  if (row.cells[4].textContent != "n/a") message += ", en " + row.cells[4].textContent;
+                  if (row.cells[5].textContent != "n/a") message += " [" + row.cells[5].textContent + "]";
+                  message += " FUE: " + row.cells[1].textContent
                   message += "\n";
                 };
             });

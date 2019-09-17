@@ -66,7 +66,7 @@ class Army < ApplicationRecord
     
     def army_str
         if self.boat == "No"
-            10 + (self.vet * 2) + (self.armour * 1) + (self.morale * 1) + ( 2 unless self.infantry = false)
+            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? 0 : 2 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10
         else
             11
         end
@@ -83,7 +83,7 @@ class Army < ApplicationRecord
     end
 
     def self.import(file)
-        CSV.foreach(file.path, headers: true, converters: [-> field, info { 'visibility' == info.header ? field.split(",") : field.nil? ? blank : field }]) do |row|
+        CSV.foreach(file.path, headers: true, converters: [-> field, info { 'visibility' == info.header ? field.split(",") : field.nil? ? nil : field }]) do |row|
             army = find_by("aid = ?", row["aid"]) || new
             army.attributes = row.to_hash
             army.save!

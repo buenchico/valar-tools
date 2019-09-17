@@ -35,11 +35,13 @@
       <thead>
         <tr id="table_title">
           <th scope="col"><input type="checkbox" id="ckbCheckAll" /></th>
+          <th scope="col"><i class="fas fa-fist-raised"></i> <i class="fas fa-sort"></i></th>
           <th scope="col">Ejército <i class="fas fa-sort"></i></th>
           <th scope="col">Rasgos <i class="fas fa-sort"></i></th>
           <th scope="col">Posición <i class="fas fa-sort"></i></th>
           <th scope="col">Misión <i class="fas fa-sort"></i></th>
           <th scope="col">Estado <i class="fas fa-sort"></i></th>
+          <th scope="col">Embarcado <i class="fas fa-sort"></i></th>
           <% if current_user.try(:is_master?) then %>
             <th scope="col">Visible <i class="fas fa-sort"></i></th>
           <% end %>
@@ -50,11 +52,13 @@
         <% @armies.each do |army| %>
           <tr id="<%= army.aid %>">
             <td><%= check_box_tag "army_ids[]", army.id, false, class: "checkbox_selectable" %></td>
+            <td width = "50px"><%= army.army_str %></td>
             <td width = "300px"><%= link_to army.army_title, edit_army_path(army), remote: true, class: "link-unstyled" %></td>
             <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
             <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
             <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
             <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
+            <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
               <td width = "100px"><%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %></td>
               <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>

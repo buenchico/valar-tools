@@ -62,8 +62,10 @@ class ArmiesController < ApplicationController
     respond_to do |format|
       if @army.update(army_params)
         format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
+        format.json { render :index, status: :ok, location: @army }
       else
         format.html { render :edit }
+        format.json { render json: @army.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -111,7 +113,7 @@ class ArmiesController < ApplicationController
       @next_id = Army.maximum(:aid).nil? ? '100001' : Army.maximum(:aid) + 1
       @status = {"Movilizado": "Movilizado", "Desmovilizado": "Desmovilizado", "Aniquilado": "Aniquilado"}
       @type = {"Leva": "Leva", "Sangrado": "Sangrado", "Mercenario": "Mercenario", "Guardia": "Guardia"}
-      @boat = {"No": "No", "Barcoluengos": "Barcoluengos", "Galeras": "Galeras", "Galeras mercantes": "Galeras mercantes", "Dromones": "Dromones"}
+      @boat = {"No": "No", "Sí, Barcoluengos": "Sí, Barcoluengos", "Sí, Galeras": "Sí, Galeras", "Sí, Galeras mercantes": "Sí, Galeras mercantes", "Sí, Dromones": "Sí, Dromones"}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
