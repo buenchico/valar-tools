@@ -8,13 +8,13 @@ class ArmiesController < ApplicationController
       flash[:danger] = "Por favor, inicia sesión."
       redirect_to root_url
     elsif current_user.is_master? || current_user.is_admin?
-      @armies = Army.all
+      @armies = Army.all.order(:aid)
       respond_to do |format|
         format.html
         format.csv { send_data @armies.to_csv, filename: "armies-#{Date.today}.csv" }
       end
     else
-      @armies = Army.where("array_to_string(visibility, '|') ilike ? and visible = ?", "%#{current_user.house}%", true)
+      @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ? and visible = ?", "%#{current_user.house}%", true)
     end
   end
 
