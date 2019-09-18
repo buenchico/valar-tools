@@ -1,8 +1,7 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:show, :edit, :update, :destroy]
   before_action :set_variables, except: [:location_list]
-  include Pagy::Backend
-  
+
   # GET /armies
   def index
     if current_user.nil?
