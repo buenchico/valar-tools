@@ -32,3 +32,12 @@ $(document).on('turbolinks:load', function(){
         });
     });
 });
+
+// Filters
+$(document).on('turbolinks:load', function(){
+    $("#filter").on("keyup", function() {
+        var value = $(this).val().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        var column = $("#filtercolumn").children("option:selected").val();
+        $("#army_list").filterTable(value, column);
+    });
+});

@@ -31,7 +31,10 @@
       <% end %>      
       <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
     <% end %>
-    <input id="filter" class="ml-auto form-control-sm" type="text" placeholder="Filtrar...">
+    <div class="ml-auto">
+      <%= select_tag "credit_card", options_for_select(@filter), id: "filtercolumn", class: "custom-select custom-select-sm" %>
+      <input id="filter" class="form-control-sm" type="text" placeholder="Filtrar...">
+    </div>      
   </div>
   <table id="army_list" class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
     <caption>Lista de ejércitos</caption>
@@ -46,7 +49,7 @@
           <th scope="col">Estado <i class="fas fa-sort"></i></th>
           <th scope="col">Embarcado <i class="fas fa-sort"></i></th>
           <% if current_user.try(:is_master?) then %>
-            <th scope="col">Visible <i class="fas fa-sort"></i></th>
+            <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
           <% end %>
           <th scope="col" colspan="3"></th>
         </tr>
@@ -56,14 +59,20 @@
           <tr id="<%= army.aid %>">
             <td><%= check_box_tag "army_ids[]", army.id, false, class: "checkbox_selectable" %></td>
             <td width = "50px"><%= army.army_str %></td>
-            <td width = "300px"><%= link_to army.army_title, edit_army_path(army), remote: true, class: "link-unstyled" %></td>
+            <td width = "300px"><%= link_to army.army_title.truncate(50), edit_army_path(army), remote: true, class: "link-unstyled" %></td>
             <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
             <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
             <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
             <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
-              <td width = "100px"><%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %></td>
+              <td width = "100px">
+                <% if army.visible == true  %>
+                  Sí, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
+                <% else %>
+                  No, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
+                <% end %>
+              </td>
               <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
             <% end %>
             <td><%= link_to '', edit_army_path(army), remote: true, class: 'fas fa-edit white' %></td>

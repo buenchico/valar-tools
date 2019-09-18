@@ -1,7 +1,8 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:show, :edit, :update, :destroy]
   before_action :set_variables, except: [:location_list]
-
+  include Pagy::Backend
+  
   # GET /armies
   def index
     if current_user.nil?
@@ -118,9 +119,14 @@ class ArmiesController < ApplicationController
     
     def set_variables
       @next_id = Army.maximum(:aid).nil? ? '100001' : Army.maximum(:aid) + 1
-      @status = {"Movilizado": "Movilizado", "Desmovilizado": "Desmovilizado", "Aniquilado": "Aniquilado"}
-      @type = {"Leva": "Leva", "Sangrado": "Sangrado", "Mercenario": "Mercenario", "Guardia": "Guardia"}
-      @boat = {"No": "No", "Sí, Barcoluengos": "Sí, Barcoluengos", "Sí, Galeras": "Sí, Galeras", "Sí, Galeras mercantes": "Sí, Galeras mercantes", "Sí, Dromones": "Sí, Dromones"}
+      if current_user.try(:is_master?) then
+        @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado", "Visibilidad" ]
+      else
+        @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado" ]
+      end
+      @status = {"Movilizado" => "Movilizado", "Desmovilizado" => "Desmovilizado", "Aniquilado" => "Aniquilado"}
+      @type = {"Leva" => "Leva", "Sangrado" => "Sangrado", "Mercenario" => "Mercenario", "Guardia" => "Guardia"}
+      @boat = {"No" => "No", "Sí, Barcoluengos" => "Sí, Barcoluengos", "Sí, Galeras" => "Sí, Galeras", "Sí, Galeras mercantes" => "Sí, Galeras mercantes", "Sí, Dromones" => "Sí, Dromones"}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -42,8 +42,10 @@ $(document).on('turbolinks:load', function(e) {
         if (countCheckedCheckboxes != 0) $(".mass_edit_button").prop( "disabled", false );
     });  
 
+    // :visible only select visible rows
+
     $("#ckbCheckAll").click(function () {
-        $(".checkbox_selectable").prop('checked', $(this).prop('checked'));
+        $(".checkbox_selectable:visible").prop('checked', $(this).prop('checked'));
     });
     
     $(".checkbox_selectable").change(function(){
@@ -57,12 +59,45 @@ $(document).on('turbolinks:load', function(e) {
 
 // Filter tables
 
+(function($) {
+	$.fn.filterTable = function(filter, columnname) {
+		var index = null;
+		this.find("thead > tr:first > th").each(function(i) {
+			if ($.trim($(this).text()) == columnname) {
+				index = i;
+				return false;
+			}
+		});
+		if (index == null)
+			throw ("filter columnname: " + columnname + " not found");
 
-$(document).on('turbolinks:load', function() {
-  $("#filter").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#table_body tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+		this.find("tbody:first > tr").each(function() {
+		    var row = $(this);
+		    if (filter == "") {
+		        row.show();
+		    }
+		    else {
+		        var cellText = row.find("td:eq(" + index + ")").find('option:selected').text();
+		        if (cellText == "") {
+		            cellText = $(row.find(("td:eq(" + index + ")"))).text().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		        }
+		        if (cellText.indexOf(filter) == -1) {
+		            row.hide();
+		        }
+		        else {
+		            row.show();
+		        }
+		    }
+		});
+		return this;
+	};
+})(jQuery);
+
+// $(document).on('turbolinks:load', function() {
+//   $("#filter").on("keyup", function() {
+//     var value = $(this).val().toLowerCase();
+//     $("#table_body tr").filter(function() {
+//       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+//     });
+//   });
+// });
