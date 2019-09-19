@@ -32,8 +32,8 @@
       <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
     <% end %>
     <div class="ml-auto">
-      <%= select_tag "credit_card", options_for_select(@filter), id: "filtercolumn", class: "custom-select custom-select-sm" %>
-      <input id="filter" class="form-control-sm" type="text" placeholder="Filtrar...">
+      <%= select_tag "credit_card", options_for_select(@filter), id: "filterselect", class: "custom-select custom-select-sm" %>
+      <input id="filtertext" class="form-control-sm" type="text" placeholder="Filtrar...">
     </div>      
   </div>
   <table id="army_list" class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
