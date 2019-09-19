@@ -49,6 +49,7 @@
           <th scope="col">Estado <i class="fas fa-sort"></i></th>
           <th scope="col">Embarcado <i class="fas fa-sort"></i></th>
           <% if current_user.try(:is_master?) then %>
+            <th scope="col">Tipo <i class="fas fa-sort"></i></th>
             <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
           <% end %>
           <th scope="col" colspan="3"></th>
@@ -66,6 +67,7 @@
             <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
             <% if current_user.try(:is_master?) then %>
+              <td width = "100px"><%= army.armytype %></td>
               <td width = "100px">
                 <% if army.visible == true  %>
                   Sí, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>

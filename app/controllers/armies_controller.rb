@@ -119,7 +119,7 @@ class ArmiesController < ApplicationController
     def set_variables
       @next_id = Army.maximum(:aid).nil? ? '100001' : Army.maximum(:aid) + 1
       if current_user.try(:is_master?) then
-        @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado", "Visibilidad" ]
+        @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado", "Tipo", "Visibilidad" ]
       else
         @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado" ]
       end
