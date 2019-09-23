@@ -7,87 +7,32 @@
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
-        <div class="count-checkboxes-wrapper">
-    </div>
 </div>
 
 <div>
-  
-  <%= form_tag edit_multiple_armies_path, remote: true do %>
-  
-  <div class="mb-1 form-inline">
-    <%= button_tag(type: 'button', id: "copy", class: "btn btn-primary btn-sm mass_edit_button", disabled: true) do %>
-      <i class="fas fa-clipboard-list"></i> Copiar
-    <% end %>  
-    <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true) do %>
-      <i class="fas fa-edit"></i> Editar
-    <% end %>  
-    <% if current_user.try(:is_master?) then %> 
-      <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true, value: "visibility") do %>
-        <i class="fas fa-eye"></i> Editar visibilidad
-      <% end %>
-      <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", data: { confirm: 'Todos los ejércitos selectionados serán borrados ¿Estás seguro?' }, disabled: true, value: "delete") do %>
-        <i class="fas fa-trash-alt"></i> Borrar todos
-      <% end %>      
-      <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
+  <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <%= @total_str.sum %> y un total de <%= @total_num.sum * 200 %> hombres.</p>
+  <p>De los cuales hay visibles <span id="count-visible"><%= @armies.length %></span>.</p>
+  <p>Hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
+</div>
+
+<nav>
+  <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tabla</a>
+    <% $active_houses.drop(1).each do |house| %>
+      <a class="nav-item nav-link" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
     <% end %>
-    <div class="ml-auto">
-      <%= select_tag "credit_card", options_for_select(@filter), id: "filterselect", class: "custom-select custom-select-sm" %>
-      <input id="filtertext" class="form-control-sm" type="text" placeholder="Filtrar...">
-    </div>      
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lista</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Estadísticas</a>
   </div>
-  <table id="army_list" class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
-    <caption>Lista de ejércitos</caption>
-      <thead>
-        <tr id="table_title">
-          <th scope="col"><input type="checkbox" id="ckbCheckAll" /></th>
-          <th scope="col"><i class="fas fa-fist-raised"></i> <i class="fas fa-sort"></i></th>
-          <th scope="col">Ejército <i class="fas fa-sort"></i></th>
-          <th scope="col">Rasgos <i class="fas fa-sort"></i></th>
-          <th scope="col">Posición <i class="fas fa-sort"></i></th>
-          <th scope="col">Misión <i class="fas fa-sort"></i></th>
-          <th scope="col">Estado <i class="fas fa-sort"></i></th>
-          <th scope="col">Embarcado <i class="fas fa-sort"></i></th>
-          <% if current_user.try(:is_master?) then %>
-            <th scope="col">Tipo <i class="fas fa-sort"></i></th>
-            <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
-          <% end %>
-          <th scope="col" colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody id="table_body">
-        <% @armies.each do |army| %>
-          <tr id="<%= army.aid %>">
-            <td><%= check_box_tag "army_ids[]", army.id, false, class: "checkbox_selectable" %></td>
-            <td width = "50px"><%= army.army_str %></td>
-            <td width = "300px"><%= link_to army.army_title.truncate(50), edit_army_path(army), remote: true, class: "link-unstyled" %></td>
-            <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
-            <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
-            <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
-            <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
-            <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
-            <% if current_user.try(:is_master?) then %>
-              <td width = "100px"><%= army.armytype %></td>
-              <td width = "100px">
-                <% if army.visible == true  %>
-                  Sí, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
-                <% else %>
-                  No, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
-                <% end %>
-              </td>
-              <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
-            <% end %>
-            <td><%= link_to '', edit_army_path(army), remote: true, class: 'fas fa-edit white' %></td>
-            <% if army.notes.nil? || army.notes.empty? then %>
-              <td><%= link_to '', army_note_path(army), remote:true, class: 'fas fa-sticky-note white' %></td>
-            <% else %>
-              <td><%= link_to '', army_note_path(army), remote:true, class: 'fas fa-sticky-note green' %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><%= render 'army_table' %></div>
+  <% $active_houses.drop(1).each do |house| %>
+    <div class="tab-pane fade" id="nav-<%= house %>" role="tabpanel" aria-labelledby="nav-<%= house %>-tab">...<%= house %></div>
   <% end %>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
 </div>
 
 <% if current_user.try(:is_master?) then %>

@@ -54,19 +54,19 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
                 </div>
-                    <%= form.select :kingdom, options_for_select($kingdoms, army.kingdom), {}, class: "custom-select", readonly: current_user.try(:is_master?) ? false : true %>
+                    <%= form.select :kingdom, options_for_select($kingdoms, army.kingdom), {}, class: "custom-select disabled", disabled: current_user.try(:is_master?) ? false : true %>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fab fa-fort-awesome"></i>&nbsp;</div>
                 </div>
-                <%= form.text_field :location, class: "form-control ui-autocomplete-input auto-source", data: {autocomplete_source: location_list_path}, readonly: current_user.try(:is_master?) ? false : true, value: army.location, placeholder: "Asentamiento" %>
+                <%= form.text_field :location, class: "form-control ui-autocomplete-input auto-source disabled", data: {autocomplete_source: location_list_path}, disabled: current_user.try(:is_master?) ? false : true, value: army.location, placeholder: "Asentamiento" %>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-crown"></i>&nbsp;</div>
                 </div>
-                <%= form.text_field :lord, class: "form-control ui-autocomplete-input auto-source2", data: {autocomplete_source2: family_list_path}, readonly: current_user.try(:is_master?) ? false : true, value: army.lord, placeholder: "Señor" %>
+                <%= form.text_field :lord, class: "form-control ui-autocomplete-input auto-source2 disabled", data: {autocomplete_source2: family_list_path}, disabled: current_user.try(:is_master?) ? false : true, value: army.lord, placeholder: "Señor" %>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">

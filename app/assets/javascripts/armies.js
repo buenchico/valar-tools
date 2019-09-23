@@ -34,15 +34,18 @@ $(document).on('turbolinks:load', function(){
 });
 
 // Filters
-$(document).on('turbolinks:load', function(){
-    $("#filter").on("keyup", function() {
+$(document).ready(function(){
+    $.fn.armyFilters = function(){ 
         var value = $("#filtertext").val().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         var column = $("#filterselect").children("option:selected").val();
         $("#army_list").filterTable(value, column);
+        var countArmies = $('input[type="checkbox"]:visible').length - 1;
+        $("#count-visible").html(countArmies);
+    }
+    $("#filterselect").on("change", function() {
+        $.fn.armyFilters();
     });
-    $("#filtercolumn").on("change", function() {
-        var value = $("#filtertext").val().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        var column = $("#filterselect").children("option:selected").val();
-        $("#army_list").filterTable(value, column);
-    }); 
+    $("#filtertext").on("keyup", function() {
+        $.fn.armyFilters();
+    });    
 });

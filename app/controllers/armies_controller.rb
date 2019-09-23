@@ -1,6 +1,8 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:show, :edit, :update, :destroy]
   before_action :set_variables, except: [:location_list]
+  before_action :correct_user, only: [:edit, :show, :notes, :edit_multiple]
+  before_action :master_user, only: [:new, :import]  
 
   # GET /armies
   def index
@@ -15,6 +17,16 @@ class ArmiesController < ApplicationController
       end
     else
       @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ? and visible = ?", "%#{current_user.house}%", true)
+    end
+    
+    @total_str = []
+    @armies.each do |army|
+      @total_str << army.army_str
+    end
+    
+    @total_num = []
+    @armies.each do |army|
+      @total_num << army.num + 5
     end
   end
 
@@ -128,8 +140,33 @@ class ArmiesController < ApplicationController
       @boat = {"No" => "No", "Sí, Barcoluengos" => "Sí, Barcoluengos", "Sí, Galeras" => "Sí, Galeras", "Sí, Galeras mercantes" => "Sí, Galeras mercantes", "Sí, Dromones" => "Sí, Dromones"}
     end
 
+    def correct_user
+      if current_user.nil?
+        flash[:danger] = "Por favor, inicia sesión."
+        render js: "window.location.replace('#{root_url}');" 
+      elsif current_user.house !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
+        flash[:danger] = "No tienes permisos para acceder a esta página."
+        render js: "window.location.replace('#{root_url}');"         
+      end
+    end
+    
+    # Check if user is master or admin
+    def master_user
+      if current_user.nil?
+        flash[:danger] = "Por favor, inicia sesión."
+        render js: "window.location.replace('#{root_url}');" 
+      elsif !current_user.is_master? && !current_user.is_admin?
+        flash[:danger] = "No tienes permisos para acceder a esta página."
+        render js: "window.location.replace('#{root_url}');"
+      end
+    end    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
-      params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
+      if current_user.try(:is_master?) then
+        params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
+      else  
+        params.require(:army).permit(:name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
+      end  
     end
 end

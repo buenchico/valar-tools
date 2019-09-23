@@ -220,3 +220,8 @@ float: left;
 .ui-autocomplete {
     z-index: 1500;
 }
+
+/* Disabled state */
+.disabled:disabled  {
+  cursor: not-allowed;
+}
