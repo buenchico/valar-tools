@@ -70,9 +70,9 @@ class Army < ApplicationRecord
     
     def army_str
         if self.boat == "No"
-            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? -2 : 0 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10
+            ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? -2 : 0 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
         else
-            ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.cavalry? == true ? -2 : 0 ) + ( self.marine? == true ? 4 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10            
+            ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.cavalry? == true ? -2 : 0 ) + ( self.marine? == true ? 4 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
         end
     end
     
