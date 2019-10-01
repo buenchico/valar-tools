@@ -1,10 +1,4 @@
-<%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
-
 <div class="card-header">Desde <%=@from %> hasta <%=@to %></div>
-<div style="position: absolute; right: 0px; top: 0px;">
-    <button type="button" id="copy" class="btn btn-link clipboard-btn text-white" data-clipboard-action="copy" data-clipboard-target="#route"><i class="fas fa-clipboard-list"></i></button>
-    <button type="button" id="delete_result" class="btn btn-link text-white"><i class="fas fa-times-circle"></i></button>
-</div>
 <div class="card-body" id="route">
     <p class="card-text">Una <%= @size == 0 ? "flotilla" : "flota de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
     <% 0.upto(@step_sea.length - 1) do |x| %>
