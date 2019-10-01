@@ -101,3 +101,8 @@ $(document).on('turbolinks:load', function(e) {
 //     });
 //   });
 // });
+
+// Tooltips
+$(document).on('turbolinks:load', function() {
+  $( document ).tooltip();
+});
