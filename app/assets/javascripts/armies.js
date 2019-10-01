@@ -1,3 +1,4 @@
+// Copy selected to clipboard
 $(document).on('turbolinks:load', function(){
     $(function () {
         //Assign Click event to Button.

@@ -11,7 +11,7 @@
     <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true, value: "visibility") do %>
       <i class="fas fa-eye"></i> Editar visibilidad
     <% end %>
-    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", data: { confirm: 'Todos los ejércitos seleccionados serán borrados ¿Estás seguro?' }, disabled: true, value: "delete") do %>
+    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", disabled: true, value: "delete") do %>
       <i class="fas fa-trash-alt"></i> Borrar todos
     <% end %>      
     <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
@@ -49,7 +49,7 @@
           <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
           <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
           <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
-          <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
+          <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable test', :inner_class => "custom-select bip-input" %></td>
           <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
           <% if current_user.try(:is_master?) then %>
             <td width = "100px"><%= army.armytype %></td>
@@ -60,7 +60,7 @@
                 No, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
               <% end %>
             </td>
-            <td><%= link_to '', army, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
+            <td><%= link_to '', army_confirm_path(army), remote: true, class: 'fas fa-trash-alt white' %></td>
           <% end %>
           <td><%= link_to '', edit_army_path(army), remote: true, class: 'fas fa-edit white' %></td>
           <% if army.notes.nil? || army.notes.empty? then %>

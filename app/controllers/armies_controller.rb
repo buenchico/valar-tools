@@ -1,8 +1,8 @@
 class ArmiesController < ApplicationController
-  before_action :set_army, only: [:show, :edit, :update, :destroy]
+  before_action :set_army, only: [:edit, :notes, :update, :confirm, :destroy]
   before_action :set_variables, except: [:location_list]
-  before_action :correct_user, only: [:edit, :show, :notes, :edit_multiple]
-  before_action :master_user, only: [:new, :import]  
+  before_action :correct_user, only: [:edit, :notes, :edit_multiple]
+  before_action :master_user, only: [:new, :import, :destroy]  
 
   # GET /armies
   def index
@@ -30,17 +30,8 @@ class ArmiesController < ApplicationController
     end
   end
 
-  # GET /armies/1
-  def show
-    @army = Army.find(params[:id])    
-    respond_to do |format|
-      format.js
-      format.html { redirect_to armies_url }
-    end
-  end
-
+  # GET /armies/1/notes
   def notes
-    @army = Army.find(params[:id])    
     respond_to do |format|
       format.js
       format.html { redirect_to armies_url }
@@ -55,6 +46,14 @@ class ArmiesController < ApplicationController
   # GET /armies/1/edit
   def edit
   end
+
+  # GET /armies/1/confirm
+  def confirm
+    respond_to do |format|
+      format.js
+      format.html { redirect_to armies_url }
+    end    
+  end  
 
   # POST /armies
   def create
@@ -84,21 +83,20 @@ class ArmiesController < ApplicationController
 
   # DELETE /armies/1
   def destroy
-    @army.destroy
-    respond_to do |format|
-      format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
+    if params[:army][:confirm] == "DELETE" then
+      @army.destroy
+      respond_to do |format|
+        format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to armies_url, danger: 'Acción cancelada, por favor, confirma correctamente el borrado' }
+      end
     end
   end
   
   def edit_multiple
-    @armies = Army.find(params[:army_ids])  
-    if params[:button] == "delete" then
-      @armies.each do |army|
-        army.destroy
-      end
-      flash[:success] = "Ejércitos borrados correctamente."
-      redirect_to armies_path    
-    end
+    @armies = Army.find(params[:army_ids])
   end
   
   def update_multiple
@@ -114,6 +112,20 @@ class ArmiesController < ApplicationController
     end
     flash[:success] = "Ejércitos actualizados correctamente."
     redirect_to armies_path
+  end
+  
+  def destroy_multiple
+    @armies = Army.find(params[:army_ids])    
+    if params[:army][:confirm] == "DELETE ALL" then
+      @armies.each do |army|
+        army.destroy
+      end
+      flash[:danger] = "Ejércitos borrados correctamente."
+      redirect_to armies_path
+    else
+      flash[:danger] = "Acción cancelada, por favor, confirma correctamente el borrado."
+      redirect_to armies_path
+    end  
   end
 
   def import
@@ -144,7 +156,7 @@ class ArmiesController < ApplicationController
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
         render js: "window.location.replace('#{root_url}');"
-      elsif params[:button] == "multiple" || params[:button] == "visibility" then
+      elsif params[:button] == "multiple" || params[:button] == "visibility" || params[:button] == "delete" then
         @armies = params[:army_ids]
         @armies.each do |x|
           if current_user.house !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
@@ -172,7 +184,7 @@ class ArmiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
       if current_user.try(:is_master?) then
-        params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
+        params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes, :confirm)
       else  
         params.require(:army).permit(:name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
       end  

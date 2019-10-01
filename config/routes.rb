@@ -14,11 +14,13 @@ Rails.application.routes.draw do
   resources :armies, :except => [:show] do
     collection do
       put 'update_multiple'
+      put 'destroy_multiple'      
       post 'edit_multiple'
       post 'import'
     end
   end
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
+  get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm'  
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'

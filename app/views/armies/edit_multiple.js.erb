@@ -1,4 +1,8 @@
-$('#army-content').html("<%= j render 'multiple', army: @army %>");
+<% if params[:button] == "delete" then %>
+  $('#army-content').html("<%= j render 'confirm_all', army: @army %>");
+<% else %>
+  $('#army-content').html("<%= j render 'multiple', army: @army %>");  
+<% end %>
 $('#armyModal').modal('show');
 $(".auto-source").autocomplete({
     source: $('.auto-source').data('autocomplete-source')

@@ -1,0 +1,50 @@
+<div class="modal fade" id="armyModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+    <%= form_for :army, :url => destroy_multiple_armies_path, :html => { :method => :put } do |form| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title">Confirmar borrado</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger">
+          <div class="float-left mr-2"><i class="fas fa-exclamation-triangle fa-3x"></i></div>
+          <div>Los siguientes ejércitos serán eliminados y no podrán ser recuperados, por favor no continúes a menos que estés seguro es lo que deseas:</div>
+        </div>
+        <ul class="fa-ul">
+          <% for army in @armies %>
+            <li>
+              <span class="fa-li"><i class="fas fa-greater-than"></i></span>
+              <%= hidden_field_tag "army_ids[]", army.aid %>
+              <%= army.army_title %>
+              <%  if !army.army_traits.blank? then %> 
+                <em>(<%= army.army_traits %>)</em>
+              <% end %>
+              <% if !army.position.blank? then %>
+                , en <%= army.position %>
+              <% end %>
+              <% if !army.mission.blank? then %>
+                [<%= army.mission %>]
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="form-group">
+          Para borrar los ejércitos listados anteriormente, por favor escribe "DELETE ALL" en el siguiente campo:
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fas fa-trash-alt"></i>&nbsp;</div>
+          </div>
+          <%= form.text_field :confirm, class: "form-control" %>
+        </div>        
+        <div class="input-group mb-3">
+          <%= form.submit 'Borrar ejércitos', class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>      
+    </div>
+  </div>
+</div>
