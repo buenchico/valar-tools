@@ -91,7 +91,7 @@ class ArmiesController < ApplicationController
   end
   
   def edit_multiple
-    @armies = Army.find(params[:army_ids])    
+    @armies = Army.find(params[:army_ids])  
     if params[:button] == "delete" then
       @armies.each do |army|
         army.destroy
@@ -143,10 +143,18 @@ class ArmiesController < ApplicationController
     def correct_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
-        render js: "window.location.replace('#{root_url}');" 
+        render js: "window.location.replace('#{root_url}');"
+      elsif params[:button] == "multiple" || params[:button] == "visibility" then
+        @armies = params[:army_ids]
+        @armies.each do |x|
+          if current_user.house !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
+            flash[:danger] = "No tienes permisos para acceder a esta página."
+            render js: "window.location.replace('#{armies_url}');"            
+          end
+        end
       elsif current_user.house !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
-        render js: "window.location.replace('#{root_url}');"         
+        render js: "window.location.replace('#{root_url}');"
       end
     end
     
@@ -154,7 +162,7 @@ class ArmiesController < ApplicationController
     def master_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
-        render js: "window.location.replace('#{root_url}');" 
+        render js: "window.location.replace('#{root_url}');"
       elsif !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
         render js: "window.location.replace('#{root_url}');"

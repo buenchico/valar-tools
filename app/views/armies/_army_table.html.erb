@@ -4,14 +4,14 @@
   <%= button_tag(type: 'button', id: "copy", class: "btn btn-primary btn-sm mass_edit_button", disabled: true) do %>
     <i class="fas fa-clipboard-list"></i> Copiar
   <% end %>  
-  <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true) do %>
+  <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true, value: "multiple") do %>
     <i class="fas fa-edit"></i> Editar
   <% end %>  
   <% if current_user.try(:is_master?) then %> 
     <%= button_tag(type: 'submit', class: "btn btn-warning btn-sm mass_edit_button", disabled: true, value: "visibility") do %>
       <i class="fas fa-eye"></i> Editar visibilidad
     <% end %>
-    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", data: { confirm: 'Todos los ejércitos selectionados serán borrados ¿Estás seguro?' }, disabled: true, value: "delete") do %>
+    <%= button_tag(type: 'submit', class: "btn btn-danger btn-sm mass_edit_button", data: { confirm: 'Todos los ejércitos seleccionados serán borrados ¿Estás seguro?' }, disabled: true, value: "delete") do %>
       <i class="fas fa-trash-alt"></i> Borrar todos
     <% end %>      
     <%= link_to "Importar/Exportar", "#csvModal", :class => "btn btn-warning btn-sm", "data-toggle" => "modal" %>
