@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', function(){
 });
 
 // Filters
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
     $.fn.armyFilters = function(){ 
         var value = $("#filtertext").val().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         var column = $("#filterselect").children("option:selected").val();

@@ -15,24 +15,8 @@
   <p>Hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
 </div>
 
-<% if current_user.try(:is_master?) then %>
-  <nav>
-    <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tabla</a>
-      <% $active_houses.drop(1).each do |house| %>
-        <a class="nav-item nav-link" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
-      <% end %>
-    </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><%= render 'army_table' %></div>
-    <% $active_houses.drop(1).each do |house| %>
-      <div class="tab-pane fade" id="nav-<%= house %>" role="tabpanel" aria-labelledby="nav-<%= house %>-tab"><% @armies=Army.where("array_to_string(ARRAY[visibility], '|') ilike ?", "%#{house}%") %><%= render 'army_table' %></div>
-    <% end %>
-  </div>
-<% else %>
-  <%= render 'army_table' %>
-<% end %>
+<%= render 'army_table' %>
+
 <% if current_user.try(:is_master?) then %>
   <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir ejército'.html_safe, new_army_path, remote:true, class: "btn btn-primary"%></div>
 <% end %>
