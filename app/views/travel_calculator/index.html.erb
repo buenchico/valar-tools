@@ -127,11 +127,6 @@ $(document).ready(function(){
     <div id="result_text"></div>
 </div>
 
-<script>$("#delete_result").on("click", function(){
-        $("#result").hide();
-    });</script>
-
-
 <div class="land">
   <%= form_with url: travel_calculator_calculate_path, remote: true do |form| %>
     <div class="form-group form-inline">

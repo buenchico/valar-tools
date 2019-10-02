@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
     $("#path-type").click(function(){
         if (this.checked) {
             $(".land").hide();
@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
     });
 });
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
     $("#delete_result").on("click", function(){
         $("#result").hide();
     });
