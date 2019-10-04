@@ -44,13 +44,13 @@ $(document).on('turbolinks:load', function(e) {
 
     // :visible only select visible rows
 
-    $("#ckbCheckAll").click(function () {
+    $(".ckbCheckAll").click(function () {
         $(".checkbox_selectable:visible").prop('checked', $(this).prop('checked'));
     });
     
     $(".checkbox_selectable").change(function(){
         if (!$(this).prop("checked")){
-            $("#ckbCheckAll").prop("checked",false);
+            $(".ckbCheckAll").prop("checked",false);
         }
     });
     // Stop propagation make the code to work inside a table

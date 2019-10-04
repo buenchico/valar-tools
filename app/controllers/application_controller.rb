@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
-  before_action :set_variables
   add_flash_types :error, :success, :info, :danger
 
   $tools = {'routes': {'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'version': '1.03', 'path': '/travel_calculator', 'icon': 'fas fa-map-signs'},
@@ -15,13 +14,11 @@ class ApplicationController < ActionController::Base
     
   $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
 
-  def set_variables      
-    $active_houses = ["Master"]
-    ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
-    
-    $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Tormenta","Valle"]
-  end
-    
+  $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Tormenta","Valle"]
+  
+  $active_houses = ["Master"]
+  ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
+  
   def current_user
       @current_user ||= User.where("auth_token = ?", cookies[:auth_token]).first if cookies[:auth_token]
   end

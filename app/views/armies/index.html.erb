@@ -15,8 +15,20 @@
   <p>Hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
 </div>
 
-<%= render 'army_table' %>
-
+<% if current_user.try(:is_master?) then %>
+  <nav>
+    <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
+      <% $active_houses.each do |house| %>
+        <a class="nav-item nav-link" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
+      <% end %>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <%= render 'army_table' %>
+  </div>
+<% else %>
+  <%= render 'army_table' %>
+<% end %>
 <% if current_user.try(:is_master?) then %>
   <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir ejército'.html_safe, new_army_path, remote:true, class: "btn btn-primary"%></div>
 <% end %>

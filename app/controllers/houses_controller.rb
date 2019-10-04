@@ -2,6 +2,7 @@ class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
   before_action :master_user
   before_action :set_variables
+  after_action :set_active_houses, only: [:create, :destroy]
 
   # GET /houses
   # GET /houses.json
@@ -58,7 +59,7 @@ class HousesController < ApplicationController
   def destroy
     @house.destroy
     respond_to do |format|
-      format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
+      format.html { redirect_to houses_url, danger: 'Casa borrada.' }
       format.json { head :no_content }
     end
   end
@@ -82,6 +83,11 @@ class HousesController < ApplicationController
     
     def set_variables
       @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
+    end
+    
+    def set_active_houses
+      $active_houses = ["Master"]
+      ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
