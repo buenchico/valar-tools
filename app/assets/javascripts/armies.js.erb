@@ -44,7 +44,7 @@ $.fn.armyFilters = function(house){
 }
 		
 $(document).on('turbolinks:load', function(){
-    var houses = "<%= $active_houses %>";
+    var houses = <%= $active_houses %>;
     
     $.each( houses, function( k, house ) {
 
