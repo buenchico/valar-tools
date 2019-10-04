@@ -1,4 +1,4 @@
-// Copy selected to clipboard
+# Copy selected to clipboard
 $(document).on('turbolinks:load', function(){
     $(function () {
         //Assign Click event to Button.
@@ -34,3 +34,25 @@ $(document).on('turbolinks:load', function(){
     });
 });
 
+# Filters
+$.fn.armyFilters = function(house){
+    var value = $("#filtertext-" + house).val().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    var column = $("#filterselect-" + house).children("option:selected").val();
+    $("#army_list-" + house).filterTable(value, column);
+    var countArmies = $('input[type="checkbox"]:visible').length - 1;
+    $("#count-visible").html(countArmies);
+}
+		
+$(document).on('turbolinks:load', function(){
+    var houses = <%= $active_houses %>;
+    
+    $.each( houses, function( k, house ) {
+
+        $("#filterselect-" + house).on("change", function() {
+            $.fn.armyFilters(house);
+        });
+        $("#filtertext-" + house).on("keyup", function() {
+            $.fn.armyFilters(house);
+        });
+    });
+});
