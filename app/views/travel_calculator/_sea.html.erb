@@ -1,10 +1,6 @@
 <div class="card-header">Desde <%=@from %> hasta <%=@to %></div>
 <div class="card-body" id="route">
-    <% if @time.sum == 0 %>
-        <p class="card-text">Por favor, rellena todos los datos necesarios.</p>
-    <% else %>    
-        <p class="card-text">Una <%= @size == 0 ? "flotilla" : "flota de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
-    <% end %>
+    <p class="card-text">Una <%= @size == 0 ? "flotilla" : "flota de tamaño #{@size}" %> necesita <%= "#{@days} #{@days_word}" unless @days == 0 %><%=" y " unless (@days == 0 || @hours == 0) %><%="#{@hours} horas" unless @hours == 0%> para ir desde <%=@from %> hasta <%=@to %></p>
     <% 0.upto(@step_sea.length - 1) do |x| %>
         <% if @step_sea[x.to_s][:hex] != "" && @step_sea[x.to_s][:hex] != "0" %> 
             <p class="card-text">Cruzará <%= @step_sea[x.to_s][:hex] %> hexágono<%="s" unless @step_sea[x.to_s][:hex].to_i == 1 %> de <%= @step_sea[x.to_s][:terrain].downcase %> 

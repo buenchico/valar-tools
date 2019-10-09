@@ -1,9 +1,22 @@
-$('#result_text').html(`<% if @step == 0 %>   
-        <%= j render 'travel_calculator/sea' %>
-    <% elsif @step_sea == 0  %>   
-        <%= j render 'travel_calculator/land' %>
-    <% else %>
-        <%= "<p>ERROR</p>" %>
-    <% end %>
-`);
-$('#result').slideDown(350);
+<% if @time.sum == 0 %>
+    $('#result').addClass('bg-danger')
+    $('#result_text').html(`
+        <div class="card-header">Error</div>
+        <div class="card-body" id="route">
+            <p class="card-text">Por favor, rellena todos los datos necesarios.</p>
+        </div>
+    `);
+    $('#result').slideDown(350);    
+<% else %>
+    $('#result').addClass('bg-success')
+    $('#result_text').html(`
+        <% if @step == 0 %> 
+            <%= j render 'travel_calculator/sea' %>
+        <% elsif @step_sea == 0  %>   
+            <%= j render 'travel_calculator/land' %>
+        <% else %>
+            <%= "<p>ERROR</p>" %>
+        <% end %>
+    `);
+    $('#result').slideDown(350);        
+<% end %>

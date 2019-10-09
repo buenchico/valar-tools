@@ -56,3 +56,11 @@ $(document).on('turbolinks:load', function(){
         });
     });
 });
+
+// Recalculate stats on changing tabs
+$(document).on('turbolinks:load', function(){
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+        var countArmies = $('input[type="checkbox"]:visible').length - 1;
+        $("#count-visible").html(countArmies);      
+    })
+});    

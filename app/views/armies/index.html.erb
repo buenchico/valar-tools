@@ -9,22 +9,27 @@
     <%= yield(:title) %>
 </div>
 
-<div>
-  <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <%= @total_str.sum %> y un total de <%= @total_num.sum * 200 %> hombres.</p>
+<div class="card bg-secondary mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Estadísticas</h5>
+    <div class="card-text">
+        <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <%= @total_str.sum %> y un total de <%= @total_num.sum * 200 %> hombres.</p>
   <p>De los cuales hay visibles <span id="count-visible"><%= @armies.length %></span>.</p>
   <p>Hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
+    </div>
+  </div>
 </div>
 
 <% if current_user.try(:is_master?) then %>
   <nav>
     <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
       <% $active_houses.each do |house| %>
-        <a class="nav-item nav-link" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
+        <a class="nav-item nav-link <%= house == "Master" ? 'active' : '' %>" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
       <% end %>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <%= render 'army_table' %>
+    <%= render 'army_table_master' %>
   </div>
 <% else %>
   <%= render 'army_table' %>
