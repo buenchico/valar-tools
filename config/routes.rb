@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
-  get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm'  
+  get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm' 
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'

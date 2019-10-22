@@ -13,9 +13,9 @@
   <div class="card-body">
     <h5 class="card-title">Estadísticas</h5>
     <div class="card-text">
-        <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <%= @total_str.sum %> y un total de <%= @total_num.sum * 200 %> hombres.</p>
-  <p>De los cuales hay visibles <span id="count-visible"><%= @armies.length %></span>.</p>
-  <p>Hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
+        <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <span id="count-strenght"><%= @total_str.sum %></span> y un total de <span id="count-number"><%= @total_num.sum * 200 %> hombres.</p></span>
+        <p>De los cuales hay visibles <span id="count-visible"><%= @armies.length %></span>.</p>
+        <p>Hay <span id="count-mobilize"><%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <span id="count-destroyed"></span><%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p></span>
     </div>
   </div>
 </div>
@@ -29,7 +29,7 @@
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <%= render 'army_table_master' %>
+    <%= render 'army_table' %>
   </div>
 <% else %>
   <%= render 'army_table' %>

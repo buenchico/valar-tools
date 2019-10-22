@@ -2,7 +2,7 @@ class ArmiesController < ApplicationController
   before_action :set_army, only: [:edit, :notes, :update, :confirm, :destroy]
   before_action :set_variables, except: [:location_list]
   before_action :correct_user, only: [:edit, :notes, :edit_multiple]
-  before_action :master_user, only: [:new, :import, :destroy]  
+  before_action :master_user, only: [:new, :import, :destroy]
 
   # GET /armies
   def index
@@ -20,12 +20,15 @@ class ArmiesController < ApplicationController
     end
     
     @total_str = []
-    @total_num = []
     if !@armies.nil? then
       @armies.each do |army|
         @total_str << army.army_str
-        @total_num << ( ( army.num + 5 )  * ( army.status == 'Aniquilado' ? 0 : 1 ) )
       end
+    end
+    
+    @total_num = []
+    @armies.each do |army|
+      @total_num << ( ( army.num + 5 )  * ( army.status == 'Aniquilado' ? 0 : 1 ) )
     end
   end
 
@@ -71,12 +74,13 @@ class ArmiesController < ApplicationController
   def update
     respond_to do |format|
       if @army.update(army_params)
+        @modified_strength = @army.army_str
         format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
-        format.json { render :index, status: :ok, location: @army }
+        format.json { render :json => {"army" => @army.as_json.merge(:strenght => @army.army_str)} }
       else
         format.html { render :edit }
-        format.json { render json: @army.errors, status: :unprocessable_entity }
-      end
+        format.json { respond_with_bip(@army) }
+      end  
     end
   end
 

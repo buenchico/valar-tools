@@ -2,11 +2,11 @@
 $(document).on('turbolinks:load', function(){
     $(function () {
         //Assign Click event to Button.
-        $("#copy").click(function () {
+        $(".copy").click(function () {
             var message = "";
  
             //Loop through all checked CheckBoxes in GridView.
-            $("#army_list input[type=checkbox]:checked").each(function () {
+            $("input[type=checkbox]:visible:checked").each(function () {
                 var row = $(this).closest("tr")[0];
                 if ($(this).closest("tr")[0].id != "table_title") {
                   message += row.cells[2].textContent;
@@ -57,10 +57,48 @@ $(document).on('turbolinks:load', function(){
     });
 });
 
-// Recalculate stats on changing tabs
+// Recalculate stats
+$.fn.recalculateStats = function(){
+    var countArmies = $('input[type="checkbox"]:visible').length - 1;
+    $("#count-visible").html(countArmies);
+    
+    var countStrenght = 0;
+    $('.strenght:visible').each(function(){
+        countStrenght += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
+    });    
+    $("#count-strenght").html(countStrenght);
+}
+
+// Trigger recalculate stats on changing tabs
 $(document).on('turbolinks:load', function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        var countArmies = $('input[type="checkbox"]:visible').length - 1;
-        $("#count-visible").html(countArmies);      
+        $.fn.recalculateStats()     
     })
-});    
+});
+
+// Trigger recalculate stats on best in place editing
+$(document).on('turbolinks:load', function(){
+    $('.best_in_place').bind("ajax:success", function () {
+        $.fn.recalculateStats()
+    })
+});
+
+// Refresh strength and change classes after best in place editing
+$(document).on('turbolinks:load', function(){
+    $('.best_in_place').bind("ajax:success", function(event, data) {
+        var army = JSON.parse(data).army.aid;
+        var strenght = JSON.parse(data).army.strenght;
+        var status = JSON.parse(data).army.status;
+        $(this).closest("tr")[0].cells[1].textContent = strenght
+        if (status !== "Aniquilado") {
+            $('#' + army).removeClass("destroyed")
+            } else {
+            $('#' + army).addClass("destroyed")
+        };
+        if (status !== "Movilizado") {
+            $('#' + army).removeClass("mobilized")
+            } else {
+            $('#' + army).addClass("mobilized")
+        };        
+    })
+});

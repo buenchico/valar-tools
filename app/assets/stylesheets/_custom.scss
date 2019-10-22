@@ -229,3 +229,13 @@ float: left;
 .disabled:disabled  {
   cursor: not-allowed;
 }
+
+/* Destroyed armies in table*/
+.destroyed {
+  background-color: DimGray  !important;
+  color: SlateGray  !important;
+}
+
+.mobilized {
+ font-weight: bold !important;
+}
