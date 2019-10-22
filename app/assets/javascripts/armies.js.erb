@@ -42,20 +42,6 @@ $.fn.armyFilters = function(house){
     var countArmies = $('input[type="checkbox"]:visible').length - 1;
     $("#count-visible").html(countArmies);
 }
-		
-$(document).on('turbolinks:load', function(){
-    var houses = <%= $active_houses %>;
-    
-    $.each( houses, function( k, house ) {
-
-        $("#filterselect-" + house).on("change", function() {
-            $.fn.armyFilters(house);
-        });
-        $("#filtertext-" + house).on("keyup", function() {
-            $.fn.armyFilters(house);
-        });
-    });
-});
 
 // Recalculate stats
 $.fn.recalculateStats = function(){
@@ -66,8 +52,27 @@ $.fn.recalculateStats = function(){
     $('.strenght:visible').each(function(){
         countStrenght += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
     });    
+    $("#count-visible-strenght").html(countStrenght);
     $("#count-strenght").html(countStrenght);
 }
+
+
+// Trigger filters		
+$(document).on('turbolinks:load', function(){
+    var houses = <%= $active_houses %>;
+    
+    $.each( houses, function( k, house ) {
+
+        $("#filterselect-" + house).on("change", function() {
+            $.fn.armyFilters(house);
+            $.fn.recalculateStats();
+        });
+        $("#filtertext-" + house).on("keyup", function() {
+            $.fn.armyFilters(house);
+            $.fn.recalculateStats();
+        });
+    });
+});
 
 // Trigger recalculate stats on changing tabs
 $(document).on('turbolinks:load', function(){
@@ -76,29 +81,31 @@ $(document).on('turbolinks:load', function(){
     })
 });
 
-// Trigger recalculate stats on best in place editing
-$(document).on('turbolinks:load', function(){
-    $('.best_in_place').bind("ajax:success", function () {
-        $.fn.recalculateStats()
-    })
-});
-
 // Refresh strength and change classes after best in place editing
 $(document).on('turbolinks:load', function(){
     $('.best_in_place').bind("ajax:success", function(event, data) {
-        var army = JSON.parse(data).army.aid;
+        // Change strenght
         var strenght = JSON.parse(data).army.strenght;
+        var oldStrenght = $(this).closest("tr")[0].cells[1].textContent;
+        
+        $("#count-strenght").html(parseInt($("#count-visible-strenght").text()) + strenght - oldStrenght);
+        
+        $(this).closest("tr")[0].cells[1].textContent = strenght;
+        
+        $.fn.recalculateStats()
+        
+        // Change classes
         var status = JSON.parse(data).army.status;
-        $(this).closest("tr")[0].cells[1].textContent = strenght
+        
         if (status !== "Aniquilado") {
-            $('#' + army).removeClass("destroyed")
+            $(this).closest("tr").removeClass("destroyed")
             } else {
-            $('#' + army).addClass("destroyed")
+            $(this).closest("tr").addClass("destroyed")
         };
         if (status !== "Movilizado") {
-            $('#' + army).removeClass("mobilized")
+            $(this).closest("tr").removeClass("mobilized")
             } else {
-            $('#' + army).addClass("mobilized")
-        };        
+            $(this).closest("tr").addClass("mobilized")
+        };
     })
 });

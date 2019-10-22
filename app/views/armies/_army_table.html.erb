@@ -55,7 +55,7 @@
             </thead>
             <tbody id="table_body">
               <% @armies.each do |army| %>
-                <tr id="<%= army.aid %>" class="<%= army.status == 'Aniquilado' ? 'destroyed' : '' %><%= army.status == 'Movilizado' ? 'mobilized' : '' %>">
+                <tr class="<%= army.status == 'Aniquilado' ? 'destroyed' : '' %><%= army.status == 'Movilizado' ? 'mobilized' : '' %>">
                   <td><%= check_box_tag "army_ids[]", army.id, false, class: "checkbox_selectable" %></td>
                   <td class="strenght" width = "50px"><%= army.army_str %></td>
                   <td width = "300px"><%= link_to army.army_title.truncate(50), edit_army_path(army), remote: true, class: "link-unstyled" %></td>
