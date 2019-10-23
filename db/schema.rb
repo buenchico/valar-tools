@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 20190604171615) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "armies", primary_key: "aid", force: :cascade do |t|
-    t.string "visibility"
+    t.string "visibility", array: true
     t.boolean "visible"
     t.string "kingdom"
     t.string "location"

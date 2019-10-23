@@ -362,7 +362,7 @@ lid: 200115,name_es: "Grajal",name_en: "Rook's Rest",house: "Staunton",hid: 3001
 lid: 200116,name_es: "Stokeworth",name_en: "Stokeworth",house: "Stokeworth",hid: 300120,location_type: "Castillo pequeño",kingdom: "Tierras de la Corona",description: ""
 },
 {
-lid: 200117,name_es: "Rocadragon",name_en: "Dragonstone",house: "Baratheon",hid: 300121,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
+lid: 200117,name_es: "Rocadragon",name_en: "Dragonstone",house: "Targaryen",hid: 300121,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
 },
 {
 lid: 200118,name_es: "Punta Aguda",name_en: "Sharp Point",house: "Bar Emmon",hid: 300122,location_type: "Castillo",kingdom: "Islas del Mar Angosto",description: ""
