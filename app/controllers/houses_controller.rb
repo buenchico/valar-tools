@@ -7,7 +7,7 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all
+    @houses = House.all.order(:hid)
   end
 
   # GET /houses/1
