@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
   before_action :master_user
   before_action :set_variables
-  after_action :set_active_houses, only: [:create, :destroy]
+  after_action :set_active_houses, only: [:create, :destroy, :update]
 
   # GET /houses
   # GET /houses.json
