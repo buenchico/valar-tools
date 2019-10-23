@@ -74,7 +74,6 @@ class ArmiesController < ApplicationController
   def update
     respond_to do |format|
       if @army.update(army_params)
-        @modified_strength = @army.army_str
         format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
         format.json { render :json => {"army" => @army.as_json.merge(:strenght => @army.army_str)} }
       else
