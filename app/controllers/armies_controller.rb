@@ -20,14 +20,13 @@ class ArmiesController < ApplicationController
     end
     
     @total_str = []
+    @total_num = []
     if !@armies.nil? then
       @armies.each do |army|
         @total_str << army.army_str
       end
-    
-      @total_num = []
       @armies.each do |army|
-        @total_num << ( ( army.num + 5 )  * ( army.status == 'Aniquilado' ? 0 : 1 ) )
+        @total_num << ( ( army.num.nil? ? 0 : army.num + 5 )  * ( army.status == 'Aniquilado' ? 0 : 1 ) )
       end
     end
   end

@@ -1,8 +1,8 @@
 class Army < ApplicationRecord
     # Serialize is necessary in development*sqlite3 but make array not working in production/pg
-    if ENV['RAILS_ENV'] != "production" then
-        serialize :visibility, Array
-    end
+    # if ENV['RAILS_ENV'] != "production" then
+    #    serialize :visibility, Array
+    # end
     
     before_create do
         self.aid = [100001, self.class.maximum(:aid).to_i + 1].max if self.aid.nil?

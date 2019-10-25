@@ -14,13 +14,13 @@
         <tr>
           <th scope="col">HID <i class="fas fa-sort"></i></th>
           <th scope="col">Casa <i class="fas fa-sort"></i></th>
-          <th scope="col">¿Activa? <i class="fas fa-sort"></i></th>          
+          <th scope="col" class="sorter-font-awesome">¿Activa? <i class="fas fa-sort"></i></th>          
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
       <tbody>
         <% @houses.each do |house| %>
-          <tr>
+          <tr class="<%= house.active == true ? "" : "destroyed" %>" >
             <td><%= house.hid %></td>
             <td><%= house.name %></td>
             <td class="text-center">
