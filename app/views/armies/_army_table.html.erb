@@ -1,5 +1,5 @@
 <% if current_user.try(:is_master?) then %>
-  <% houses = $active_houses %>
+  <% houses = $active_houses.drop(1) %>
 <% else %>
   <% houses = [current_user.house] %>
 <% end %>
@@ -8,9 +8,10 @@
     <div class="tab-pane fade <%= house == "Master" ? 'active show' : '' %>" id="nav-<%= house %>" role="tabpanel" aria-labelledby="nav-<%= house %>-tab">
   <% else %>
     <div>
-  <% end %>    
+  <% end %>
       <% if house != 'Master' && current_user.try(:is_master?) then %>
         <% @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ?", "%#{house}%") %>
+
       <% end %>
       <%= form_tag edit_multiple_armies_path, remote: true do %>
         <div class="mb-1 form-inline">

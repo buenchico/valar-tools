@@ -23,7 +23,7 @@
 <% if current_user.try(:is_master?) then %>
   <nav>
     <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
-      <% $active_houses.each do |house| %>
+      <% $active_houses.drop(1).each do |house| %>
         <a class="nav-item nav-link <%= house == "Master" ? 'active' : '' %>" id="nav-<%= house %>-tab" data-toggle="tab" href="#nav-<%= house %>" role="tab" aria-controls="nav-<%= house %>" aria-selected="false"><%= house %></a>
       <% end %>
     </div>
