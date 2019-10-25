@@ -20,18 +20,6 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-$.tablesorter.addParser({
-  id: 'font-awesome',
-  is: function(s) {
-    return false;
-  },
-  format: function(s, table, cell) {
-    var $cell = $(cell);
-    return $cell.html() || s;
-  },
-  type: 'text'
-});
-
 // Activating Best In Place
 
 $(document).on('turbolinks:load', function() {
