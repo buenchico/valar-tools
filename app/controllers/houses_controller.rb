@@ -86,7 +86,7 @@ class HousesController < ApplicationController
     end
     
     def set_active_houses
-      $active_houses = ["Master"]
+      $active_houses = ["Inactivo","Master"]
       ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     end
 
