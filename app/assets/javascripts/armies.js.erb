@@ -64,12 +64,12 @@ $(document).on('turbolinks:load', function(){
     $.each( houses, function( k, house ) {
 
         $("#filterselect-" + house).on("change", function() {
-            $.fn.armyFilters(house);
-            $.fn.recalculateStats();
+            $.fn.armyFilters(house)
+            $.fn.recalculateStats()
         });
         $("#filtertext-" + house).on("keyup", function() {
-            $.fn.armyFilters(house);
-            $.fn.recalculateStats();
+            $.fn.armyFilters(house)
+            $.fn.recalculateStats()
         });
     });
 });
