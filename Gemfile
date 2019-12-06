@@ -15,7 +15,7 @@ gem 'autoprefixer-rails', '>= 6.0.3'
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.9.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sassc'
 # Use Uglifier as compressor for JavaScript assets
