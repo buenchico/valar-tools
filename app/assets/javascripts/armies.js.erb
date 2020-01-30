@@ -64,7 +64,7 @@ $(document).on('turbolinks:load', function(){
     $.each( houses, function( k, house ) {
 
         $("#filterselect-" + house).on("change", function() {
-            $.fn.armyFilters(house)
+            $.fn.armyFilters(house) // Why I need to remove the semicolons!!!!!
             $.fn.recalculateStats()
         });
         $("#filtertext-" + house).on("keyup", function() {
