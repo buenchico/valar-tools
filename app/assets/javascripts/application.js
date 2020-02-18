@@ -18,6 +18,9 @@
 //= require jquery-ui/effects/effect-highlight
 //= require best_in_place.jquery-ui
 //= require jquery-tablesorter
+//= require leaflet
+//= require leaflet.draw
+//= require leaflet-easyprint
 //= require rails-ujs
 //= require bootstrap
 //= require turbolinks

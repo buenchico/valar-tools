@@ -1,7 +1,9 @@
 {
   "name": "valar-tools",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "leaflet-easyprint": "2.1.9"
+  },
   "devDependencies": {
     "titatoggle": "^2.1.2"
   }

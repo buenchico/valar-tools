@@ -47,6 +47,8 @@ gem 'bcrypt', '~> 3.1.7'
 # database gems
 gem 'pg', '0.20.0'
 gem 'rails_12factor'
+gem 'leaflet-rails'
+gem 'leaflet-draw-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -58,6 +60,8 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  
+  gem 'rubocop', require: false  
 end
 
 group :development do

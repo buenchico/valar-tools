@@ -70,9 +70,9 @@ class Army < ApplicationRecord
     
     def army_str
         if self.boat == "No"
-            ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? -2 : 0 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
+        ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.infantry? == true ? -2 : 0 ) + ( self.cavalry? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
         else
-            ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.cavalry? == true ? -2 : 0 ) + ( self.marine? == true ? 4 : 0 ) + ( self.boat == 'Sí, Galeras mercantes' ? -2 : 0) + ( self.boat == 'Sí, Dromones' ? 2 : 0) + ( self.flagship? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
+        ( ( 10 + (self.vet.to_i * 2 ) + (self.armour.to_i * 1 ) + (self.morale.to_i * 1 ) + ( self.cavalry? == true ? -2 : 0 ) + ( self.marine? == true ? 4 : 0 ) + ( self.boat == 'Sí, Galeras mercantes' ? -2 : 0) + ( self.boat == 'Sí, Dromones' ? 2 : 0) + ( self.flagship? == true ? 2 : 0 ) ) * ( 10 + ( self.num.to_i * 2 ) ) / 10 ) * ( self.status == 'Aniquilado' ? 0 : 1 )
         end
     end
     
@@ -87,8 +87,8 @@ class Army < ApplicationRecord
     end
 
     def self.import(file)
-        CSV.foreach(file.path, headers: true, converters: [-> field, info { 'visibility' == info.header ? field.split(",") : field.nil? ? nil : field }]) do |row|
-            army = find_by("aid = ?", row["aid"]) || new
+        CSV.foreach(file.path, headers: true, converters: [-> field, info { info.header == 'visibility' ? field.split(",") : field.nil? ? nil : field }]) do |row|
+            army = find_by('aid = ?', row['aid']) || new
             army.attributes = row.to_hash
             army.save!
         end

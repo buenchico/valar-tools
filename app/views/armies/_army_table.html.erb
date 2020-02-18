@@ -73,9 +73,7 @@
                       No, <%= army.visibility.reject(&:blank?).compact.join(', ') unless army.visibility.nil? %>
                     <% end %>
                   </td>
-                  <% if current_user.try(:is_master?) then %>
-                    <td><%= link_to '', army_confirm_path(army), remote: true, class: 'fas fa-trash-alt white' %></td>
-                  <% end %>
+                  <td><%= link_to '', army_confirm_path(army), remote: true, class: 'fas fa-trash-alt white' %></td>
                   <td><%= link_to '', edit_army_path(army), remote: true, class: 'fas fa-edit white' %></td>
                   <% if army.notes.nil? || army.notes.empty? then %>
                     <td><%= link_to '', army_note_path(army), remote:true, class: 'fas fa-sticky-note white' %></td>
