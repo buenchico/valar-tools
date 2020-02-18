@@ -20,7 +20,7 @@
 //= require jquery-tablesorter
 //= require leaflet
 //= require leaflet.draw
-//= require leaflet-easyprint/dist/bundle
+//= require leaflet-easyprint
 //= require rails-ujs
 //= require bootstrap
 //= require turbolinks
