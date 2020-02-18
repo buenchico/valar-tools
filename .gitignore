@@ -30,7 +30,7 @@
 .byebug_history
 
 # Ignore encrypted secrets key file.
-config/secrets.yml.key/node_modules
+config/secrets.yml.key
 
 # Ignore rubocop
 config/.rubocop.yml
