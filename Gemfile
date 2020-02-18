@@ -47,6 +47,7 @@ gem 'bcrypt', '~> 3.1.7'
 # database gems
 gem 'pg', '0.20.0'
 gem 'rails_12factor'
+# leaflef support
 gem 'leaflet-rails'
 gem 'leaflet-draw-rails'
 
