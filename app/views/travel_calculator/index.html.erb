@@ -100,7 +100,10 @@ $(document).ready(function(){
 });
 </script>
 
-<%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
+<% end %>
 
 <% provide(:title, $tools[:routes][:title]) %>
 <% provide(:version, $tools[:routes][:version]) %>

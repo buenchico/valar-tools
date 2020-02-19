@@ -98,10 +98,14 @@ var printer = L.easyPrint({
   		hideControlContainer: false
 }).addTo(map);
 
+map.on('easyPrint-start', e => {
+  console.log(Date(Date.now()));
+});
 
-function manualPrint () {
-	printer.printMap('CurrentSize', 'MyManualPrint')
-}
+map.on('easyPrint-finished', e => {
+  console.log(Date(Date.now()));
+});
+
 
 </script>
 
