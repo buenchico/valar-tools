@@ -1,19 +1,18 @@
 document.addEventListener("turbolinks:load", function() {
-    $("#path-type").click(function(){
-        console.log("click")
-        if (this.checked) {
-            $(".land").hide();
-            $(".sea").show();
-        }
-        else {
-            $(".sea").hide();
-            $(".land").show();
-        }
-    });
-});
-
-document.addEventListener("turbolinks:load", function() {
-    $("#delete_result").on("click", function(){
-        $("#result").hide();
-    });
+    if ($(".travel_calculator.index").length !== 0 ) {
+        $("#path-type").click(function(){
+            if (this.checked) {
+                $(".land").hide();
+                $(".sea").show();
+            }
+            else {
+                $(".sea").hide();
+                $(".land").show();
+            }
+        });
+        
+        $("#delete_result").on("click", function(){
+            $("#result").hide();
+        });
+    }
 });
