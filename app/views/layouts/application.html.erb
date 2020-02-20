@@ -6,13 +6,11 @@
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
-    <%= yield :javascript_includes %>    
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
       <div class="container mx-auto text-center alert alert-<%= message_type %>" style=""><%= message %></div>
@@ -20,6 +18,7 @@
     <div class="container content">
       <%= yield %>
     </div>
+
 <%= debug(params) if Rails.env.development? %>
 
   </body>

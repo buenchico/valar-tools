@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'travel_calculator', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'map', 'data-turbolinks-track': 'reload' %>
 
 <% provide(:title, $tools[:map][:title]) %>
 <% provide(:version, $tools[:map][:version]) %>
@@ -11,9 +11,10 @@
 
 <div id="mapid" style="height: 800px; width: 960px;"></div>
 
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
+
 <script>
-    // Set the button title text for the polygon button
-    L.drawLocal.draw.toolbar.buttons.polyline = 'Draw a sexy polygon!';
+$(document).ready(function(){
 
 var bounds = [[0,0], [1558.85850178359,1000]];
 
@@ -29,6 +30,9 @@ var map = L.map('mapid', {
 var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 0.5}).addTo(map);
 
 map.fitBounds(bounds);
+
+// Set the button title text for the polygon button
+L.drawLocal.draw.toolbar.buttons.polyline = 'Draw a sexy polygon!';
 
 L.GridLayer.GridDebug = L.GridLayer.extend({
   createTile: function (coords) {
@@ -106,7 +110,5 @@ map.on('easyPrint-finished', e => {
   console.log(Date(Date.now()));
 });
 
-
+});
 </script>
-
-<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
