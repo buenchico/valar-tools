@@ -10,13 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require leaflet
- *= require leaflet.draw
- *= require jquery-ui
  */
  
+@import "jquery-ui.css";
 @import "bootstrap";
 @import "_custom";
 @import "_titatoggle";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "leaflet";
+@import "leaflet.draw";

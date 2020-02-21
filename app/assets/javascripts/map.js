@@ -1,5 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
     if ($(".map.index").length !== 0 ) {
+      var container = L.DomUtil.get('mapid'); if(container != null){ container._leaflet_id = null; }
+      
       var bounds = [[0,0], [1558.85850178359,1000]];
       
       var map = L.map('mapid', {
