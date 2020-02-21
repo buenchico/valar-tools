@@ -37,10 +37,6 @@ document.addEventListener("turbolinks:load", function() {
       
       map.addLayer(L.gridLayer.gridDebug());
       
-      var sol = L.latLng([ 0, 0 ]);
-      var sol2 = L.latLng([ 1558, 1000 ]);
-      L.marker(sol).addTo(map);
-      L.marker(sol2).addTo(map);
       map.setView( [500, 500], 1);
       
       
@@ -89,11 +85,11 @@ document.addEventListener("turbolinks:load", function() {
       }).addTo(map);
       
       map.on('easyPrint-start', e => {
-        console.log(Date(Date.now()));
+        $('#printing').removeClass('invisible')
       });
       
       map.on('easyPrint-finished', e => {
-        console.log(Date(Date.now()));
+        $('#printing').addClass('invisible')
       });
     }
 });

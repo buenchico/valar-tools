@@ -9,6 +9,8 @@
     <%= yield(:title) %></span>
 </div>
 
-<div id="mapid" style="height: 800px; width: 960px;"></div>
+<div id="mapid" style="height: 800px; width: 960px;">
+    <div class="loader mx-auto mt-5 invisible" id="printing"></div>
+</div>
 
 <div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
