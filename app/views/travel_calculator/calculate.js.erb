@@ -1,4 +1,5 @@
 <% if @time.sum == 0 %>
+    $('#result').removeClass('bg-success')
     $('#result').addClass('bg-danger')
     $('#result_text').html(`
         <div class="card-header">Error</div>
@@ -8,6 +9,7 @@
     `);
     $('#result').slideDown(350);    
 <% else %>
+    $('#result').removeClass('bg-danger')
     $('#result').addClass('bg-success')
     $('#result_text').html(`
         <% if @step == 0 %> 
