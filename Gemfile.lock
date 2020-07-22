@@ -221,7 +221,7 @@ DEPENDENCIES
   autoprefixer-rails (>= 6.0.3)
   bcrypt (~> 3.1.7)
   best_in_place (~> 3.0.1)
-  bootstrap (>= 4.1.1)
+  bootstrap (>= 4.4.1)
   byebug
   capybara (~> 2.13)
   clipboard-rails
@@ -240,7 +240,7 @@ DEPENDENCIES
   rails_12factor
   recaptcha
   rubocop
-  sassc
+  sassc-rails
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

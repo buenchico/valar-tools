@@ -10,14 +10,14 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Bootstrap framework for CSS
-gem 'bootstrap', '>= 4.1.1'
-gem 'autoprefixer-rails', '>= 6.0.3' 
+gem 'bootstrap', '>= 4.4.1'
+gem 'autoprefixer-rails', '>= 6.0.3'
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.9.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sassc'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery
@@ -61,8 +61,8 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  
-  gem 'rubocop', require: false  
+
+  gem 'rubocop', require: false
 end
 
 group :development do
