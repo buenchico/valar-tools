@@ -35,15 +35,6 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [500, 500], 1);
 
-      var latlngs = [
-          [45.51, 100],
-          [37.77, 150],
-          [34.04, 200]
-      ];
-      var polyline = L.polyline(latlngs, {color: 'red'})
-          .addTo(map)
-      var marker = L.marker([20, 27]).addTo(map);
-
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
 
