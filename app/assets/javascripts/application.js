@@ -22,7 +22,8 @@
 //= require leaflet.draw
 //= require leaflet-easyprint
 //= require rails-ujs
-//= require bootstrap
+//= require popper
 //= require turbolinks
+//= require bootstrap
 //= require clipboard
 //= require_tree .

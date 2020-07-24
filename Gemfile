@@ -10,7 +10,7 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Bootstrap framework for CSS
-gem 'bootstrap', '>= 4.4.1'
+gem 'bootstrap', '>= 4.5.0'
 gem 'autoprefixer-rails', '>= 6.0.3'
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.9.0'
@@ -21,7 +21,7 @@ gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery
-gem 'jquery-rails', '>= 4.3.3'
+gem 'jquery-rails', '>= 4.4.0'
 gem 'jquery-ui-rails', '>= 6.0.1'
 # Access to the clipboard
 gem 'clipboard-rails'

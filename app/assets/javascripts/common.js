@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function() {
 
 // Accessing the clipboard
 
-$(document).on('turbolinks:load', function() {  
+$(document).on('turbolinks:load', function() {
   var clipboard = new Clipboard('.clipboard-btn');
 });
 
@@ -47,19 +47,19 @@ $(document).on('turbolinks:load', function() {
 // Select all checkboxes
 $(document).on('turbolinks:load', function(e) {
     var $checkboxes = $('input[type="checkbox"]');
-        
+
     $checkboxes.change(function(){
         var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
         if (countCheckedCheckboxes == 0 ) $(".mass_edit_button").prop( "disabled", true );
         if (countCheckedCheckboxes != 0) $(".mass_edit_button").prop( "disabled", false );
-    });  
+    });
 
     // :visible only select visible rows
 
     $(".ckbCheckAll").click(function () {
         $(".checkbox_selectable:visible").prop('checked', $(this).prop('checked'));
     });
-    
+
     $(".checkbox_selectable").change(function(){
         if (!$(this).prop("checked")){
             $(".ckbCheckAll").prop("checked",false);
@@ -113,8 +113,3 @@ $(document).on('turbolinks:load', function(e) {
 //     });
 //   });
 // });
-
-// Tooltips
-$(document).on('turbolinks:load', function() {
-  $( document ).tooltip();
-});

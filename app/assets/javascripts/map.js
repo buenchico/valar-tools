@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
     if ($(".map.index").length !== 0 ) {
-      
+
       var bounds = [[0,0], [1558.85850178359,1000]];
 
       var map = L.map('mapid', {
@@ -11,11 +11,11 @@ document.addEventListener("turbolinks:load", function() {
           maxBounds: bounds,
           maxBoundsViscosity: 1.0
       });
-      
+
       var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 0.5}).addTo(map);
-      
+
       map.fitBounds(bounds);
-      
+
       L.GridLayer.GridDebug = L.GridLayer.extend({
         createTile: function (coords) {
           const tile = document.createElement('div');
@@ -26,29 +26,27 @@ document.addEventListener("turbolinks:load", function() {
           return tile;
         },
       });
-      
+
       L.gridLayer.gridDebug = function (opts) {
         return new L.GridLayer.GridDebug(opts);
       };
-      
+
       map.addLayer(L.gridLayer.gridDebug());
-      
+
       map.setView( [500, 500], 1);
-      
+
       var latlngs = [
           [45.51, 100],
           [37.77, 150],
           [34.04, 200]
       ];
       var polyline = L.polyline(latlngs, {color: 'red'})
-          .addTo(map);
+          .addTo(map)
       var marker = L.marker([20, 27]).addTo(map);
-          
+
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
-      
-      // Polyline drawing
-      
+
       // Set the button title text for the polygon button
       L.drawLocal.draw.toolbar.buttons.polyline = 'Draw a sexy polygon!';
 
@@ -71,9 +69,9 @@ document.addEventListener("turbolinks:load", function() {
           edit: false
         }
       });
-      
+
       map.addControl(drawControl);
-      
+
       map.on('draw:created', function (e) {
           var type = e.layerType,
               layer = e.layer;
@@ -86,7 +84,7 @@ document.addEventListener("turbolinks:load", function() {
       });
 
       // Saving as image
-      
+
       // Custom image size
       var fullMap = {
 	      width: 1000,
@@ -94,7 +92,7 @@ document.addEventListener("turbolinks:load", function() {
 	      className: 'fullMap',
 	      name: 'A custom A3 size'
       }
-      
+
       var printer = L.easyPrint({
         		title: 'Exportar mapa',
         		sizeModes: ['Current',fullMap],
@@ -103,19 +101,15 @@ document.addEventListener("turbolinks:load", function() {
         		exportOnly: true,
         		hideControlContainer: true
       }).addTo(map);
-      
+
       map.on('easyPrint-start', e => {
         $('#printing').removeClass('invisible')
       });
-      
+
       map.on('easyPrint-finished', e => {
         $('#printing').addClass('invisible')
       });
-    
-    // Measure controls
-    //https://github.com/ljagis/leaflet-measure
-   
-    
+
     // Debugging options
     map.on('click', function(e){
       var coord = e.latlng;
