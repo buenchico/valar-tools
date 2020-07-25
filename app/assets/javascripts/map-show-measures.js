@@ -62,7 +62,7 @@
         var unit,
             hex;
 
-        d = d / 36;
+        d = d / 34;
         unit = 'hex';
 
         return d.toFixed(2) + ' ' + unit;
