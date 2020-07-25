@@ -35,6 +35,19 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [500, 500], 1);
 
+      var latlngs = [
+          [45.51, 100],
+          [37.77, 150],
+          [34.04, 200]
+      ];
+      var polyline = L.polyline(latlngs, {
+        color: 'red',
+        showMeasurements: true,
+        measurementOptions: { hex:true }
+          })
+          .addTo(map);
+      var marker = L.marker([20, 27]).addTo(map);
+
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
 
@@ -44,7 +57,7 @@ document.addEventListener("turbolinks:load", function() {
       var drawControl = new L.Control.Draw({
         draw: {
       		polyline: {
-      		  //showLength: false,
+      		  showLength: false,
       			shapeOptions: {
       				color: '#ff0000',
       				weight: 10
@@ -69,7 +82,7 @@ document.addEventListener("turbolinks:load", function() {
           drawnItems.addLayer(layer);
           var distance = e.layer._latlngs[0]
           //console.log(this._getTooltipText())
-          //console.log(distance.distanceTo(e.layer._latlngs[1]));
+          console.log(distance.distanceTo(e.layer._latlngs[1]));
           //console.log(e.layer)
           console.log(e.layer)
       });
