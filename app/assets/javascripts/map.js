@@ -35,38 +35,33 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [500, 500], 1);
 
-      var latlngs = [
-          [45.51, 100],
-          [37.77, 150],
-          [34.04, 200]
-      ];
-      var polyline = L.polyline(latlngs, {
-        color: 'red',
-        showMeasurements: true,
-        measurementOptions: { hex:true }
-          })
-          .addTo(map);
-      var marker = L.marker([20, 27]).addTo(map);
-
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
 
       // Set the button title text for the polygon button
-      L.drawLocal.draw.toolbar.buttons.polyline = 'Draw a sexy polygon!';
+      L.drawLocal.draw.toolbar.buttons.polyline = 'Dibuja tu ruta';
+      L.drawLocal.draw.toolbar.buttons.marker = 'Añade tu marcador';
+
+      // Set basic polyline colour to red
+      var colours = ['DarkRed','LimeGreen','SteelBlue','DarkMagenta','Gold','Black'];
 
       var drawControl = new L.Control.Draw({
         draw: {
       		polyline: {
       		  showLength: false,
       			shapeOptions: {
-      				color: '#ff0000',
+      				color: colours[0],
       				weight: 10
       			}
       		},
           polygon: false,
           rectangle: false,
           circle: false,
-          marker: false
+          marker: {icon: new L.DivIcon({
+            iconAnchor: [10, 25], // point of the icon which will correspond to marker's location
+            className: 'markerClass',
+            html: 'A'
+          })}
         },
         edit: {
           featureGroup: drawnItems,
@@ -80,11 +75,27 @@ document.addEventListener("turbolinks:load", function() {
           var type = e.layerType,
               layer = e.layer;
           drawnItems.addLayer(layer);
-          var distance = e.layer._latlngs[0]
-          //console.log(this._getTooltipText())
-          console.log(distance.distanceTo(e.layer._latlngs[1]));
-          //console.log(e.layer)
-          console.log(e.layer)
+          console.log(e.layer);
+          console.log($("path").length)
+          console.log(colours.length)
+          drawControl.setDrawingOptions({
+            polyline: {
+        		  showLength: false,
+        			shapeOptions: {
+        				color: colours[Math.max($("path").length,1)% colours.length - 1],
+        				weight: 10
+        			}
+            },
+            marker: {
+              icon: new L.DivIcon({
+                iconAnchor: [10, 25], // point of the icon which will correspond to marker's location
+                className: 'markerClass',
+                html: String.fromCharCode(64 + Math.max($('.markerClass').length,1))
+              })
+            }
+          });
+          map.removeControl(drawControl);
+          map.addControl(drawControl);
       });
 
       // Saving as image
@@ -94,13 +105,13 @@ document.addEventListener("turbolinks:load", function() {
 	      width: 1000,
 	      height: 1558.85850178359,
 	      className: 'fullMap',
-	      name: 'A custom A3 size'
+	      name: 'Mapa completo'
       }
 
       var printer = L.easyPrint({
         		title: 'Exportar mapa',
         		sizeModes: ['Current',fullMap],
-        		defaultSizeTitles: {Current: 'Visible'},
+        		defaultSizeTitles: {Current: 'Zona visible'},
         		filename: 'myMap',
         		exportOnly: true,
         		hideControlContainer: true
@@ -114,12 +125,12 @@ document.addEventListener("turbolinks:load", function() {
         $('#printing').addClass('invisible')
       });
 
-    // Debugging options
-    map.on('click', function(e){
-      var coord = e.latlng;
-      var lat = coord.lat;
-      var lng = coord.lng;
-      console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
-    });
+      // Debugging options
+      map.on('click', function(e){
+        var coord = e.latlng;
+        var lat = coord.lat;
+        var lng = coord.lng;
+        console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
+      });
   }
 });
