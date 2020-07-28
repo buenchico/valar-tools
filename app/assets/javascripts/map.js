@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
-    if ($(".map.index").length !== 0 ) {
+  console.log($(".map.full"));
+    if ($(".map.index").length !== 0 || $(".map.full").length !== 0) {
 
       var bounds = [[0,0], [1558.85850178359,1000]];
 
@@ -9,12 +10,17 @@ document.addEventListener("turbolinks:load", function() {
           minZoom: 0,
           maxZoom: 3,
           maxBounds: bounds,
-          maxBoundsViscosity: 1.0
+          maxBoundsViscosity: 1.0,
+          fullscreenControl: true,
+          fullscreenControlOptions: {
+            position: 'topleft' }     
       });
 
-      var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 0.5}).addTo(map);
+      var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 1}).addTo(map);
 
       map.fitBounds(bounds);
+
+      /* Debug grid
 
       L.GridLayer.GridDebug = L.GridLayer.extend({
         createTile: function (coords) {
@@ -27,11 +33,15 @@ document.addEventListener("turbolinks:load", function() {
         },
       });
 
+
+
       L.gridLayer.gridDebug = function (opts) {
         return new L.GridLayer.GridDebug(opts);
       };
 
       map.addLayer(L.gridLayer.gridDebug());
+
+      */
 
       map.setView( [500, 500], 1);
 
@@ -58,7 +68,7 @@ document.addEventListener("turbolinks:load", function() {
           rectangle: false,
           circle: false,
           marker: {icon: new L.DivIcon({
-            iconAnchor: [10, 25], // point of the icon which will correspond to marker's location
+            iconAnchor: [10, 35], // point of the icon which will correspond to marker's location
             className: 'markerClass',
             html: 'A'
           })}
@@ -88,7 +98,7 @@ document.addEventListener("turbolinks:load", function() {
             },
             marker: {
               icon: new L.DivIcon({
-                iconAnchor: [10, 25], // point of the icon which will correspond to marker's location
+                iconAnchor: [10, 35], // point of the icon which will correspond to marker's location
                 className: 'markerClass',
                 html: String.fromCharCode(64 + Math.max($('.markerClass').length,1))
               })
@@ -112,7 +122,7 @@ document.addEventListener("turbolinks:load", function() {
         		title: 'Exportar mapa',
         		sizeModes: ['Current',fullMap],
         		defaultSizeTitles: {Current: 'Zona visible'},
-        		filename: 'myMap',
+        		filename: 'westeros',
         		exportOnly: true,
         		hideControlContainer: true
       }).addTo(map);

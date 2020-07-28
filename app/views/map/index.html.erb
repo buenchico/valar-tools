@@ -4,13 +4,14 @@
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
-    <%= yield(:title) %></span>
+    <%= yield(:title) %>
+    <sup><i class="small fas fa-external-link-alt"></i></sup>
 </div>
 
-<div class="container" style="width: 960px;">
+<div class="container">
     <div class="loader mx-auto mt-5 invisible" id="printing"></div>
-    
-    <div id="mapid" style="margin-top: -150px; height: 800px; width: 960px;"></div>
+
+    <div id="mapid" style="margin-top: -160px; height: 800px; width: 100%;"></div>
 </div>
 
 <div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
