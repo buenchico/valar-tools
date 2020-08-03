@@ -29,7 +29,7 @@ gem 'clipboard-rails'
 # gem 'therubyracer', platforms: :ruby
 gem 'best_in_place', '~> 3.0.1'
 # allow google recaptcha v2
-gem "recaptcha"
+gem 'recaptcha', '~> 5.5'
 # Table sorting
 gem 'jquery-tablesorter'
 # Use CoffeeScript for .coffee assets and views

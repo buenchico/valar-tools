@@ -3,7 +3,7 @@
       <%= render 'layouts/login' %>
 </div>
 
-<header class="bg-black">
+<header id="header" class="bg-black">
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark">
       <%= link_to image_tag("tools.png", :alt => "Valar Tools", id: "logo"), root_path, class: "navbar-brand" %>
@@ -13,7 +13,7 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#loginModal"><i class="fas fa-user"></i>
               Iniciar sesión
-            </button> 
+            </button>
           <% end %>
           <li class="nav-item">
             <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %></li>
@@ -27,7 +27,7 @@
                 <% if current_user.is_master? %>
                   <% $master_tools.each do |k, v|  %>
                     <%= link_to $master_tools[k][:title], $master_tools[k][:path], class: "dropdown-item" %>
-                  <% end %>                
+                  <% end %>
                   <div class="dropdown-divider"></div>
                 <% end %>
               <% end %>
@@ -40,7 +40,7 @@
               <% end %>
               <% if current_user %>
                 <a href="<%= logout_path %>" class="dropdown-item"><i class="fas fa-sign-out-alt"></i></i>  Cerrar sesión</a>
-              <% end %>              
+              <% end %>
             </div>
           </li>
         </ul>

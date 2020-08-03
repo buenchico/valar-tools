@@ -81,22 +81,27 @@ L.Control.FullScreen = L.Control.extend({
 
 	toggleFullScreen: function () {
 		var map = this._map;
+		// select whole container instead of just the map, replaced all 'map._container' for 'map_container'
+		var map_container = $('#map-container')[0];
+
 		map._exitFired = false;
 		if (map._isFullscreen) {
+			$('#map-container').removeClass('fs');
 			if (fullScreenApi.supportsFullScreen && !this.options.forcePseudoFullscreen) {
 				fullScreenApi.cancelFullScreen();
 			} else {
-				L.DomUtil.removeClass(this.options.fullscreenElement ? this.options.fullscreenElement : map._container, 'leaflet-pseudo-fullscreen');
+				L.DomUtil.removeClass(this.options.fullscreenElement ? this.options.fullscreenElement : map_container, 'leaflet-pseudo-fullscreen');
 			}
 			map.fire('exitFullscreen');
 			map._exitFired = true;
 			map._isFullscreen = false;
 		}
 		else {
+			$('#map-container').addClass('fs');
 			if (fullScreenApi.supportsFullScreen && !this.options.forcePseudoFullscreen) {
-				fullScreenApi.requestFullScreen(this.options.fullscreenElement ? this.options.fullscreenElement : map._container);
+				fullScreenApi.requestFullScreen(this.options.fullscreenElement ? 'this.options.fullscreenElement' : map_container);
 			} else {
-				L.DomUtil.addClass(this.options.fullscreenElement ? this.options.fullscreenElement : map._container, 'leaflet-pseudo-fullscreen');
+				L.DomUtil.addClass(this.options.fullscreenElement ? this.options.fullscreenElement : map_container, 'leaflet-pseudo-fullscreen');
 			}
 			map.fire('enterFullscreen');
 			map._isFullscreen = true;

@@ -1,19 +1,28 @@
 document.addEventListener("turbolinks:load", function() {
-  console.log($(".map.full"));
     if ($(".map.index").length !== 0 || $(".map.full").length !== 0) {
 
-      var bounds = [[0,0], [1558.85850178359,1000]];
+      $(window).resize(function(){
+        if ($('#map-container').hasClass('fs') ) {
+          $('#mapid').height(window.innerHeight);
+        } else {
+          $('#mapid').height(window.innerHeight - $("#header").height() - 102);
+        }
+      });
+
+      //var bounds = [[0,0], [1558.85850178359,1000]];
+      var bounds = [[-13,1],[40,35]]
+      //var bounds = [[0,0],[53,34]]
 
       var map = L.map('mapid', {
           crs: L.CRS.Simple,
           //drawControl: true,
-          minZoom: 0,
-          maxZoom: 3,
+          minZoom: 5,
+          maxZoom: 7,
           maxBounds: bounds,
           maxBoundsViscosity: 1.0,
           fullscreenControl: true,
           fullscreenControlOptions: {
-            position: 'topleft' }     
+            position: 'topleft' }
       });
 
       var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 1}).addTo(map);
@@ -33,8 +42,6 @@ document.addEventListener("turbolinks:load", function() {
         },
       });
 
-
-
       L.gridLayer.gridDebug = function (opts) {
         return new L.GridLayer.GridDebug(opts);
       };
@@ -43,10 +50,11 @@ document.addEventListener("turbolinks:load", function() {
 
       */
 
-      map.setView( [500, 500], 1);
+      map.setView( [26.5, 18], 5);
 
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
+
 
       // Set the button title text for the polygon button
       L.drawLocal.draw.toolbar.buttons.polyline = 'Dibuja tu ruta';
@@ -112,8 +120,8 @@ document.addEventListener("turbolinks:load", function() {
 
       // Custom image size
       var fullMap = {
-	      width: 1000,
-	      height: 1558.85850178359,
+	      width: 800,
+	      height: 720,
 	      className: 'fullMap',
 	      name: 'Mapa completo'
       }
@@ -129,6 +137,10 @@ document.addEventListener("turbolinks:load", function() {
 
       map.on('easyPrint-start', e => {
         $('#printing').removeClass('invisible')
+        //map.setView( [-30, 1], 6);
+        //if (e.event.target.className == 'fullMap') {
+
+        //}
       });
 
       map.on('easyPrint-finished', e => {
