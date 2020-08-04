@@ -50,17 +50,16 @@ document.addEventListener("turbolinks:load", function() {
 
       */
 
-      map.setView( [26.5, 18], 5);
+      map.setView( [13.5, 18], 5);
 
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
-
 
       // Set the button title text for the polygon button
       L.drawLocal.draw.toolbar.buttons.polyline = 'Dibuja tu ruta';
       L.drawLocal.draw.toolbar.buttons.marker = 'Añade tu marcador';
 
-      // Set basic polyline colour to red
+      // Set polyline colours array
       var colours = ['DarkRed','LimeGreen','SteelBlue','DarkMagenta','Gold','Black'];
 
       var drawControl = new L.Control.Draw({
@@ -93,9 +92,6 @@ document.addEventListener("turbolinks:load", function() {
           var type = e.layerType,
               layer = e.layer;
           drawnItems.addLayer(layer);
-          console.log(e.layer);
-          console.log($("path").length)
-          console.log(colours.length)
           drawControl.setDrawingOptions({
             polyline: {
         		  showLength: false,
@@ -120,8 +116,8 @@ document.addEventListener("turbolinks:load", function() {
 
       // Custom image size
       var fullMap = {
-	      width: 800,
-	      height: 720,
+	      width: 1080,
+	      height: 1700,
 	      className: 'fullMap',
 	      name: 'Mapa completo'
       }
@@ -137,10 +133,9 @@ document.addEventListener("turbolinks:load", function() {
 
       map.on('easyPrint-start', e => {
         $('#printing').removeClass('invisible')
-        //map.setView( [-30, 1], 6);
-        //if (e.event.target.className == 'fullMap') {
-
-        //}
+        if (e.event.target.className == 'fullMap') {
+          map.setView( [13.5, 18], 5);
+        }
       });
 
       map.on('easyPrint-finished', e => {
