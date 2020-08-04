@@ -89,6 +89,7 @@ document.addEventListener("turbolinks:load", function() {
       map.addControl(drawControl);
 
       map.on('draw:created', function (e) {
+        console.log($("path").length % colours.length)
           var type = e.layerType,
               layer = e.layer;
           drawnItems.addLayer(layer);
@@ -96,7 +97,7 @@ document.addEventListener("turbolinks:load", function() {
             polyline: {
         		  showLength: false,
         			shapeOptions: {
-        				color: colours[Math.max($("path").length,1)% colours.length - 1],
+        				color: colours[($("path").length -1) % colours.length],
         				weight: 10
         			}
             },
