@@ -58,11 +58,12 @@
         return new L.Marker.Measurement(latLng, measurement, title, rotation, options);
     };
 
+    // fixing scale
     var formatDistance = function(d) {
         var unit,
             hex;
 
-        d = d / 34;
+        d = d / 1.17;
         unit = 'hex';
 
         return d.toFixed(2) + ' ' + unit;
