@@ -25,7 +25,7 @@ document.addEventListener("turbolinks:load", function() {
             position: 'topleft' }
       });
 
-      var image = L.imageOverlay('/assets/mapa-westeros-dec24bc9399e708169f8deca898de8766322062bc281174771ff3a5bc0f5dd4a.jpg', bounds, {opacity: 1}).addTo(map);
+      var image = L.imageOverlay('/assets/mapa-westeros.jpg', bounds, {opacity: 1}).addTo(map);
 
       map.fitBounds(bounds);
 
@@ -51,6 +51,12 @@ document.addEventListener("turbolinks:load", function() {
       */
 
       map.setView( [13.5, 18], 5);
+
+      <% Location.all.each do |location| %>
+        <% if location.y != nil %>
+          L.marker([<%= location.y %>,<%= location.x %>]).addTo(map);
+        <% end %>
+      <% end %>
 
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);

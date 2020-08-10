@@ -1,39 +1,37 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, $tools[:locations][:title]) %>
+<% provide(:version, $tools[:locations][:version]) %>
+<% provide(:icon, $tools[:locations][:icon]) %>
 
-<h1>Locations</h1>
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Lid</th>
-      <th>Name es</th>
-      <th>Name en</th>
-      <th>House</th>
-      <th>Hid</th>
-      <th>Type</th>
-      <th>Kingdom</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= location.lid %></td>
-        <td><%= best_in_place location, :name_es %></td>
-        <td><%= location.name_en %></td>
-        <td><%= location.house %></td>
-        <td><%= location.hid %></td>
-        <td><%= location.location_type %></td>
-        <td><%= location.kingdom %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<table id="location_list" class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+  <caption>Lista de lugates</caption>
+    <thead>
+      <tr id="table_title">
+        <th scope="col">Nombre <i class="fas fa-sort"></i></th>
+        <th scope="col">Casa <i class="fas fa-sort"></i></th>
+        <th scope="col">Tipo <i class="fas fa-sort"></i></th>
+        <th scope="col">Reino <i class="fas fa-sort"></i></th>
+        <th scope="col">Descripción <i class="fas fa-sort"></i></th>
+        <th scope="col" colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
+    <tbody id="table_body">
+      <% @locations.each do |location| %>
+        <tr>
+          <td width = "300px"><%= location.name_es %></td>
+          <td width = "300px"></td>
+          <td width = "180px"><%= location.location_type %></td>
+          <td width = "180px"><%= location.kingdom %></td>
+          <td width = "180px"><%= location.description %><</td>
+          <td><%= link_to '', '', remote: true, class: 'fas fa-trash-alt white' %></td>
+          <td><%= link_to '', edit_location_path(location), remote: true, class: 'fas fa-edit white' %></td>
+        </tr>
+      <% end %>
+    </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Location', new_location_path %>
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>

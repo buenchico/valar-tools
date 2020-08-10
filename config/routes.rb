@@ -1,36 +1,36 @@
 Rails.application.routes.draw do
 
   root 'static_pages#home'
-  
+
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
-  
+
   resources :users
   patch '/users/:id/password', to: 'users#password', as: 'password'
   # post 'users/(/:id)/password', to: 'users#password', as: 'password'
-  
+
   resources :houses, :except => [:show]
-  
+
   resources :armies, :except => [:show] do
     collection do
       put 'update_multiple'
-      put 'destroy_multiple'      
+      put 'destroy_multiple'
       post 'edit_multiple'
       post 'import'
     end
   end
   get '/armies/:id/notes', to: 'armies#notes', as: 'army_note'
-  get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm' 
+  get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm'
 
   # Login and logout routes
   post 'login', to: 'sessions#create', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  # resources :locations
+  resources :locations
 
   get  '/about', to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
-  
+
   get '/map', to: 'map#index'
 
   # get 'missions/', to: 'missions#index'
@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   get 'travel_calculator', to: 'travel_calculator#index'
   post 'travel_calculator/calculate', to: 'travel_calculator#calculate'
   # get 'travel_calculator/location_list', to: 'travel_calculator#location_list'
-  
-  # Render JSON lists for autocomplete 
-  
+
+  # Render JSON lists for autocomplete
+
   get 'location_list', to: 'application#location_list'
   get 'family_list', to: 'application#family_list'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190604171615) do
+ActiveRecord::Schema.define(version: 20200810180006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20190604171615) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "families", force: :cascade do |t|
+    t.integer "fid"
+    t.string "name"
+    t.string "lord"
+    t.string "members"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "branch", default: "Elder"
+  end
+
   create_table "houses", force: :cascade do |t|
     t.integer "hid"
     t.string "name"
@@ -52,13 +62,16 @@ ActiveRecord::Schema.define(version: 20190604171615) do
     t.integer "lid"
     t.string "name_es"
     t.string "name_en"
-    t.string "house"
-    t.integer "hid"
     t.string "location_type"
     t.string "kingdom"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "x"
+    t.float "y"
+    t.bigint "family_id"
+    t.integer "visibility", default: 1
+    t.index ["family_id"], name: "index_locations_on_family_id"
   end
 
   create_table "recipes", force: :cascade do |t|

@@ -1,10 +1,11 @@
 // Copy selected to clipboard
 $(document).on('turbolinks:load', function(){
+
     $(function () {
         //Assign Click event to Button.
         $(".copy").click(function () {
             var message = "";
- 
+
             //Loop through all checked CheckBoxes in GridView.
             $("input[type=checkbox]:visible:checked").each(function () {
                 var row = $(this).closest("tr")[0];
@@ -17,7 +18,7 @@ $(document).on('turbolinks:load', function(){
                   message += "\n";
                 };
             });
-            
+
             // Create a dummy input to copy the string array inside it
             var dummy = document.createElement("textarea");
             // Add it to the document
@@ -47,20 +48,20 @@ $.fn.armyFilters = function(house){
 $.fn.recalculateStats = function(){
     var countArmies = $('input[type="checkbox"]:visible').length - 1;
     $("#count-visible").html(countArmies);
-    
+
     var countStrenght = 0;
     $('.strenght:visible').each(function(){
         countStrenght += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
-    });    
+    });
     $("#count-visible-strenght").html(countStrenght);
     $("#count-strenght").html(countStrenght);
 }
 
 
-// Trigger filters		
+// Trigger filters
 $(document).on('turbolinks:load', function(){
     var houses = <%= $active_houses %>;
-    
+
     $.each( houses, function( k, house ) {
 
         $("#filterselect-" + house).on("change", function() {
@@ -77,7 +78,7 @@ $(document).on('turbolinks:load', function(){
 // Trigger recalculate stats on changing tabs
 $(document).on('turbolinks:load', function(){
     $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        $.fn.recalculateStats()     
+        $.fn.recalculateStats()
     })
 });
 
@@ -87,16 +88,16 @@ $(document).on('turbolinks:load', function(){
         // Change strenght
         var strenght = JSON.parse(data).army.strenght;
         var oldStrenght = $(this).closest("tr")[0].cells[1].textContent;
-        
+
         $("#count-strenght").html(parseInt($("#count-visible-strenght").text()) + strenght - oldStrenght);
-        
+
         $(this).closest("tr")[0].cells[1].textContent = strenght;
-        
+
         $.fn.recalculateStats()
-        
+
         // Change classes
         var status = JSON.parse(data).army.status;
-        
+
         if (status !== "Aniquilado") {
             $(this).closest("tr").removeClass("destroyed")
             } else {
