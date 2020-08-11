@@ -52,48 +52,7 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [13.5, 18], 5);
 
-      var locations_big = new L.FeatureGroup();
-      var locations_small = new L.FeatureGroup();
-
-      <% Location.all.each do |location| %>
-        <% if location.icon.nil? %>
-          <% nil %>
-        <% else %>
-          locations_big.addLayer(
-            L.marker(
-              [<%= location.y %>,<%= location.x %>],
-              { icon: L.icon({
-                  iconUrl: '/assets/' + '<%= location.icon[0] %>',
-                  iconSize: [<%= location.icon[1] %>],iconAnchor: [<%= (location.icon[1] / 2) %>,<%= (location.icon[1] / 2) %>]
-                })
-              }
-            ).bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>')
-          );
-        <% end %>
-      <% end %>
-
-      <% Location.all.each do |location| %>
-        <% if location.icon.nil? %>
-          <% nil %>
-        <% else %>
-          locations_small.addLayer(
-            L.marker(
-              [<%= location.y %>,<%= location.x %>],
-              { icon: L.icon({
-                  iconUrl: '/assets/' + '<%= location.icon[0] %>',
-                  iconSize: [<%= location.icon[2] %>],iconAnchor: [<%= (location.icon[2] / 2) %>,<%= (location.icon[2] / 2) %>]
-                })
-              }
-            ).bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>')
-          );
-        <% end %>
-      <% end %>
-
-      locations_small.addTo(map);
-
-      map.on('zoom', function () {
-        console.log(map.getZoom())
-      });
+      
 
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
