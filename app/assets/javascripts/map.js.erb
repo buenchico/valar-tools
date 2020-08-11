@@ -11,7 +11,7 @@ document.addEventListener("turbolinks:load", function() {
 
       //var bounds = [[0,0], [1558.85850178359,1000]];
       var bounds = [[-13,1],[40,35]]
-      //var bounds = [[0,0],[53,34]]
+      //var bounds = [[-0.0593216336761606,-42.9309755170445584],[92.9247039488554094,50.1302144245797905]]
 
       var map = L.map('mapid', {
           crs: L.CRS.Simple,
@@ -52,9 +52,26 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [13.5, 18], 5);
 
+      var castle = L.icon({
+        iconUrl: '/assets/castle.svg',
+        iconSize:     [38], // size of the icon
+        //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+
       <% Location.all.each do |location| %>
-        <% if location.y != nil %>
-          L.marker([<%= location.y %>,<%= location.x %>]).addTo(map);
+        <% if location.icon.nil? %>
+          <% nil %>
+        <% else %>
+          L.marker(
+            [<%= location.y %>,<%= location.x %>],
+            { icon: L.icon({
+                iconUrl: '/assets/' + '<%= location.icon[0] %>',
+                iconSize: [<%= location.icon[1] %>],iconAnchor: [19,19]
+              })
+            }
+          ).addTo(map)
+          .bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>');
         <% end %>
       <% end %>
 
