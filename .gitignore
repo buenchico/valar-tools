@@ -31,3 +31,8 @@
 
 # Ignore rubocop
 config/.rubocop.yml
+
+#Ignore partial seeds
+db/seeds-families.rb
+db/seeds-locations.rb
+db/seeds-base.rb
