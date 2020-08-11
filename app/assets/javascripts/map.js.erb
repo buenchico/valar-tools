@@ -52,28 +52,48 @@ document.addEventListener("turbolinks:load", function() {
 
       map.setView( [13.5, 18], 5);
 
-      var castle = L.icon({
-        iconUrl: '/assets/castle.svg',
-        iconSize:     [38], // size of the icon
-        //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-      });
+      var locations_big = new L.FeatureGroup();
+      var locations_small = new L.FeatureGroup();
 
       <% Location.all.each do |location| %>
         <% if location.icon.nil? %>
           <% nil %>
         <% else %>
-          L.marker(
-            [<%= location.y %>,<%= location.x %>],
-            { icon: L.icon({
-                iconUrl: '/assets/' + '<%= location.icon[0] %>',
-                iconSize: [<%= location.icon[1] %>],iconAnchor: [19,19]
-              })
-            }
-          ).addTo(map)
-          .bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>');
+          locations_big.addLayer(
+            L.marker(
+              [<%= location.y %>,<%= location.x %>],
+              { icon: L.icon({
+                  iconUrl: '/assets/' + '<%= location.icon[0] %>',
+                  iconSize: [<%= location.icon[1] %>],iconAnchor: [<%= (location.icon[1] / 2) %>,<%= (location.icon[1] / 2) %>]
+                })
+              }
+            ).bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>')
+          );
         <% end %>
       <% end %>
+
+      <% Location.all.each do |location| %>
+        <% if location.icon.nil? %>
+          <% nil %>
+        <% else %>
+          locations_small.addLayer(
+            L.marker(
+              [<%= location.y %>,<%= location.x %>],
+              { icon: L.icon({
+                  iconUrl: '/assets/' + '<%= location.icon[0] %>',
+                  iconSize: [<%= location.icon[2] %>],iconAnchor: [<%= (location.icon[2] / 2) %>,<%= (location.icon[2] / 2) %>]
+                })
+              }
+            ).bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>')
+          );
+        <% end %>
+      <% end %>
+
+      locations_small.addTo(map);
+
+      map.on('zoom', function () {
+        console.log(map.getZoom())
+      });
 
       var drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);

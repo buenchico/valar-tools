@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20200810180006) do
   create_table "families", force: :cascade do |t|
     t.integer "fid"
     t.string "name"
-    t.string "lord"
     t.string "members"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
