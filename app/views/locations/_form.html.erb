@@ -1,47 +1,47 @@
-<%= form_with(model: location, local: true) do |form| %>
-  <% if location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+    <%= form_with(model: location, local: true) do |form| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title"><%= location.name_es.nil? ? 'Nueva casa' : location.name_es %></h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if location.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+            <ul>
+              <% location.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-      <ul>
-      <% location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+      </div>
+      <%= form.number_field :hid, class: "custom-control disabled", readonly: true, value: @location.nil? || location.lid.nil? ? @next_id : location.lid %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :lid %>
-    <%= form.number_field :lid, id: :location_lid %>
   </div>
-
-  <div class="field">
-    <%= form.label :name_es %>
-    <%= form.text_field :name_es, id: :location_name_es %>
+  <div class="form-group form-inline">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+      </div>
+      <%= form.text_field :name, class: "custom-control ui-autocomplete-input auto-source", data: {autocomplete_source: family_list_path}, placeholder: 'Nombre de la casa' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :name_es %>
-    <%= form.text_field :name_es, id: :location_name_es %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hid %>
-    <%= form.number_field :hid, id: :location_hid %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type, id: :location_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kingdom %>
-    <%= form.text_field :kingdom, id: :location_kingdom %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group form-inline">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

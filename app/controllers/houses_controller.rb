@@ -1,6 +1,6 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
-  before_action :master_user
+  before_action :master_user, only: [:new, :edit, :destroy]
   before_action :set_variables
   after_action :set_active_houses, only: [:create, :destroy, :update]
 
@@ -63,7 +63,7 @@ class HousesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   # Check if user is master or admin
   def master_user
     if current_user.nil?
@@ -74,17 +74,17 @@ class HousesController < ApplicationController
       flash[:danger] = "No tienes permisos para acceder a esta página."
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
     end
-    
+
     def set_variables
       @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
     end
-    
+
     def set_active_houses
       $active_houses = ["Inactivo","Master"]
       ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true

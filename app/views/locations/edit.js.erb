@@ -1,0 +1,5 @@
+$('#location-content').html("<%= j render 'form', location: @location %>");
+$('#locationModal').modal('show');
+$(".auto-source").autocomplete({
+    source: $('.auto-source').data('autocomplete-source')
+});
