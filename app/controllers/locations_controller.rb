@@ -1,10 +1,15 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_variables
 
   # GET /locations
   # GET /locations.json
   def index
     @locations = Location.all.order(:lid)
+    @families = []
+    Family.all.each do |family|
+      @families << [family.family_title,family.id]
+    end    
   end
 
   # GET /locations/1
@@ -19,6 +24,10 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+    @families = []
+    Family.all.each do |family|
+      @families << [family.family_title,family.id]
+    end
   end
 
   # POST /locations
@@ -28,11 +37,9 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Lugar añadido correctamente' }
-        format.json { render :show, status: :created, location: @location }
+        format.html { redirect_to locations_url, notice: 'Lugar añadido correctamente' }
       else
         format.html { render :new }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +49,9 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, success:  'Lugar editado correctamente.' }
-        format.json { render :show, status: :ok, location: @location }
+        format.html { redirect_to locations_url, success:  'Lugar editado correctamente.' }
       else
         format.html { render :edit }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,10 +85,11 @@ class LocationsController < ApplicationController
 
     def set_variables
       @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
+      @location_type = {"Castillo" => "Castillo", "Castillo pequeño" => "Castillo pequeño", "Torre" => "Torre", "Ciudad" => "Ciudad", "Pueblo" => "Pueblo", "Ruinas" => "Ruinas", "Mina" => "Mina", "Vado" => "Vado"}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:lid, :name_es, :name_en, :house, :hid, :location_type, :kingdom)
+      params.require(:location).permit(:lid, :name_es, :name_en, :location_type, :kingdom, :family_id, :x, :y)
     end
 end

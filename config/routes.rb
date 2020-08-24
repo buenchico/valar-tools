@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   # Render JSON lists for autocomplete
 
   get 'location_list', to: 'application#location_list'
+  get 'location_list_en', to: 'application#location_list_en'
   get 'family_list', to: 'application#family_list'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

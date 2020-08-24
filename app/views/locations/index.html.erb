@@ -18,6 +18,9 @@
         <th scope="col">Descripción <i class="fas fa-sort"></i></th>
         <% if current_user.try(:is_master?) then %>
           <th scope="col">V <i class="fas fa-sort"></i></th>
+        <% end %>
+        <th scope="col"></th>
+        <% if current_user.try(:is_master?) then %>
           <th scope="col" colspan="2"></th>
         <% end %>
       </tr>
@@ -32,6 +35,9 @@
           <td width = "300px"><%= location.description %></td>
           <% if current_user.try(:is_master?) then %>
             <td width = "20px"><%= location.visibility %></td>
+          <% end %>
+          <td width = "20px"><%= link_to "", '/map?x=' + location.x.to_s + '&y=' + location.y.to_s, class: "white fas fa-crosshairs" %></td>
+          <% if current_user.try(:is_master?) then %>
             <td><%= link_to '', edit_location_path(location), remote: true, class: 'fas fa-edit white' %></td>
             <td><%= link_to '', location, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'fas fa-trash-alt white' %></td>
           <% end %>

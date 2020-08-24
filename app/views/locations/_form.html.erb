@@ -20,23 +20,76 @@
           </div>
         <% end %>
 
-  <div class="form-group form-inline">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+    </div>
+    <%= form.number_field :lid, class: "form-control disabled", readonly: true, value: @location.nil? || location.lid.nil? ? @next_id : location.lid %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Nombre (Español)</div>
+    </div>
+    <%= form.text_field :name_es, id: 'name_es', class: "form-control ui-autocomplete-input auto-source_name_es", data: {autocomplete_source: location_list_path}, placeholder: 'Nombre del lugar', value: @location.nil? ? nil : location.name_es %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Nombre (Inglés)</div>
+    </div>
+    <%= form.text_field :name_en, class: "form-control ui-autocomplete-input auto-source_name_en", data: {autocomplete_source: location_list_en_path}, placeholder: 'Nombre del luger (en el original)', value: @location.nil? ? nil : location.name_en %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Tipo</div>
+    </div>
+    <%= form.select :location_type, options_for_select(@location_type, location.location_type), {}, class: "custom-select" %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Reino</div>
+    </div>
+        <%= form.select :kingdom, options_for_select($kingdoms, location.kingdom), {}, class: "custom-select disabled", disabled: current_user.try(:is_master?) ? false : true %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Casa</div>
+    </div>
+    <%= form.select :family_id, options_for_select(@families, location.family.id), {}, class: "custom-select" %>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">X</div>
+        </div>
+        <%= form.text_field :x, class: "form-control", placeholder: 'X', value: @location.nil? ? nil : location.x %>
       </div>
-      <%= form.number_field :hid, class: "custom-control disabled", readonly: true, value: @location.nil? || location.lid.nil? ? @next_id : location.lid %>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Y</div>
+        </div>
+        <%= form.text_field :y, class: "form-control", placeholder: 'X', value: @location.nil? ? nil : location.y %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Visibilidad</div>
+        </div>
+        <%= form.text_field :y, class: "form-control", placeholder: 'V', value: @location.nil? ? nil : location.visibility %>
+      </div>
     </div>
   </div>
-  <div class="form-group form-inline">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
-      </div>
-      <%= form.text_field :name, class: "custom-control ui-autocomplete-input auto-source", data: {autocomplete_source: family_list_path}, placeholder: 'Nombre de la casa' %>
-    </div>
-  </div>
-  <div class="form-group form-inline">
+
+  <div class="form-group">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

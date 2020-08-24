@@ -1,6 +1,6 @@
 class ArmiesController < ApplicationController
   before_action :set_army, only: [:edit, :notes, :update, :confirm, :destroy]
-  before_action :set_variables, except: [:location_list]
+  before_action :set_variables
   before_action :correct_user, only: [:edit, :notes, :edit_multiple]
   before_action :master_user, only: [:new, :import, :destroy]
 
@@ -18,7 +18,7 @@ class ArmiesController < ApplicationController
     else
       @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ? and visible = ?", "%#{current_user.house}%", true)
     end
-    
+
     @total_str = []
     @total_num = []
     if !@armies.nil? then
@@ -37,7 +37,7 @@ class ArmiesController < ApplicationController
       format.js
       format.html { redirect_to armies_url }
     end
-  end  
+  end
 
   # GET /armies/new
   def new
@@ -53,8 +53,8 @@ class ArmiesController < ApplicationController
     respond_to do |format|
       format.js
       format.html { redirect_to armies_url }
-    end    
-  end  
+    end
+  end
 
   # POST /armies
   def create
@@ -78,7 +78,7 @@ class ArmiesController < ApplicationController
       else
         format.html { render :edit }
         format.json { respond_with_bip(@army) }
-      end  
+      end
     end
   end
 
@@ -95,11 +95,11 @@ class ArmiesController < ApplicationController
       end
     end
   end
-  
+
   def edit_multiple
     @armies = Army.find(params[:army_ids])
   end
-  
+
   def update_multiple
     @armies = Army.find(params[:army_ids])
     if params[:army][:visibility] == [""] then
@@ -114,9 +114,9 @@ class ArmiesController < ApplicationController
     flash[:success] = "Ejércitos actualizados correctamente."
     redirect_to armies_path
   end
-  
+
   def destroy_multiple
-    @armies = Army.find(params[:army_ids])    
+    @armies = Army.find(params[:army_ids])
     if params[:army][:confirm] == "DELETE ALL" then
       @armies.each do |army|
         army.destroy
@@ -126,7 +126,7 @@ class ArmiesController < ApplicationController
     else
       flash[:danger] = "Acción cancelada, por favor, confirma correctamente el borrado."
       redirect_to armies_path
-    end  
+    end
   end
 
   def import
@@ -140,7 +140,7 @@ class ArmiesController < ApplicationController
     def set_army
       @army = Army.find(params[:id])
     end
-    
+
     def set_variables
       @next_id = Army.maximum(:aid).nil? ? '100001' : Army.maximum(:aid) + 1
       if current_user.try(:is_master?) then
@@ -162,7 +162,7 @@ class ArmiesController < ApplicationController
         @armies.each do |x|
           if current_user.house !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
             flash[:danger] = "No tienes permisos para acceder a esta página."
-            render js: "window.location.replace('#{armies_url}');"            
+            render js: "window.location.replace('#{armies_url}');"
           end
         end
       elsif current_user.house !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
@@ -170,7 +170,7 @@ class ArmiesController < ApplicationController
         render js: "window.location.replace('#{root_url}');"
       end
     end
-    
+
     # Check if user is master or admin
     def master_user
       if current_user.nil?
@@ -180,14 +180,14 @@ class ArmiesController < ApplicationController
         flash[:danger] = "No tienes permisos para acceder a esta página."
         render js: "window.location.replace('#{root_url}');"
       end
-    end    
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def army_params
       if current_user.try(:is_master?) then
         params.require(:army).permit(:aid, {:visibility => []}, :visible, :kingdom, :location, :lord, :name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes, :confirm)
-      else  
+      else
         params.require(:army).permit(:name, :position, :mission, :status, :armytype, :num, :vet, :armour, :morale, :infantry, :cavalry, :marine, :boat, :flagship, :notes)
-      end  
+      end
     end
 end

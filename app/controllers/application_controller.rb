@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
     render json: @locations_list.map(&:name_es).uniq
   end
 
+  def location_list_en
+  #Column name must be between double quotes because, by default, pgsql column names are always lowercase
+    @locations_list_en = Location.order(:name_en).where('LOWER("name_en") like ?', "%#{params[:term].downcase}%")
+    @locations_list_en  = @locations_list_en.limit(20)
+    render json: @locations_list_en.map(&:name_en).uniq
+  end
+
   def family_list
   #Column name must be between double quotes because, by default, pgsql column names are always lowercase
     @families_list = Family.order(:name).where('LOWER("name") like ?', "%#{params[:term].downcase}%")
