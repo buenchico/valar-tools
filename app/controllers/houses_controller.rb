@@ -32,10 +32,8 @@ class HousesController < ApplicationController
     respond_to do |format|
       if @house.save
         format.html { redirect_to houses_url, success: 'Casa añadida correctamente.' }
-        format.json { render :show, status: :created, location: @house }
       else
-        format.html { render :new }
-        format.json { render json: @house.errors, status: :unprocessable_entity }
+        format.html { redirect_to houses_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
       end
     end
   end
