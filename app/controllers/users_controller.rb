@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-  end 
+  end
 
   # GET /users/new
   def new
@@ -27,13 +27,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, success: 'Jugador añadido correctamente.' }
-        format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to users_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
       end
     end
   end
@@ -44,10 +43,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, success: 'Jugador editado correctamente.' }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,11 +54,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, sucess: 'Jugador eliminado.' }
+      format.html { redirect_to users_url, success: 'Jugador eliminado.' }
       format.json { head :no_content }
     end
   end
-  
+
   # PATCH/PUT /users/1/password
   # PATCH/PUT /users/1/password.json
   def password
@@ -70,12 +67,10 @@ class UsersController < ApplicationController
         respond_to do |format|
           if @user.update(user_params)
             format.html { redirect_to @user, success: 'Contraseña cambiada correctamente.' }
-            format.json { render :show, status: :ok, location: @user }
           else
             format.html { render :show }
-            format.json { render json: @user.errors, status: :unprocessable_entity }
-          end        
-        end  
+          end
+        end
       else
         flash.now[:danger] = "Las contraseñas no son iguales."
         render 'show'
@@ -85,7 +80,7 @@ class UsersController < ApplicationController
       render 'show'
     end
   end
-  
+
   # Check if user is current user, master or admin
   def correct_user
     @user = User.find(params[:id])
@@ -97,7 +92,7 @@ class UsersController < ApplicationController
       flash[:danger] = "No tienes permisos para acceder a esta página."
     end
   end
-  
+
   # Check if user is master or admin
   def master_user
     if current_user.nil?
@@ -108,7 +103,7 @@ class UsersController < ApplicationController
       flash[:danger] = "No tienes permisos para acceder a esta página."
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
