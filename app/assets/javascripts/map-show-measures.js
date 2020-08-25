@@ -126,11 +126,10 @@
         },
 
         onAdd: override(L.Polyline.prototype.onAdd, function(originalReturnValue) {
-            //var showOnHover = this.options.measurementOptions && this.options.measurementOptions.showOnHover;
-            //if (this.options.showMeasurements && !showOnHover) {
-                this.showMeasurements();
-                //this.showMeasurements(this.options.measurementOptions);
-            //}
+            var showOnHover = this.options.measurementOptions && this.options.measurementOptions.showOnHover;
+            if (this.options.showMeasurements && !showOnHover) {
+                this.showMeasurements(this.options.measurementOptions);
+            }
 
             return originalReturnValue;
         }),
