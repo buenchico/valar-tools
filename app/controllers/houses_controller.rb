@@ -46,8 +46,7 @@ class HousesController < ApplicationController
         format.html { redirect_to houses_url, success: 'Casa editada correctamente.' }
         format.json { respond_with_bip @house }
       else
-        format.html { render :edit }
-        format.json { render json: @house.errors.messages.values.first, status: :unprocessable_entity }
+        format.html { redirect_to houses_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
       end
     end
   end
@@ -58,7 +57,6 @@ class HousesController < ApplicationController
     @house.destroy
     respond_to do |format|
       format.html { redirect_to houses_url, danger: 'Casa borrada.' }
-      format.json { head :no_content }
     end
   end
 

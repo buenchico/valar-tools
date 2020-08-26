@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
     @families = []
     Family.all.each do |family|
       @families << [family.family_title,family.id]
-    end    
+    end
   end
 
   # GET /locations/1
@@ -39,7 +39,7 @@ class LocationsController < ApplicationController
       if @location.save
         format.html { redirect_to locations_url, notice: 'Lugar añadido correctamente' }
       else
-        format.html { render :new }
+        format.html { redirect_to locations_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
       end
     end
   end
@@ -51,7 +51,7 @@ class LocationsController < ApplicationController
       if @location.update(location_params)
         format.html { redirect_to locations_url, success:  'Lugar editado correctamente.' }
       else
-        format.html { render :edit }
+        format.html { redirect_to locations_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
       end
     end
   end
@@ -62,7 +62,6 @@ class LocationsController < ApplicationController
     @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Lugar borrado.' }
-      format.json { head :no_content }
     end
   end
 
