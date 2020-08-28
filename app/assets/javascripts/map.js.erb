@@ -58,6 +58,8 @@ document.addEventListener("turbolinks:load", function() {
       var ruins = new L.FeatureGroup();
       var the_wall = new L.FeatureGroup();
 
+      var drawnItems = new L.FeatureGroup();      
+
       <% Location.where('visibility != 99').where('location_type != ?','Ruinas').order(:visibility).each do |location| %>
         main.addLayer(
           L.marker(
@@ -171,7 +173,8 @@ document.addEventListener("turbolinks:load", function() {
         "Otros lugares": other,
         "Ruinas": ruins,
         "El Muro": the_wall,
-        "Rejilla": layer_hex
+        "Rejilla": layer_hex,
+        "Rutas": drawnItems
       }
 
       var overlays_zoom8 = {
@@ -180,7 +183,8 @@ document.addEventListener("turbolinks:load", function() {
         "Otros lugares": other,
         "Ruinas": ruins,
         "El Muro": the_wall,
-        "Rejilla": layer_hex
+        "Rejilla": layer_hex,
+        "Rutas": drawnItems
       }
 
       var layerControl = L.control.layers(null, overlays)
@@ -188,7 +192,36 @@ document.addEventListener("turbolinks:load", function() {
 
       map.addControl(layerControl);
 
-      var drawnItems = new L.FeatureGroup();
+      // Saving as image
+
+      // Custom image size
+      var fullMap = {
+	      width: 1080, // change depending on base map 1080
+	      height: 1700, // change depending on base map 1700
+	      className: 'fullMap',
+	      name: 'Mapa completo'
+      }
+
+      var printer = L.easyPrint({
+        		title: 'Exportar mapa',
+        		sizeModes: ['Current',fullMap],
+        		defaultSizeTitles: {Current: 'Zona visible'},
+        		filename: 'westeros',
+        		exportOnly: true,
+        		hideControlContainer: true
+      }).addTo(map);
+
+      map.on('easyPrint-start', e => {
+        $('#printing').removeClass('invisible')
+        if (e.event.target.className == 'fullMap') {
+          map.setView( [13.5, 18], 5);
+        }
+      });
+
+      map.on('easyPrint-finished', e => {
+        $('#printing').addClass('invisible')
+      });
+
       map.addLayer(drawnItems);
 
       // Set the button title text for the polygon button
@@ -251,36 +284,6 @@ document.addEventListener("turbolinks:load", function() {
           });
           map.removeControl(drawControl);
           map.addControl(drawControl);
-      });
-
-      // Saving as image
-
-      // Custom image size
-      var fullMap = {
-	      width: 1080, // change depending on base map 1080
-	      height: 1700, // change depending on base map 1700
-	      className: 'fullMap',
-	      name: 'Mapa completo'
-      }
-
-      var printer = L.easyPrint({
-        		title: 'Exportar mapa',
-        		sizeModes: ['Current',fullMap],
-        		defaultSizeTitles: {Current: 'Zona visible'},
-        		filename: 'westeros',
-        		exportOnly: true,
-        		hideControlContainer: true
-      }).addTo(map);
-
-      map.on('easyPrint-start', e => {
-        $('#printing').removeClass('invisible')
-        if (e.event.target.className == 'fullMap') {
-          map.setView( [13.5, 18], 5);
-        }
-      });
-
-      map.on('easyPrint-finished', e => {
-        $('#printing').addClass('invisible')
       });
 
       /*
