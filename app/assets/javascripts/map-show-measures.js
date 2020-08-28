@@ -192,12 +192,15 @@
 
                     pixelDist = p1.distanceTo(p2);
 
+                    /* // Comment this if to hide segment measures
+
                     if (pixelDist >= options.minPixelDistance) {
                         L.marker.measurement(
                             this._map.layerPointToLatLng([(p1.x + p2.x) / 2, (p1.y + p2.y) / 2]),
                             formatter(dist), options.lang.segmentLength, this._getRotation(ll1, ll2), options)
                             .addTo(this._measurementLayer);
                     }
+                    */
                 }
 
                 // Show total length for polylines
