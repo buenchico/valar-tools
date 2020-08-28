@@ -11,7 +11,7 @@ ruby '2.6.3'
 gem 'rails', '~> 5.1.4'
 # Use Bootstrap framework for CSS
 gem 'bootstrap', '>= 4.5.0'
-gem 'autoprefixer-rails', '>= 6.0.3'
+# gem 'autoprefixer-rails', '>= 6.0.3'
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.9.0'
 # Use Puma as the app server

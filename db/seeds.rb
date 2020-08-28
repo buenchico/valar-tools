@@ -456,3 +456,5 @@ Family.find_by(fid:200000).location.create(lid:400238,name_es:"Antorchas",name_e
 Family.find_by(fid:200000).location.create(lid:400239,name_es:"Guardiaverde",name_en:"Greenguard",location_type:"Ruinas",visibility:1,kingdom:"Norte",description:"41",x:20.455,y:34.648)
 Family.find_by(fid:200000).location.create(lid:400240,name_es:"Guardiaoriente del Mar",name_en:"Eastwatch-by-the-Sea",location_type:"Castillo",visibility:1,kingdom:"Norte",description:nil,x:20.722,y:34.624)
 Family.find_by(fid:200000).location.create(lid:400241,name_es:"Puño de los Primeros Hombres",name_en:"Fist of the First Men",location_type:"Ruinas",visibility:1,kingdom:"Más-allá-del-muro",description:nil,x:15.803,y:37.641)
+Family.find_by(fid:200000).location.create(lid:400242,name_es:"",name_en:"",location_type:"Puente",visibility:1,kingdom:"Ríos",description:nil,x:15.746,y:4.908)
+Family.find_by(fid:200000).location.create(lid:400243,name_es:"",name_en:"",location_type:"Puente",visibility:1,kingdom:"Ríos",description:nil,x:17.396,y:4.354)

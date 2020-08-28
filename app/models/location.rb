@@ -5,23 +5,23 @@ class Location < ApplicationRecord
       if  self.location_type.nil?
           nil
       elsif self.location_type == "Castillo"
-          ["castle.svg",36,24]
+          "castle.svg"
       elsif self.location_type == "Castillo pequeño"
-          ["castle_small.svg",36,24]
+          "castle_small.svg"
       elsif self.location_type == "Torre"
-          ["tower.svg",36,24]
+          "tower.svg"
       elsif self.location_type == "Pueblo"
-          ["town.svg",36,24]
+          "town.svg"
       elsif self.location_type == "Ciudad"
-          ["city.svg",45,30]
+          "city.svg"
       elsif self.location_type == "Ruinas"
-          ["ruins.svg",18,12]
+          "ruins.svg"
       elsif self.location_type == "Mina"
-          ["mine.svg",18,12]
+          "mine.svg"
       elsif self.location_type == "Vado"
-          ["ford.svg",18,12]
+          "ford.svg"
       elsif self.location_type == "Puente"
-          ["bridge.svg",18,12]
+          "bridge.svg"
       else
           nil
       end

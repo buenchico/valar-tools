@@ -13,7 +13,7 @@
 
   $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
 
-  $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Rios","Tormenta","Valle","El Muro","Más-allá-del-muro","Essos"]
+  $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Ríos","Tormenta","Valle","El Muro","Más-allá-del-muro","Essos"]
 
   $active_houses = ["Inactivo","Master"]
   if House.table_exists?
