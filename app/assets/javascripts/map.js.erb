@@ -9,11 +9,12 @@ document.addEventListener("turbolinks:load", function() {
         }
       });
 
-      var bounds = [[-13,1], [40,35]]; // mapa-fisico
+      //var bounds = [[-13,1], [40,35]]; // tiles
+      var bounds = [[-30,1], [45,60]]; // mapa-fisico
       //var bounds = [[-13,1],[40,35]] // mapa-westeros
 
       var map = L.map('mapid', {
-          //crs: L.CRS.Simple,
+          crs: L.CRS.Simple, //CRS need to be removed for tile layer
           //drawControl: true,
           minZoom: 5,
           maxZoom: 8,
@@ -34,12 +35,7 @@ document.addEventListener("turbolinks:load", function() {
         map.setView( [y, x], 7);
       }
 
-      //var image = L.imageOverlay('/assets/mapa-fisico.png', bounds, {opacity: 1}).addTo(map);
-
-      L.tileLayer('/assets/tiles/{z}/{x}/{y}.png', {
-        tms: false,
-        attribution: '&copy; Ser Mountain Goat &mdash; <a href="http://www.sermountaingoat.co.uk/map/index.php">http://www.sermountaingoat.co.uk/map</a>',
-      }).addTo(map);
+      var image = L.imageOverlay('/assets/mapa-fisico.png', bounds, {opacity: 1, attribution: '&copy; Ser Mountain Goat &mdash; <a href="http://www.sermountaingoat.co.uk/map/index.php">http://www.sermountaingoat.co.uk/map</a>',}).addTo(map);
 
       var json_roads = layer_json()[0];
       var json_hex = layer_json()[1];
@@ -58,7 +54,7 @@ document.addEventListener("turbolinks:load", function() {
       var ruins = new L.FeatureGroup();
       var the_wall = new L.FeatureGroup();
 
-      var drawnItems = new L.FeatureGroup();      
+      var drawnItems = new L.FeatureGroup();
 
       <% Location.where('visibility != 99').where('location_type != ?','Ruinas').order(:visibility).each do |location| %>
         main.addLayer(
