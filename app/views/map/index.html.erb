@@ -5,6 +5,9 @@
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
+    <%= link_to asset_path('mapa-download.png'), target: :_blank, class: 'white' do %>
+      <i class="fas fa-download"></i>
+    <% end %>
 </div>
 
 <div class="container" id="map-container">

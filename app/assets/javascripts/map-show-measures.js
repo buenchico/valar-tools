@@ -63,7 +63,7 @@
         var unit,
             hex;
 
-        d = d / 125000;
+        d = d / 1.16;
         unit = 'hex';
 
         return d.toFixed(2) + ' ' + unit;
