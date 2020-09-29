@@ -198,7 +198,8 @@ Family.create([
 { fid:200190, name:"Wyl", branch:"Elder" },
 { fid:200191, name:"Wylde", branch:"Elder" },
 { fid:200192, name:"Wynch", branch:"Elder" },
-{ fid:200193, name:"Yronwood", branch:"Elder" }
+{ fid:200193, name:"Yronwood", branch:"Elder" },
+{ fid:200194, name:"Butterwell", branch:"Elder" }
 ])
 
 Family.find_by(fid:200001).location.create(lid:400001,name_es:"Bondadivina",name_en:"Godsgrace",location_type:"Castillo",visibility:1,kingdom:"Dorne",description:"",x:21.47,y:-8.543)
