@@ -28,7 +28,7 @@
     <tbody id="table_body">
       <% @locations.each do |location| %>
         <tr>
-          <td width = "300px"><%= location.name_es %> <%= ( location.name_en.nil? || location.name_en == location.name_es ) ? '' : '(' + location.name_en + ')' %></td>
+          <td width = "300px"><%= location.name_es %> <%= ( location.name_en == "" || location.name_en == location.name_es ) ? '' : '(' + location.name_en + ')' %></td>
           <td width = "300px"><%= location.family.name %></td>
           <td width = "180px"><%= location.location_type %></td>
           <td width = "180px"><%= location.kingdom %></td>
@@ -45,6 +45,10 @@
       <% end %>
     </tbody>
 </table>
+
+<% if current_user.try(:is_master?) then %>
+  <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir lugar'.html_safe, new_location_path, remote:true, class: "btn btn-primary"%></div>
+<% end %>
 
 <div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 

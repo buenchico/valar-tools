@@ -38,7 +38,7 @@
     <div class="input-group-prepend">
       <div class="input-group-text">Nombre (Inglés)</div>
     </div>
-    <%= form.text_field :name_en, class: "form-control ui-autocomplete-input auto-source_name_en", data: {autocomplete_source: location_list_en_path}, placeholder: 'Nombre del luger (en el original)', value: @location.nil? ? nil : location.name_en %>
+    <%= form.text_field :name_en, class: "form-control ui-autocomplete-input auto-source_name_en", data: {autocomplete_source: location_list_en_path}, placeholder: 'Nombre del lugar (en el original)', value: @location.nil? ? nil : location.name_en %>
   </div>
 
   <div class="input-group mb-3">
@@ -59,7 +59,7 @@
     <div class="input-group-prepend">
       <div class="input-group-text">Casa</div>
     </div>
-    <%= form.select :family_id, options_for_select(@families, location.family.id), {}, class: "custom-select" %>
+    <%= form.select :family_id, options_for_select(@families, @location.nil? || location.lid.nil? ? "" : location.family.id), {}, class: "custom-select" %>
   </div>
 
   <div class="form-row">

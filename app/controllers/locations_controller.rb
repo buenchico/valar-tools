@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_action :set_variables
+  before_action :master_user, except: :index
 
   # GET /locations
   # GET /locations.json
@@ -24,10 +25,6 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-    @families = []
-    Family.all.each do |family|
-      @families << [family.family_title,family.id]
-    end
   end
 
   # POST /locations
@@ -85,6 +82,10 @@ class LocationsController < ApplicationController
     def set_variables
       @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
       @location_type = {"Castillo" => "Castillo", "Castillo pequeño" => "Castillo pequeño", "Torre" => "Torre", "Ciudad" => "Ciudad", "Pueblo" => "Pueblo", "Ruinas" => "Ruinas", "Mina" => "Mina", "Vado" => "Vado"}
+      @families = []
+      Family.all.order(:name).each do |family|
+        @families << [family.family_title,family.id]
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

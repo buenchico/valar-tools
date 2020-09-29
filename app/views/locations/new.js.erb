@@ -1,0 +1,11 @@
+$('#location-content').html("<%= j render 'form', location: @location %>");
+$('#locationModal').modal('show');
+$(".auto-source_name_es").autocomplete({
+    source: $('.auto-source_name_es').data('autocomplete-source')
+});
+$(".auto-source_name_en").autocomplete({
+    source: $('.auto-source_name_en').data('autocomplete-source')
+});
+$(".auto-source_family").autocomplete({
+    source: $('.auto-source_family').data('autocomplete-source')
+});
