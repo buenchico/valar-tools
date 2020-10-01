@@ -16,11 +16,11 @@
             </button>
           <% end %>
           <li class="nav-item">
-            <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %></li>
+            <%= link_to image_tag("valar-circle.png", :alt => "Valar", class: "nav-icon"), "https://www.valar.es", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <%= link_to "", "#", id: "navbarDropdown", class: "nav-link dropdown-toggle fas fa-bars nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" style="z-index: 2000" aria-labelledby="navbarDropdown">
               <% if current_user %>
                 <a href="/users/<%= current_user.id %>" class="dropdown-item"><i class="fas fa-user"></i> <%= current_user.house %></a>
                 <div class="dropdown-divider"></div>
