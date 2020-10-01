@@ -1,0 +1,54 @@
+<% provide(:title, $master_tools[:reputation][:title]) %>
+<% provide(:version, $master_tools[:reputation][:version]) %>
+<% provide(:icon, $master_tools[:reputation][:icon]) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Reputaciones</caption>
+      <thead>
+        <tr>
+          <th scope="col">Jugador <i class="fas fa-sort"></i></th>
+          <th scope="col">Casa <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+          <th scope="col">Mod</th>
+          <th scope="col"></th>
+          <th scope="col" class="destroyed">Rep</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="align-middle"><%= user.player %></td>
+            <td class="align-middle"><%= user.house %></td>
+            <td class="text-center">
+              <%= form_with url: rep_up_path, remote: true do |form| %>
+                <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
+                <%= form.button :submit, class: "btn btn-outline-success" do %>
+                  <i class="fas fa-thumbs-up"></i>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="text-center align-middle" id="<%= user.player %>-rep_mod"><%= user.rep_mod %></td>
+            <td class="text-center">
+              <%= form_with url: rep_down_path, remote: true do |form| %>
+                <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
+                <%= form.button :submit, class: "btn btn-outline-danger" do %>
+                  <i class="fas fa-thumbs-down"></i>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="text-center align-middle destroyed" id="<%= user.player %>-rep_value"><%= user.reputation.nil? ? 0 : user.reputation %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
+
+<!-- Modal -->

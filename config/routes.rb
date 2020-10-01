@@ -37,6 +37,10 @@ Rails.application.routes.draw do
   # post 'missions/calculate', to: 'missions#calculate'
   # get 'missions/recipe', to: 'missions#recipe'
 
+  get 'rep', to: 'reputations#index'
+  post 'rep/up', to: 'reputations#uprep'
+  post 'rep/down', to: 'reputations#downrep'
+
   get 'travel_calculator', to: 'travel_calculator#index'
   post 'travel_calculator/calculate', to: 'travel_calculator#calculate'
   # get 'travel_calculator/location_list', to: 'travel_calculator#location_list'

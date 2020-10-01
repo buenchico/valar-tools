@@ -8,7 +8,8 @@
     'armies': {'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'version': '1.00', 'path': '/armies', 'icon': 'fas fa-chess-knight'}
     }
 
-  $master_tools = {'houses': {'title': 'Lista de casas', 'short_title': 'Casas', 'version': '1.01', 'path': '/houses', 'icon': 'fas fa-flag'}
+  $master_tools = {'houses': {'title': 'Lista de casas', 'short_title': 'Casas', 'version': '1.01', 'path': '/houses', 'icon': 'fas fa-flag'},
+    'reputation': {'title': 'Reputación', 'short_title': 'Rep', 'version': '1.00', 'path': '/rep', 'icon': 'fas fa-thumbs-up'}
     }
 
   $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
