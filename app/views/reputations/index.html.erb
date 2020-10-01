@@ -26,18 +26,18 @@
             <td class="align-middle"><%= user.player %></td>
             <td class="align-middle"><%= user.house %></td>
             <td class="text-center">
-              <%= form_with url: rep_up_path, remote: true do |form| %>
+              <%= form_with url: rep_change_path, remote: true do |form| %>
                 <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
-                <%= form.button :submit, class: "btn btn-outline-success" do %>
+                <%= form.button :submit, class: "btn btn-outline-success", value: 'up' do %>
                   <i class="fas fa-thumbs-up"></i>
                 <% end %>
               <% end %>
             </td>
             <td class="text-center align-middle" id="<%= user.player %>-rep_mod"><%= user.rep_mod %></td>
             <td class="text-center">
-              <%= form_with url: rep_down_path, remote: true do |form| %>
+              <%= form_with url: rep_change_path, remote: true do |form| %>
                 <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
-                <%= form.button :submit, class: "btn btn-outline-danger" do %>
+                <%= form.button :submit, class: "btn btn-outline-danger", value: 'down' do %>
                   <i class="fas fa-thumbs-down"></i>
                 <% end %>
               <% end %>
