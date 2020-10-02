@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, success: 'Jugador editado correctamente.' }
+        format.html { redirect_to users_url, success: 'Jugador editado correctamente.' }
       else
         format.html { render :edit }
       end
