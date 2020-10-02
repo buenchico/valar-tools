@@ -2,7 +2,7 @@ class ReputationsController < ApplicationController
   before_action :master_user
 
   def index
-    @users = User.where.not(house: "Inactivo").where.not(house: "Admin")
+    @users = User.where.not(house: "Inactivo").where.not(house: "Admin").where.not(house: "Master")
   end
 
   def change
@@ -19,7 +19,7 @@ class ReputationsController < ApplicationController
       else
         @rep_value = @player.reputation - 1
       end
-    end  
+    end
 
     respond_to do |format|
       if User.update(@player.id, reputation: @rep_value)
