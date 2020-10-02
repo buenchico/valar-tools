@@ -5,17 +5,17 @@
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
-    <%= link_to asset_path('mapa-download.png'), target: :_blank, class: 'white' do %>
+    <%= link_to asset_path('mapa-download.jpg'), target: :_blank, class: 'white' do %>
       <i class="fas fa-download"></i>
     <% end %>
 </div>
 
 <div class="container" id="map-container">
-    <div class="container mt-5" style="margin-bottom: -160px; width: 100%">
+    <div class="container mt-5" style="margin-bottom: -160px;"">
       <div class="loader mx-auto invisible" id="printing"></div>
     </div>
 
-    <div id="mapid" style="height: 720px;">
+    <div id="mapid" style="height: 720px; width: 100%">
     </div>
 </div>
 
