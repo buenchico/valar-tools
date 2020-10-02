@@ -283,7 +283,7 @@ document.addEventListener("turbolinks:load", function() {
               icon: new L.DivIcon({
                 iconAnchor: [10, 35], // point of the icon which will correspond to marker's location
                 className: 'markerClass',
-                html: '<div style="position:relative; text-align:center; width: 24px; font-size: 60%;"><div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: white;">' + String.fromCharCode(64 + 1 + Math.max($('.markerClass').length,1)) + '</div><img src="/assets/marker.svg" style="width:100%""></div>'
+                html: '<div style="position:relative; text-align:center; width: 24px; font-size: 60%;"><div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: white;">' + String.fromCharCode(65 + $('.markerClass').length) + '</div><img src="/assets/marker.svg" style="width:100%""></div>'
               })
             }
           });
