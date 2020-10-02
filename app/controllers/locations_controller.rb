@@ -34,9 +34,9 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to locations_url, notice: 'Lugar añadido correctamente' }
+        format.html { redirect_to locations_url, success: 'Lugar añadido correctamente' }
       else
-        format.html { redirect_to locations_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
+        format.html { redirect_to locations_url, danger: @location.error }
       end
     end
   end
@@ -48,7 +48,7 @@ class LocationsController < ApplicationController
       if @location.update(location_params)
         format.html { redirect_to locations_url, success:  'Lugar editado correctamente.' }
       else
-        format.html { redirect_to locations_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
+        format.html { redirect_to locations_url, danger: @location.error }
       end
     end
   end

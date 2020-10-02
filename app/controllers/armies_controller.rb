@@ -64,7 +64,7 @@ class ArmiesController < ApplicationController
       if @army.save
         format.html { redirect_to armies_url, success: 'Ejército añadido correctamente.' }
       else
-        format.html { render :new }
+        format.html { render :new, danger: @army.errors }
       end
     end
   end
@@ -76,7 +76,7 @@ class ArmiesController < ApplicationController
         format.html { redirect_to armies_url, success: 'Ejército editado correctamente.' }
         format.json { render :json => {"army" => @army.as_json.merge(:strenght => @army.army_str)} }
       else
-        format.html { render :edit }
+        format.html { render :edit, danger: @army.errors }
         format.json { respond_with_bip(@army) }
       end
     end
@@ -87,7 +87,7 @@ class ArmiesController < ApplicationController
     if params[:army][:confirm] == "DELETE" then
       @army.destroy
       respond_to do |format|
-        format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
+        format.html { redirect_to armies_url, notice: 'Ejército borrado.' }
       end
     else
       respond_to do |format|
@@ -121,7 +121,7 @@ class ArmiesController < ApplicationController
       @armies.each do |army|
         army.destroy
       end
-      flash[:danger] = "Ejércitos borrados correctamente."
+      flash[:notice] = "Ejércitos borrados correctamente."
       redirect_to armies_path
     else
       flash[:danger] = "Acción cancelada, por favor, confirma correctamente el borrado."

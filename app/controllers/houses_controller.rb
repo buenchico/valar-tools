@@ -33,7 +33,7 @@ class HousesController < ApplicationController
       if @house.save
         format.html { redirect_to houses_url, success: 'Casa añadida correctamente.' }
       else
-        format.html { redirect_to houses_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
+        format.html { redirect_to houses_url, danger: @house.errors }
       end
     end
   end
@@ -46,7 +46,7 @@ class HousesController < ApplicationController
         format.html { redirect_to houses_url, success: 'Casa editada correctamente.' }
         format.json { respond_with_bip @house }
       else
-        format.html { redirect_to houses_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
+        format.html { redirect_to houses_url, danger: @house.error }
       end
     end
   end
@@ -56,7 +56,7 @@ class HousesController < ApplicationController
   def destroy
     @house.destroy
     respond_to do |format|
-      format.html { redirect_to houses_url, danger: 'Casa borrada.' }
+      format.html { redirect_to houses_url, notice: 'Casa borrada.' }
     end
   end
 

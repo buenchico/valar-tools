@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         format.html { redirect_to users_url, success: 'Jugador editado correctamente.' }
       else
-        format.html { render :edit }
+        format.html { redirect_to users_url, danger: @user.errors }
       end
     end
   end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, success: 'Jugador eliminado.' }
+      format.html { redirect_to users_url, notice: 'Jugador eliminado.' }
       format.json { head :no_content }
     end
   end
