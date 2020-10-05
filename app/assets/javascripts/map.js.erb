@@ -263,31 +263,36 @@ document.addEventListener("turbolinks:load", function() {
 
       map.addControl(drawControl);
 
-      map.on('draw:created', function (e) {
+      var poly = 0;
+      var mark = 0;
 
-          var type = e.layerType,
-              layer = e.layer;
-          drawnItems.addLayer(layer);
-          map.removeControl(drawControl);
-          drawControl.setDrawingOptions({
-            polyline: {
-        		  showLength: false,
-        			shapeOptions: {
-                className: 'route',
-                showMeasurements: true,
-        				color: colours[($(".route").length) % colours.length],
-        				weight: 10
-        			}
-            },
-            marker: {
-              icon: new L.DivIcon({
-                iconAnchor: [10, 35], // point of the icon which will correspond to marker's location
-                className: 'markerClass',
-                html: '<div style="position:relative; text-align:center; width: 24px; font-size: 60%;"><div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: white;">' + String.fromCharCode(65 + $('.markerClass').length) + '</div><img src="/assets/marker.svg" style="width:100%""></div>'
-              })
+      map.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+        drawnItems.addLayer(layer);
+        (type == 'polyline') ? poly++ : '';
+        (type == 'marker') ? mark++ : '';
+
+        map.removeControl(drawControl);
+        drawControl.setDrawingOptions({
+          polyline: {
+            showLength: false,
+            shapeOptions: {
+              className: 'route',
+              showMeasurements: true,
+              color: colours[ poly % colours.length],
+              weight: 10
             }
-          });
-          map.addControl(drawControl);
+          },
+          marker: {
+            icon: new L.DivIcon({
+              iconAnchor: [10, 35], // point of the icon which will correspond to marker's location
+              className: 'markerClass',
+              html: '<div style="position:relative; text-align:center; width: 24px; font-size: 60%;"><div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: white;">' + String.fromCharCode(65 + mark ) + '</div><img src="/assets/marker.svg" style="width:100%""></div>'
+            })
+          }
+        });
+        map.addControl(drawControl);
       });
 
       /*
