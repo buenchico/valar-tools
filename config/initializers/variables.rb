@@ -1,9 +1,9 @@
 # config/initializers/variables.rb
 
   $tools = {'routes': {'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'version': '1.03', 'path': '/travel_calculator', 'icon': 'fas fa-route'},
-    'map': {'title': 'Mapa', 'short_title': 'Mapa', 'version': 'alpha', 'path': '/map', 'icon': 'fas fa-map-signs'},
-    'players': {'title': 'Lista de jugadores', 'short_title': 'Jugadores', 'version': '1.00', 'path': '/users', 'icon': 'fas fa-user'},
-    'locations': {'title': 'Lugares', 'short_title': 'Lugares', 'version': '1.00', 'path': '/locations', 'icon': 'fab fa-fort-awesome'},
+    'map': {'title': 'Mapa', 'short_title': 'Mapa', 'version': '1.01', 'path': '/map', 'icon': 'fas fa-map-signs'},
+    'players': {'title': 'Lista de jugadores', 'short_title': 'Jugadores', 'version': '1.01', 'path': '/users', 'icon': 'fas fa-user'},
+    'locations': {'title': 'Lugares', 'short_title': 'Lugares', 'version': '1.01', 'path': '/locations', 'icon': 'fab fa-fort-awesome'},
     # 'missions': {'title': 'Calculadora de rutas', 'short_title': 'Misiones', 'version': '9.03', 'path': '/missions', 'icon': 'fas fa-map-signs'},
     'armies': {'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'version': '1.00', 'path': '/armies', 'icon': 'fas fa-chess-knight'}
     }
