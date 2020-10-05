@@ -1,4 +1,5 @@
-document.addEventListener("turbolinks:load", function() {
+<script>
+  document.addEventListener("turbolinks:load", function() {
     if ($(".map.index").length !== 0 || $(".map.full").length !== 0) {
 
       $(window).resize(function(){
@@ -64,7 +65,7 @@ document.addEventListener("turbolinks:load", function() {
 
       var drawnItems = new L.FeatureGroup();
 
-      <% Location.where('visibility != 99').where('location_type != ?','Ruinas').order(:visibility).each do |location| %>
+      <% @locations_main.each do |location| %>
         main.addLayer(
           L.marker(
             [<%= location.y %>,<%= location.x %>],
@@ -73,14 +74,14 @@ document.addEventListener("turbolinks:load", function() {
                 html: "<img src='/assets/<%= location.icon %>' width='24' height='24'></div>",
                 iconSize: [120,24],
                 iconAnchor: [12, 12]
-                })
+              })
               })
               .bindPopup('<p><%= location.name_es %></p><p><%= location.family.name %></p>')
               .bindTooltip("<%= location.name_es %>", {permanent: true, className: "locationLabel", offset: [0, 0] })
           );
       <% end %>
 
-      <% Location.where('visibility != 99').where('location_type != ?','Ruinas').order(:visibility).each do |location| %>
+      <% @locations_main.each do |location| %>
         main_all.addLayer(
           L.marker(
             [<%= location.y %>,<%= location.x %>],
@@ -96,7 +97,7 @@ document.addEventListener("turbolinks:load", function() {
           );
       <% end %>
 
-      <% Location.where(visibility: 99).each do |location| %>
+      <% @location_secondary.each do |location| %>
         other.addLayer(
           L.marker(
             [<%= location.y %>,<%= location.x %>],
@@ -111,7 +112,7 @@ document.addEventListener("turbolinks:load", function() {
           );
       <% end %>
 
-      <% Location.where(location_type: "Ruinas").where('kingdom != ?','El Muro').each do |location| %>
+      <% @location_ruins.each do |location| %>
         ruins.addLayer(
           L.marker(
             [<%= location.y %>,<%= location.x %>],
@@ -124,7 +125,7 @@ document.addEventListener("turbolinks:load", function() {
           );
       <% end %>
 
-      <% Location.where(location_type: "Ruinas").where(kingdom: 'El Muro').each do |location| %>
+      <% @location_wall.each do |location| %>
         the_wall.addLayer(
           L.marker(
             [<%= location.y %>,<%= location.x %>],
@@ -326,3 +327,4 @@ document.addEventListener("turbolinks:load", function() {
       */
   }
 });
+</script>
