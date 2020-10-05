@@ -46,7 +46,7 @@ class HousesController < ApplicationController
         format.html { redirect_to houses_url, success: 'Casa editada correctamente.' }
         format.json { respond_with_bip @house }
       else
-        format.html { redirect_to houses_url, danger: @house.error }
+        format.html { redirect_to houses_url, danger: @house.errors }
       end
     end
   end

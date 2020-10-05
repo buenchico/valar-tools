@@ -74,6 +74,10 @@ es:
               blank: "El estado del ejército es necesario"
             type:
               blank: "El tipo del ejército es necesario"
+        location:
+          attributes:
+            family:
+              required: "Cada localización requiere una familia, si no existe seleccione el campo en blanco"
   helpers:
     submit:
       create: "Añadir %{model}"
@@ -86,8 +90,8 @@ es:
         update: "Guardar casa"
       army:
         create: "Añadir ejército"
-        update: "Guardar ejército"        
-        
+        update: "Guardar ejército"
+
   recaptcha:
     errors:
       verification_failed: 'Por favor, verifica que eres humano.'

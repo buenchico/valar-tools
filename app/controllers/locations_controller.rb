@@ -36,7 +36,7 @@ class LocationsController < ApplicationController
       if @location.save
         format.html { redirect_to locations_url, success: 'Lugar añadido correctamente' }
       else
-        format.html { redirect_to locations_url, danger: @location.error }
+        format.html { redirect_to locations_url, danger: @location.errors }
       end
     end
   end
