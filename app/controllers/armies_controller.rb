@@ -149,7 +149,7 @@ class ArmiesController < ApplicationController
         @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado" ]
       end
       @status = {"Movilizado" => "Movilizado", "Desmovilizado" => "Desmovilizado", "Aniquilado" => "Aniquilado"}
-      @type = {"Leva" => "Leva", "Sangrado" => "Sangrado", "Mercenario" => "Mercenario", "Guardia" => "Guardia"}
+      @type = {"Leva" => "Leva", "Sangrado" => "Sangrado", "Mercenario" => "Mercenario", "Guardia" => "Guardia", "Temporal" => "Temporal"} 
       @boat = {"No" => "No", "Sí, Barcoluengos" => "Sí, Barcoluengos", "Sí, Galeras" => "Sí, Galeras", "Sí, Galeras mercantes" => "Sí, Galeras mercantes", "Sí, Dromones" => "Sí, Dromones"}
     end
 
