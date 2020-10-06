@@ -58,7 +58,7 @@ class LocationsController < ApplicationController
   def destroy
     @location.destroy
     respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Lugar borrado.' }
+      format.html { redirect_to locations_url, warning: 'Lugar borrado.' }
     end
   end
 

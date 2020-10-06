@@ -56,7 +56,7 @@ class HousesController < ApplicationController
   def destroy
     @house.destroy
     respond_to do |format|
-      format.html { redirect_to houses_url, notice: 'Casa borrada.' }
+      format.html { redirect_to houses_url, warning: 'Casa borrada.' }
     end
   end
 

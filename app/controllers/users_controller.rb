@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Jugador eliminado.' }
+      format.html { redirect_to users_url, warning: 'Jugador eliminado.' }
       format.json { head :no_content }
     end
   end

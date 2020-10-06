@@ -87,7 +87,7 @@ class ArmiesController < ApplicationController
     if params[:army][:confirm] == "DELETE" then
       @army.destroy
       respond_to do |format|
-        format.html { redirect_to armies_url, notice: 'Ejército borrado.' }
+        format.html { redirect_to armies_url, warning: 'Ejército borrado.' }
       end
     else
       respond_to do |format|
@@ -149,7 +149,7 @@ class ArmiesController < ApplicationController
         @filter = [ "Ejército", "Rasgos", "Posición", "Misión", "Embarcado" ]
       end
       @status = {"Movilizado" => "Movilizado", "Desmovilizado" => "Desmovilizado", "Aniquilado" => "Aniquilado"}
-      @type = {"Leva" => "Leva", "Sangrado" => "Sangrado", "Mercenario" => "Mercenario", "Guardia" => "Guardia", "Temporal" => "Temporal"} 
+      @type = {"Leva" => "Leva", "Sangrado" => "Sangrado", "Mercenario" => "Mercenario", "Guardia" => "Guardia", "Temporal" => "Temporal"}
       @boat = {"No" => "No", "Sí, Barcoluengos" => "Sí, Barcoluengos", "Sí, Galeras" => "Sí, Galeras", "Sí, Galeras mercantes" => "Sí, Galeras mercantes", "Sí, Dromones" => "Sí, Dromones"}
     end
 
