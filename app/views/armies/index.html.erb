@@ -13,7 +13,7 @@
     <div class="card-text">
         <p>Dispones de un total de <%= @armies.length %> ejércitos. Con una fuerza total de <i class="fas fa-fist-raised"></i> <span id="count-strenght"><%= @total_str.sum %></span> y un total de <span id="count-number"><%= @total_num.sum * 200 %> hombres.</span></p>
         <p>De los cuales hay visibles <span id="count-visible"><%= @armies.length %></span>. Con una fuerza total de <i class="fas fa-fist-raised"></i> <span id ="count-visible-strenght"><%= @total_str.sum %></span></p>
-        <p>Hay <span id="count-mobilize"><%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, y <span id="count-destroyed"></span><%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</span></p>
+        <p>En todo Poniente hay <%= @armies.where('status = ?', "Movilizado").size %> ejércitos movilizados, <%= @armies.where('status = ?', "Movilizado").where('armytype = ?','Sangrado').size %> ejércitos sangrados y <%= @armies.where('status = ?', "Aniquilado").size %> han sido aniquilados</p>
     </div>
   </div>
 </div>
