@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get '/armies/:id/confirm', to: 'armies#confirm', as: 'army_confirm'
 
   # Login and logout routes
+  get 'sso', to: 'sessions#sso', as: 'sso'
+
   post 'login', to: 'sessions#create', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  post 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :locations
 
