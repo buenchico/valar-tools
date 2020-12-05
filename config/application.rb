@@ -15,7 +15,7 @@ module ValarTools
     config.i18n.default_locale = :es
 
     # Autoload /lib --- for SSO with discourse
-    config.autoload_paths << "#{Rails.root}/lib/assets"
+    config.eager_load_paths << "#{Rails.root}/lib/assets"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
