@@ -14,13 +14,28 @@ class UsersController < ApplicationController
   def show
   end
 
+  # GET /users/1/edit
+  def edit
+  end
+
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to users_url, success: 'Jugador editado correctamente.' }
+      else
+        format.html { redirect_to users_url, danger: @user.errors }
+      end
+    end
+  end
+
+#Old users code for handling login in the app
+
+=begin
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users
@@ -33,18 +48,6 @@ class UsersController < ApplicationController
         format.html { redirect_to users_url, success: 'Jugador añadido correctamente.' }
       else
         format.html { redirect_to users_url, danger: 'Se ha producido un error, por favor inténtelo de nuevo' }
-      end
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_url, success: 'Jugador editado correctamente.' }
-      else
-        format.html { redirect_to users_url, danger: @user.errors }
       end
     end
   end
@@ -80,6 +83,7 @@ class UsersController < ApplicationController
       render 'show'
     end
   end
+=end
 
   # Check if user is current user, master or admin
   def correct_user

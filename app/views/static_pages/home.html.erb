@@ -1,20 +1,21 @@
-<%= button_to 'Login', login_path, method: :post %>
-<%= button_to 'Logout', logout_path, method: :post %>
-<p><%= cookies.to_h %></p>
-
 <div class="center">
-  <% $tools.each do |k,v| %>
-    <div class="tool-box">
-      <h1><%= link_to "", $tools[k][:path], class: "white giant-icon #{$tools[k][:icon]}" %></h1>
-      <p><%= $tools[k][:short_title] %></p>
-    </div>
-  <% end =%>
-  <% if current_user.try(:is_master?) then %>
-    <% $master_tools.each do |k,v| %>
+  <div>
+    <% $tools.each do |k,v| %>
       <div class="tool-box">
-        <h1><%= link_to "", $master_tools[k][:path], class: "SandyBrown giant-icon #{$master_tools[k][:icon]}" %></h1>
-        <p><%= $master_tools[k][:short_title] %></p>
+        <h1><%= link_to "", $tools[k][:path], class: "white giant-icon #{$tools[k][:icon]}" %></h1>
+        <p><%= $tools[k][:short_title] %></p>
       </div>
     <% end %>
-  <% end %>
+  </div>
+
+  <div>
+    <% if current_user.try(:is_master?) then %>
+      <% $master_tools.each do |k,v| %>
+        <div class="tool-box">
+          <h1><%= link_to "", $master_tools[k][:path], class: "SandyBrown giant-icon #{$master_tools[k][:icon]}" %></h1>
+          <p><%= $master_tools[k][:short_title] %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

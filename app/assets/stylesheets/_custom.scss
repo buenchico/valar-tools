@@ -24,23 +24,27 @@ body {
   height: 36px;
 }
 
+.avatar {
+  border-radius: 50%;
+}
+
 .nav-text-icon {
-  font-size: 1.5em;
+  font-size: 2em;
   padding: 0.5rem;
 }
 
 .nav-icon {
-  height: 24px;
+  height: 32px;
+  width: 32px;
   margin: auto;
+}
+
+.nav-item:hover {
+  background-color: #313131;
 }
 
 .dropdown-toggle::after {
     content: none;
-}
-
-a.nav-text-icon:hover {
-  background-color: #ddd;
-  text-decoration: none;
 }
 
 /* miscellaneous */
@@ -124,6 +128,8 @@ a.nav-text-icon:hover {
 
 .giant-icon {
   font-size: 300%;
+  height: 130px;
+  width: 130px;
 }
 
 .giant-icon:hover {

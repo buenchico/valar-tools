@@ -19,13 +19,13 @@
             </ul>
           </div>
         <% end %>
-  
+
   <div class="form-group form-inline">
     <div class="input-group mb-2">
       <div class="input-group-prepend">
         <div class="input-group-text"><i class="fas fa-user"></i>&nbsp;</div>
       </div>
-      <%= form.text_field :player, class: "custom-control", placeholder: "Nombre del jugador"  %>
+      <%= form.text_field :player, class: "custom-control", readonly: true, placeholder: "Nombre del jugador"  %>
     </div>
   </div>
 
@@ -38,24 +38,6 @@
     </div>
   </div>
 
-  <div class="form-group form-inline">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-lock"></i>&nbsp;</div>
-      </div>
-      <%= form.password_field :password, class: "custom-control", placeholder: "Nueva contraseña" %>
-    </div>
-  </div>
-
-  <div class="form-group form-inline">
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text"><i class="fas fa-lock"></i>&nbsp;</div>
-      </div>
-      <%= form.password_field :password_confirmation, class: "custom-control", placeholder: "Confirmar contraseña" %>
-    </div>
-  </div>
-  
   <div>
     <%= form.submit class: "btn btn-primary" %>
   </div>

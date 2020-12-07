@@ -21,32 +21,11 @@
 
 <div class="center">
   <div class="tool-box">
-    <h1><%= link_to "", 'https://www.valar.es/u/'+@user.player, class: "white giant-icon fab fa-discourse" %></h1>
-    <p>Discourse</p>
-  </div>
-  <div class="tool-box">
-    <h1><%= link_to "", "#", class: "white giant-icon fas fa-lock", "data-toggle" => "modal", "data-target" => "#passwordchangeModal" %></h1>
-    <p>Cambiar contraseña</p>
+    <h1><%= link_to image_tag(cookies[:avatar_url], class: "avatar white giant-icon"), 'https://www.valar.es/u/'+@user.player %></h1>
+    <p><%= @user.player %></p>
   </div>
   <div class="tool-box">
     <h1><%= link_to "", armies_url, class: "white giant-icon fas fa-chess-knight" %></h1>
     <p>Ejércitos</p>
-  </div>  
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="passwordchangeModal" tabindex="-1" role="dialog" aria-labelledby="Password" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Login">Cambiar contraseña</h5>
-        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'password', user: @user %>
-      </div>
-    </div>
   </div>
 </div>

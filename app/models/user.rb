@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  has_secure_password
-  validates :password, length: { minimum: 6, maximum: 20 }, allow_blank: true
-  validates :player, presence: true, :uniqueness => { case_sensitive: false }, format: { without: /\s/}
   validates :house, presence: true
   before_create { generate_token(:auth_token) }
 
@@ -24,6 +21,7 @@ class User < ApplicationRecord
   def is_admin?
     self.house == 'Admin'
   end
+
   def is_master?
     self.house == 'Master' || self.house == 'Admin'
   end
