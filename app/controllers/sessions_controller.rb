@@ -1,5 +1,14 @@
 class SessionsController < ApplicationController
 
+  def test_api
+    client = DiscourseApi::Client.new("http://www.valar.es")
+    client.api_key = ENV['DISCOURSE_API']
+    client.api_username = "valar"
+
+    require 'net/http'
+    HTTParty.post('https://www.valar.es/admin/users/2/log_out?api_username='+client.api_username+'&api_key='+client.api_key, '')
+  end
+
   def create
     sso = SsoWithDiscourse::Sso.new
     session[:sso] = sso

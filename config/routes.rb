@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create', as: 'login'
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
+  post 'test_api', to: 'sessions#test_api', as: 'test_api'
+
   resources :locations
 
   get  '/about', to: 'static_pages#about'
