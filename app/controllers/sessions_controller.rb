@@ -1,14 +1,5 @@
 class SessionsController < ApplicationController
 
-  def test_api
-    client = DiscourseApi::Client.new("http://www.valar.es")
-    client.api_key = ENV['DISCOURSE_API']
-    client.api_username = "valar"
-
-    require 'net/http'
-    HTTParty.post('https://www.valar.es/admin/users/2/log_out?api_username='+client.api_username+'&api_key='+client.api_key, '')
-  end
-
   def create
     sso = SsoWithDiscourse::Sso.new
     session[:sso] = sso
@@ -17,10 +8,36 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @id = cookies[:external_id]
+
+    @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
+    @params = {'api-username': 'valar', 'api-key': '2ed63c996f6f06265e32fe523d3eb80757299d90bfde719ccffbfb5c78893c89'}
+
+    con = Faraday.new
+    con.headers['api-username'] = 'valar'
+    con.headers['api-key'] = '2ed63c996f6f06265e32fe523d3eb80757299d90bfde719ccffbfb5c78893c89'
+
+    res = con.post @url
+
+    if res.body['success'] == 'success'
+      cookies.delete(:user)
+      cookies.delete(:auth_token)
+      cookies.delete(:avatar_url)
+
+      redirect_to root_url
+      flash[:danger] = 'Sesión cerrada correctamente.'
+    else
+      redirect_to root_url
+      flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo.'
+    end
+  end
+
+  def destroy_sso
     cookies.delete(:user)
     cookies.delete(:auth_token)
     cookies.delete(:avatar_url)
-    redirect_to root_url
+
+    redirect_to 'https://www.valar.es'
   end
 
   def sso
@@ -30,7 +47,7 @@ class SessionsController < ApplicationController
       cookies.permanent[:user] = $sso.user_info[:username]
       cookies.permanent[:auth_token] = User.find_by(player: $sso.user_info[:username]).auth_token
       cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
-      $a = $sso.user_info
+      cookies.permanent[:external_id] = $sso.user_info[:external_id]
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+'.'
     elsif $sso.status == 'success' && User.find_by(player: $sso.user_info[:username]) == nil

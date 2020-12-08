@@ -27,8 +27,7 @@ Rails.application.routes.draw do
 
   post 'login', to: 'sessions#create', as: 'login'
   post 'logout', to: 'sessions#destroy', as: 'logout'
-
-  post 'test_api', to: 'sessions#test_api', as: 'test_api'
+  get 'logout_sso', to: 'sessions#destroy_sso', as: 'logout_sso'
 
   resources :locations
 
