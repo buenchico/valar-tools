@@ -18,4 +18,13 @@
       <% end %>
     <% end %>
   </div>
+
+  <div>
+    <% $ap_tools.each do |k,v| %>
+      <div class="tool-box">
+        <h1><%= link_to "", $ap_tools[k][:path], class: "white giant-icon #{$ap_tools[k][:icon]}" %></h1>
+        <p><%= $ap_tools[k][:short_title] %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

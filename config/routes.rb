@@ -53,5 +53,8 @@ Rails.application.routes.draw do
   get 'location_list_en', to: 'application#location_list_en'
   get 'family_list', to: 'application#family_list'
 
+  #AP Tools
+  get '/ap/systems', to: 'systems#index', as: 'ap_systems'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

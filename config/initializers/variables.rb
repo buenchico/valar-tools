@@ -8,6 +8,9 @@
     'armies': {'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'version': '1.00', 'path': '/armies', 'icon': 'fas fa-chess-knight'}
     }
 
+  $ap_tools  = {'systems': {'title': 'Sistemas', 'short_title': 'Sistemas', 'version': '1.00', 'path': '/ap/systems', 'icon': 'fas fa-globe'}
+    }
+
   $master_tools = {'houses': {'title': 'Lista de casas', 'short_title': 'Casas', 'version': '1.01', 'path': '/houses', 'icon': 'fas fa-flag'},
     'reputation': {'title': 'Reputación', 'short_title': 'Rep', 'version': '1.00', 'path': '/rep', 'icon': 'fas fa-thumbs-up'}
     }

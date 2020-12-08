@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :system
   validates :house, presence: true
   before_create { generate_token(:auth_token) }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200930160456) do
+ActiveRecord::Schema.define(version: 20201208223451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,24 @@ ActiveRecord::Schema.define(version: 20200930160456) do
     t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "factors", array: true
+    t.string "results", array: true
+  end
+
+  create_table "systems", force: :cascade do |t|
+    t.string "name"
+    t.integer "slots", default: 0
+    t.integer "ic", default: 0
+    t.integer "rp", default: 0
+    t.integer "cp", default: 0
+    t.string "traits"
+    t.text "desc"
+    t.integer "x", default: 0
+    t.integer "z", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_systems_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,4 +110,5 @@ ActiveRecord::Schema.define(version: 20200930160456) do
     t.integer "reputation"
   end
 
+  add_foreign_key "systems", "users"
 end
