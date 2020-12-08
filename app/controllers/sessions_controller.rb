@@ -11,11 +11,10 @@ class SessionsController < ApplicationController
     @id = cookies[:external_id]
 
     @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
-    @params = {'api-username': 'valar', 'api-key': '2ed63c996f6f06265e32fe523d3eb80757299d90bfde719ccffbfb5c78893c89'}
 
     con = Faraday.new
     con.headers['api-username'] = 'valar'
-    con.headers['api-key'] = '2ed63c996f6f06265e32fe523d3eb80757299d90bfde719ccffbfb5c78893c89'
+    con.headers['api-key'] = ENV['DISCOURSE_API']
 
     res = con.post @url
 
