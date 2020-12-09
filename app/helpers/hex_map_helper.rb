@@ -1,0 +1,2 @@
+module HexMapHelper
+end

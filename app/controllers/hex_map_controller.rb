@@ -1,0 +1,2 @@
+class HexMapController < ApplicationController
+end

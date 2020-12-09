@@ -156,7 +156,7 @@ class ArmiesController < ApplicationController
     def correct_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
-        render js: "window.location.replace('#{root_url}');"
+        render js: "2window.location.replace('#{root_url}');"
       elsif params[:button] == "multiple" || params[:button] == "visibility" || params[:button] == "delete" then
         @armies = params[:army_ids]
         @armies.each do |x|
@@ -175,7 +175,7 @@ class ArmiesController < ApplicationController
     def master_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
-        render js: "window.location.replace('#{root_url}');"
+        redirect_to root_url
       elsif !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
         render js: "window.location.replace('#{root_url}');"

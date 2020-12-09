@@ -12,23 +12,23 @@ class SessionsController < ApplicationController
 
     @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
 
-    con = Faraday.new
-    con.headers['api-username'] = 'valar'
-    con.headers['api-key'] = ENV['DISCOURSE_API']
+    # con = Faraday.new
+    # con.headers['api-username'] = 'valar'
+    # con.headers['api-key'] = ENV['DISCOURSE_API']
 
-    res = con.post @url
+    # res = con.post @url
 
-    if res.body['success'] == 'success'
+    # if res.body['success'] == 'success'
       cookies.delete(:user)
       cookies.delete(:auth_token)
       cookies.delete(:avatar_url)
 
       redirect_to root_url
       flash[:danger] = 'Sesión cerrada correctamente.'
-    else
-      redirect_to root_url
-      flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo.'
-    end
+    # else
+    #  redirect_to root_url
+    #  flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo.'
+    # end
   end
 
   def destroy_sso
@@ -65,6 +65,7 @@ class SessionsController < ApplicationController
       flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo'
     end
   end
+end
 
 #Old session code for handling login in the app
 
@@ -91,5 +92,3 @@ class SessionsController < ApplicationController
     flash[:warning] = 'Sesión terminada.' # Not quite right!
   end
 =end
-
-end
