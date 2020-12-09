@@ -12,9 +12,10 @@ class SessionsController < ApplicationController
 
     @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
 
-    con = Faraday.new
-    con.headers['api-username'] = 'valar'
-    con.headers['api-key'] = ENV['DISCOURSE_API']
+    con = Faraday.new(
+      url: @url,
+      headers: {'api-username': 'valar', 'api-key': ENV['DISCOURSE_API']}
+    )
 
     res = con.post @url
 
