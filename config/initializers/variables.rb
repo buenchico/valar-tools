@@ -1,8 +1,8 @@
 # config/initializers/variables.rb
 
 
-$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:name)
-$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:name)
+$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
+$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
 $all_tools = Tool.all.order(:id)
 
 =begin

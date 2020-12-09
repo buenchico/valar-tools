@@ -7,7 +7,7 @@ class ToolsController < ApplicationController
 
   def update
     params.permit(:games)
-    
+
     @games = params['tool']['games']
     @active_games = []
     (@games || []).each do |x|
@@ -16,6 +16,8 @@ class ToolsController < ApplicationController
 
     respond_to do |format|
       if @tool.update(game: @active_games) && @tool.update(tool_params)
+        $tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
+        $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)       
         format.html { redirect_to game_url, success: 'Herramienta editada correctamente.' }
       else
         format.html { redirect_to game_url, danger: @tool.errors }
