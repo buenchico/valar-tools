@@ -1,9 +1,9 @@
 # config/initializers/variables.rb
 
 
-$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true })
-$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true })
-$all_tools = Tool.all
+$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:name)
+$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:name)
+$all_tools = Tool.all.order(:id)
 
 =begin
   $tools = {'routes': {'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'version': '1.03', 'path': '/travel_calculator', 'icon': 'fas fa-route'},

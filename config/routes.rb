@@ -53,8 +53,12 @@ Rails.application.routes.draw do
   get 'location_list_en', to: 'application#location_list_en'
   get 'family_list', to: 'application#family_list'
 
+  # Games and Tools
+
   get 'game', to: 'game#index'
   post 'game', to: 'game#set_active_game', as: 'set_active_game'
 
+  resources :tools, :only => [:edit, :update]
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -91,6 +91,9 @@ es:
       army:
         create: "Añadir ejército"
         update: "Guardar ejército"
+      tool:
+        create: "Añadir herramienta"
+        update: "Guardar herramienta"
 
   recaptcha:
     errors:
