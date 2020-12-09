@@ -12,30 +12,24 @@ class SessionsController < ApplicationController
 
     @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
 
-<<<<<<< HEAD
-    # con = Faraday.new
-    # con.headers['api-username'] = 'valar'
-    # con.headers['api-key'] = ENV['DISCOURSE_API']
-=======
     con = Faraday.new(
       url: @url,
       headers: {'api-username': 'valar', 'api-key': ENV['DISCOURSE_API']}
     )
->>>>>>> master
 
-    # res = con.post @url
+    res = con.post @url
 
-    # if res.body['success'] == 'success'
+    if res.body['success'] == 'success'
       cookies.delete(:user)
       cookies.delete(:auth_token)
       cookies.delete(:avatar_url)
 
       redirect_to root_url
       flash[:danger] = 'Sesión cerrada correctamente.'
-    # else
-    #  redirect_to root_url
-    #  flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo.'
-    # end
+    else
+      redirect_to root_url
+      flash[:danger] = 'Se ha producido un error, por favor inténtelo de nuevo.'
+    end
   end
 
   def destroy_sso
