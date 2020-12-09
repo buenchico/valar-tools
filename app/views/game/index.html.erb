@@ -1,0 +1,85 @@
+<% provide(:title, "Configuración de partida") %>
+<% provide(:icon, "fas fa-tachometer-alt") %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de partidas</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="sorter-false">Nombre</th>
+          <th scope="col" class="sorter-font-awesome">¿Activa? <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @games.each do |game| %>
+          <tr>
+            <td><%= game.name %></td>
+            <td class="text-center">
+              <% if game.active == true  %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </td>
+            <td>
+              <% if game.active == false  %>
+                <%= form_with url: set_active_game_path, remote: true do |form| %>
+                  <%= form.button :submit, class: "btn btn-outline-success", value: game.id do %>
+                    <i class="fas fa-check"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de herramientas</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="sorter-false" colspan="2">Nombre</th>
+          <th scope="col">Partida <i class="fas fa-sort"></i></th>
+          <th scope="col" class="sorter-font-awesome">¿Activa? <i class="fas fa-sort"></i></th>
+          <th scope="col" class="sorter-font-awesome">¿Máster? <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tools.each do |tool| %>
+          <tr>
+            <td><i class="<%= tool.icon %>"></i></td>
+            <td><%= tool.short_title %></td>
+            <td>
+              <% games = [] %>
+              <% tool.game.each do |game|  %>
+                <% games << game.title %>
+              <% end %>
+              <%= games.join(',') %>
+            </td>
+            <td class="text-center">
+              <% if tool.active == true  %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <% if tool.master == true  %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>

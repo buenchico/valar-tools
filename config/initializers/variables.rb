@@ -1,5 +1,11 @@
 # config/initializers/variables.rb
 
+
+$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true })
+$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true })
+$all_tools = Tool.all
+
+=begin
   $tools = {'routes': {'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'version': '1.03', 'path': '/travel_calculator', 'icon': 'fas fa-route'},
     'map': {'title': 'Mapa', 'short_title': 'Mapa', 'version': '1.01', 'path': '/map', 'icon': 'fas fa-map-signs'},
     'players': {'title': 'Lista de jugadores', 'short_title': 'Jugadores', 'version': '1.01', 'path': '/users', 'icon': 'fas fa-user'},
@@ -8,12 +14,15 @@
     'armies': {'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'version': '1.00', 'path': '/armies', 'icon': 'fas fa-chess-knight'}
     }
 
+    Game.first.tool.create('title': 'Lista de jugadores', 'short_title': 'Jugadores', 'version': '1.01', 'path': '/users', 'icon': 'fas fa-user')
+
   $ap_tools  = {'systems': {'title': 'Sistemas', 'short_title': 'Sistemas', 'version': '1.00', 'path': '/ap/systems', 'icon': 'fas fa-globe'}
     }
 
   $master_tools = {'houses': {'title': 'Lista de casas', 'short_title': 'Casas', 'version': '1.01', 'path': '/houses', 'icon': 'fas fa-flag'},
     'reputation': {'title': 'Reputación', 'short_title': 'Rep', 'version': '1.00', 'path': '/rep', 'icon': 'fas fa-thumbs-up'}
     }
+=end
 
   $static_pages = {'Acerca de': '/about', 'Contacto': '/contact' }
 

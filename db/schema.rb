@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201208223451) do
+ActiveRecord::Schema.define(version: 20201208231356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,22 @@ ActiveRecord::Schema.define(version: 20201208223451) do
     t.string "branch", default: "Elder"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "icon"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games_tools", id: false, force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "tool_id"
+    t.index ["game_id"], name: "index_games_tools_on_game_id"
+    t.index ["tool_id"], name: "index_games_tools_on_tool_id"
+  end
+
   create_table "houses", force: :cascade do |t|
     t.integer "hid"
     t.string "name"
@@ -84,20 +100,17 @@ ActiveRecord::Schema.define(version: 20201208223451) do
     t.string "results", array: true
   end
 
-  create_table "systems", force: :cascade do |t|
+  create_table "tools", force: :cascade do |t|
     t.string "name"
-    t.integer "slots", default: 0
-    t.integer "ic", default: 0
-    t.integer "rp", default: 0
-    t.integer "cp", default: 0
-    t.string "traits"
-    t.text "desc"
-    t.integer "x", default: 0
-    t.integer "z", default: 0
-    t.bigint "user_id"
+    t.string "title"
+    t.string "short_title"
+    t.string "path"
+    t.string "icon"
+    t.boolean "master", default: false
+    t.integer "sort", default: 0
+    t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_systems_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,5 +123,4 @@ ActiveRecord::Schema.define(version: 20201208223451) do
     t.integer "reputation"
   end
 
-  add_foreign_key "systems", "users"
 end

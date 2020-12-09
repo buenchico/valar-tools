@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  master: false
-  game: 
+  active: false
 
 two:
   name: MyString
-  master: false
-  game: 
+  active: false

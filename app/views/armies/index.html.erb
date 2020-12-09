@@ -1,6 +1,5 @@
-<% provide(:title, $tools[:armies][:title]) %>
-<% provide(:version, $tools[:armies][:version]) %>
-<% provide(:icon, $tools[:armies][:icon]) %>
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
@@ -35,8 +34,6 @@
 <% if current_user.try(:is_master?) then %>
   <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir ejército'.html_safe, new_army_path, remote:true, class: "btn btn-primary"%></div>
 <% end %>
-
-<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 
 <div id='army-content'></div>
 

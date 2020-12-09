@@ -1,5 +1,5 @@
 <% provide(:title, @user.player + ' — ' + @user.house) %>
-<% provide(:icon, $tools[:players][:icon]) %>
+<% provide(:icon, 'fas fa-user') %>
 
   <% if @user.errors.any? %>
     <div id="error_explanation" class="container mx-auto text-center alert alert-danger">
@@ -24,6 +24,7 @@
     <h1><%= link_to image_tag(cookies[:avatar_url], class: "avatar white giant-icon"), 'https://www.valar.es/u/'+@user.player %></h1>
     <p><%= @user.player %></p>
   </div>
+
   <div class="tool-box">
     <h1><%= link_to "", armies_url, class: "white giant-icon fas fa-chess-knight" %></h1>
     <p>Ejércitos</p>

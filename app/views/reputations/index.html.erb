@@ -1,6 +1,5 @@
-<% provide(:title, $master_tools[:reputation][:title]) %>
-<% provide(:version, $master_tools[:reputation][:version]) %>
-<% provide(:icon, $master_tools[:reputation][:icon]) %>
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
@@ -48,7 +47,5 @@
       </tbody>
   </table>
 </div>
-
-<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 
 <!-- Modal -->

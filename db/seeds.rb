@@ -462,3 +462,13 @@ Family.find_by(fid:200000).location.create(lid:400242,name_es:"",name_en:"",loca
 Family.find_by(fid:200000).location.create(lid:400243,name_es:"",name_en:"",location_type:"Puente",visibility:99,kingdom:"Ríos",description:nil,x:17.396,y:4.354)
 Family.find_by(fid:200193).location.create(lid:400244,name_es:"El Cántaro",name_en:"",location_type:"Castillo",visibility:6,kingdom:"Ríos",description:nil,x:17.85,y:7.065)
 Family.find_by(fid:200193).location.create(lid:400245,name_es:"Murosblancos",name_en:"Whitewalls",location_type:"Ruinas",visibility:4,kingdom:"Ríos",description:nil,x:17.54,y:7.50)
+
+Game.first.tool.create(name: 'routes', 'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'active': true, 'path': '/travel_calculator', 'icon': 'fas fa-route')
+Game.first.tool.create(name: 'map', 'title': 'Mapa', 'short_title': 'Mapa', 'active': true, 'path': '/map', 'icon': 'fas fa-map-signs')
+Game.first.tool.create(name: 'players', 'title': 'Lista de jugadores', 'short_title': 'Jugadores', 'active': true, 'path': '/users', 'icon': 'fas fa-user')
+Game.first.tool.create(name: 'locations', 'title': 'Lugares', 'short_title': 'Lugares', 'active': true, 'path': '/locations', 'icon': 'fab fa-fort-awesome')
+Game.first.tool.create(name: 'missions', 'title': 'Calculadora de rutas', 'short_title': 'Misiones', 'active': false, 'path': '/missions', 'icon': 'fas fa-map-signs')
+Game.first.tool.create(name: 'armies', 'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'active': true, 'path': '/armies', 'icon': 'fas fa-chess-knight')
+Game.first.tool.create(name: 'houses', 'title': 'Lista de facciones', 'short_title': 'Facciones', 'master': true, 'active': true, 'path': '/houses', 'icon': 'fas fa-flag')
+Game.first.tool.create(name: 'reputation', 'title': 'Reputación', 'short_title': 'Rep', 'master': true, 'active': true, 'path': '/rep', 'icon': 'fas fa-thumbs-up')
+Game.second.tool.create(name: 'systems', 'title': 'Sistemas', 'short_title': 'Sistemas', 'active': true, 'path': '/systems', 'icon': 'fas fa-chess-globe')

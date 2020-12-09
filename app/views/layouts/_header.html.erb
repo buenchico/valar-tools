@@ -16,13 +16,13 @@
           <%= link_to "", "#", id: "navbarHamburger", class: "nav-link dropdown-toggle fas fa-bars nav-text-icon", "role": "button", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" %>
             <div class="dropdown-menu" style="z-index: 2000" aria-labelledby="navbarHamburger">
               <% if current_user.try(:is_master?) %>
-                <% $master_tools.each do |k, v|  %>
-                  <%= link_to $master_tools[k][:title], $master_tools[k][:path], class: "dropdown-item" %>
+                <% $master_tools.each do |tool|  %>
+                  <%= link_to tool.title, tool.path, class: "dropdown-item" %>
                 <% end %>
                 <div class="dropdown-divider"></div>
               <% end %>
-              <% $tools.each do |k, v|  %>
-                <%= link_to $tools[k][:title], $tools[k][:path], class: "dropdown-item" %>
+              <% $tools.each do |tool|  %>
+                <%= link_to tool.title, tool.path, class: "dropdown-item" %>
               <% end %>
               <div class="dropdown-divider"></div>
               <% $static_pages.each do |key, value|  %>

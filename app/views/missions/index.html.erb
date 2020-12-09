@@ -36,7 +36,7 @@ $(document).ready(function(){
         $('form [name="improve"]').attr("name","token["+token_id+"][improve]")
         $('form [name="damaged"]').attr("name","token["+token_id+"][damaged]")
         if (token_id == 5) $("#add_token").prop( "disabled", true );
-        if (token_id != 0) $("#rem_token").prop( "disabled", false );        
+        if (token_id != 0) $("#rem_token").prop( "disabled", false );
     });
     $("#rem_token").click(function(){
         $("#token" + token_id).fadeOut("normal", function() {
@@ -58,10 +58,8 @@ $('#recipe-select').on('change',function(){
 <%= javascript_include_tag 'common', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'missions', 'data-turbolinks-track': 'reload' %>
 
-
-<% provide(:title, $tools[:missions][:title]) %>
-<% provide(:version, $tools[:missions][:version]) %>
-<% provide(:icon, $tools[:missions][:icon]) %>
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
@@ -92,7 +90,7 @@ $('#recipe-select').on('change',function(){
                             <div class="input-group-text">Miscelánea</div>
                         </div>
                   <%= form.number_field :misc, class: "custom-control", placeholder: "Otros modificadores", min: -3, max: +3 %>
-                </div> 
+                </div>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">Roleo</div>
@@ -103,7 +101,7 @@ $('#recipe-select').on('change',function(){
 	                    </label>
                     </div>
                 </div>
-            </div>    
+            </div>
                 <div id="token0" class="form-group form-inline container">
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
@@ -130,11 +128,11 @@ $('#recipe-select').on('change',function(){
 		                        <%= form.check_box "token[0][damaged]", {class: "custom-checkbox"} %><span>&nbsp;</span>
 	                        </label>
                         </div>
-                    </div>        
+                    </div>
                 </div>
                 <div class="form-group form-inline">
                     <button type="button" id="add_token" class="btn btn-success"><i class="fas fa-plus-circle"></i> Añadir token</button>
-                    <button type="button" disabled id="rem_token" class="btn btn-danger"><i class="fas fa-times-circle"></i> Eliminar token</button> 
+                    <button type="button" disabled id="rem_token" class="btn btn-danger"><i class="fas fa-times-circle"></i> Eliminar token</button>
                 </div>
                 <div class="form-group form-inline">
                     <%= form.submit "Calcular", class: "btn btn-primary", id: "calculate" %>
@@ -149,5 +147,3 @@ $('#recipe-select').on('change',function(){
         </div>
     </div>
 </div>
-
-<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>

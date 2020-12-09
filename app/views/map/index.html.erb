@@ -1,6 +1,5 @@
-<% provide(:title, $tools[:map][:title]) %>
-<% provide(:version, $tools[:map][:version]) %>
-<% provide(:icon, $tools[:map][:icon]) %>
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
@@ -18,7 +17,5 @@
     <div id="mapid" style="height: 720px; width: 100%">
     </div>
 </div>
-
-<div class="version"><%= yield(:title) %> version <%= yield(:version) %></div>
 
 <%= render 'map/map' %>
