@@ -162,12 +162,12 @@ class ArmiesController < ApplicationController
         @armies.each do |x|
           if current_user.house !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
             flash[:danger] = "No tienes permisos para acceder a esta página."
-            render js: "window.location.replace('#{armies_url}');"
+            redirect_to armies_url
           end
         end
       elsif current_user.house !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
-        render js: "window.location.replace('#{root_url}');"
+        redirect_to root_url
       end
     end
 
@@ -178,7 +178,7 @@ class ArmiesController < ApplicationController
         redirect_to root_url
       elsif !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
-        render js: "window.location.replace('#{root_url}');"
+        redirect_to root_url
       end
     end
 

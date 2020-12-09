@@ -50,6 +50,8 @@ gem 'rails_12factor'
 # leaflef support
 gem 'leaflet-rails'
 gem 'leaflet-draw-rails'
+# support for API calls
+gem 'faraday'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
