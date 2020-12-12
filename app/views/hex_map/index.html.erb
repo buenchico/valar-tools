@@ -1,0 +1,23 @@
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+
+<script>
+  $('#hex').hexGridWidget(40, 3, 'hexfield').on('hexclick',
+		function (e) {
+			console.log('clicked [' + e.column + ',' + e.row +']' +
+			' hex with center at [' + e.center.x + ',' + e.center.y + ']' +
+      ' // x:' + e.x + ',y:' + e.y + ',z:' + e.z
+      );
+		}
+	);
+</script>
+
+
+<div id='hex'>
+</div>

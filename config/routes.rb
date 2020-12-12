@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   post 'game', to: 'game#set_active_game', as: 'set_active_game'
 
   resources :tools, :only => [:edit, :update]
-  
+
+  get '/hex-map', to: 'hex_map#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
