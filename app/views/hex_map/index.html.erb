@@ -7,39 +7,43 @@
 </div>
 
 <script>
+  var hex_map = <%= @hex_map.to_json.html_safe %>
+
   $('#hex').hexGridWidget(30, 7, 'hexfield hex_unknown', 'hexcoords').on('hexclick',
 		function (e) {
       $('.hex-selected').removeClass('hex-selected');
-      $("#" + e.x + '_' + e.y + '_' + e.z).addClass('hex-selected').appendTo('#canvas');
-      $("#text_" + e.x + '_' + e.y + '_' + e.z).appendTo('#canvas');
+      $("#" + e.q + '_' + e.r).addClass('hex-selected').appendTo('#canvas');
+      $("#text_" + e.q + '_' + e.r).appendTo('#canvas');
+
+      var coords = 'q: ' + e.q + ', r: ' + e.r
 
       try {
-        if (hex_map[ e.x ][ e.y ][ 'name' ] == null) {
-          $('#name').html('Vacío');
+
+        if (hex_map[ e.q ][ e.r ][ 'name' ] == null) {
+          $('#name').html(' : Vacío');
         } else {
-          $('#name').html(hex_map[ e.x ][ e.y ][ 'name' ]);
+          $('#name').html(' : ' + hex_map[ e.q ][ e.r ][ 'name' ]);
         }
-        $('#coords').html(e.x + ' / ' + e.y);
-        $('#info').html(hex_map[ e.x ][ e.y ][ 'info' ]);
+        $('#coords').html(coords);
+        $('#info').html(hex_map[ e.q ][ e.r ][ 'info' ]);
       } catch(err) {
-        $('#sector_name').html('Desconocido');
-        $('#coords').html(e.x + ' / ' + e.y);
+        console.log('test');
+        $('#name').html(' : Desconocido');
+        $('#coords').html(coords);
         $('#info').html(0);
-      });
+      }
 		});
 
-  var hex_map = <%= @hex_map.to_json.html_safe %>
-
-  for (var x of Object.keys(hex_map)) {
-    for (var y of Object.keys(hex_map[x])) {
-      $('#' + x + '_' + y + '_' + (-x-y)).removeClass('hex_unknown');
-      $('#' + x + '_' + y + '_' + (-x-y)).addClass('hex_' + hex_map[x][y]['type']);
+  for (var q of Object.keys(hex_map)) {
+    for (var r of Object.keys(hex_map[q])) {
+      $('#' + q + '_' + r).removeClass('hex_unknown');
+      $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
     }
   }
 </script>
 
 <div class="card text-white bg-primary mb-3 float-right"  style="width: 18rem;">
-  <div class="card-header">Sector <span id='name'>NOMBRE</span> - <span id='coords'>0-0-0</span></div>
+  <div class="card-header">Sector <span id='coords'></span><span id='name'></span></div>
   <div class="card-body">
     <p class="card-text">Nivel de información: <span id='info'>1</span></p>
   </div>

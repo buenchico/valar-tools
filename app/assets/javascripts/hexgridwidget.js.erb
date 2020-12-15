@@ -31,10 +31,10 @@ $.fn.hexGridWidget = function (radius, rings, cssClass, cssTextClass) {
 		for (row = 0; row < rows; row++) {
 			for (column = 0; column < columns; column++) {
 				// offset coords to axial with 0,0,0 in center, see https://www.redblobgames.com/grids/hexagons/
-				var x = column - rings
-        var z = row - (column - ( column&1)) / 2 - (Math.ceil( (rings) / 2 ))
-        var y = -x-z
-				var ring = Math.max(Math.abs(x), Math.abs(y), Math.abs(z))
+				var q = column - rings
+        var r = row - (column - ( column&1)) / 2 - (Math.ceil( (rings) / 2 ))
+
+				var ring = Math.max(Math.abs(q), Math.abs(r), Math.abs(-q-r))
 				if (ring <= rings) { // do not draw hexagons outside the centerhex
 					center = {x:Math.round((1 + 1.5 * column) * radius), y: Math.round(height * (1 + row * 2 + (column % 2)))};
 					createSVG('polygon').attr({
@@ -48,15 +48,15 @@ $.fn.hexGridWidget = function (radius, rings, cssClass, cssTextClass) {
 						].join(' '),
 						'class':cssClass,
 						tabindex:1,
-						id: ''+x+'_'+y+'_'+z
+						id: ''+q+'_'+r
 					})
-					.appendTo(svgParent).data({center:center, row:row, column:column, x: x, y: y, z: z}).on('click', hexClick).attr({'hex-x': x, 'hex-y': y, 'hex-z': z, 'hex-ring': ring});
+					.appendTo(svgParent).data({center:center, row:row, column:column, q: q, r: r}).on('click', hexClick).attr({'q': q, 'r': r, 'ring': ring});
 				createSVG('text').attr({
 					x: center.x, y: center.y + ( height * 0.9 ),
 					'dominant-baseline': "middle", 'text-anchor': "middle",
 					'class': cssTextClass,
-					id: 'text_'+x+'_'+y+'_'+z
-				}).appendTo(svgParent).html(x+','+y)
+					id: 'text_'+q+'_'+r
+				}).appendTo(svgParent).html(q+','+r)
 				}
 			}
 		}
