@@ -1,7 +1,7 @@
 /* Adapted from https://github.com/gojko/hexgridwidget */
 
 /*global $, document*/
-$.fn.hexGridWidget = function (radius, rings, cssClass) {
+$.fn.hexGridWidget = function (radius, rings, cssClass, cssTextClass) {
 	'use strict';
 	// Defining columns from rings
 	var columns = 2 * rings + 1;
@@ -18,7 +18,7 @@ $.fn.hexGridWidget = function (radius, rings, cssClass) {
 					element.trigger($.Event('hexclick', hex.data()));
 				},
 				height = Math.sqrt(3) / 2 * radius,
-				svgParent = createSVG('svg').attr('tabindex', 1).appendTo(element).css({
+				svgParent = $('#canvas').attr('tabindex', 1).appendTo(element).css({
 					width: (1.5 * columns  +  0.5) * radius,
 					height: (2 * rows  +  1) * height
 				}),
@@ -26,6 +26,7 @@ $.fn.hexGridWidget = function (radius, rings, cssClass) {
 				toPoint = function (dx, dy) {
 					return Math.round(dx + center.x) + ',' + Math.round(dy + center.y);
 				};
+
 		// Create hexagons
 		for (row = 0; row < rows; row++) {
 			for (column = 0; column < columns; column++) {
@@ -46,11 +47,20 @@ $.fn.hexGridWidget = function (radius, rings, cssClass) {
 							toPoint(-1 * radius, 0)
 						].join(' '),
 						'class':cssClass,
-						tabindex:1
+						tabindex:1,
+						id: ''+x+'_'+y+'_'+z
 					})
 					.appendTo(svgParent).data({center:center, row:row, column:column, x: x, y: y, z: z}).on('click', hexClick).attr({'hex-x': x, 'hex-y': y, 'hex-z': z, 'hex-ring': ring});
+				createSVG('text').attr({
+					x: center.x, y: center.y + ( height * 0.9 ),
+					'dominant-baseline': "middle", 'text-anchor': "middle",
+					'class': cssTextClass,
+					id: 'text_'+x+'_'+y+'_'+z
+				}).appendTo(svgParent).html(x+','+y)
 				}
 			}
 		}
 	});
 };
+
+/*  */

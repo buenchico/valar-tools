@@ -6,18 +6,57 @@
     <%= yield(:title) %>
 </div>
 
-
 <script>
-  $('#hex').hexGridWidget(40, 3, 'hexfield').on('hexclick',
+  $('#hex').hexGridWidget(30, 7, 'hexfield hex_unknown', 'hexcoords').on('hexclick',
 		function (e) {
-			console.log('clicked [' + e.column + ',' + e.row +']' +
-			' hex with center at [' + e.center.x + ',' + e.center.y + ']' +
-      ' // x:' + e.x + ',y:' + e.y + ',z:' + e.z
-      );
-		}
-	);
+      $('.hex-selected').removeClass('hex-selected');
+      $("#" + e.x + '_' + e.y + '_' + e.z).addClass('hex-selected').appendTo('#canvas');
+      $("#text_" + e.x + '_' + e.y + '_' + e.z).appendTo('#canvas');
+
+      try {
+        if (hex_map[ e.x ][ e.y ][ 'name' ] == null) {
+          $('#name').html('Vacío');
+        } else {
+          $('#name').html(hex_map[ e.x ][ e.y ][ 'name' ]);
+        }
+        $('#coords').html(e.x + ' / ' + e.y);
+        $('#info').html(hex_map[ e.x ][ e.y ][ 'info' ]);
+      } catch(err) {
+        $('#sector_name').html('Desconocido');
+        $('#coords').html(e.x + ' / ' + e.y);
+        $('#info').html(0);
+      });
+		});
+
+  var hex_map = <%= @hex_map.to_json.html_safe %>
+
+  for (var x of Object.keys(hex_map)) {
+    for (var y of Object.keys(hex_map[x])) {
+      $('#' + x + '_' + y + '_' + (-x-y)).removeClass('hex_unknown');
+      $('#' + x + '_' + y + '_' + (-x-y)).addClass('hex_' + hex_map[x][y]['type']);
+    }
+  }
 </script>
 
+<div class="card text-white bg-primary mb-3 float-right"  style="width: 18rem;">
+  <div class="card-header">Sector <span id='name'>NOMBRE</span> - <span id='coords'>0-0-0</span></div>
+  <div class="card-body">
+    <p class="card-text">Nivel de información: <span id='info'>1</span></p>
+  </div>
+</div>
 
 <div id='hex'>
+  <svg id='canvas'>
+    <defs>
+      <pattern id="unknown" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+        <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-unknown.png"></image>
+      </pattern>
+      <pattern id="star-red" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+        <image width="1" height="1.2" preserveaspectratio="none" href="assets/hex/bg-star-red.png"></image>
+      </pattern>
+      <pattern id="empty" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+        <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-empty.png"></image>
+      </pattern>
+    </defs>
+  </svg>
 </div>
