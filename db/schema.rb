@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201208231356) do
+ActiveRecord::Schema.define(version: 20201215193559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,25 @@ ActiveRecord::Schema.define(version: 20201208231356) do
     t.datetime "updated_at", null: false
     t.string "factors", array: true
     t.string "results", array: true
+  end
+
+  create_table "sector_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "sector_id"
+    t.integer "info", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sector_id"], name: "index_sector_users_on_sector_id"
+    t.index ["user_id"], name: "index_sector_users_on_user_id"
+  end
+
+  create_table "sectors", force: :cascade do |t|
+    t.integer "q"
+    t.integer "r"
+    t.string "sector_type"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tools", force: :cascade do |t|

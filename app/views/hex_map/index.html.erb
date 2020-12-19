@@ -9,7 +9,7 @@
 <script>
   var hex_map = <%= @hex_map.to_json.html_safe %>
 
-  $('#hex').hexGridWidget(30, 7, 'hexfield hex_unknown', 'hexcoords').on('hexclick',
+  $('#hex').hexGridWidget(30, <%= @hex_rings %>, 'hexfield hex_unknown d-none', 'hexcoords d-none').on('hexclick',
 		function (e) {
       $('.hex-selected').removeClass('hex-selected');
       $("#" + e.q + '_' + e.r).addClass('hex-selected').appendTo('#canvas');
@@ -18,7 +18,6 @@
       var coords = 'q: ' + e.q + ', r: ' + e.r
 
       try {
-
         if (hex_map[ e.q ][ e.r ][ 'name' ] == null) {
           $('#name').html(' : Vacío');
         } else {
@@ -27,7 +26,6 @@
         $('#coords').html(coords);
         $('#info').html(hex_map[ e.q ][ e.r ][ 'info' ]);
       } catch(err) {
-        console.log('test');
         $('#name').html(' : Desconocido');
         $('#coords').html(coords);
         $('#info').html(0);
@@ -37,6 +35,22 @@
   for (var q of Object.keys(hex_map)) {
     for (var r of Object.keys(hex_map[q])) {
       $('#' + q + '_' + r).removeClass('hex_unknown');
+      var coords = [
+                    (q)+'_'+(r-(-1)),
+                    (q-1)+'_'+(r-(-1)),
+                    (q-1)+'_'+(r),
+                    (q)+'_'+(r-1),
+                    (q-(-1))+'_'+(r-1),
+                    (q-(-1))+'_'+(r)
+                    ]
+                    console.log(coords);
+      coords.forEach(i => {
+        $('#' + i).removeClass('d-none');
+        $('#text_' + i).removeClass('d-none');
+      });
+
+      $('#' + q + '_' + r).removeClass('d-none');
+      $('#text_' + q + '_' + r).removeClass('d-none');
       $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
     }
   }

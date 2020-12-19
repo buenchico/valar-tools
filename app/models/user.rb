@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :system
+  has_many :sector_users, :class_name => 'SectorUser'
+  has_many :sectors, through: :sector_users
   validates :house, presence: true
   before_create { generate_token(:auth_token) }
 

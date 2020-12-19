@@ -1,18 +1,22 @@
 class HexMapController < ApplicationController
   def index
-    @hex_map = {0=>{
-                  0=>{:name=>"Coruscant", :type=>"star-red", :info=>1},
-                  1=>{:name=>"Tattoine", :type=>"star-red", :info=>3}
-                },
-                1=>{
-                  2=> {:name=>"Sol", :type=>"star-red", :info=>2}
-                },
-                -3=>{
-                  3=> {:type=>"empty", :info=>2},
-                  2=> {:type=>"empty", :info=>2},
-                  1=> {:type=>"empty", :info=>2},
-                  0=> {:type=>"empty", :info=>2}
-                }
-              }
+    abs_coords = []
+    User.find_by(player: 'Nemo').sectors.each do |x|
+      abs_coords << x.r.abs
+      abs_coords << x.q.abs
+    end
+    @hex_rings = abs_coords.max + 1
+
+    @hex_map = {}
+    User.find_by(player: 'Nemo').sector_users.each do |hex|
+      @hex_map[hex.sector.q] = {} if @hex_map[hex.sector.q].nil?
+      if hex.info == 3
+        @hex_map[hex.sector.q][hex.sector.r] = {:name=> hex.sector.name, :type=> hex.sector.sector_type, :info=> hex.info}
+      elsif hex.info == 2
+        @hex_map[hex.sector.q][hex.sector.r] = {:name=> nil, :type=> hex.sector.sector_type, :info=> hex.info}
+      elsif hex.info == 1
+        @hex_map[hex.sector.q][hex.sector.r] = {:name=> nil, :type=> hex.sector.sector_type, :info=> hex.info}
+      end
+    end
   end
 end
