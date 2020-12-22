@@ -156,7 +156,7 @@ class ArmiesController < ApplicationController
     def correct_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
-        render js: "2window.location.replace('#{root_url}');"
+        redirect_to root_url
       elsif params[:button] == "multiple" || params[:button] == "visibility" || params[:button] == "delete" then
         @armies = params[:army_ids]
         @armies.each do |x|
