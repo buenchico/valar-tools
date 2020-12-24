@@ -3,8 +3,9 @@ class CreateSectors < ActiveRecord::Migration[5.1]
     create_table :sectors do |t|
       t.integer :q
       t.integer :r
-      t.string :sector_type
+      t.string :sector_type, default: 'empty'
       t.string :name
+      t.text :desc
 
       t.timestamps
     end

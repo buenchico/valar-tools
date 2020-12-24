@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201215193559) do
+ActiveRecord::Schema.define(version: 20201223110800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20201215193559) do
     t.integer "info", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
     t.index ["sector_id"], name: "index_sector_users_on_sector_id"
     t.index ["user_id"], name: "index_sector_users_on_user_id"
   end
@@ -113,10 +114,30 @@ ActiveRecord::Schema.define(version: 20201215193559) do
   create_table "sectors", force: :cascade do |t|
     t.integer "q"
     t.integer "r"
-    t.string "sector_type"
+    t.string "sector_type", default: "empty"
     t.string "name"
+    t.text "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
+  end
+
+  create_table "systems", force: :cascade do |t|
+    t.bigint "sector_id"
+    t.bigint "user_id"
+    t.integer "slots", default: 0
+    t.integer "ic_slots", default: 0
+    t.float "ic_bonus", default: 1.0
+    t.integer "rp_slots", default: 0
+    t.float "rp_bonus", default: 1.0
+    t.integer "cp_slots", default: 0
+    t.float "cp_bonus", default: 1.0
+    t.integer "unrest", default: 0
+    t.float "efficiency", default: 1.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sector_id"], name: "index_systems_on_sector_id"
+    t.index ["user_id"], name: "index_systems_on_user_id"
   end
 
   create_table "tools", force: :cascade do |t|

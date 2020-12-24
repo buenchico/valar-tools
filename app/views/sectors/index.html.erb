@@ -1,0 +1,86 @@
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+  var hex_map = <%= @hex_map.to_json.html_safe %>
+
+  $('#hex').hexGridWidget(15, <%= @hex_rings %>, 'hexfield hex_unknown', 'd-none');
+
+  for (var q of Object.keys(hex_map)) {
+    for (var r of Object.keys(hex_map[q])) {
+      $('#' + q + '_' + r).removeClass('hex_unknown');
+      $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
+    }
+  }
+});
+</script>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-auto">
+      <div id='hex'>
+        <svg id='canvas'>
+          <defs>
+            <pattern id="unknown" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+              <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-unknown.png"></image>
+            </pattern>
+            <pattern id="star-red" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+              <image width="1" height="1.2" preserveaspectratio="none" href="assets/hex/bg-star-red.png"></image>
+            </pattern>
+            <pattern id="empty" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+              <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-empty.png"></image>
+            </pattern>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+          <caption>Lista de sectores</caption>
+            <thead>
+              <tr>
+                <th scope="col">Sector <i class="fas fa-sort"></i></th>
+                <th scope="col">Posición <i class="fas fa-sort"></i></th>
+                <th scope="col">Tipo <i class="fas fa-sort"></i></th>
+                <th scope="col">Visibilidad <i class="fas fa-sort"></i></th>
+                <th scope="col">Civilización <i class="fas fa-sort"></i></th>
+                <th scope="col" colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @sectors.each do |sector| %>
+                <tr id='<%= 'row_' + sector.q.to_s + '_' + sector.r.to_s %>' class='row_hover'>
+                  <td><%= sector.name %></td>
+                  <td><%= sector.q.to_s + ',' + sector.r.to_s %></td>
+                  <td><%= $sector_types[sector.sector_type.to_sym] %></td>
+                  <td><%= sector.sector_users.map{|x| [x.user.player, ' (' + x.info_lvl.to_s + ')'].join('')}.join(',') %></td>
+                  <td><%= sector.system.try(:user).try(:house) %></td>
+                  <% if current_user.try(:is_master?) then %>
+                    <td><%= link_to '', edit_sector_path(sector), remote: true, class: 'fas fa-edit white' %></td>
+                    <td><%= link_to '', '', remote: true, class: 'fas fa-delete white' %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+
+      <%= @users %>
+
+      <% if current_user.try(:is_master?) then %>
+        <div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir sector'.html_safe, new_sector_path, remote:true, class: "btn btn-primary"%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div id='sector-content'></div>

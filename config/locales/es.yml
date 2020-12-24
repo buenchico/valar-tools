@@ -78,6 +78,10 @@ es:
           attributes:
             family:
               required: "Cada localización requiere una familia, si no existe seleccione el campo en blanco"
+        sector:
+          attributes:
+            q:
+              taken: "Las coordenadas (q,r) de cada sector deben ser únicas"
   helpers:
     submit:
       create: "Añadir %{model}"
@@ -94,6 +98,9 @@ es:
       tool:
         create: "Añadir herramienta"
         update: "Guardar herramienta"
+      location:
+        create: "Añadir lugar"
+        update: "Guardar lugar"
 
   recaptcha:
     errors:

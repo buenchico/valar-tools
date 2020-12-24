@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :system
+  has_many :systems
   has_many :sector_users, :class_name => 'SectorUser'
   has_many :sectors, through: :sector_users
   validates :house, presence: true

@@ -1,7 +1,8 @@
 class System < ApplicationRecord
-  belongs_to :user
+  belongs_to :sector
+  belongs_to :user, optional: true
 
-  def free_slots
-    self.slots - ( self.ic + self.rp + self.cp )
+  def slots_free
+      self.slots - (self.ic_slots + self.rp_slots + self.cp_slots )
   end
 end

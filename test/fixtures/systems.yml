@@ -3,17 +3,25 @@
 one:
   name: MyString
   slots: 1
-  ic: 1
-  rp: 1
-  cp: 1
-  traits: MyString
-  user: one
+  ic_slots: 1
+  ic_bonus: 1.5
+  rp_slots: 1
+  rp_bonus: 1.5
+  cp_slots: 1
+  cp_bonus: 1.5
+  description: MyText
+  unrest: 1
+  efficiency: 1.5
 
 two:
   name: MyString
   slots: 1
-  ic: 1
-  rp: 1
-  cp: 1
-  traits: MyString
-  user: two
+  ic_slots: 1
+  ic_bonus: 1.5
+  rp_slots: 1
+  rp_bonus: 1.5
+  cp_slots: 1
+  cp_bonus: 1.5
+  description: MyText
+  unrest: 1
+  efficiency: 1.5

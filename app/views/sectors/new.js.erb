@@ -1,0 +1,8 @@
+$('.bg-warning').removeClass('bg-warning');
+$('#sector-content').html("<%= j render 'form', sector: @sector %>");
+$('#sectorModal').modal('show');
+
+if ($('.hex-selected').hasClass('hex_unknown')) {
+  $("[name='sector[q]']").val( $('.hex-selected').attr('q') );
+  $("[name='sector[r]']").val( $('.hex-selected').attr('r') )
+}

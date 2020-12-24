@@ -7,6 +7,30 @@ class SessionsController < ApplicationController
     $sso = sso
   end
 
+  def create_nemo
+    cookies.delete(:user)
+    cookies.delete(:auth_token)
+    cookies.delete(:avatar_url)
+
+    cookies.permanent[:user] = 'Nemo'
+    cookies.permanent[:auth_token] = User.find_by(player: 'Nemo').auth_token
+    cookies.permanent[:avatar_url] = ''
+
+    redirect_to root_url
+  end
+
+  def create_master
+    cookies.delete(:user)
+    cookies.delete(:auth_token)
+    cookies.delete(:avatar_url)
+
+    cookies.permanent[:user] = 'Valar'
+    cookies.permanent[:auth_token] = User.find_by(player: 'valar').auth_token
+    cookies.permanent[:avatar_url] = ''
+
+    redirect_to root_url
+  end
+
   def destroy
     @id = cookies[:external_id]
 
