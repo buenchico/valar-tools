@@ -269,3 +269,28 @@ float: left;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Opacity classes */
+.op-0 {
+  opacity:0!important;
+}
+
+.op-20 {
+  opacity:0.2!important;
+}
+
+.op-40 {
+  opacity:0.4!important;
+}
+
+.op-60 {
+  opacity:0.6!important;
+}
+
+.op-80 {
+  opacity:0.8!important;
+}
+
+.op-100 {
+  opacity:1!important;
+}

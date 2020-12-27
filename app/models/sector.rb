@@ -1,6 +1,6 @@
 class Sector < ApplicationRecord
-  has_many :users, through: :sector_users
   has_many :sector_users, :class_name => 'SectorUser'
+  has_many :users, through: :sector_users
 
   accepts_nested_attributes_for :sector_users
 

@@ -1,13 +1,8 @@
 class SectorsController < ApplicationController
   before_action :master_user
-  before_action :set_sector, except: [:index, :new]
+  before_action :set_sector, except: [:index, :new, :sector_users_destroy]
 
   def index
-    @users = []
-    User.all.each do |user|
-      @users << [user.player,user.id]
-    end
-
     @sectors = Sector.all.order(:id)
 
     abs_coords = []
@@ -47,6 +42,17 @@ class SectorsController < ApplicationController
     end
   end
 
+  def sector_users_destroy
+    @sector = Sector.find(params[:sector_id])
+    @sector_user = @sector.sector_users.find(params[:id])
+
+    #@sector_user.destroy
+    respond_to do |format|
+      format.js
+      format.json {render json: @sector, status: 'test'} 
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sector
@@ -65,6 +71,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:q, :r, :sector_type, :sector_users_attributes => [:id, :info, :notes, :user_id, :user_attributes => [:id, :player]])
+      params.require(:sector).permit(:q, :r, :sector_type, :notes, :sector_users_attributes => [:id, :info, :notes, :user_id, :user_attributes => [:id, :player]])
     end
 end

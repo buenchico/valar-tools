@@ -63,7 +63,10 @@ Rails.application.routes.draw do
   get '/hex-map', to: 'hex_map#index'
 
   resources :systems
+
   resources :sectors
+  delete '/sector_users', to: 'sectors#sector_users_destroy', as: 'delete_sector_users'
+
 
   post 'login_nemo', to: 'sessions#create_nemo', as: 'login_nemo'
   post 'login_master', to: 'sessions#create_master', as: 'login_master'

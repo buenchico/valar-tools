@@ -60,7 +60,7 @@ document.addEventListener("turbolinks:load", function() {
                   <td><%= sector.name %></td>
                   <td><%= sector.q.to_s + ',' + sector.r.to_s %></td>
                   <td><%= $sector_types[sector.sector_type.to_sym] %></td>
-                  <td><%= sector.sector_users.map{|x| [x.user.player, ' (' + x.info_lvl.to_s + ')'].join('')}.join(',') %></td>
+                  <td><%= sector.sector_users.order('info DESC').map{|x| ['<span id ="player_' + x.user.id.to_s + '">' + x.user.player, ' (' + x.info_lvl.to_s + ')</strong>'].join('')}.join(',').html_safe %></td>
                   <td><%= sector.system.try(:user).try(:house) %></td>
                   <% if current_user.try(:is_master?) then %>
                     <td><%= link_to '', edit_sector_path(sector), remote: true, class: 'fas fa-edit white' %></td>
