@@ -1,3 +1,10 @@
-$('#form_' + <%= @sector_user.id %>).hide();
-$('#player_' + <%= @sector_user.user_id %>).hide();
-$('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-danger">Relación borrada correctamente.</div>`);
+if (<%= @forbidden %>) {
+  $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-danger">El controlador del sistema no puede ser eliminado.</div>`);
+  $('#delete_confirm_' + <%= @sector_user.id %>).hide();
+  $('#main_' + <%= @sector_user.id %>).removeClass('op-20');
+  $('#main_' + <%= @sector_user.id %> + ' :input').attr('disabled', false);
+} else {
+  $('#form_' + <%= @sector_user.id %>).hide();
+  $('#player_' + <%= @sector_user.user_id %>).hide();
+  $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-success">Relación eliminada correctamente.</div>`);
+}

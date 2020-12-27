@@ -46,10 +46,15 @@ class SectorsController < ApplicationController
     @sector = Sector.find(params[:sector_id])
     @sector_user = @sector.sector_users.find(params[:id])
 
-    #@sector_user.destroy
+    if @sector.system.user == @sector_user.user
+      @forbidden = true
+    else
+      @forbidden = false
+      @sector_user.destroy
+    end
+
     respond_to do |format|
       format.js
-      format.json {render json: @sector, status: 'test'} 
     end
   end
 

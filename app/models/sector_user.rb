@@ -5,6 +5,8 @@ class SectorUser < ApplicationRecord
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :sector
 
+  validates :user_id, :uniqueness => { scope: :sector }
+
   def info_lvl
     if self.sector.system.nil?
       self.info
