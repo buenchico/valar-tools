@@ -104,15 +104,16 @@
           <div class="col-md-6">
             <h3>Partidas</h3>
 
-            <% Game.all.order(:id).each do |game| %>
+            <%= form.fields_for :game, Game.all do |form| %>
+              <%= form.object.to_json %>
               <div class="form-group form-inline">
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <div class="input-group-text"><%= game.title %></div>
+                    <div class="input-group-text"><%= form.object.title %></div>
                   </div>
                   <div class="form-check checkbox-slider--a checkbox-slider-lg">
                     <label>
-                      <%= form.check_box 'games][', options = {checked: @tool.game.exists?(game.id) ? true : false}, checked_value = game.id, unchecked_value = nil %><span>&nbsp;</span>
+                      <%= form.check_box :active, options = {checked: @tool.game.exists?(form.object.id) ? true : false}, true %><span>&nbsp;</span>
                     </label>
                   </div>
                 </div>
@@ -120,7 +121,6 @@
             <% end %>
 
           </div>
-
         <div class="form-group form-inline">
           <%= form.submit class: "btn btn-primary" %>
         </div>

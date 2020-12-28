@@ -6,18 +6,21 @@ class ToolsController < ApplicationController
   end
 
   def update
-    params.permit(:games)
-
-    @games = params['tool']['games']
     @active_games = []
-    (@games || []).each do |x|
-      @active_games << Game.find_by(id: x)
+    (tool_params["game_attributes"]).each do |k, v|
+      puts 'SSSSSSSSSSSSSSSSSSS'
+      puts k
+      puts v
+      if v["active"] == "true"
+        @active_games << Game.find_by(id: v["id"])
+      end
     end
+    puts tool_params["game_attributes"]
 
     respond_to do |format|
-      if @tool.update(game: @active_games) && @tool.update(tool_params)
+      if @tool.update(game: @active_games) && @tool.update(tool_params.except("game_attributes"))
         $tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
-        $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)       
+        $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
         format.html { redirect_to game_url, success: 'Herramienta editada correctamente.' }
       else
         format.html { redirect_to game_url, danger: @tool.errors }
@@ -43,6 +46,6 @@ class ToolsController < ApplicationController
     end
 
     def tool_params
-      params.require(:tool).permit(:name, :title, :short_title, :path, :icon, :master, :active, :sort)
+      params.require(:tool).permit(:name, :title, :short_title, :path, :icon, :master, :active, :sort, :game_attributes => [:id, :active])
     end
 end
