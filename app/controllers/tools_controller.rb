@@ -12,7 +12,6 @@ class ToolsController < ApplicationController
         @active_games << Game.find_by(id: v["id"])
       end
     end
-    puts tool_params["game_attributes"]
 
     respond_to do |format|
       if @tool.update(game: @active_games) && @tool.update(tool_params.except("game_attributes"))
