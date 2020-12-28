@@ -8,9 +8,6 @@ class ToolsController < ApplicationController
   def update
     @active_games = []
     (tool_params["game_attributes"]).each do |k, v|
-      puts 'SSSSSSSSSSSSSSSSSSS'
-      puts k
-      puts v
       if v["active"] == "true"
         @active_games << Game.find_by(id: v["id"])
       end
