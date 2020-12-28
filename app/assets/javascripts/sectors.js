@@ -1,5 +1,11 @@
 document.addEventListener("turbolinks:load", function() {
     if ($(".sectors.index").length !== 0 ) {
+
+      $("#sectorModal").on("shown.bs.modal",function(){
+         //will be executed everytime #item_modal is shown
+         $(this).hide().show(); //hide first and then show here
+      });
+
       $('.row_hover').on('click',
         function () {
           var hex = $(this).closest('tr').attr('id').slice(4,20);
@@ -12,6 +18,7 @@ document.addEventListener("turbolinks:load", function() {
             $('#row_' + hex).addClass('bg-warning');
           }
         });
+
       $('#hex').on('hexclick',
     		function (e) {
           $('.bg-warning').removeClass('bg-warning');

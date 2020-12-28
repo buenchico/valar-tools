@@ -1,6 +1,6 @@
 class SectorsController < ApplicationController
   before_action :master_user
-  before_action :set_sector, except: [:index, :new, :sector_users_destroy]
+  before_action :set_sector, except: [:index, :new, :sector_users_destroy, :sector_users_create]
 
   def index
     @sectors = Sector.all.order(:id)
@@ -23,6 +23,7 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1/edit
   def edit
+    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
   end
 
   # GET /sectors/new
@@ -34,7 +35,7 @@ class SectorsController < ApplicationController
   # PATCH/PUT /houses/1.json
   def update
     respond_to do |format|
-      if @sector.update(sector_params)
+      if @sector.update(sector_params.except(:new_sector))
         format.html { redirect_to sectors_url, success: 'Sector editado correctamente.' }
       else
         format.html { redirect_to sectors_url, danger: @sector.errors }
@@ -53,8 +54,40 @@ class SectorsController < ApplicationController
       @sector_user.destroy
     end
 
+    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+
     respond_to do |format|
       format.js
+    end
+  end
+
+  def sector_users_create
+    @sector = Sector.find(params[:sector_id])
+    @user = params[:user_id].nil? ? nil : User.find(params[:user_id])
+
+    if @user.nil?
+      @forbidden = true
+    else
+      @forbidden = false
+      @sector.users << @user
+    end
+
+    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create
+    @house = House.new(house_params)
+
+    respond_to do |format|
+      if @house.save
+        format.html { redirect_to houses_url, success: 'Casa añadida correctamente.' }
+      else
+        format.html { redirect_to houses_url, danger: @house.errors }
+      end
     end
   end
 
@@ -76,6 +109,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:q, :r, :sector_type, :notes, :sector_users_attributes => [:id, :info, :notes, :user_id, :user_attributes => [:id, :player]])
+      params.require(:sector).permit(:q, :r, :sector_type, :notes, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info])
     end
 end

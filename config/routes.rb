@@ -66,7 +66,7 @@ Rails.application.routes.draw do
 
   resources :sectors
   delete '/sector_users', to: 'sectors#sector_users_destroy', as: 'delete_sector_users'
-
+  post '/sector_users', to: 'sectors#sector_users_create', as: 'create_sector_users'
 
   post 'login_nemo', to: 'sessions#create_nemo', as: 'login_nemo'
   post 'login_master', to: 'sessions#create_master', as: 'login_master'

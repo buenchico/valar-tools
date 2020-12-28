@@ -1,31 +1,3 @@
 $('.bg-warning').removeClass('bg-warning');
 $('#sector-content').html("<%= j render 'form', sector: @sector %>");
 $('#sectorModal').modal('show');
-
-$('.notes').on('click',
-  function () {
-    var id = $(this).attr('id').substring(10,50);
-    if ($(this).hasClass('clicked') == false) {
-      $(this).addClass('clicked')
-      $('#notes_box_' + id).slideDown(350);
-    } else {
-      $(this).removeClass('clicked')
-      $('#notes_box_' + id).hide();
-    }
-  });
-
-$('.delete').on('click',
-  function () {
-    var id = $(this).attr('id').substring(11,50);
-    $('#delete_confirm_' + id).slideDown(350);
-    $('#main_' + id).addClass('op-20');
-    $('#main_' + id + ' :input').attr('disabled', true);
-  });
-
-$('.cancel').on('click',
-  function () {
-    var id = $(this).attr('id').substring(14,50);
-    $('#delete_confirm_' + id).hide();
-    $('#main_' + id).removeClass('op-20');
-    $('#main_' + id + ' :input').attr('disabled', false);
-  });

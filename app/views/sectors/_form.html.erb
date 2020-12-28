@@ -1,93 +1,95 @@
-<div class="modal fade" id="sectorModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content bg-dark">
-      <%= form_with(model: sector, local: true) do |form| %>
-        <div class="modal-header">
-          <h5 class="modal-title" id="Title"><%= sector.name.nil? ? 'Nuevo sistema' : sector.name %></h5>
-          <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <% if sector.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(sector.errors.count, "error") %> prohibited this sector from being saved:</h2>
-              <ul>
-                <% sector.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+<script>
+  <%= render 'update' %>
+</script>
 
-          <div class="form-group form-inline bottom-separator">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
-              </div>
-              <%= form.number_field :id, style: "width: 90px", class: "custom-control", disabled: true, value: sector.id %>
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">q</div>
-              </div>
-              <%= form.number_field :q, style: "width: 90px", class: "custom-control" %>
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">r</div>
-              </div>
-              <%= form.number_field :r, style: "width: 90px", class: "custom-control" %>
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
-              </div>
-              <%= form.select :sector_type, options_for_select($sector_types.invert(), sector.sector_type), {}, class: "custom-select" %>
-            </div>
-            <div class="input-group mb-3 w-100">
-              <%= form.text_area :notes, rows: 5, class: "custom-control w-75", placeholder: 'Notas del master' %>
-            </div>
-          </div>
-
-          <div class="row bottom-separator mb-3">
-            <div class="col-md-6 right-separator">
-              <h3>Visibilidad</h3>
-              <%= form.fields_for :sector_users do |form| %>
-                <div id="form_<%= form.object.id %>">
-                  <div id="main_<%= form.object.id %>" class="form-group mb-1">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div style="width: 180px" class="input-group-text"><%= User.find_by(id: form.object.user_id).player %><%= raw '&nbsp;<i class="fas fa-flag-checkered"></i>' unless form.object.info_lvl != 4 %></div>
-                      </div>
-                      <%= form.number_field :info, style: "width: 90px", class: "custom-control" %>
-                      <%= button_tag '<i class="fas fa-sticky-note"></i>'.html_safe, type: 'button', id: "notes_btn_" + form.object.id.to_s , class: 'notes ' + (form.object.notes.nil? || form.object.notes.empty? ? "btn btn-secondary" : "btn btn-success") %>
-                      <%= button_tag '<i class="fas fa-trash-alt"></i>'.html_safe, type: 'button', id: "delete_btn_" + form.object.id.to_s, class: 'delete btn btn-danger' %>
-                    </div>
-                  </div>
-                  <div id='delete_confirm_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
-                    <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_users_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
-                    <%= button_tag '<i class="fas fa-times-circle"></i>'.html_safe, type: 'button', id: "delete_cancel_" + form.object.id.to_s, class: 'cancel btn btn-secondary' %>
-                  </div>
-                  <div id='notes_box_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
-                    <%= form.text_area :notes, rows: 5, class: "custom-control w-100", placeholder: 'Notas del jugador' %>
-                  </div>
-                  <%= form.object.to_json %>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="col-md-6">
-              <h3>Sistema</h3>
-            </div>
-          </div>
-
-          <div class="form-group form-inline">
-            <%= form.submit class: "btn btn-primary" %>
-          </div>
-
-        </div>
-      <% end %>
-    </div>
+<%= form_with(model: sector, local: true) do |form| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="Title"><%= sector.name.nil? ? 'Nuevo sistema' : sector.name %></h5>
+    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <% if sector.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(sector.errors.count, "error") %> prohibited this sector from being saved:</h2>
+        <ul>
+          <% sector.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group form-inline bottom-separator">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
+        </div>
+        <%= form.number_field :id, style: "width: 90px", class: "custom-control", disabled: true, value: sector.id %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">q</div>
+        </div>
+        <%= form.number_field :q, style: "width: 90px", class: "custom-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">r</div>
+        </div>
+        <%= form.number_field :r, style: "width: 90px", class: "custom-control" %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+        </div>
+        <%= form.select :sector_type, options_for_select($sector_types.invert(), sector.sector_type), {}, class: "custom-select" %>
+      </div>
+      <div class="input-group mb-3 w-100">
+        <%= form.text_area :notes, rows: 5, class: "custom-control w-75", placeholder: 'Notas del master' %>
+      </div>
+    </div>
+
+    <div class="row bottom-separator mb-3">
+      <div class="col-md-6 right-separator">
+        <h3>Visibilidad</h3>
+        <%= form.fields_for :sector_users do |form| %>
+          <div id="form_<%= form.object.id %>">
+            <div id="main_<%= form.object.id %>" class="form-group mb-1">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div style="width: 180px" class="input-group-text"><%= User.find_by(id: form.object.user_id).player %><%= raw '&nbsp;<i class="fas fa-flag-checkered"></i>' unless form.object.info_lvl != 4 %></div>
+                </div>
+                <%= form.number_field :info, max: 3, min: 1, style: "width: 90px", class: "custom-control" %>
+                <%= form.button '<i class="fas fa-sticky-note"></i>'.html_safe, type: 'button', id: "notes_btn_" + form.object.id.to_s , class: 'notes ' + (form.object.notes.nil? || form.object.notes.empty? ? "btn btn-secondary" : "btn btn-success") %>
+                <%= form.button '<i class="fas fa-trash-alt"></i>'.html_safe, type: 'button', id: "delete_btn_" + form.object.id.to_s, class: 'delete btn btn-danger' %>
+              </div>
+            </div>
+            <div id='delete_confirm_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
+              <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_users_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
+              <%= form.button '<i class="fas fa-times-circle"></i>'.html_safe, type: 'button', id: "delete_cancel_" + form.object.id.to_s, class: 'cancel btn btn-secondary' %>
+            </div>
+            <div id='notes_box_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
+              <%= form.text_area :notes, rows: 5, class: "custom-control w-100", placeholder: 'Notas del jugador' %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @available_users.empty? == false %>
+          <%= link_to '<i class="fas fa-plus-circle"></i> Añadir Jugador'.html_safe, create_sector_users_path(sector_id: sector.id), method: :post, remote: true, id: 'new_user_link', class: 'btn btn-success', data: { sector_id: sector.id} %>
+          <%= select_tag :new_user, options_for_select(@available_users.pluck(:player, :id)), include_blank: true, style: "width: 160px", id: 'new_user_select', class: "custom-select custom-select-sm" %>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <h3>Sistema</h3>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+
+  </div>
+<% end %>

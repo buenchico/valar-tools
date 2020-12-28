@@ -7,7 +7,7 @@ class ToolsController < ApplicationController
 
   def update
     @active_games = []
-    (tool_params["game_attributes"]).each do |k, v|
+    tool_params["game_attributes"].each do |k, v|
       if v["active"] == "true"
         @active_games << Game.find_by(id: v["id"])
       end
