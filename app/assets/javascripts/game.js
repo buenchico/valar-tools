@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).on('turbolinks:load', function () {
     if ($(".game.index").length !== 0 ) {
         $("#cancel").on("click", function(){
             $("#newGameForm").hide();

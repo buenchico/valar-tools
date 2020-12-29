@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).on('turbolinks:load', function () {
     if ($(".travel_calculator.index").length !== 0 ) {
         $("#path-type").click(function(){
             if (this.checked) {
@@ -10,7 +10,7 @@ document.addEventListener("turbolinks:load", function() {
                 $(".land").show();
             }
         });
-        
+
         $("#delete_result").on("click", function(){
             $("#result").hide();
         });

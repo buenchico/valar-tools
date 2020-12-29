@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).on('turbolinks:load', function () {
     if ($(".sectors.index").length !== 0 ) {
 
       $("#sectorModal").on("shown.bs.modal",function(){
