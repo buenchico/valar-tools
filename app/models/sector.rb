@@ -5,6 +5,8 @@ class Sector < ApplicationRecord
   accepts_nested_attributes_for :sector_users
 
   has_one :system
+  accepts_nested_attributes_for :system
+
   validates_uniqueness_of :q, :scope => [:r]
 
   $sector_types = {'empty': 'Vacío', 'star-red': 'Estrella tipo K'}

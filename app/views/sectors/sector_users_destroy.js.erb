@@ -1,8 +1,0 @@
-$('#sector-content').html("<%= j render 'form', sector: @sector %>");
-$('#visibility_list_' + <%= @sector.id %>).html("<%= @sector.sector_users.order('info DESC').map{|x| [x.user.player, ' (' + x.info_lvl.to_s + ')'].join('')}.join(',').html_safe %>")
-
-if (<%= @forbidden %>) {
-  $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-danger">El controlador del sistema no puede ser eliminado.</div>`);
-} else {
-  $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-success">Relación eliminada correctamente.</div>`);
-}

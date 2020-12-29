@@ -34,3 +34,19 @@ $('#new_user_select').on('change',
 
     $('#new_user_link').attr('href', url);
   });
+
+$('#edit_system').on('click',
+  function () {
+    $(this).hide();
+    $('#system :input').attr('disabled', false)
+    $('#system').removeClass('op-20');
+    $('#cancel_system').show();
+  });
+
+$('#cancel_system').on('click',
+  function () {
+    $(this).hide();
+    $('#system :input').attr('disabled', true);
+    $('#system').addClass('op-20');
+    $('#edit_system').show();
+  });

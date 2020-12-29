@@ -1,10 +1,6 @@
-<script>
-  <%= render 'update' %>
-</script>
-
 <%= form_with(model: sector, local: true) do |form| %>
   <div class="modal-header">
-    <h5 class="modal-title" id="Title"><%= sector.name.nil? ? 'Nuevo sistema' : sector.name %></h5>
+    <h5 class="modal-title" id="Title"><%= form.text_field(:name, id: 'name', class: "custom-control", placeholder: 'Nombre del sector') %></h5>
     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -26,66 +22,147 @@
         <div class="input-group-prepend">
           <div class="input-group-text"><i class="fas fa-hashtag"></i>&nbsp;</div>
         </div>
-        <%= form.number_field :id, style: "width: 90px", class: "custom-control", disabled: true, value: sector.id %>
+        <%= form.number_field :id, id: 'id', style: "width: 90px", class: "custom-control", disabled: true, value: sector.id %>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">q</div>
         </div>
-        <%= form.number_field :q, style: "width: 90px", class: "custom-control" %>
+        <%= form.number_field :q, id: 'q', style: "width: 90px", class: "custom-control" %>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">r</div>
         </div>
-        <%= form.number_field :r, style: "width: 90px", class: "custom-control" %>
+        <%= form.number_field :r, id: 'r', style: "width: 90px", class: "custom-control" %>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+          <div class="input-group-text"><i class="fas fa-sun"></i>&nbsp;</div>
         </div>
-        <%= form.select :sector_type, options_for_select($sector_types.invert(), sector.sector_type), {}, class: "custom-select" %>
+        <%= form.select :sector_type, options_for_select($sector_types.invert(), sector.sector_type), {}, id: 'sector_type', class: "custom-select" %>
       </div>
       <div class="input-group mb-3 w-100">
-        <%= form.text_area :notes, rows: 5, class: "custom-control w-75", placeholder: 'Notas del master' %>
+        <%= form.text_area :desc, rows: 5, id: 'desc', class: "custom-control w-75", placeholder: 'Descripción' %>
+      </div>
+      <div class="input-group mb-3 w-100">
+        <%= form.text_area :notes, rows: 5, id: 'notes', class: "custom-control w-75", placeholder: 'Notas del master', style: 'background: lightyellow' %>
       </div>
     </div>
 
-    <div class="row bottom-separator mb-3">
-      <div class="col-md-6 right-separator">
-        <h3>Visibilidad</h3>
-        <%= form.fields_for :sector_users do |form| %>
-          <div id="form_<%= form.object.id %>">
-            <div id="main_<%= form.object.id %>" class="form-group mb-1">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div style="width: 180px" class="input-group-text"><%= User.find_by(id: form.object.user_id).player %><%= raw '&nbsp;<i class="fas fa-flag-checkered"></i>' unless form.object.info_lvl != 4 %></div>
+    <% if @sector.id %>
+      <div class="row bottom-separator mb-3">
+        <div class="col-md-6 right-separator">
+          <h3>Visibilidad</h3>
+          <%= form.fields_for :sector_users do |form| %>
+            <div id="form_<%= form.object.id %>">
+              <div id="main_<%= form.object.id %>" class="form-group mb-1">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div style="width: 180px" class="input-group-text"><%= User.find_by(id: form.object.user_id).player %><%= raw '&nbsp;<i class="fas fa-flag-checkered"></i>' unless form.object.info_lvl != 4 %></div>
+                  </div>
+                  <%= form.number_field :info, max: 3, min: 0, style: "width: 90px", class: "custom-control" %>
+                  <%= form.button '<i class="fas fa-sticky-note"></i>'.html_safe, type: 'button', id: "notes_btn_" + form.object.id.to_s , class: 'notes ' + (form.object.notes.nil? || form.object.notes.empty? ? "btn btn-secondary" : "btn btn-success") %>
+                  <%= form.button '<i class="fas fa-trash-alt"></i>'.html_safe, type: 'button', id: "delete_btn_" + form.object.id.to_s, class: 'delete btn btn-danger' %>
                 </div>
-                <%= form.number_field :info, max: 3, min: 1, style: "width: 90px", class: "custom-control" %>
-                <%= form.button '<i class="fas fa-sticky-note"></i>'.html_safe, type: 'button', id: "notes_btn_" + form.object.id.to_s , class: 'notes ' + (form.object.notes.nil? || form.object.notes.empty? ? "btn btn-secondary" : "btn btn-success") %>
-                <%= form.button '<i class="fas fa-trash-alt"></i>'.html_safe, type: 'button', id: "delete_btn_" + form.object.id.to_s, class: 'delete btn btn-danger' %>
+              </div>
+              <div id='delete_confirm_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
+                <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_users_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
+                <%= form.button '<i class="fas fa-times-circle"></i>'.html_safe, type: 'button', id: "delete_cancel_" + form.object.id.to_s, class: 'cancel btn btn-secondary' %>
+              </div>
+              <div id='notes_box_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
+                <%= form.text_area :notes, rows: 5, class: "custom-control w-100", placeholder: 'Notas del jugador' %>
               </div>
             </div>
-            <div id='delete_confirm_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
-              <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_users_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
-              <%= form.button '<i class="fas fa-times-circle"></i>'.html_safe, type: 'button', id: "delete_cancel_" + form.object.id.to_s, class: 'cancel btn btn-secondary' %>
-            </div>
-            <div id='notes_box_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
-              <%= form.text_area :notes, rows: 5, class: "custom-control w-100", placeholder: 'Notas del jugador' %>
+          <% end %>
+
+          <% if @available_users.empty? == false %>
+            <%= link_to '<i class="fas fa-plus-circle"></i> Añadir Jugador'.html_safe, create_sector_users_path(sector_id: sector.id), method: :post, remote: true, id: 'new_user_link', class: 'btn btn-success', data: { sector_id: sector.id} %>
+            <%= select_tag :new_user, options_for_select(@available_users.pluck(:player, :id)), include_blank: true, style: "width: 160px", id: 'new_user_select', class: "custom-select" %>
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row ml-1 mb-2">
+            <h3>Sistema</h3>
+            <div class="ml-auto mr-3">
+              <%= form.button sector.system.nil? ? '<i class="fas fa-plus-circle"></i> Añadir Sistema'.html_safe : '<i class="fas fa-plus-circle"></i> Editar Sistema'.html_safe, type: 'button', id: "edit_system", class: "btn btn-success" %>
+              <%= form.button '<i class="fas fa-times-circle"></i> Cancelar'.html_safe , type: 'button', id: "cancel_system", class: "btn btn-secondary", style: 'display:none'  %>
             </div>
           </div>
-        <% end %>
-
-        <% if @available_users.empty? == false %>
-          <%= link_to '<i class="fas fa-plus-circle"></i> Añadir Jugador'.html_safe, create_sector_users_path(sector_id: sector.id), method: :post, remote: true, id: 'new_user_link', class: 'btn btn-success', data: { sector_id: sector.id} %>
-          <%= select_tag :new_user, options_for_select(@available_users.pluck(:player, :id)), include_blank: true, style: "width: 160px", id: 'new_user_select', class: "custom-select custom-select-sm" %>
-        <% end %>
+          <%= form.fields_for :system, sector.system || System.new do |form| %>
+            <div id="system" class="op-20">
+              <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-flag-checkered"></i>&nbsp;</div>
+                </div>
+                <%= form.select :user_id, options_for_select(sector.users.pluck(:player, :house, :id).map { |x,y,z| [x + ' - ' + y,z]}, sector.system.nil? ? nil : sector.system.user_id ), {include_blank: true}, disabled: true, class: "custom-select" %>
+              </div>
+              <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Habitabilidad base</div>
+                </div>
+                <%= form.number_field :slots, min:0, style: "width: 120px", disabled: true, class: "custom-control" %>
+              </div>
+              <div class="form-group form-inline mb-0">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div style="width: 42.45px" class="input-group-text"><i class="fas fa-industry"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :ic_slots, min:0, disabled: true, style: "width: 90px", id: "ic_slots", class: "custom-control" %>
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-percentage"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :ic_bonus, min:0.00, max:1.00, step: 0.01, disabled: true, style: "width: 100px", id: "ic_slots", class: "custom-control" %>
+                </div>
+              </div>
+              <div class="form-group form-inline mb-0">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div style="width: 42.45px" class="input-group-text"><i class="fas fa-flask"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :rp_slots, min:0, disabled: true, style: "width: 90px", id: "rp_slots", class: "custom-control" %>
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-percentage"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :rp_bonus, min:0.00, max:1.00, step: 0.01, disabled: true, style: "width: 100px", id: "ic_slots", class: "custom-control" %>
+                </div>
+              </div>
+              <div class="form-group form-inline mb-0">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div style="width: 42.45px" class="input-group-text"><i class="fas fa-chess-king"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :cp_slots, min:0, disabled: true, style: "width: 90px", id: "rp_slots", class: "custom-control" %>
+                </div>
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-percentage"></i>&nbsp;</div>
+                  </div>
+                  <%= form.number_field :cp_bonus, min:0.00, max:1.00, step: 0.01, disabled: true, style: "width: 100px", id: "ic_slots", class: "custom-control" %>
+                </div>
+              </div>
+              <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Global&nbsp;<i class="fas fa-percentage"></i></div>
+                </div>
+                <%= form.number_field :cp_bonus, min:0.00, max:1.00, step: 0.01, disabled: true, style: "width: 100px", id: "ic_slots", class: "custom-control" %>
+              </div>
+              <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-fist-raised"></i>&nbsp;</div>
+                </div>
+                <%= form.number_field :unrest, min:0, disabled: true, class: "custom-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <div class="col-md-6">
-        <h3>Sistema</h3>
-      </div>
-    </div>
+    <% end %>
 
     <div class="form-group form-inline">
       <%= form.submit class: "btn btn-primary" %>
