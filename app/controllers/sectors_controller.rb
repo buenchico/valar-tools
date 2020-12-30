@@ -119,6 +119,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :user_id])
+      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :desc, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :user_id, :slots, :ic_slots, :ic_bonus, :rp_slots, :rp_bonus, :cp_slots, :cp_bonus, :unrest])
     end
 end
