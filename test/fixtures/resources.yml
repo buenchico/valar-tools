@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ic: 1
+  rp: 1
+  cp: 1
+
+two:
+  ic: 1
+  rp: 1
+  cp: 1

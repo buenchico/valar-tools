@@ -2,13 +2,20 @@ class User < ApplicationRecord
   has_many :systems
   has_many :sector_users, :class_name => 'SectorUser'
   has_many :sectors, through: :sector_users
+  has_one :resource, dependent: :destroy
   validates :house, presence: true
-  before_create { generate_token(:auth_token) }
+  validates_uniqueness_of :player
+  before_create :generate_token, :generate_resource
+  accepts_nested_attributes_for :resource
 
-  def generate_token(column)
+  def generate_token
     begin
-      self[column] = SecureRandom.urlsafe_base64
-    end while User.exists?(column => self[column])
+      self[:auth_token] = SecureRandom.urlsafe_base64
+    end while User.exists?(:auth_token => self[:auth_token])
+  end
+
+  def generate_resource
+    build_resource
   end
 
   def rep_mod
