@@ -1,0 +1,51 @@
+<div class="tab-content mt-3" id="nav-tabContent">
+  <div>
+    <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+      <caption>Lista de sistemas</caption>
+        <thead>
+          <tr>
+            <th scope="col">Sistema <i class="fas fa-sort"></i></th>
+            <th scope="col">Slots <i class="fas fa-sort"></i></th>
+            <th scope="col">libres <i class="fas fa-sort"></i></th>
+            <th scope="col">IC <i class="fas fa-sort"></i></th>
+            <th scope="col">p/d <i class="fas fa-sort"></i></th>
+            <th scope="col">RP <i class="fas fa-sort"></i></th>
+            <th scope="col">p/d <i class="fas fa-sort"></i></th>
+            <th scope="col">CP <i class="fas fa-sort"></i></th>
+            <th scope="col">p/d <i class="fas fa-sort"></i></th>
+            <th scope="col">Otros <i class="fas fa-sort"></i></th>
+            <th scope="col">Descripción <i class="fas fa-sort"></i></th>
+            <% if current_user.try(:is_master?) then %>
+              <th scope="col">Civilización <i class="fas fa-sort"></i></th>
+            <% end %>
+              <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @systems.each do |system| %>
+            <tr>
+              <td><%= system.sector.name + ' (' + system.sector.q.to_s + ',' + system.sector.r.to_s + ')' %></td>
+              <td><%= system.slots %></td>
+              <td><%= system.slots_free %></td>
+              <td><%= system.ic_slots %></td>
+              <td><%= system.ic_prod %></td>
+              <td><%= system.rp_slots %></td>
+              <td><%= system.rp_prod %></td>
+              <td><%= system.cp_slots %></td>
+              <td><%= system.cp_prod %></td>
+              <td><%= system.mc_slots %></td>
+              <td><%= system.sector.desc %></td>
+              <% if current_user.try(:is_master?) then %>
+                <td><%= system.try(:user).try(:house) %></td>
+                <td><%= link_to '', edit_sector_path(system.sector), remote: true, class: 'fas fa-edit white' %></td>
+              <% end %>
+              <td>
+                <% sectoruser = SectorUser.where(sector: system.sector).find_by(user: system.user)%>
+                <%= link_to '', sector_note_path(id: sectoruser), remote:true, class: 'fas fa-sticky-note ' + (sectoruser.notes.blank? ? 'white' : 'text-warning') %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>

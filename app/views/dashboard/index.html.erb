@@ -1,0 +1,39 @@
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<% if current_user.try(:is_master?) then %>
+  <nav>
+    <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
+      <% @civilizations.each do |civ| %>
+        <a class="nav-item nav-link <%= civ == @civilizations.first ? 'active' : '' %>" id="nav-<%= civ.house %>-tab" data-toggle="tab" href="#nav-<%= civ.house %>" role="tab" aria-controls="nav-<%= civ.house %>" aria-selected="false"><%= civ.house %></a>
+      <% end %>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <% @civilizations.each do |civ| %>
+      <div class="tab-pane fade <%= civ == @civilizations.first ? 'active show' : '' %>" id="nav-<%= civ.house %>" role="tabpanel" aria-labelledby="nav-<%= civ.house %>-tab">
+        <% @resource = civ.resource %>
+        <% @systems = civ.systems %>
+        <%= render 'dashboard_table' %>
+        <%= render 'systems_table' %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <%= render 'dashboard_table' %>
+  <%= render 'systems_table' %>
+<% end %>
+
+<!-- Modal -->
+
+<div class="modal fade" id="sectorModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div id='sector-content' class="modal-content bg-dark">
+    </div>
+  </div>
+</div>

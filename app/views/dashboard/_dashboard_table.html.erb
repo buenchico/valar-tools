@@ -1,0 +1,26 @@
+<div class="card bg-info m-auto col-6">
+  <div class="card-body">
+    <div class="card-text">
+      <div class="float-left mr-1">
+        <p><i class="fas fa-industry"></i> : <%= @resource.ic %></p>
+        <p><i class="fas fa-flask"></i> : <%= @resource.rp %></p>
+        <p><i class="fas fa-chess-king"></i> : <%= @resource.cp %></p>
+      </div>
+      <div class="float-left mr-1">
+        <p><span class="text-danger">(<%= @resource.ic_prod %> p/d)</span></p>
+        <p><span class="text-danger">(<%= @resource.rp_prod %> p/d)</span></p>
+        <p><span class="text-danger">(<%= @resource.cp_prod %> p/d)</span></p>
+      </div>
+      <div class="float-left mr-1">
+        <p><i class="fas fa-percentage"></i> : <%= @resource.ic_bonus.truncate() * 100 %> %</p>
+        <p><i class="fas fa-percentage"></i> : <%= @resource.rp_bonus.truncate() * 100 %> %</p>
+        <p><i class="fas fa-percentage"></i> : <%= @resource.cp_bonus.truncate() * 100 %> %</p>
+      </div>
+      <div class="float-right mr-1">
+        <p>Eficiencia global : <%= @resource.efficiency.truncate() * 100 %> %</p>
+        <p>Tamaño de flota : 999999 módulos</p>
+        <p>Población total : <%= @resource.user.systems.pluck('SUM(ic_slots), SUM(rp_slots), SUM(cp_slots), SUM(mc_slots)').flatten.sum {|e| e.to_i} * 1000 %> millones </p>
+      </div>
+    </div>
+  </div>
+</div>

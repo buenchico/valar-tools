@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201223110800) do
+ActiveRecord::Schema.define(version: 2021_01_01_190414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,20 @@ ActiveRecord::Schema.define(version: 20201223110800) do
     t.string "results", array: true
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "ic", default: 0
+    t.integer "rp", default: 0
+    t.integer "cp", default: 0
+    t.float "ic_bonus", default: 1.0
+    t.float "rp_bonus", default: 1.0
+    t.float "cp_bonus", default: 1.0
+    t.float "efficiency", default: 1.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
   create_table "sector_users", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "sector_id"
@@ -136,6 +150,7 @@ ActiveRecord::Schema.define(version: 20201223110800) do
     t.float "efficiency", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mc_slots", default: 0
     t.index ["sector_id"], name: "index_systems_on_sector_id"
     t.index ["user_id"], name: "index_systems_on_user_id"
   end

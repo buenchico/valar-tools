@@ -62,14 +62,16 @@ Rails.application.routes.draw do
 
   get '/hex-map', to: 'hex_map#index'
 
-  resources :systems
-
-  resources :sectors
+  resources :sectors, :except => [:show]
   delete '/sector_users', to: 'sectors#sector_users_destroy', as: 'delete_sector_users'
   post '/sector_users', to: 'sectors#sector_users_create', as: 'create_sector_users'
 
   post 'login_nemo', to: 'sessions#create_nemo', as: 'login_nemo'
   post 'login_master', to: 'sessions#create_master', as: 'login_master'
+
+  get 'dashboard', to: 'dashboard#index'
+  get 'dashboard/notes', to: 'dashboard#notes', as: 'sector_note'
+  post 'dashboard/notes', to: 'dashboard#notes_save', as: 'sector_note_save'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

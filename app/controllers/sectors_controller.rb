@@ -1,6 +1,6 @@
 class SectorsController < ApplicationController
   before_action :master_user
-  before_action :set_sector, only: [:edit, :update]
+  before_action :set_sector, only: [:edit, :update, :notes]
   before_action :set_user_list, except: [:index, :update]
 
   def index
@@ -38,9 +38,9 @@ class SectorsController < ApplicationController
   def update
     respond_to do |format|
       if @sector.update(sector_params.except(:new_sector))
-        format.html { redirect_to sectors_url, success: 'Sector editado correctamente.' }
+        format.html { redirect_to request.referrer, success: 'Sector editado correctamente.' }
       else
-        format.html { redirect_to sectors_url, danger: @sector.errors }
+        format.html { redirect_to request.referrer, danger: @sector.errors }
       end
     end
   end
@@ -119,6 +119,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :desc, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :user_id, :slots, :ic_slots, :ic_bonus, :rp_slots, :rp_bonus, :cp_slots, :cp_bonus, :unrest])
+      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :desc, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :user_id, :slots, :ic_slots, :ic_bonus, :rp_slots, :rp_bonus, :cp_slots, :cp_bonus, :mc_slots, :efficiency, :unrest])
     end
 end
