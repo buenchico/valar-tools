@@ -1,0 +1,1 @@
+$(document).on("turbolinks:load",function(){0!==$(".travel_calculator.index").length&&($("#path-type").click(function(){this.checked?($(".land").hide(),$(".sea").show()):($(".sea").hide(),$(".land").show())}),$("#delete_result").on("click",function(){$("#result").hide()}))});

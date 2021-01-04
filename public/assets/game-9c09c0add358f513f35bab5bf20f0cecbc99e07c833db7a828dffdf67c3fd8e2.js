@@ -1,0 +1,1 @@
+$(document).on("turbolinks:load",function(){0!==$(".game.index").length&&($("#cancel").on("click",function(){$("#newGameForm").hide(),$("#newGameBtn").removeClass("d-none")}),$("#newGameBtn").on("click",function(){$("#newGameBtn").addClass("d-none"),$("#newGameForm").slideDown(350)}))}),$("#newGameBtn").addClass("d-none"),$("#newGameForm").slideDown(350);
