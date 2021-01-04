@@ -1,10 +1,5 @@
 # config/initializers/variables.rb
 
-
-$tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
-$master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
-$all_tools = Tool.all.order(:id)
-
 =begin
   $tools = {'routes': {'title': 'Calculadora de rutas', 'short_title': 'Ruta', 'version': '1.03', 'path': '/travel_calculator', 'icon': 'fas fa-route'},
     'map': {'title': 'Mapa', 'short_title': 'Mapa', 'version': '1.01', 'path': '/map', 'icon': 'fas fa-map-signs'},
@@ -31,4 +26,10 @@ $all_tools = Tool.all.order(:id)
   $active_houses = ["Inactivo","Master"]
   if House.table_exists?
     ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
+  end
+
+  if Tool.table_exists?
+    $tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
+    $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
+    $all_tools = Tool.all.order(:id)
   end
