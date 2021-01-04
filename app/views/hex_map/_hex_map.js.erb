@@ -1,0 +1,101 @@
+$(document).on('ready turbolinks:load', function () {
+if ($(".hex_map.index").length !== 0 ) {
+    if ($('#hex').data('loaded') == false) {
+
+      var hex_map = <%= @hex_map.to_json.html_safe %>
+
+      $('#hex').hexGridWidget(30, <%= @hex_rings %>, 'hexfield hex_unknown', 'hexcoords')
+
+      for (var q of Object.keys(hex_map)) {
+        for (var r of Object.keys(hex_map[q])) {
+          $('#' + q + '_' + r).removeClass('hex_unknown');
+          $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
+          if (hex_map[q][r][ 'info' ] == 'Colonizado') {
+            $('#' + q + '_' + r).addClass('hex_' + 'owned');
+          }
+        }
+      }
+
+      $('#hex').on('hexclick',
+    		function (e) {
+          $('.hex-selected').removeClass('hex-selected');
+          $("#" + e.q + '_' + e.r).addClass('hex-selected').appendTo('#canvas');
+          $("#text_" + e.q + '_' + e.r).appendTo('#canvas');
+
+          var coords = 'q: ' + e.q + ', r: ' + e.r
+
+          if (hex_map[ e.q ] == null || hex_map[ e.q ][ e.r ] == null) {
+            $('#name').html(' : Desconocido');
+            $('#coords').html(coords);
+            $('#info').html('0');
+            $('#desc').html('');
+            $('#system').html('')
+          } else {
+            if (hex_map[ e.q ][ e.r ][ 'name' ] == null || hex_map[ e.q ][ e.r ][ 'name' ] == '' ) {
+              $('#name').html(' : Vacío');
+            } else {
+              $('#name').html(' : ' + hex_map[ e.q ][ e.r ][ 'name' ]);
+            }
+            $('#coords').html(coords);
+            $('#info').html(hex_map[ e.q ][ e.r ][ 'info' ]);
+            $('#desc').html(hex_map[ e.q ][ e.r ][ 'desc' ]);
+            if (hex_map[ e.q ][ e.r ][ 'system' ] == null ) {
+              $('#system').html('')
+            } else {
+              $('#system').html('')
+              if (hex_map[ e.q ][ e.r ][ 'info' ] == 'Colonizado' || hex_map[ e.q ][ e.r ][ 'info' ] == 'Master' || hex_map[ e.q ][ e.r ][ 'info' ] == 3) {
+                if (hex_map[ e.q ][ e.r ][ 'system' ][ 'civ' ] == null) {
+                  $('#system').append('<p>Sin colonizar</p>')
+                } else {
+                  $('#system').append('<p>Colonizador: ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'civ' ] + '</p>')
+                }
+              }
+
+              if (hex_map[ e.q ][ e.r ][ 'info' ] == 2) {
+                $('#system').append(
+                  '<div class="float-left mr-1">' +
+                    '<p>Habitabilidad: ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'slots' ] * 1000 + ' millones</p>' +
+                  '</div>'
+                )
+              }
+
+              if (hex_map[ e.q ][ e.r ][ 'info' ] == 3) {
+                $('#system').append(
+                  '<div class="float-left mr-1">' +
+                    '<p>Habitabilidad: ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'slots' ] * 1000 + ' millones</p>' +
+                    '<p>Población: ' + (hex_map[ e.q ][ e.r ][ 'system' ][ 'slots' ] - hex_map[ e.q ][ e.r ][ 'system' ][ 'slots_free' ]) * 1000 + ' millones</p>' +
+                  '</div>'
+                )
+              }
+
+              if (hex_map[ e.q ][ e.r ][ 'info' ] == 'Colonizado' || hex_map[ e.q ][ e.r ][ 'info' ] == 'Master') {
+                $('#system').append(
+                  '<div class="float-left mr-1">' +
+                    '<p><i class="fas fa-industry"></i> : ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'ic_slots' ] + '</p>' +
+                    '<p><i class="fas fa-flask"></i> : ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'rp_slots' ] + '</p>' +
+                    '<p><i class="fas fa-chess-king"></i> : ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'cp_slots' ] + '</p>' +
+                    '<p><i class="fas fa-star"></i> : ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'mc_slots' ] + '</p>' +
+                  '</div>' +
+                  '<div class="float-left mr-1">' +
+                    '<p><span class="text-warning">(' + hex_map[ e.q ][ e.r ][ 'system' ][ 'ic_prod' ] + ' p/d)</span></p>' +
+                    '<p><span class="text-warning">(' + hex_map[ e.q ][ e.r ][ 'system' ][ 'rp_prod' ] + ' p/d)</span></p>' +
+                    '<p><span class="text-warning">(' + hex_map[ e.q ][ e.r ][ 'system' ][ 'cp_prod' ] + ' p/d)</span></p>' +
+                    '<p>Eficiencia: ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'efficiency' ] * 100 + '%</p>' +
+                  '</div>' +
+                  '<div class="float-left mr-1">' +
+                    '<p>Habitabilidad: ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'slots' ] * 1000 + ' millones</p>' +
+                    '<p>Población: ' + (hex_map[ e.q ][ e.r ][ 'system' ][ 'slots' ] - hex_map[ e.q ][ e.r ][ 'system' ][ 'slots_free' ]) * 1000 + ' millones</p>' +
+                    '<p>Agitación (<i class="fas fa-fist-raised"></i>): ' + hex_map[ e.q ][ e.r ][ 'system' ][ 'unrest' ] + '</p>' +
+                  '</div>'
+                )
+              }
+
+            }
+          }
+    		});
+
+      $('#hex').data('loaded', true);
+
+    }
+  }
+});

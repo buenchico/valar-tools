@@ -1,21 +1,6 @@
 <% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
 <% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
-<script>
-document.addEventListener("turbolinks:load", function() {
-  var hex_map = <%= @hex_map.to_json.html_safe %>
-
-  $('#hex').hexGridWidget(15, <%= @hex_rings %>, 'hexfield hex_unknown', 'd-none');
-
-  for (var q of Object.keys(hex_map)) {
-    for (var r of Object.keys(hex_map[q])) {
-      $('#' + q + '_' + r).removeClass('hex_unknown');
-      $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
-    }
-  }
-});
-</script>
-
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
@@ -24,7 +9,7 @@ document.addEventListener("turbolinks:load", function() {
 <div class="container">
   <div class="row">
     <div class="col-md-auto">
-      <div id='hex'>
+      <div id='hex' data-loaded="false">
         <svg id='canvas'>
           <defs>
             <pattern id="unknown" height="100%" width="100%" patterncontentunits="objectBoundingBox">
@@ -88,3 +73,7 @@ document.addEventListener("turbolinks:load", function() {
     </div>
   </div>
 </div>
+
+<script>
+  <%= render 'sectors.js' %>
+</script>

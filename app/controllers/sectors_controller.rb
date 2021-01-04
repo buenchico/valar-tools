@@ -20,6 +20,11 @@ class SectorsController < ApplicationController
         :type=> hex.sector_type
         }
     end
+
+    respond_to do |format|
+        format.html
+        format.js
+    end
   end
 
   # GET /sectors/1/edit

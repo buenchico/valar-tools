@@ -3,7 +3,7 @@ class System < ApplicationRecord
   belongs_to :user, optional: true
 
   def slots_free
-      self.slots - (self.ic_slots + self.rp_slots + self.cp_slots + self.mc_slots)
+    self.slots - (self.ic_slots + self.rp_slots + self.cp_slots + self.mc_slots)
   end
 
   def ic_prod

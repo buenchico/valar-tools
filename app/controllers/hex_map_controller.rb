@@ -5,74 +5,40 @@ class HexMapController < ApplicationController
   def index
     abs_coords = []
     if current_user.try(:is_master?)
-      Sector.all.each do |x|
-        abs_coords << x.r.abs
-        abs_coords << x.q.abs
-      end
+      @sectors = Sector.all
     else
-      User.find_by(player: current_user.player).sectors.each do |x|
-        abs_coords << x.r.abs
-        abs_coords << x.q.abs
-      end
+      @sectors = User.find_by(player: current_user.player).sectors
     end
+
+    @sectors.each do |hex|
+      abs_coords << hex.r.abs
+      abs_coords << hex.q.abs
+    end
+
     @hex_rings = ( abs_coords.max || 0 ) + 1
 
     @hex_map = {}
-    if current_user.try(:is_master?)
-      Sector.all.each do |hex|
-        @hex_map[hex.q] = {} if @hex_map[hex.q].nil?
 
-        if hex.system.nil? then
-          system =  [hex.id]
-        else
-          system = [
-            hex.id,
-            hex.system.slots,
-            hex.system.ic_bonus,
-            hex.system.rp_bonus,
-            hex.system.cp_bonus,
-            hex.system.user.nil? ? 'Sin colonizar' : hex.system.user.house]
-        end
+    @sectors.each do |hex|
+      @hex_map[hex.q] = {} if @hex_map[hex.q].nil?
 
+      if (hex.sector_users.exists?(user: current_user.id) || current_user.try(:is_master?)) && hex.sector_users.find_by(user: current_user.id).try(:info_lvl) != 0
         @hex_map[hex.q][hex.r] = {
           :name=> hex.name,
           :type=> hex.sector_type,
-          :info=> 'Master',
+          :info=> hex.sector_users.find_by(user: current_user).try(:info_lvl) || 'Master',
           :desc=> hex.desc,
-          :system => system
-          }
-      end
-    else
-      User.find_by(player: current_user.player).sector_users.each do |hex|
-        @hex_map[hex.sector.q] = {} if @hex_map[hex.sector.q].nil?
-
-        if hex.sector.system.nil? then
-          system =  [hex.id]
-        else
-          system = [
-            hex.sector.id,
-            hex.sector.system.slots,
-            hex.sector.system.ic_bonus,
-            hex.sector.system.rp_bonus,
-            hex.sector.system.cp_bonus,
-            hex.sector.system.user.nil? ? 'Sin colonizar' : hex.sector.system.user.house]
-        end
-
-        @hex_map[hex.sector.q][hex.sector.r] = {
-          :name=> hex.sector.name,
-          :type=> hex.sector.sector_type,
-          :info=> hex.info_lvl,
-          :desc=> hex.sector.desc,
-          :system => system
         }
-
-        if hex.info_lvl == 2
-          @hex_map[hex.sector.q][hex.sector.r][:name] = 'Desconocido'
-          @hex_map[hex.sector.q][hex.sector.r][:system] = @hex_map[hex.sector.q][hex.sector.r][:system].take(2)
-        elsif hex.info_lvl == 1
-          @hex_map[hex.sector.q][hex.sector.r][:name] = 'Desconocido'
-          @hex_map[hex.sector.q][hex.sector.r][:desc] = nil
-          @hex_map[hex.sector.q][hex.sector.r][:system] = @hex_map[hex.sector.q][hex.sector.r][:system].take(1)
+        if hex.system != nil
+          if hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 'Colonizado' || current_user.try(:is_master?)
+            @hex_map[hex.q][hex.r][:system] = hex.system.as_json.merge({slots_free: hex.system.slots_free, ic_prod: hex.system.ic_prod, rp_prod: hex.system.rp_prod, cp_prod: hex.system.cp_prod, civ: hex.system.try(:user).try(:house)})
+          elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 3
+            @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots]).merge({slots_free: hex.system.slots_free, civ: hex.system.user.house})
+          elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 2
+            @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots])
+          end
+        else
+          @hex_map[hex.q][hex.r][:system] = nil
         end
       end
     end

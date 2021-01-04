@@ -1,0 +1,20 @@
+$(document).on('turbolinks:load', function () {
+  if ($(".sectors.index").length !== 0 ) {
+    if ($('#hex').data('loaded') == false) {
+
+      var hex_map = <%= @hex_map.to_json.html_safe %>
+
+      $('#hex').hexGridWidget(15, <%= @hex_rings %>, 'hexfield hex_unknown', 'd-none');
+
+      for (var q of Object.keys(hex_map)) {
+        for (var r of Object.keys(hex_map[q])) {
+          $('#' + q + '_' + r).removeClass('hex_unknown');
+          $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
+        }
+      }
+
+      $('#hex').data('loaded', true);
+
+    }
+  }
+});

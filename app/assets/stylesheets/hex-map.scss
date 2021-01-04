@@ -1,6 +1,6 @@
 svg {}
 .hexfield {
-  stroke: yellowgreen;
+  stroke: darkgrey;
   stroke-width: 1;
 }
 .hexfield:focus {
@@ -27,6 +27,11 @@ svg {}
 
 .hex_star-red {
   fill: url('#star-red');
+}
+
+.hex_owned {
+  stroke: yellowgreen;
+  stroke-width: 2;
 }
 
 .hex-selected {

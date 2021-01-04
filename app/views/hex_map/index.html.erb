@@ -1,88 +1,41 @@
 <% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
 <% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
 
+<%= @hex_map.to_json.html_safe %>
+
 <div class="tool-title">
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
 </div>
 
-<script>
-  var hex_map = <%= @hex_map.to_json.html_safe %>
+<div class="container row">
+  <div class="card text-white bg-secondary mb-3 col-4"  style="width: 18rem;">
+    <div class="card-header">Sector <span id='coords'></span><span id='name'></span></div>
+    <div class="card-body">
+      <p class="card-text">Nivel de información: <span id='info'></span></p>
+      <p class="card-text"><span id='desc'></span></p>
+      <p class="card-text"><span id='system'></span></p>
+    </div>
+  </div>
 
-  $('#hex').hexGridWidget(30, <%= @hex_rings %>, 'hexfield hex_unknown', 'hexcoords').on('hexclick',
-		function (e) {
-      $('.hex-selected').removeClass('hex-selected');
-      $("#" + e.q + '_' + e.r).addClass('hex-selected').appendTo('#canvas');
-      $("#text_" + e.q + '_' + e.r).appendTo('#canvas');
-
-      var coords = 'q: ' + e.q + ', r: ' + e.r
-
-      try {
-        if (hex_map[ e.q ][ e.r ][ 'name' ] == null) {
-          $('#name').html(' : Vacío');
-        } else {
-          $('#name').html(' : ' + '<a class="white" href="sectors/' + hex_map[ e.q ][ e.r ][ 'system' ][0] + '")>' + hex_map[ e.q ][ e.r ][ 'name' ] + '</a>');
-        }
-        $('#coords').html(coords);
-        $('#info').html(hex_map[ e.q ][ e.r ][ 'info' ]);
-        $('#desc').html(hex_map[ e.q ][ e.r ][ 'desc' ]);
-        $('#system').html(hex_map[ e.q ][ e.r ][ 'system' ]);
-      } catch(err) {
-        $('#name').html(' : Desconocido');
-        $('#coords').html(coords);
-        $('#info').html(0);
-        $('#desc').html('');
-        $('#system').html('');
-      }
-		});
-
-  for (var q of Object.keys(hex_map)) {
-    for (var r of Object.keys(hex_map[q])) {
-      $('#' + q + '_' + r).removeClass('hex_unknown');
-      /*
-      var coords = [
-                    (q)+'_'+(r-(-1)),
-                    (q-1)+'_'+(r-(-1)),
-                    (q-1)+'_'+(r),
-                    (q)+'_'+(r-1),
-                    (q-(-1))+'_'+(r-1),
-                    (q-(-1))+'_'+(r)
-                    ]
-      coords.forEach(i => {
-        $('#' + i).removeClass('d-none');
-        $('#text_' + i).removeClass('d-none');
-      });
-      */
-
-      $('#' + q + '_' + r).removeClass('d-none');
-      $('#text_' + q + '_' + r).removeClass('d-none');
-      $('#' + q + '_' + r).addClass('hex_' + hex_map[q][r]['type']);
-    }
-  }
-
-</script>
-
-<div class="card text-white bg-primary mb-3 float-right"  style="width: 18rem;">
-  <div class="card-header">Sector <span id='coords'></span><span id='name'></span></div>
-  <div class="card-body">
-    <p class="card-text">Nivel de información: <span id='info'></span></p>
-    <p class="card-text"><span id='desc'></span></p>
-    <p class="card-text"><span id='system'></span></p>
+  <div id='hex' class="col-6" data-loaded="false">
+    <svg id='canvas'>
+      <defs>
+        <pattern id="unknown" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+          <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-unknown.png"></image>
+        </pattern>
+        <pattern id="star-red" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+          <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-star-red.png"></image>
+        </pattern>
+        <pattern id="empty" height="100%" width="100%" patterncontentunits="objectBoundingBox">
+          <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-empty.png"></image>
+        </pattern>
+      </defs>
+    </svg>
   </div>
 </div>
 
-<div id='hex'>
-  <svg id='canvas'>
-    <defs>
-      <pattern id="unknown" height="100%" width="100%" patterncontentunits="objectBoundingBox">
-        <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-unknown.png"></image>
-      </pattern>
-      <pattern id="star-red" height="100%" width="100%" patterncontentunits="objectBoundingBox">
-        <image width="1" height="1.2" preserveaspectratio="none" href="assets/hex/bg-star-red.png"></image>
-      </pattern>
-      <pattern id="empty" height="100%" width="100%" patterncontentunits="objectBoundingBox">
-        <image width="1" height="1" preserveaspectratio="none" href="assets/hex/bg-empty.png"></image>
-      </pattern>
-    </defs>
-  </svg>
-</div>
+
+<script>
+  <%= render 'hex_map.js' %>
+</script>

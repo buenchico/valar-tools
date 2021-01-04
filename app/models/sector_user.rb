@@ -12,7 +12,7 @@ class SectorUser < ApplicationRecord
       self.info
     else
       if self.sector.system.user == self.user
-        4
+        'Colonizado'
       else
         self.info
       end

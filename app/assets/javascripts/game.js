@@ -11,6 +11,5 @@ $(document).on('turbolinks:load', function () {
     }
 });
 
-
 $('#newGameBtn').addClass('d-none')
 $('#newGameForm').slideDown(350);
