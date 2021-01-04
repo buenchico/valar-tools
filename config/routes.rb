@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
   resources :tools, :only => [:edit, :update]
 
-  get '/hex-map', to: 'hex_map#index'
+  get '/ap-map', to: 'hex_map#index'
 
   resources :sectors, :except => [:show]
   delete '/sector_users', to: 'sectors#sector_users_destroy', as: 'delete_sector_users'
