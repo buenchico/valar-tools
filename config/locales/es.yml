@@ -83,6 +83,10 @@ es:
           attributes:
             q:
               taken: "Las coordenadas (q,r) de cada sector deben ser únicas"
+        system:
+          attributes:
+            slots:
+              invalid: "La población no puede ser mayor que la habitabilidad"
   helpers:
     submit:
       create: "Añadir %{model}"

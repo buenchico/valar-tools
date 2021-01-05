@@ -50,3 +50,19 @@ $('#cancel_system').on('click',
     $('#system').addClass('op-20');
     $('#edit_system').show();
   });
+
+$('#ic_slots,#rp_slots,#cp_slots').on('change',
+  function (e){
+    var ic = parseInt($('#ic_slots').val())
+    var rp = parseInt($('#rp_slots').val())
+    var cp = parseInt($('#cp_slots').val())
+    var mc = parseInt($('#mc_slots').val())
+    var slots_free = $('#slots').val() - (ic + rp + cp + mc)
+    if (slots_free >= 0) {
+      $('#slots_free').remove() }
+    else {
+      if ($('#slots_free').length == 0) {
+        $('#system').prepend(`<div id="slots_free" class="container mx-auto text-center alert alert-danger">La población no puede ser superior a la habitabilidad.</div>`);
+      }
+    }
+  });

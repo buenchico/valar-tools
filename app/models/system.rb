@@ -1,6 +1,7 @@
 class System < ApplicationRecord
   belongs_to :sector
   belongs_to :user, optional: true
+  validate :maximum_slots
 
   def slots_free
     self.slots - (self.ic_slots + self.rp_slots + self.cp_slots + self.mc_slots)
@@ -16,5 +17,12 @@ class System < ApplicationRecord
 
   def cp_prod
     self.cp_slots * self.cp_bonus * self.efficiency
+  end
+
+  private
+  def maximum_slots
+     if slots_free < 0
+       errors.add(:slots)
+     end
   end
 end
