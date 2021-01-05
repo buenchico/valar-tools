@@ -19,7 +19,7 @@
                 <span class="fa-li"><i class="fas fa-greater-than"></i></span>
                 <%= hidden_field_tag "army_ids[]", army.aid %>
                 <%= army.army_title %>
-                <%  if !army.army_traits.blank? then %> 
+                <%  if !army.army_traits.blank? then %>
                   <em>(<%= army.army_traits %>)</em>
                 <% end %>
                 <% if !army.position.blank? then %>
@@ -36,7 +36,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-eye"></i>&nbsp;</div>
               </div>
-              <%= form.select :visibility, options_for_select($active_houses[1..-1]), {}, multiple: true, class: "custom-select" %>
+              <%= form.select :visibility, options_for_select(@active_houses[1..-1]), {}, multiple: true, class: "custom-select" %>
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -63,11 +63,11 @@
               </div>
               <%= form.select :status, options_for_select(@status), {:include_blank => true}, class: "custom-select"  %>
             </div>
-          <% end %>          
+          <% end %>
           <div class="input-group mb-3">
             <%= form.submit 'Guardar ejércitos', class: "btn btn-primary" %>
           </div>
-        <% end %>  
+        <% end %>
       </div>
     </div>
   </div>

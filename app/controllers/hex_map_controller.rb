@@ -31,9 +31,9 @@ class HexMapController < ApplicationController
         }
         if hex.system != nil
           if hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 'Colonizado' || current_user.try(:is_master?)
-            @hex_map[hex.q][hex.r][:system] = hex.system.as_json.merge({slots_free: hex.system.slots_free, ic_prod: hex.system.ic_prod, rp_prod: hex.system.rp_prod, cp_prod: hex.system.cp_prod, civ: hex.system.try(:user).try(:house)})
+            @hex_map[hex.q][hex.r][:system] = hex.system.as_json.merge({slots_free: hex.system.slots_free, ic_prod: hex.system.ic_prod, rp_prod: hex.system.rp_prod, cp_prod: hex.system.cp_prod, civ: hex.system.try(:user).try(:house).try(:name)})
           elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 3
-            @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots]).merge({slots_free: hex.system.slots_free, civ: hex.system.user.house})
+            @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots]).merge({slots_free: hex.system.slots_free, civ: hex.system.user.house.name})
           elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 2
             @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots])
           end

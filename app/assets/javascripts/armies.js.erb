@@ -59,7 +59,7 @@ $.fn.recalculateStats = function(){
 
 // Trigger filters
 $(document).on('turbolinks:load', function(){
-    var houses = <%= $active_houses %>;
+    var houses = <%= ["Master"].concat(House.where(active: true).order(:name).pluck(:name)) %>;
 
     $.each( houses, function( k, house ) {
 

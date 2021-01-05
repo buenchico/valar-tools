@@ -23,11 +23,6 @@
 
   $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Ríos","Tormenta","Valle","El Muro","Más-allá-del-muro","Essos"]
 
-  $active_houses = ["Inactivo","Master"]
-  if House.table_exists?
-    ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
-  end
-
   if Tool.table_exists?
     $tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
     $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)

@@ -3,6 +3,7 @@ class ArmiesController < ApplicationController
   before_action :set_variables
   before_action :correct_user, only: [:edit, :notes, :edit_multiple]
   before_action :master_user, only: [:new, :import, :destroy]
+  before_action :set_active_houses, except: [:update, :create, :destroy, :import]
 
   # GET /armies
   def index
@@ -16,7 +17,7 @@ class ArmiesController < ApplicationController
         format.csv { send_data @armies.to_csv, filename: "armies-#{Date.today}.csv" }
       end
     else
-      @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ? and visible = ?", "%#{current_user.house}%", true)
+      @armies = Army.where("array_to_string(ARRAY[visibility], '|') ilike ? and visible = ?", "%#{current_user.house.name}%", true)
     end
 
     @total_str = []
@@ -153,6 +154,10 @@ class ArmiesController < ApplicationController
       @boat = {"No" => "No", "Sí, Barcoluengos" => "Sí, Barcoluengos", "Sí, Galeras" => "Sí, Galeras", "Sí, Galeras mercantes" => "Sí, Galeras mercantes", "Sí, Dromones" => "Sí, Dromones"}
     end
 
+    def set_active_houses
+      @active_houses = ["Master"].concat(House.where(active: true).order(:name).pluck(:name))
+    end
+
     def correct_user
       if current_user.nil?
         flash[:danger] = "Por favor, inicia sesión."
@@ -160,12 +165,12 @@ class ArmiesController < ApplicationController
       elsif params[:button] == "multiple" || params[:button] == "visibility" || params[:button] == "delete" then
         @armies = params[:army_ids]
         @armies.each do |x|
-          if current_user.house !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
+          if current_user.house.name !~ /#{Army.find(x).visibility.join()}/  && !current_user.is_master? && !current_user.is_admin?
             flash[:danger] = "No tienes permisos para acceder a esta página."
             redirect_to armies_url
           end
         end
-      elsif current_user.house !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
+      elsif current_user.house.name !~ /#{@army.visibility.join()}/ && !current_user.is_master? && !current_user.is_admin?
         flash[:danger] = "No tienes permisos para acceder a esta página."
         redirect_to root_url
       end

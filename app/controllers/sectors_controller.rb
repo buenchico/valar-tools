@@ -29,13 +29,13 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1/edit
   def edit
-    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
   end
 
   # GET /sectors/new
   def new
     @sector = Sector.new
-    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
   end
 
   # PATCH/PUT /houses/1
@@ -63,7 +63,7 @@ class SectorsController < ApplicationController
 
     @action = 'destroy'
 
-    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
 
     respond_to do |format|
       format.js { render :sector_users }
@@ -83,7 +83,7 @@ class SectorsController < ApplicationController
 
     @action = 'create'
 
-    @available_users = User.where.not(house: ['Inactivo','Admin','Master']).where.not(id: @sector.users.pluck(:id))
+    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
 
     respond_to do |format|
       format.js { render :sector_users }
@@ -109,7 +109,7 @@ class SectorsController < ApplicationController
     end
 
     def set_user_list
-      @user_list = User.where.not(house: ['Inactivo','Admin','Master'])
+      @user_list = User.where.not(house: House.where(hid: 0))
     end
 
     def master_user

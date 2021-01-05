@@ -73,14 +73,14 @@ class SessionsController < ApplicationController
       cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
       cookies.permanent[:external_id] = $sso.user_info[:external_id]
       redirect_to root_url
-      flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+'.'
+      flash[:success] = 'Sesión iniciada correctamente como ' + '.'
     elsif $sso.status == 'success' && User.find_by(player: $sso.user_info[:username]) == nil
       @user = User.new(player: $sso.user_info[:username], house: 'Inactivo')
       if @user.save
         cookies.permanent[:user] = $sso.user_info[:username]
         cookies.permanent[:auth_token] = User.find_by(player: $sso.user_info[:username]).auth_token
         cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
-        cookies.permanent[:external_id] = $sso.user_info[:external_id]        
+        cookies.permanent[:external_id] = $sso.user_info[:external_id]
         redirect_to root_url
         flash[:success] = 'Bienvenido a Valar Tools, contacta con los Masters para recibir permisos'
       else
@@ -102,7 +102,7 @@ end
     if user && user.authenticate(params[:password])
       cookies.permanent[:auth_token] = user.auth_token
       redirect_to root_url
-      flash[:success] = 'Sesión iniciada correctamente como '+current_user.house+' .'
+      flash[:success] = 'Sesión iniciada correctamente como '+current_user.house.name+' .'
     else
       redirect_back(fallback_location: root_path)
       unless user && user.authenticate(params[:password])

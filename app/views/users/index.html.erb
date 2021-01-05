@@ -18,9 +18,9 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-          <tr class="<%= user.house == 'Inactivo' ? 'destroyed' : '' %>">
+          <tr class="<%= user.house.name == 'Inactivo' ? 'destroyed' : '' %>">
             <td><%= user.player %></td>
-            <td><%= user.house %></td>
+            <td><%= user.house.name %></td>
             <td><%= link_to '', 'https://www.valar.es/u/'+user.player, class: "fab fa-discourse white" %></td>
             <% if current_user.try(:is_master?) then %>
               <td><%= link_to '', edit_user_path(user), remote: true, class: 'fas fa-edit white' %></td>

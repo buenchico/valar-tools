@@ -56,6 +56,7 @@ es:
             name:
               blank: "El nombre de la casa es necesario"
               taken: "El nombre de la casa debe ser único"
+              invalid: "El nombre de la casa no puede contener espacios"
         army:
           attributes:
             aid:

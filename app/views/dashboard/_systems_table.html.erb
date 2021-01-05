@@ -36,7 +36,7 @@
               <td><%= system.mc_slots %></td>
               <td><%= system.sector.desc %></td>
               <% if current_user.try(:is_master?) then %>
-                <td><%= system.try(:user).try(:house) %></td>
+                <td><%= system.try(:user).try(:house).try(:name) %></td>
                 <td><%= link_to '', edit_sector_path(system.sector), remote: true, class: 'fas fa-edit white' %></td>
               <% end %>
               <td>

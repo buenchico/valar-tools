@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :sector_users, :class_name => 'SectorUser'
   has_many :sectors, through: :sector_users
   has_one :resource, dependent: :destroy
-  validates :house, presence: true
+  belongs_to :house
   validates_uniqueness_of :player
   before_create :generate_token, :generate_resource
   accepts_nested_attributes_for :resource
@@ -29,10 +29,10 @@ class User < ApplicationRecord
 
   # this method return true or false
   def is_admin?
-    self.house == 'Admin'
+    self.house.name == 'Admin'
   end
 
   def is_master?
-    self.house == 'Master' || self.house == 'Admin'
+    self.house.name == 'Master' || self.house.name == 'Admin'
   end
 end

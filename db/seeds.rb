@@ -1,6 +1,10 @@
+House.new(hid: 0, name: 'Admin').save(validate: false)
+House.new(hid: 0, name: 'Master').save(validate: false)
+House.new(hid: 0, name: 'Inactivo').save(validate: false)
+
 User.create([
 {
-player: "Valar", house: "admin", password: Rails.application.secrets[:admin_password]
+player: "Valar", house: House.find_by(name: 'Admin'), password: Rails.application.secrets[:admin_password]
 }
 ])
 

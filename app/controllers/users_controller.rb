@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where.not(house: "Admin")
+    @users = User.where.not(house: House.find_by(name: 'Admin'))
   end
 
   # GET /users/1
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @active_houses = House.where(name: 'Master').or(House.where(name: 'Inactivo')).order(:hid).map { |house| [house.name, house.id] }.concat(House.where(active: true).order(:name).map { |house| [house.name, house.id] })
   end
 
   # PATCH/PUT /users/1
@@ -116,6 +117,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:player, :house, :password, :password_confirmation)
+      params.require(:user).permit(:player, :password, :password_confirmation, :house_id)
     end
 end

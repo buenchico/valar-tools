@@ -2,12 +2,11 @@ class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
   before_action :master_user, only: [:new, :edit, :destroy]
   before_action :set_variables
-  after_action :set_active_houses, only: [:create, :destroy, :update]
 
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all.order(:hid)
+    @houses = House.where.not(hid: 0).order(:hid)
   end
 
   # GET /houses/1
@@ -79,11 +78,6 @@ class HousesController < ApplicationController
 
     def set_variables
       @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
-    end
-
-    def set_active_houses
-      $active_houses = ["Inactivo","Master"]
-      ($active_houses << House.where(active: true).order(:name).pluck(:name)).flatten! # SELECT house.name_es FROM house WHERE active = true
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

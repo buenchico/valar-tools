@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
       flash[:danger] = "Por favor, inicia sesión."
       redirect_to root_url
     elsif current_user.is_master? || current_user.is_admin?
-      @civilizations = User.where.not(house: ['Inactivo','Master','Admin'])
+      @civilizations = User.includes(:house).where.not(house: House.where(hid: 0)).order('houses.name')
     else
       @resource = current_user.resource
       @systems = current_user.systems

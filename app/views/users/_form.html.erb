@@ -34,7 +34,7 @@
       <div class="input-group-prepend">
         <div class="input-group-text"><i class="fas fa-flag"></i></div>
       </div>
-      <%= form.select :house, options_for_select($active_houses, user.house), {}, {class: "custom-select"} %>
+      <%= form.select :house_id, options_for_select(@active_houses, user.house.id), {}, {class: "custom-select"} %>
     </div>
   </div>
 
