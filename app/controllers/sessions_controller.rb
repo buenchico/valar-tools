@@ -71,6 +71,9 @@ class SessionsController < ApplicationController
       cookies.permanent[:user] = $sso.user_info[:username]
       cookies.permanent[:auth_token] = User.find_by(player: $sso.user_info[:username]).auth_token
       cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
+      if User.find_by(player: $sso.user_info[:username]).external_id == nil
+        User.find_by(player: $sso.user_info[:username]).update(external_id: $sso.user_info[:external_id]))
+      end
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como ' + '.'
     elsif $sso.status == 'success' && User.find_by(player: $sso.user_info[:username]) == nil
