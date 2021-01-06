@@ -8,6 +8,7 @@ class Sector < ApplicationRecord
   accepts_nested_attributes_for :system
 
   validates_uniqueness_of :q, :scope => [:r]
+  validates :q, :r, presence: true
 
   $sector_types = {'empty': 'Vacío', 'star-red': 'Estrella tipo K'}
   validates_inclusion_of :sector_type, :in => $sector_types.collect {|k,v| k.to_s}
