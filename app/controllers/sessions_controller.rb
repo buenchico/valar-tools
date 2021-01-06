@@ -75,7 +75,7 @@ class SessionsController < ApplicationController
         User.find_by(player: $sso.user_info[:username]).update(external_id: $sso.user_info[:external_id]))
       end
       redirect_to root_url
-      flash[:success] = 'Sesión iniciada correctamente como ' + '.'
+      flash[:success] = 'Sesión iniciada correctamente como ' + player: $sso.user_info[:username]
     elsif $sso.status == 'success' && User.find_by(player: $sso.user_info[:username]) == nil
       @user = User.new(player: $sso.user_info[:username], house: House.find_by(name: 'Inactivo'), external_id: $sso.user_info[:external_id])
       if @user.save
