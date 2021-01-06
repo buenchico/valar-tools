@@ -4,7 +4,7 @@ House.new(hid: 0, name: 'Inactivo', active: false).save(validate: false)
 
 User.create([
 {
-player: "valar", house: House.find_by(name: 'Admin')
+player: "valar", house: House.find_by(name: 'Admin'), external_id: 1
 }
 ])
 
