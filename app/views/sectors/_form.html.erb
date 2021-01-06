@@ -54,12 +54,12 @@
       <div class="row bottom-separator mb-3">
         <div class="col-md-6 right-separator">
           <h3>Visibilidad</h3>
-          <%= form.fields_for :sector_users do |form| %>
+          <%= form.fields_for :sector_houses do |form| %>
             <div id="form_<%= form.object.id %>">
               <div id="main_<%= form.object.id %>" class="form-group mb-1">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div style="width: 180px" class="input-group-text"><%= User.find_by(id: form.object.user_id).player %><%= raw '&nbsp;<i class="fas fa-flag-checkered"></i>' unless form.object.info_lvl != 4 %></div>
+                    <div style="width: 180px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" class="input-group-text text-left"><%= raw '<i class="fas fa-flag-checkered"></i>&nbsp;' unless form.object.info_lvl != 'Colonizado' %><%= House.find_by(id: form.object.house_id).name%></div>
                   </div>
                   <%= form.number_field :info, max: 3, min: 0, style: "width: 90px", class: "custom-control" %>
                   <%= form.button '<i class="fas fa-sticky-note"></i>'.html_safe, type: 'button', id: "notes_btn_" + form.object.id.to_s , class: 'notes ' + (form.object.notes.nil? || form.object.notes.empty? ? "btn btn-secondary" : "btn btn-success") %>
@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div id='delete_confirm_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
-                <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_users_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
+                <%= link_to '<i class="fas fa-trash-alt"></i> Confirma el borrado'.html_safe, delete_sector_houses_path(sector_id: form.object.sector_id,id: form.object.id), method: :delete, remote:true, class: "btn btn-danger" %>
                 <%= form.button '<i class="fas fa-times-circle"></i>'.html_safe, type: 'button', id: "delete_cancel_" + form.object.id.to_s, class: 'cancel btn btn-secondary' %>
               </div>
               <div id='notes_box_<%=form.object.id.to_s%>' class="form-group mb-3" style='display: none'>
@@ -76,9 +76,9 @@
             </div>
           <% end %>
 
-          <% if @available_users.empty? == false %>
-            <%= link_to '<i class="fas fa-plus-circle"></i> Añadir Jugador'.html_safe, create_sector_users_path(sector_id: sector.id), method: :post, remote: true, id: 'new_user_link', class: 'btn btn-success', data: { sector_id: sector.id} %>
-            <%= select_tag :new_user, options_for_select(@available_users.pluck(:player, :id)), include_blank: true, style: "width: 160px", id: 'new_user_select', class: "custom-select" %>
+          <% if @available_factions.empty? == false %>
+            <%= link_to '<i class="fas fa-plus-circle"></i> Añadir Jugador'.html_safe, create_sector_houses_path(sector_id: sector.id), method: :post, remote: true, id: 'new_user_link', class: 'btn btn-success', data: { sector_id: sector.id} %>
+            <%= select_tag :new_user, options_for_select(@available_factions.pluck(:name, :id)), include_blank: true, style: "width: 160px", id: 'new_user_select', class: "custom-select" %>
           <% end %>
         </div>
 
@@ -96,7 +96,7 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-flag-checkered"></i>&nbsp;</div>
                 </div>
-                <%= form.select :user_id, options_for_select(sector.users.joins(:house).pluck("users.player, houses.name, users.id").map { |x,y,z| [x + ' - ' + y,z]}, sector.system.nil? ? nil : sector.system.user_id ), {include_blank: true}, disabled: true, class: "custom-select" %>
+                <%= form.select :house_id, options_for_select(sector.houses.map {|x| [x.name + ' (' +  x.users.pluck(:player).join(',') + ')',x.id] }, sector.system.nil? ? nil : sector.system.house_id ), {include_blank: true}, disabled: true, class: "custom-select" %>
               </div>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">

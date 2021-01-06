@@ -40,8 +40,8 @@
                 <td><%= link_to '', edit_sector_path(system.sector), remote: true, class: 'fas fa-edit white' %></td>
               <% end %>
               <td>
-                <% sectoruser = SectorUser.where(sector: system.sector).find_by(user: system.user)%>
-                <%= link_to '', sector_note_path(id: sectoruser), remote:true, class: 'fas fa-sticky-note ' + (sectoruser.notes.blank? ? 'white' : 'text-warning') %>
+                <% sectorhouse = SectorHouse.where(sector: system.sector).find_by(house: system.house)%>
+                <%= link_to '', sector_note_path(id: sectorhouse), remote:true, class: 'fas fa-sticky-note ' + (sectorhouse.notes.blank? ? 'white' : 'text-warning') %>
               </td>
             </tr>
           <% end %>

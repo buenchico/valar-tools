@@ -6,7 +6,7 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.where.not(hid: 0).order(:hid)
+    @houses = House.where.not(hid: 0).order(active: :desc)
   end
 
   # GET /houses/1
@@ -77,7 +77,7 @@ class HousesController < ApplicationController
     end
 
     def set_variables
-      @next_id = House.maximum(:hid).nil? ? 300001 : House.maximum(:hid) + 1
+      @next_id = House.maximum(:hid).nil? ? 300001 : [House.maximum(:hid) + 1,300001].max
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

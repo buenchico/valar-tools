@@ -29,8 +29,8 @@ $('.cancel').on('click',
 $('#new_user_select').on('change',
   function () {
     var sector_id = $('#new_user_link').data('sectorId');
-    var user_id = this.value
-    var url = '/sector_users?sector_id=' + sector_id + '&user_id=' + user_id
+    var house_id = this.value
+    var url = '<%= create_sector_houses_path %>' + '?sector_id=' + sector_id + '&house_id=' + house_id
 
     $('#new_user_link').attr('href', url);
   });

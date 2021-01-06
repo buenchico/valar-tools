@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reputation"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -96,12 +97,10 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "factors", array: true
-    t.string "results", array: true
   end
 
   create_table "resources", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "house_id"
     t.integer "ic", default: 0
     t.integer "rp", default: 0
     t.integer "cp", default: 0
@@ -111,18 +110,18 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.float "efficiency", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_resources_on_user_id"
+    t.index ["house_id"], name: "index_resources_on_house_id"
   end
 
-  create_table "sector_users", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "sector_houses", force: :cascade do |t|
+    t.bigint "house_id"
     t.bigint "sector_id"
     t.integer "info", default: 0
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "notes"
-    t.index ["sector_id"], name: "index_sector_users_on_sector_id"
-    t.index ["user_id"], name: "index_sector_users_on_user_id"
+    t.index ["house_id"], name: "index_sector_houses_on_house_id"
+    t.index ["sector_id"], name: "index_sector_houses_on_sector_id"
   end
 
   create_table "sectors", force: :cascade do |t|
@@ -131,14 +130,14 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.string "sector_type", default: "empty"
     t.string "name"
     t.text "desc"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "notes"
   end
 
   create_table "systems", force: :cascade do |t|
     t.bigint "sector_id"
-    t.bigint "user_id"
+    t.bigint "house_id"
     t.integer "slots", default: 0
     t.integer "ic_slots", default: 0
     t.float "ic_bonus", default: 1.0
@@ -146,13 +145,13 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.float "rp_bonus", default: 1.0
     t.integer "cp_slots", default: 0
     t.float "cp_bonus", default: 1.0
+    t.integer "mc_slots", default: 0
     t.integer "unrest", default: 0
     t.float "efficiency", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mc_slots", default: 0
+    t.index ["house_id"], name: "index_systems_on_house_id"
     t.index ["sector_id"], name: "index_systems_on_sector_id"
-    t.index ["user_id"], name: "index_systems_on_user_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -174,7 +173,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_163703) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "auth_token"
-    t.integer "reputation"
+    t.integer "external_id"
     t.bigint "house_id"
     t.index ["house_id"], name: "index_users_on_house_id"
   end

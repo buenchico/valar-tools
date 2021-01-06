@@ -2,28 +2,28 @@ class ReputationsController < ApplicationController
   before_action :master_user
 
   def index
-    @users = User.joins(:house).where.not(houses: {hid: 0}).order(:player)
+    @houses = House.where.not(hid: 0).order(:name)
   end
 
   def change
-    @player = User.find_by(player: params[:player])
+    @house = House.find_by(name: params[:name])
     if params[:button] == 'up'
-      if @player.reputation.nil?
+      if @house.reputation.nil?
         @rep_value = 0 + 1
       else
-        @rep_value = @player.reputation + 1
+        @rep_value = @house.reputation + 1
       end
     elsif
-      if @player.reputation.nil?
+      if @house.reputation.nil?
         @rep_value = 0 - 1
       else
-        @rep_value = @player.reputation - 1
+        @rep_value = @house.reputation - 1
       end
     end
 
     respond_to do |format|
-      if User.update(@player.id, reputation: @rep_value)
-        @rep_mod = User.find_by(player: params[:player]).rep_mod
+      if House.update(@house.id, reputation: @rep_value)
+        @rep_mod = House.find_by(name: params[:name]).rep_mod
         format.js { render 'change_rep' }
       else
         format.js { redirect_to root_path, danger: 'Fallo al actualizar la reputación, por favor inténtelo de nuevo' }

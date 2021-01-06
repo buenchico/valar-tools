@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @id = cookies[:external_id]
+    @id = current_user.external_id.to_s
 
     @url = 'https://www.valar.es/admin/users/'+ @id +'/log_out'
 
@@ -71,16 +71,14 @@ class SessionsController < ApplicationController
       cookies.permanent[:user] = $sso.user_info[:username]
       cookies.permanent[:auth_token] = User.find_by(player: $sso.user_info[:username]).auth_token
       cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
-      cookies.permanent[:external_id] = $sso.user_info[:external_id]
       redirect_to root_url
       flash[:success] = 'Sesión iniciada correctamente como ' + '.'
     elsif $sso.status == 'success' && User.find_by(player: $sso.user_info[:username]) == nil
-      @user = User.new(player: $sso.user_info[:username], house: 'Inactivo')
+      @user = User.new(player: $sso.user_info[:username], house: House.find_by(name: 'Inactivo'), external_id: $sso.user_info[:external_id])
       if @user.save
         cookies.permanent[:user] = $sso.user_info[:username]
         cookies.permanent[:auth_token] = User.find_by(player: $sso.user_info[:username]).auth_token
         cookies.permanent[:avatar_url] = $sso.user_info[:avatar_url]
-        cookies.permanent[:external_id] = $sso.user_info[:external_id]
         redirect_to root_url
         flash[:success] = 'Bienvenido a Valar Tools, contacta con los Masters para recibir permisos'
       else

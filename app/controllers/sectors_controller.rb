@@ -29,13 +29,13 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1/edit
   def edit
-    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
+    @available_factions = House.where.not(hid: 0).where(active: true).where.not(id: @sector.houses.pluck(:id))
   end
 
   # GET /sectors/new
   def new
     @sector = Sector.new
-    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
+    @available_factions = House.where.not(hid: 0).where(active: true).where.not(id: @sector.houses.pluck(:id))
   end
 
   # PATCH/PUT /houses/1
@@ -50,40 +50,40 @@ class SectorsController < ApplicationController
     end
   end
 
-  def sector_users_destroy
+  def sector_houses_destroy
     @sector = Sector.find(params[:sector_id])
-    @sector_user = @sector.sector_users.find(params[:id])
+    @sector_house = @sector.sector_houses.find(params[:id])
 
-    if @sector.system.user == @sector_user.user
+    if @sector.try(:system).try(:house) == @sector_house.house
       @forbidden = true
     else
       @forbidden = false
-      @sector_user.destroy
+      @sector_house.destroy
     end
 
     @action = 'destroy'
 
-    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
+    @available_factions = House.where.not(hid: 0).where(active: true).where.not(id: @sector.houses.pluck(:id))
 
     respond_to do |format|
       format.js { render :sector_users }
     end
   end
 
-  def sector_users_create
+  def sector_houses_create
     @sector = Sector.find(params[:sector_id])
-    @user = params[:user_id].nil? ? nil : User.find(params[:user_id])
+    @house = params[:house_id].nil? ? nil : House.find(params[:house_id])
 
-    if @user.nil?
+    if @house.nil?
       @forbidden = true
     else
       @forbidden = false
-      @sector.users << @user
+      @sector.houses << @house
     end
 
     @action = 'create'
 
-    @available_users = User.where.not(house: House.where(hid: 0)).where.not(id: @sector.users.pluck(:id))
+    @available_factions = House.where.not(hid: 0).where(active: true).where.not(id: @sector.houses.pluck(:id))
 
     respond_to do |format|
       format.js { render :sector_users }
@@ -109,7 +109,7 @@ class SectorsController < ApplicationController
     end
 
     def set_user_list
-      @user_list = User.where.not(house: House.where(hid: 0))
+      @house_list = House.where(hid: 0)
     end
 
     def master_user
@@ -124,6 +124,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :desc, :sector_users_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :user_id, :slots, :ic_slots, :ic_bonus, :rp_slots, :rp_bonus, :cp_slots, :cp_bonus, :mc_slots, :efficiency, :unrest])
+      params.require(:sector).permit(:name, :q, :r, :sector_type, :notes, :desc, :sector_houses_attributes => [:id, :info, :notes, :user_id], :new_sector => [:user_id, :info], :system_attributes => [:id, :house_id, :slots, :ic_slots, :ic_bonus, :rp_slots, :rp_bonus, :cp_slots, :cp_bonus, :mc_slots, :efficiency, :unrest])
     end
 end

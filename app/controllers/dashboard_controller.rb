@@ -6,18 +6,18 @@ class DashboardController < ApplicationController
       flash[:danger] = "Por favor, inicia sesión."
       redirect_to root_url
     elsif current_user.is_master? || current_user.is_admin?
-      @civilizations = User.includes(:house).where.not(house: House.where(hid: 0)).order('houses.name')
+      @civilizations = House.where(active: true)
     else
-      @resource = current_user.resource
-      @systems = current_user.systems
+      @resource = current_user.house.resource
+      @systems = current_user.house.systems
     end
   end
 
   # GET /dashboard/1/notes
   def notes
-    @sectoruser = SectorUser.find(params[:id])
+    @sectorhouse = SectorHouse.find(params[:id])
     respond_to do |format|
-      if @sectoruser.user == current_user || current_user.is_master? || current_user.is_admin?
+      if @sectorhouse.house.users.exists?(id: current_user.id) || current_user.is_master? || current_user.is_admin?
         format.js
       else
         format.js { render 'layouts/_alert_box', :locals => { alert: 'danger', message: 'No tienes permiso para acceder a este elemento' } }
@@ -26,10 +26,10 @@ class DashboardController < ApplicationController
   end
 
   def notes_save
-    @sectoruser = SectorUser.find(params[:id])
+    @sectorhouse = SectorHouse.find(params[:id])
     respond_to do |format|
-      if @sectoruser.user == current_user || current_user.is_master? || current_user.is_admin?
-        if @sectoruser.update(notes: params[:notes])
+      if @sectorhouse.house.users.exists?(id: current_user.id) || current_user.is_master? || current_user.is_admin?
+        if @sectorhouse.update(notes: params[:notes])
           format.html { redirect_to request.referrer, success: 'Notas editadas correctamente.' }
         else
           format.html { redirect_to request.referrer, danger: @sector.errors }

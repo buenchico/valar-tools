@@ -7,7 +7,7 @@ class HexMapController < ApplicationController
     if current_user.try(:is_master?)
       @sectors = Sector.all
     else
-      @sectors = User.find_by(player: current_user.player).sectors
+      @sectors = User.find_by(player: current_user.player).house.sectors
     end
 
     @sectors.each do |hex|
@@ -22,19 +22,19 @@ class HexMapController < ApplicationController
     @sectors.each do |hex|
       @hex_map[hex.q] = {} if @hex_map[hex.q].nil?
 
-      if (hex.sector_users.exists?(user: current_user.id) || current_user.try(:is_master?)) && hex.sector_users.find_by(user: current_user.id).try(:info_lvl) != 0
+      if (hex.sector_houses.exists?(house: current_user.house) || current_user.try(:is_master?)) && hex.sector_houses.find_by(house: current_user.house.id).try(:info_lvl) != 0
         @hex_map[hex.q][hex.r] = {
           :name=> hex.name,
           :type=> hex.sector_type,
-          :info=> hex.sector_users.find_by(user: current_user).try(:info_lvl) || 'Master',
+          :info=> hex.sector_houses.find_by(house: current_user.house).try(:info_lvl) || 'Master',
           :desc=> hex.desc,
         }
         if hex.system != nil
-          if hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 'Colonizado' || current_user.try(:is_master?)
+          if hex.sector_houses.find_by(house: current_user.house).try(:info_lvl) == 'Colonizado' || current_user.try(:is_master?)
             @hex_map[hex.q][hex.r][:system] = hex.system.as_json.merge({slots_free: hex.system.slots_free, ic_prod: hex.system.ic_prod, rp_prod: hex.system.rp_prod, cp_prod: hex.system.cp_prod, civ: hex.system.try(:user).try(:house).try(:name)})
-          elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 3
+          elsif hex.sector_houses.find_by(user: current_user.house).try(:info_lvl) == 3
             @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots]).merge({slots_free: hex.system.slots_free, civ: hex.system.user.house.name})
-          elsif hex.sector_users.find_by(user: current_user.id).try(:info_lvl) == 2
+          elsif hex.sector_houses.find_by(user: current_user.house).try(:info_lvl) == 2
             @hex_map[hex.q][hex.r][:system] = hex.system.as_json(:only => [:slots])
           end
         else

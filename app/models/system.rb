@@ -1,6 +1,6 @@
 class System < ApplicationRecord
   belongs_to :sector
-  belongs_to :user, optional: true
+  belongs_to :house, optional: true
   validate :maximum_slots
 
   def slots_free

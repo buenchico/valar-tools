@@ -63,8 +63,8 @@ Rails.application.routes.draw do
   get '/ap-map', to: 'hex_map#index'
 
   resources :sectors, :except => [:show]
-  delete '/sector_users', to: 'sectors#sector_users_destroy', as: 'delete_sector_users'
-  post '/sector_users', to: 'sectors#sector_users_create', as: 'create_sector_users'
+  delete '/sector_houses', to: 'sectors#sector_houses_destroy', as: 'delete_sector_houses'
+  post '/sector_houses', to: 'sectors#sector_houses_create', as: 'create_sector_houses'
 
   post 'login_nemo', to: 'sessions#create_nemo', as: 'login_nemo'
   post 'login_master', to: 'sessions#create_master', as: 'login_master'

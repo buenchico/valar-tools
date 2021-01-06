@@ -26,11 +26,11 @@ if (edit) {
   $('#cancel_system').show();
 }
 
-$('#visibility_list_' + <%= @sector.id %>).html("<%= @sector.sector_users.order('info DESC').map{|x| [x.user.player, ' (' + x.info_lvl.to_s + ')'].join('')}.join(',').html_safe %>")
+$('#visibility_list_' + <%= @sector.id %>).html("<%= @sector.sector_houses.order('info DESC').map{|x| [x.house.name, ' (' + x.info_lvl.to_s + ')'].join('')}.join(',').html_safe %>")
 
 if ('<%= @action %>' == 'create') {
   if (<%= @forbidden %>) {
-    $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-danger">Selecciona un jugador para crear la relación.</div>`);
+    $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-danger">Selecciona una facción para crear la relación.</div>`);
   } else {
     $('.modal-body').prepend(`<div class="container mx-auto text-center alert alert-success">Relación creada correctamente.</div>`);
   }

@@ -23,7 +23,9 @@
 
   $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Ríos","Tormenta","Valle","El Muro","Más-allá-del-muro","Essos"]
 
-  if Tool.table_exists?
+  connected = ::ActiveRecord::Base.connection_pool.with_connection(&:active?) rescue false
+
+  if connected == true && Tool.table_exists?
     $tools = Tool.where(master: false, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
     $master_tools = Tool.where(master: true, active: true).joins(:game).where(games: { active: true }).order(:sort).order(:id)
     $all_tools = Tool.all.order(:id)

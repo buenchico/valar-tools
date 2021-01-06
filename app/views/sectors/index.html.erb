@@ -45,8 +45,12 @@
                   <td><%= sector.name %></td>
                   <td><%= sector.q.to_s + ',' + sector.r.to_s %></td>
                   <td><%= $sector_types[sector.sector_type.to_sym] %></td>
-                  <td id="visibility_list_<%= sector.id %>"><%= sector.sector_users.order('info DESC').map{|x| [x.user.player, ' (' + x.info_lvl.to_s + ')'].join('')}.join(', ').html_safe %></td>
-                  <td><%= sector.system.try(:user).try(:house).try(:name) %></td>
+                  <td id="visibility_list_<%= sector.id %>"><%= sector.sector_houses.order('info DESC').map{|x| [x.house.name, ' (' + x.info_lvl.to_s + ')'].join('')}.join(', ').html_safe %></td>
+                  <% if sector.system.nil? || sector.system.house.nil? then %>
+                    <td></td>
+                  <% else %>
+                    <td><%= sector.system.house.name + ' (' + sector.system.house.users.pluck(:player).join(',') + ')' %></td>
+                  <% end %>
                   <% if current_user.try(:is_master?) then %>
                     <td><%= link_to '', edit_sector_path(sector), remote: true, class: 'fas fa-edit white' %></td>
                   <% end %>

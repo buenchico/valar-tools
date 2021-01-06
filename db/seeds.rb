@@ -1,10 +1,10 @@
-House.new(hid: 0, name: 'Admin').save(validate: false)
-House.new(hid: 0, name: 'Master').save(validate: false)
-House.new(hid: 0, name: 'Inactivo').save(validate: false)
+House.new(hid: 0, name: 'Admin', active: false).save(validate: false)
+House.new(hid: 0, name: 'Master', active: false).save(validate: false)
+House.new(hid: 0, name: 'Inactivo', active: false).save(validate: false)
 
 User.create([
 {
-player: "Valar", house: House.find_by(name: 'Admin'), password: Rails.application.secrets[:admin_password]
+player: "valar", house: House.find_by(name: 'Admin')
 }
 ])
 
@@ -477,6 +477,6 @@ Tool.create(name: 'map', 'title': 'Mapa', 'short_title': 'Mapa', 'active': true,
 Tool.create(name: 'locations', 'title': 'Lugares', 'short_title': 'Lugares', 'active': true, 'path': '/locations', 'icon': 'fab fa-fort-awesome', game: [Game.find(1)])
 Tool.create(name: 'missions', 'title': 'Calculadora de rutas', 'short_title': 'Misiones', 'active': false, 'path': '/missions', 'icon': 'fas fa-map-signs', game: [Game.find(1)])
 Tool.create(name: 'armies', 'title': 'Lista de ejércitos', 'short_title': 'Ejércitos', 'active': true, 'path': '/armies', 'icon': 'fas fa-chess-knight', game: [Game.find(1)])
-Tool.create(name: 'sectors', 'title': 'Sectores', 'short_title': 'Sectores', 'active': true, 'master': true, 'path': '/systems', 'icon': 'fas fa-chess-globe', game: [Game.find(2)])
+Tool.create(name: 'sectors', 'title': 'Sectores', 'short_title': 'Sectores', 'active': true, 'master': true, 'path': '/sectors', 'icon': 'fas fa-globe', game: [Game.find(2)])
 Tool.create(name: 'ap-map', 'title': 'Carta estelar', 'short_title': 'Mapa', 'active': true, 'path': '/ap-map', 'icon': 'fas fa-satellite-dish', game: [Game.find(2)])
 Tool.create(name: 'dashboard', 'title': 'Centro de Mando', 'short_title': 'Dashboard', 'active': true, 'path': '/dashboard', 'icon': 'fas fa-tachometer-alt', game: [Game.find(2)])

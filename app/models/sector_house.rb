@@ -1,14 +1,14 @@
-class SectorUser < ApplicationRecord
+class SectorHouse < ApplicationRecord
   belongs_to :sector
-  belongs_to :user
+  belongs_to :house
 
-  validates :user_id, :uniqueness => { scope: :sector }
+  validates :house_id, :uniqueness => { scope: :sector }
 
   def info_lvl
     if self.sector.system.nil?
       self.info
     else
-      if self.sector.system.user == self.user
+      if self.sector.system.house == self.house
         'Colonizado'
       else
         self.info

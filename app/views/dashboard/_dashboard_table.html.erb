@@ -19,7 +19,7 @@
       <div class="float-right mr-1">
         <p>Eficiencia global : <%= @resource.efficiency.truncate() * 100 %> %</p>
         <p>Tamaño de flota : 999999 módulos</p>
-        <p>Población total : <%= @resource.user.systems.pluck('SUM(ic_slots), SUM(rp_slots), SUM(cp_slots), SUM(mc_slots)').flatten.sum {|e| e.to_i} * 1000 %> millones </p>
+        <p>Población total : <%= @resource.house.systems.pluck('SUM(ic_slots), SUM(rp_slots), SUM(cp_slots), SUM(mc_slots)').flatten.sum {|e| e.to_i} * 1000 %> millones </p>
       </div>
     </div>
   </div>

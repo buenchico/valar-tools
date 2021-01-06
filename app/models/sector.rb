@@ -1,8 +1,8 @@
 class Sector < ApplicationRecord
-  has_many :sector_users, :class_name => 'SectorUser'
-  has_many :users, through: :sector_users
+  has_many :sector_houses, :class_name => 'SectorHouse'
+  has_many :houses, through: :sector_houses
 
-  accepts_nested_attributes_for :sector_users
+  accepts_nested_attributes_for :sector_houses
 
   has_one :system
   accepts_nested_attributes_for :system

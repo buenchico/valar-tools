@@ -1,14 +1,14 @@
 <%= form_with(url: sector_note_save_path, local: true) do |form| %>
   <div class="modal-header">
-    <h5 class="modal-title" id="Title">Notas de <%= sectoruser.sector.name + ' (' + sectoruser.sector.q.to_s + ',' + sectoruser.sector.r.to_s + ')' %></h5>
+    <h5 class="modal-title" id="Title">Notas de <%= sectorhouse.sector.name + ' (' + sectorhouse.sector.q.to_s + ',' + sectorhouse.sector.r.to_s + ')' %></h5>
     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <%= form.number_field :id, class: "form-control d-none", value: sectoruser.id %>
-      <%= form.text_area :notes, class: "form-control", rows: 5, value: sectoruser.notes, placeholder: "Notas" %>
+      <%= form.number_field :id, class: "form-control d-none", value: sectorhouse.id %>
+      <%= form.text_area :notes, class: "form-control", rows: 5, value: sectorhouse.notes, placeholder: "Notas" %>
     </div>
     <%= form.button '<i class="fa fa-check-circle" aria-hidden="true"></i>'.html_safe, class: "btn btn-success btn-text-area" %>
   </div>

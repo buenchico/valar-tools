@@ -20,28 +20,28 @@
         </tr>
       </thead>
       <tbody>
-        <% @users.each do |user| %>
+        <% @houses.each do |house| %>
           <tr>
-            <td class="align-middle"><%= user.player %></td>
-            <td class="align-middle"><%= user.house.name %></td>
+            <td class="align-middle"><%= house.name %></td>
+            <td class="align-middle"><%= house.users.pluck(:player).join(',') %></td>
             <td class="text-center">
               <%= form_with url: rep_change_path, remote: true do |form| %>
-                <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
+                <%= form.text_field :name, class: "d-none", value: house.name, readonly: true %>
                 <%= form.button :submit, class: "btn btn-outline-success", value: 'up' do %>
                   <i class="fas fa-thumbs-up"></i>
                 <% end %>
               <% end %>
             </td>
-            <td class="text-center align-middle" id="<%= user.player %>-rep_mod"><%= user.rep_mod %></td>
+            <td class="text-center align-middle" id="<%= house.name %>-rep_mod"><%= house.rep_mod %></td>
             <td class="text-center">
               <%= form_with url: rep_change_path, remote: true do |form| %>
-                <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>
+                <%= form.text_field :name, class: "d-none", value: house.name, readonly: true %>
                 <%= form.button :submit, class: "btn btn-outline-danger", value: 'down' do %>
                   <i class="fas fa-thumbs-down"></i>
                 <% end %>
               <% end %>
             </td>
-            <td class="text-center align-middle destroyed" id="<%= user.player %>-rep_value"><%= user.reputation.nil? ? 0 : user.reputation %></td>
+            <td class="text-center align-middle destroyed" id="<%= house.name %>-rep_value"><%= house.reputation.nil? ? 0 : house.reputation %></td>
           </tr>
         <% end %>
       </tbody>

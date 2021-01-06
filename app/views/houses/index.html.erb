@@ -13,6 +13,7 @@
         <tr>
           <th scope="col">HID <i class="fas fa-sort"></i></th>
           <th scope="col">Casa <i class="fas fa-sort"></i></th>
+          <th scope="col">Jugadores <i class="fas fa-sort"></i></th>
           <th scope="col" class="sorter-font-awesome">¿Activa? <i class="fas fa-sort"></i></th>
           <th scope="col" colspan="2"></th>
         </tr>
@@ -22,6 +23,7 @@
           <tr class="<%= house.active == true ? "" : "destroyed" %>" >
             <td><%= house.hid %></td>
             <td><%= house.name %></td>
+            <td><%= house.users.pluck(:player).join(',') %></td>
             <td class="text-center">
               <% if house.active == true  %>
                 <i class="fas fa-check"></i>
