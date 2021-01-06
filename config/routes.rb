@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/notes', to: 'dashboard#notes', as: 'sector_note'
   post 'dashboard/notes', to: 'dashboard#notes_save', as: 'sector_note_save'
+  post 'dashboard/resources/:id/spend', to: 'dashboard#spend_resources', as: 'spend_resources'
+  post 'dashboard/resources/:id/efficiencies', to: 'dashboard#change_efficiencies', as: 'change_efficiencies'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

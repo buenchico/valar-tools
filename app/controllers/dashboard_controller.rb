@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :master_user, except: [:index, :notes, :notes_save]
+  before_action :set_resource, except: [:index, :notes, :notes_save]
 
   def index
     if current_user.nil?
@@ -40,8 +41,50 @@ class DashboardController < ApplicationController
     end
   end
 
+  def spend_resources
+    @resource.ic -= spend_resources_params[:ic_spend].to_i
+    @resource.rp -= spend_resources_params[:rp_spend].to_i
+    @resource.cp -= spend_resources_params[:cp_spend].to_i
+    respond_to do |format|
+      if @resource.save
+        format.html { redirect_to request.referrer, success: 'Recursos gastados correctamente.' }
+      else
+        format.html { redirect_to request.referrer, danger: @resource.errors }
+      end
+    end
+  end
+
+  def change_efficiencies
+    respond_to do |format|
+      if @resource.update(change_efficiencies_params)
+        format.html { redirect_to request.referrer, success: 'Eficiencias cambiadas correctamente.' }
+      else
+        format.html { redirect_to request.referrer, danger: @resource.errors }
+      end
+    end
+  end
+
 private
-  def set_user
-    @user = User.find(params[:id])
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
+
+# Check if user is master or admin
+  def master_user
+    if current_user.nil?
+      flash[:danger] = "Por favor, inicia sesión."
+      redirect_to root_url
+    elsif !current_user.is_master? && !current_user.is_admin?
+      redirect_to(root_url)
+      flash[:danger] = "No tienes permisos para acceder a esta página."
+    end
+  end
+
+  def spend_resources_params
+    params.permit(:ic_spend, :rp_spend, :cp_spend)
+  end
+
+  def change_efficiencies_params
+    params.permit(:ic_bonus, :rp_bonus, :cp_bonus)
   end
 end

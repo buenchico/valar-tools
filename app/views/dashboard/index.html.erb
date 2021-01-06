@@ -19,13 +19,16 @@
       <div class="tab-pane fade <%= civ == @civilizations.first ? 'active show' : '' %>" id="nav-<%= civ.name %>" role="tabpanel" aria-labelledby="nav-<%= civ.name %>-tab">
         <% @resource = civ.resource %>
         <% @systems = civ.systems %>
-        <%= render 'dashboard_table' %>
+        <div class='container row'>
+          <%= render 'dashboard' %>
+          <%= render 'controls' %>
+        </div>
         <%= render 'systems_table' %>
       </div>
     <% end %>
   </div>
 <% else %>
-  <%= render 'dashboard_table' %>
+  <%= render 'dashboard' %>
   <%= render 'systems_table' %>
 <% end %>
 

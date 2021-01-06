@@ -1,0 +1,69 @@
+<div class="card bg-warning">
+  <div class="card-body">
+    <div class="card-text text-dark">
+      <div class="float-left mr-3">
+        <%= form_with(url: spend_resources_path(@resource), remote: true) do |form| %>
+          <div class="input-group">
+            <%= form.button 'Gastar recursos', value: 'spend', class: 'btn btn-danger m-auto' %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 45px" class="input-group-text"><i class="fas fa-industry"></i>&nbsp;</div>
+            </div>
+            <%= form.number_field :ic_spend, style: 'width: 120px', class: "custom-control mr-1", placeholder: "±ICs", max: @resource.ic %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 45px" class="input-group-text"><i class="fas fa-flask"></i>&nbsp;</div>
+            </div>
+            <%= form.number_field :rp_spend, style: 'width: 120px', class: "custom-control mr-1", placeholder: "±RPs", max: @resource.rp %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 45px" class="input-group-text"><i class="fas fa-chess-king"></i>&nbsp;</div>
+            </div>
+            <%= form.number_field :cp_spend, style: 'width: 120px', class: "custom-control mr-1", placeholder: "±CPs", max: @resource.cp %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="float-left">
+        <%= form_with(url: change_efficiencies_path(@resource), remote: true) do |form| %>
+          <div class="input-group">
+            <%= form.button 'Cambiar eficiencias', value: 'spend', class: 'btn btn-danger m-auto' %>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 85px" class="input-group-text"><i class="fas fa-industry"></i>&nbsp;<i class="fas fa-percentage"></i></div>
+            </div>
+            <%= form.number_field :ic_bonus, style: 'width: 120px', class: "custom-control mr-1", value: @resource.ic_bonus, min: 0, step: 0.01 %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 85px" class="input-group-text"><i class="fas fa-flask"></i>&nbsp;<i class="fas fa-percentage"></i></div>
+            </div>
+            <%= form.number_field :rp_bonus, style: 'width: 120px', class: "custom-control mr-1", value: @resource.rp_bonus, min: 0, step: 0.01 %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 85px" class="input-group-text"><i class="fas fa-chess-king"></i>&nbsp;<i class="fas fa-percentage"></i></div>
+            </div>
+            <%= form.number_field :cp_bonus, style: 'width: 120px', class: "custom-control mr-1", value: @resource.cp_bonus, min: 0, step: 0.01 %>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div style="width: 85px" class="input-group-text">Global&nbsp;<i class="fas fa-percentage"></i></div>
+            </div>
+            <%= form.number_field :cp_bonus, style: 'width: 120px', class: "custom-control mr-1", value: @resource.cp_bonus, min: 0, step: 0.01 %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
