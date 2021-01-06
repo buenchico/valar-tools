@@ -23,7 +23,7 @@
         <% @users.each do |user| %>
           <tr>
             <td class="align-middle"><%= user.player %></td>
-            <td class="align-middle"><%= user.house %></td>
+            <td class="align-middle"><%= user.house.name %></td>
             <td class="text-center">
               <%= form_with url: rep_change_path, remote: true do |form| %>
                 <%= form.text_field :player, class: "d-none", value: user.player, readonly: true %>

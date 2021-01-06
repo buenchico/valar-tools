@@ -2,7 +2,7 @@ class ReputationsController < ApplicationController
   before_action :master_user
 
   def index
-    @users = User.where.not(house: "Inactivo").where.not(house: "Admin").where.not(house: "Master")
+    @users = User.joins(:house).where.not(houses: {hid: 0}).order(:player)
   end
 
   def change
