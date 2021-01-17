@@ -11,6 +11,8 @@ class House < ApplicationRecord
   has_one :resource, dependent: :destroy
   accepts_nested_attributes_for :resource
 
+  has_many :techs
+
   def rep_mod
     if self.reputation.to_i >= 0
       '+' + ( ( -1 + Math.sqrt( 1 + ( self.reputation.to_f * 2 * 4 ) ) ) / 2 ).ceil.to_s

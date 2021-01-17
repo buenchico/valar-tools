@@ -20,6 +20,10 @@
         <% @resource = civ.resource %>
         <% @systems = civ.systems %>
         <div class='container row'>
+          <div class="float-left col-1 mt-4">
+            <%= link_to '', dashboard_tech_path(id: civ), remote:true, class: 'white display-4 mb-3 fas fa-flask' %>
+            <i class="white display-4 fas fa-flask"></i>
+          </div>
           <%= render 'dashboard' %>
           <%= render 'controls' %>
         </div>
@@ -28,6 +32,10 @@
     <% end %>
   </div>
 <% else %>
+<div class="float-left col-1 mt-4">
+  <%= link_to '', dashboard_tech_path(id: current_user.house), remote:true, class: 'white display-4 mb-3 fas fa-flask' %>
+  <i class="white display-4 fas fa-flask"></i>
+</div>
   <%= render 'dashboard' %>
   <%= render 'systems_table' %>
 <% end %>
@@ -37,6 +45,13 @@
 <div class="modal fade" id="sectorModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div id='sector-content' class="modal-content bg-dark">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="techModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div id='tech-content' class="modal-content bg-dark">
     </div>
   </div>
 </div>

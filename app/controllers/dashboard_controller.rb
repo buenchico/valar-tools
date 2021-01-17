@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :master_user, except: [:index, :notes, :notes_save]
-  before_action :set_resource, except: [:index, :notes, :notes_save]
+  before_action :master_user, except: [:index, :notes, :notes_save, :tech]
+  before_action :set_resource, except: [:index, :notes, :notes_save, :tech]
 
   def index
     if current_user.nil?
@@ -61,6 +61,20 @@ class DashboardController < ApplicationController
       else
         format.html { redirect_to request.referrer, danger: @resource.errors }
       end
+    end
+  end
+
+  def tech
+    if current_user.is_master? || current_user.is_admin?
+      @techs = House.find(params[:id]).techs
+      @civ = House.find(params[:id])
+    else
+      @techs = current_user.house.techs
+      @civ = current_user.house
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
