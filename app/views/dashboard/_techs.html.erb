@@ -6,10 +6,170 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
 <div class="modal-body">
-  <div class="form-group">
-    <% techs.each do |x| %>
-      <p><%= x.name %></p>
+  <nav>
+    <div class="nav nav-pills mb-1" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab" aria-controls="nav-main" aria-selected="false">Principales</a>
+      <a class="nav-item nav-link" id="nav-misc-tab" data-toggle="tab" href="#nav-misc" role="tab" aria-controls="nav-misc" aria-selected="false">Otras</a>
+      <a class="nav-item nav-link" id="nav-old-tab" data-toggle="tab" href="#nav-old" role="tab" aria-controls="nav-old" aria-selected="false">Obsoletas</a>
+      <% if current_user.try(:is_master?) then %>
+        <a class="nav-item nav-link btn-success ml-5" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-old" aria-selected="false"><i class="fas fa-plus-circle"></i> Añadir Tecnología</a>
+      <% end %>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade active show" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
+      <table class="table table-responsive table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+        <caption>Lista de tecnologías</caption>
+        <thead>
+          <tr>
+            <th scope="col">Rama</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Nombre</th>
+            <th class='w-100' scope="col">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% $tech_types.reject{|x| x == :misc}.each do |x| %>
+            <tr>
+              <td>
+                <%= image_tag('/assets/tech/' + x[0].to_s, title: x[1].to_s) %>
+              </td>
+              <td class="align-middle">
+                <span class="font-weight-bold" style="font-size: 2em">
+                  <%= @techs.where(tech_type: x).order(lvl: :desc).first.try(:lvl) %>
+                </span>
+              </td>
+              <td class="align-middle">
+                <%= @techs.where(tech_type: x).order(lvl: :desc).first.try(:name) %>
+              </td>
+              <td class="align-middle">
+                <%= @techs.where(tech_type: x).order(lvl: :desc).first.try(:desc) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="nav-misc" role="tabpanel" aria-labelledby="nav-misc-tab">
+      <table class="table table-responsive table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+        <caption>Otras tecnologías</caption>
+        <thead>
+          <tr>
+            <th scope="col">Rama</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Nombre</th>
+            <th class='w-100' scope="col">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @techs.where(tech_type: 'misc').each do |tech| %>
+            <tr>
+              <td>
+                <%= image_tag('/assets/tech/misc', title: 'Otras tecnologías') %>
+              </td>
+              <td class="align-middle">
+                <span class="font-weight-bold" style="font-size: 2em">
+                  <%= tech.try(:lvl) %>
+                </span>
+              </td>
+              <td class="align-middle">
+                <%= tech.try(:name) %>
+              </td>
+              <td class="align-middle">
+                <%= tech.try(:desc) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="nav-old" role="tabpanel" aria-labelledby="nav-old-tab">
+      <table class="table table-responsive table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+        <caption>Tecnologías obsoletas</caption>
+        <thead>
+          <tr>
+            <th scope="col">Rama</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Nombre</th>
+            <th class='w-100' scope="col">Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @techs.where.not(tech_type: 'misc').each do |tech| %>
+            <% if tech.obsolete %>
+              <tr>
+                <td>
+                  <%= image_tag('/assets/tech/' + tech.tech_type.to_s, title: $tech_types[tech.tech_type.to_sym]) %>
+                </td>
+                <td class="align-middle">
+                  <span class="font-weight-bold" style="font-size: 2em">
+                    <%= tech.try(:lvl) %>
+                  </span>
+                </td>
+                <td class="align-middle">
+                  <%= tech.try(:name) %>
+                </td>
+                <td class="align-middle">
+                  <%= tech.try(:desc) %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if current_user.try(:is_master?) then %>
+      <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+        <% tech = Tech.new %>
+        <%= form_with(model: tech, local: true) do |form| %>
+          <% if tech.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(tech.errors.count, "error") %> prohibited this army from being saved:</h2>
+              <ul>
+                <% tech.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group form-inline bottom-separator">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-flask"></i>&nbsp;</div>
+              </div>
+              <%= form.text_field :name, class: "form-control", placeholder: "Nombre" %>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fab fa-ethereum"></i>&nbsp;</div>
+              </div>
+              <%= form.number_field :lvl, class: "form-control", style: "width: 90px", value: 0, min: 0 %>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-cogs"></i>&nbsp;</div>
+              </div>
+              <%= form.select :tech_type, options_for_select($tech_types.invert(), 'misc'), {}, class: "custom-select" %>
+            </div>
+            <div class="input-group mb-3 w-100">
+              <%= form.text_area :desc, rows: 5, id: 'desc', class: "custom-control w-100", placeholder: 'Descripción' %>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <%= form.number_field :house_id, value: @civ.id, class: 'd-none' %>
+            <%= form.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -22,7 +22,7 @@
         <div class='container row'>
           <div class="float-left col-1 mt-4">
             <%= link_to '', dashboard_tech_path(id: civ), remote:true, class: 'white display-4 mb-3 fas fa-flask' %>
-            <i class="white display-4 fas fa-flask"></i>
+            <%= link_to '', dashboard_tech_path(id: civ), remote:true, class: 'white display-4 mb-3 fas fa-pencil-ruler' %>
           </div>
           <%= render 'dashboard' %>
           <%= render 'controls' %>
@@ -34,7 +34,7 @@
 <% else %>
 <div class="float-left col-1 mt-4">
   <%= link_to '', dashboard_tech_path(id: current_user.house), remote:true, class: 'white display-4 mb-3 fas fa-flask' %>
-  <i class="white display-4 fas fa-flask"></i>
+  <%= link_to '', dashboard_tech_path(id: current_user.house), remote:true, class: 'white display-4 mb-3 fas fa-pencil-ruler' %>
 </div>
   <%= render 'dashboard' %>
   <%= render 'systems_table' %>

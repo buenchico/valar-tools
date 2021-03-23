@@ -480,3 +480,5 @@ Tool.create(name: 'armies', 'title': 'Lista de ejércitos', 'short_title': 'Ejé
 Tool.create(name: 'sectors', 'title': 'Sectores', 'short_title': 'Sectores', 'active': true, 'master': true, 'path': '/sectors', 'icon': 'fas fa-globe', game: [Game.find(2)])
 Tool.create(name: 'ap-map', 'title': 'Carta estelar', 'short_title': 'Mapa', 'active': true, 'path': '/ap-map', 'icon': 'fas fa-satellite-dish', game: [Game.find(2)])
 Tool.create(name: 'dashboard', 'title': 'Centro de Mando', 'short_title': 'Dashboard', 'active': true, 'path': '/dashboard', 'icon': 'fas fa-tachometer-alt', game: [Game.find(2)])
+Tool.create(name: 'designs', title: 'Diseño de naves', short_title: 'Diseños', path: '/designs', icon: 'fas fa-pencil-ruler', game: [Game.find(2)])
+Tool.create(name: 'techs', title: 'Diseño de tecnologías', short_title: 'Tecnologías', path: '/techs', icon: 'fas fa-flask', game: [Game.find(2)])

@@ -76,5 +76,10 @@ Rails.application.routes.draw do
   post 'dashboard/resources/:id/efficiencies', to: 'dashboard#change_efficiencies', as: 'change_efficiencies'
   get 'dashboard/tech/:id', to: 'dashboard#tech', as: 'dashboard_tech'
 
+  resources :techs, :except => [:show]
+  get '/techs/:id/confirm', to: 'techs#confirm', as: 'tech_confirm'
+
+  resources :designs, :except => [:show]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

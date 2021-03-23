@@ -1,0 +1,31 @@
+<div class="modal fade" id="techModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+    <%= form_with(model: tech, method: :delete, local: true) do |form| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title">Confirmar borrado</h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          Para borrar la tecnología <strong><%= @tech.name + ' (' + @tech.lvl.to_s + ')' %></strong> de los <%= @tech.house.name %>, por favor escribe "DELETE" en el siguiente campo:
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fas fa-trash-alt"></i>&nbsp;</div>
+          </div>
+          <%= form.text_field :confirm, class: "form-control" %>
+        </div>
+        <div class="input-group mb-3">
+          <%= form.submit 'Eliminar tecnología', class: "btn btn-primary" %>
+        </div>
+        <div class="input-group mb-3">
+          Esta tecnología está en uso en los siguientes diseños:
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<% provide(:title, $all_tools.find_by(path: request.fullpath).title) %>
+<% provide(:icon, $all_tools.find_by(path: request.fullpath).icon) %>
+
+<div class="tool-title">
+    <i class="white <%= yield(:icon) %>"></i>
+    <%= yield(:title) %>
+</div>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de tecnologías</caption>
+      <thead>
+        <tr>
+          <th scope="col">Jugador <i class="fas fa-sort"></i></th>
+          <th scope="col">Facción <i class="fas fa-sort"></i></th>
+          <th scope="col">Rama</th>
+          <th scope="col">Nivel</th>
+          <th scope="col">Nombre</th>
+          <th class='w-100' scope="col">Descripción</th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @techs.each do |tech| %>
+          <tr class="<%= tech.house.active == false ? 'destroyed' : '' %>">
+            <td><%= tech.house.users.pluck(:player).join(', ') %></td>
+            <td><%= tech.house.name %></td>
+            <td><%= image_tag('/assets/tech/' + tech.tech_type.to_s, title: $tech_types[tech.tech_type.to_sym], style: 'width: 30px') %></td>
+            <td><%= tech.name %></td>
+            <td><%= tech.lvl %></td>
+            <td><%= tech.desc %></td>
+            <td><%= link_to '', edit_tech_path(tech), remote: true, class: 'fas fa-edit white' %></td>
+            <td><%= link_to '', tech_confirm_path(tech), remote: true, class: 'fas fa-trash-alt white' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+
+<div id='tech-content'></div>

@@ -87,6 +87,13 @@ es:
           attributes:
             slots:
               invalid: "La población no puede ser mayor que la habitabilidad"
+        tech:
+          attributes:
+            name:
+              blank: "El nombre de la tecnología es necesario"
+              taken: "El nombre de la tecnología debe ser único"
+            lvl:
+              taken: "No dos tecnologías del mismo nivel pueden exister en el mismo tipo"
   helpers:
     submit:
       create: "Añadir %{model}"
@@ -106,6 +113,9 @@ es:
       location:
         create: "Añadir lugar"
         update: "Guardar lugar"
+      tech:
+        create: "Añadir tecnología"
+        update: "Guardar tecnología"
 
   recaptcha:
     errors:

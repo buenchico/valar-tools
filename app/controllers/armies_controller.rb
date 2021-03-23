@@ -88,7 +88,7 @@ class ArmiesController < ApplicationController
     if params[:army][:confirm] == "DELETE" then
       @army.destroy
       respond_to do |format|
-        format.html { redirect_to armies_url, warning: 'Ejército borrado.' }
+        format.html { redirect_to armies_url, danger: 'Ejército borrado.' }
       end
     else
       respond_to do |format|

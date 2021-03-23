@@ -1,2 +1,10 @@
 $('#tech-content').html("<%= j render 'techs', techs: @techs %>");
 $('#techModal').modal('show');
+
+$(".nav-item").click(function(){
+  $("#nav-add-tab").removeClass('d-none');
+});
+
+$("#nav-add-tab").click(function(){
+  $("#nav-add-tab").addClass('d-none');
+});
