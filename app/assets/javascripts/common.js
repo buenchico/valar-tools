@@ -16,7 +16,9 @@ $(document).on('turbolinks:load', function() {
 
 $(document).on('turbolinks:load', function() {
   $(function() {
-    $("table.sortable").tablesorter();
+    $("table.sortable").tablesorter({
+      imgAttr: 'title' // image attribute used by "image" parser
+    });
   });
 });
 

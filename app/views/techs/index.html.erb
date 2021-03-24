@@ -14,8 +14,8 @@
           <th scope="col">Jugador <i class="fas fa-sort"></i></th>
           <th scope="col">Facción <i class="fas fa-sort"></i></th>
           <th scope="col">Rama</th>
-          <th scope="col">Nivel</th>
-          <th scope="col">Nombre</th>
+          <th scope="col">Nivel <i class="fas fa-sort"></i></th>
+          <th scope="col">Nombre <i class="fas fa-sort"></i></th>
           <th class='w-100' scope="col">Descripción</th>
           <th scope="col" colspan="3"></th>
         </tr>
@@ -26,8 +26,8 @@
             <td><%= tech.house.users.pluck(:player).join(', ') %></td>
             <td><%= tech.house.name %></td>
             <td><%= image_tag('/assets/tech/' + tech.tech_type.to_s, title: $tech_types[tech.tech_type.to_sym], style: 'width: 30px') %></td>
-            <td><%= tech.name %></td>
             <td><%= tech.lvl %></td>
+            <td><%= tech.name %></td>
             <td><%= tech.desc %></td>
             <td><%= link_to '', edit_tech_path(tech), remote: true, class: 'fas fa-edit white' %></td>
             <td><%= link_to '', tech_confirm_path(tech), remote: true, class: 'fas fa-trash-alt white' %></td>
@@ -36,6 +36,8 @@
       </tbody>
   </table>
 </div>
+
+<div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir Tecnología'.html_safe, new_tech_path, remote:true, class: "btn btn-primary"%></div>
 
 <!-- Modal -->
 

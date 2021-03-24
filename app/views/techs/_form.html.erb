@@ -1,0 +1,65 @@
+<div class="modal fade" id="techModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+    <%= form_with(model: tech, local: true) do |form| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="Title"><%= tech.name.nil? ? 'Nueva tecnología' : tech.name %></h5>
+        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if tech.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(tech.errors.count, "error") %> prohibited this house from being saved:</h2>
+            <ul>
+              <% tech.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group form-inline bottom-separator">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+            </div>
+            <%= form.select :house_id, options_for_select(@active_houses, @tech.house.nil? ? 3 : @tech.house.id), {}, {class: "custom-select"} %>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-flask"></i>&nbsp;</div>
+            </div>
+            <%= form.text_field :name, class: "form-control", placeholder: "Nombre" %>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fab fa-ethereum"></i>&nbsp;</div>
+            </div>
+            <%= form.number_field :lvl, class: "form-control", style: "width: 90px", value: @tech.lvl || 0, min: 0 %>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-cogs"></i>&nbsp;</div>
+            </div>
+            <%= form.select :tech_type, options_for_select($tech_types.invert(), @tech.tech_type || 'misc'), {}, class: "custom-select" %>
+          </div>
+          <div class="input-group mb-3 w-100">
+            <%= form.text_area :desc, rows: 5, id: 'desc', class: "custom-control w-100", placeholder: 'Descripción' %>
+          </div>
+          <div class="input-group mb-3 w-100">
+            <%= form.text_area :notes, rows: 5, id: 'notes', class: "custom-control w-100", placeholder: 'Notas del master', style: 'background: lightyellow' %>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

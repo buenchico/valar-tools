@@ -94,6 +94,8 @@ es:
               taken: "El nombre de la tecnología debe ser único"
             lvl:
               taken: "No dos tecnologías del mismo nivel pueden exister en el mismo tipo"
+            house:
+              required: "Por favor, seleccione una facción"
   helpers:
     submit:
       create: "Añadir %{model}"

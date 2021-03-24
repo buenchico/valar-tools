@@ -7,6 +7,12 @@ class TechsController < ApplicationController
   end
 
   def edit
+    @active_houses = House.where(name: 'Master').or(House.where(name: 'Inactivo')).order(:hid).map { |house| [house.name, house.id] }.concat(House.where(active: true).order(:name).map { |house| [house.name, house.id] })
+  end
+
+  def new
+    @tech = Tech.new
+    @active_houses = House.where(name: 'Master').or(House.where(name: 'Inactivo')).order(:hid).map { |house| [house.name, house.id] }.concat(House.where(active: true).order(:name).map { |house| [house.name, house.id] })
   end
 
   def create
@@ -14,9 +20,9 @@ class TechsController < ApplicationController
 
     respond_to do |format|
       if @tech.save
-        format.html { redirect_to dashboard_url, success: 'Tecnología añadida correctamente.' }
+        format.html { redirect_to techs_url, success: 'Tecnología añadida correctamente.' }
       else
-        format.html { redirect_to dashboard_url, danger: @tech.errors }
+        format.html { redirect_to techs_url, danger: @tech.errors }
       end
     end
   end
@@ -30,6 +36,18 @@ class TechsController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to techs_url, danger: 'Acción cancelada, por favor, confirma correctamente el borrado' }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @tech.update(tech_params)
+        format.html { redirect_to techs_url, success: 'Tecnología editada correctamente.' }
+        format.json { respond_with_bip(@tech) }
+      else
+        format.html { render :edit, danger: @tech.errors }
+        format.json { respond_with_bip(@tech) }
       end
     end
   end
