@@ -1,6 +1,7 @@
+
 // Copy selected to clipboard
 $(document).on('turbolinks:load', function () {
-
+  if ($(".armies.index").length !== 0 ) {
     $(function () {
         //Assign Click event to Button.
         $(".copy").click(function () {
@@ -33,6 +34,7 @@ $(document).on('turbolinks:load', function () {
             document.body.removeChild(dummy);
         });
     });
+  }
 });
 
 // Filters
@@ -83,7 +85,7 @@ $(document).on('turbolinks:load', function(){
 
 // Refresh strength and change classes after best in place editing
 $(document).on('turbolinks:load', function(){
-    $('.best_in_place').bind("ajax:success", function(event, data) {
+    $('.best_in_place.army').bind("ajax:success", function(event, data) {
         // Change strenght
         var strenght = JSON.parse(data).army.strenght;
         var oldStrenght = $(this).closest("tr")[0].cells[1].textContent;

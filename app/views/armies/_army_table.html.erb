@@ -61,10 +61,10 @@
                   <td class="strenght" width = "50px"><%= army.army_str %></td>
                   <td width = "300px"><%= link_to army.army_title.truncate(50), edit_army_path(army), remote: true, class: "link-unstyled" %></td>
                   <td width = "300px"><%= army.army_traits == '' ? 'n/a' : army.army_traits %></td>
-                  <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
-                  <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
-                  <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
-                  <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable', :inner_class => "custom-select bip-input" %></td>
+                  <td width = "180px"><%= best_in_place army, :position, :as => :input, :class => 'highlight_on_success bip-editable army', :inner_class => "bip-input", :place_holder => 'n/a' %></td>
+                  <td width = "180px"><%= best_in_place army, :mission, :as => :input, :class => 'highlight_on_success bip-editable army', :inner_class => "bip-input", :place_holder => 'n/a'  %></td>
+                  <td width = "160px"><%= best_in_place army, :status, :as => :select, :collection => @status, :class => 'highlight_on_success bip-editable army', :inner_class => "custom-select bip-input" %></td>
+                  <td width = "160px"><%= best_in_place army, :boat, :as => :select, :collection => @boat, :class => 'highlight_on_success bip-editable army', :inner_class => "custom-select bip-input" %></td>
                   <td width = "100px"><%= army.armytype %></td>
                   <td width = "100px">
                     <% if army.visible == true  %>
