@@ -1,0 +1,20 @@
+$('#design-content').html("<%= j render 'form', design: @design %>");
+$('#designModal').modal('show');
+$('.module').ddslick({
+  width: '56px',
+  imposeDesc: true,
+  onSelected: function(data){
+    var id = $(data.original[0].id.split("_")).get(-1);
+    var lvl = data.selectedData.text;
+    $('#mod_lvl_' + id).val(lvl);
+    }
+});
+$('.system').ddslick({
+  width: '56px',
+  imposeDesc: true,
+  onSelected: function(data){
+    var id = $(data.original[0].id.split("_")).get(-1);
+    var lvl = data.selectedData.text;
+    $('#sys_lvl_sys_' + id).val(lvl);
+    }
+});

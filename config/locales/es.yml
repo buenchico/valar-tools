@@ -93,7 +93,14 @@ es:
               blank: "El nombre de la tecnología es necesario"
               taken: "El nombre de la tecnología debe ser único"
             lvl:
+              greater_than: "El nivel tiene que ser 1 o mayor"
               taken: "No dos tecnologías del mismo nivel pueden exister en el mismo tipo"
+            house:
+              required: "Por favor, seleccione una facción"
+        design:
+          attributes:
+            name:
+              blank: "El nombre del diseño es necesario"
             house:
               required: "Por favor, seleccione una facción"
   helpers:
@@ -118,7 +125,9 @@ es:
       tech:
         create: "Añadir tecnología"
         update: "Guardar tecnología"
-
+      design:
+        create: "Añadir diseño"
+        update: "Guardar diseño"
   recaptcha:
     errors:
       verification_failed: 'Por favor, verifica que eres humano.'

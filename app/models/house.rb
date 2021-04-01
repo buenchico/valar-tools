@@ -24,4 +24,7 @@ class House < ApplicationRecord
   def generate_resource
     build_resource
   end
+
+  def generate_techs
+  end
 end

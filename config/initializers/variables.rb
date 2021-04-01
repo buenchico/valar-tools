@@ -23,6 +23,23 @@
 
   $kingdoms = ["Dominio","Dorne","Feudos","Islas del Hierro","Islas del Mar Angosto","Norte","Occidente","Ríos","Tormenta","Valle","El Muro","Más-allá-del-muro","Essos"]
 
+  $tech_types = {
+    'ic': 'Capacidad industrial',
+    'rp': 'Ciencia base',
+    'cp': 'Estructuras sociales',
+    'navy_las': 'Armas de energía',
+    'navy_mass': 'Armas inerciales',
+    'navy_armor': 'Blindajes',
+    'navy_shields': 'Escudos',
+    'sys_ftl': 'Motores FTL',
+    'sys_engine': 'Motores convencionales',
+    'sys_sensors': 'Sensores',
+    'army_atk': 'Armas terrestres',
+    'army_def': 'Defensas terrestres',
+    'dock': 'Construcción de naves',
+    'misc': 'Otras tecnologías'
+  }
+
   connected = ::ActiveRecord::Base.connection_pool.with_connection(&:active?) rescue false
 
   if connected == true && Tool.table_exists?

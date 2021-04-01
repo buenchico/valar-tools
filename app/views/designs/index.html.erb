@@ -5,3 +5,81 @@
     <i class="white <%= yield(:icon) %>"></i>
     <%= yield(:title) %>
 </div>
+
+<%= current_user.house.name %>
+
+<div>
+  <table class="table table-dark table-striped table-borderless table-hover table-sm table-responsive sortable">
+    <caption>Lista de diseños</caption>
+      <thead>
+        <tr>
+          <% if current_user.try(:is_master?) %>
+            <th scope="col">Jugador <i class="fas fa-sort"></i></th>
+            <th scope="col">Facción <i class="fas fa-sort"></i></th>
+          <% end %>
+          <th scope="col" colspan="2">Tamaño <i class="fas fa-sort"></i></th>
+          <th scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th scope="col" colspan="2">Energía</th>
+          <th scope="col" colspan="2">Incercial</th>
+          <th scope="col" colspan="2">Armadura</th>
+          <th scope="col" colspan="2">Escudos</th>
+          <th scope="col">Misc</th>
+          <th scope="col">Motores</th>
+          <th scope="col">FTL</th>
+          <th scope="col">Sensores</th>
+          <th scope="col">Sigilo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @designs.each do |design| %>
+          <tr class="<%= design.active == false ? 'destroyed' : '' %>">
+            <% if current_user.try(:is_master?) %>
+              <td><%= design.house.users.pluck(:player).join(', ') %></td>
+              <td><%= design.house.name %></td>
+            <% end %>
+            <td><%= design.ship_type %></td>
+            <td><%= ' (' + design.size.to_s + ')' %></td>
+            <td><%= design.name %></td>
+            <td><%= design.mod_navy_las[0] %></td>
+            <td><%= design.mod_navy_las[1] %></td>
+            <td><%= design.mod_navy_mass[0] %></td>
+            <td><%= design.mod_navy_mass[1] %></td>
+            <td><%= design.mod_navy_armor[0] %></td>
+            <td><%= design.mod_navy_armor[1] %></td>
+            <td><%= design.mod_navy_shields[0] %></td>
+            <td><%= design.mod_navy_shields[1] %></td>
+            <td><%= design.mod_misc %></td>
+            <td><%= design.mod_misc %></td>
+            <td><%= design.mod_misc %></td>
+            <td><%= design.mod_misc %></td>
+            <td><%= design.mod_misc %></td>
+            <td>
+              <% if design.active == true %>
+                <%= link_to '', design_path(design), remote: true, class: 'fas fa-eye white' %>
+              <% else %>
+                <%= link_to '', edit_design_path(design), remote: true, class: 'fas fa-edit white' %>
+              <% end %>
+            </td>
+            <td>
+              <% if design.active == true && current_user.is_master? %>
+                <%= link_to '', design_confirm_path(design), remote: true, class: 'fas fa-trash-alt white' %>
+              <% elsif design.active == false %>
+                <%= link_to '', design, method: :delete, class: 'fas fa-trash-alt white' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<div><%= link_to '<i class="fas fa-plus-circle"></i> Añadir diseño'.html_safe, size_select_design_path, remote:true, class: "btn btn-primary"%></div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="designModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div id='design-content' class="modal-content bg-dark">
+    </div>
+  </div>
+</div>

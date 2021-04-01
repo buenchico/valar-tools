@@ -1,0 +1,22 @@
+<div class="row">
+  <h3>Sistemas</h3>
+</div>
+<div class="row">
+  <% $systems.each do |k,v| %>
+    <div class="float-left mr-4 mb-2">
+      <%= form.select k, options_for_select([[@house.techs.where(tech_type: k.to_s).order(lvl: :desc).first.try(:lvl) || 1,k,{'data-imagesrc' => image_url('tech/' + k.to_s), 'data-description' => '', 'data-imagetitle' => v}],['&nbsp;',:none,{'data-imagesrc' => image_url('tech/none'), 'data-description' => '', 'data-imagetitle' => 'Vacío'}]]), {}, {class: 'system', id: 'sys_type_' + k.to_s} %>
+      <%= form.text_field k, id: 'sys_lvl_' + k.to_s, class: 'd-none' %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <h3>Módulos</h3>
+</div>
+<div class="row">
+  <% for i in 1..@size.to_i do %>
+    <div class="float-left mr-4 mb-2">
+      <%= form.select "modules[][", options_for_select($modules.map {|k,v| [((k == :misc || k == :none) ? '&nbsp;' : (@house.techs.where(tech_type: k.to_s).order(lvl: :desc).first.try(:lvl) || 1)),k,{'data-imagesrc' => image_url('tech/' + k.to_s), 'data-description' => '', 'data-imagetitle' => v}]},@design.modules.nil? ? :none : @design.modules[ (i - 1) * 2]), {}, {class: 'module', id: 'mod_type_' + i.to_s} %>
+      <%= form.text_field "modules[][", id: 'mod_lvl_' + i.to_s, class: 'd-none' %>
+    </div>
+  <% end %>
+</div>

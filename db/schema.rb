@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 2021_01_17_205705) do
     t.text "desc"
     t.text "notes"
     t.integer "size"
+    t.json "modules"
+    t.integer "sys_ftl"
+    t.integer "sys_engine"
+    t.integer "sys_sensors"
+    t.boolean "active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_designs_on_house_id"

@@ -79,7 +79,10 @@ Rails.application.routes.draw do
   resources :techs, :except => [:show]
   get '/techs/:id/confirm', to: 'techs#confirm', as: 'tech_confirm'
 
-  resources :designs, :except => [:show]
+  get '/designs/size_select', to: 'designs#size_select', as: 'size_select_design'
+  post '/designs/new', to: 'designs#new', as: 'new_design'
+  resources :designs, :except => [:new]
+  get '/designs/:id/confirm', to: 'designs#confirm', as: 'design_confirm'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

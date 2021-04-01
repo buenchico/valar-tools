@@ -1,0 +1,77 @@
+<%= form_with(model: design, local: true) do |form| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="Title"><%= design.name.nil? ? 'Nuevo diseño - ' + @house.name : design.name + ' - ' + design.house.name %></h5>
+    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <% if design.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(design.errors.count, "error") %> prohibited this house from being saved:</h2>
+        <ul>
+          <% design.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div id= "data" class="col-md-6 right-separator"">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fas fa-pencil-ruler"></i>&nbsp;</div>
+          </div>
+          <%= form.text_field :name, class: "form-control", value: @design.name, placeholder: "Nombre" %>
+        </div>
+        <div class="input-group mb-3 w-100">
+          <%= form.text_area :desc, rows: 5, id: 'desc', class: "custom-control w-100", placeholder: 'Descripción' %>
+        </div>
+        <% if current_user.is_master? %>
+          <div class="input-group mb-3 w-100">
+            <%= form.text_area :notes, rows: 5, id: 'notes', class: "custom-control w-100", placeholder: 'Notas del master', style: 'background: lightyellow' %>
+          </div>
+        <% end %>
+        <div>Desplazamiento: <span id="dis">0</span></div>
+        <div>Estructura: <span id="str">0</span></div>
+        <div>Potencial de fuego: <span id="atk">0</span></div>
+        <div>Potencial de defensa: <span id="def">0</span></div>
+        <div>Sensores: <span id="sen">0</span></div>
+        <div>Sigilo: <span id="ste">0</span></div>
+        <div>Motores convencionales: <span id="eng">0</span></div>
+        <div>Motores FTL: <span id="ftl">0</span></div>
+      </div>
+      <div class="col-md-5 ml-3">
+        <% if current_user.is_master? %>
+          <div class="form-group form-inline">
+            <div class="input-group mb-3 ml-0">
+              <div class="input-group-prepend">
+                <div class="input-group-text">¿Activo?</div>
+              </div>
+              <div class="form-check checkbox-slider--a checkbox-slider-lg">
+                <label>
+                  <%= form.check_box :active, default: 'no', id: 'active' %><span>&nbsp;</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @design.active == true %>
+          <%= render 'mod_descriptor' %>
+        <% else %>
+          <%= render 'mod_selector', form: form %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <%= form.text_field :house_id, class: 'd-none', value: @house.id %>
+      <%= form.text_field :size, class: 'd-none',value: @size %>
+      <% if @design.active == false || current_user.is_master? %>
+        <%= form.submit class: "btn btn-primary", id: "submit" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

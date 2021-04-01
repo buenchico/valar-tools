@@ -92,6 +92,7 @@
           </div>
           <%= form.fields_for :system, sector.system || System.new do |form| %>
             <div id="system" class="op-20">
+              <div id="slots_free"></div>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-flag-checkered"></i>&nbsp;</div>

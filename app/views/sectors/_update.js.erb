@@ -59,10 +59,9 @@ $('#ic_slots,#rp_slots,#cp_slots').on('change',
     var mc = parseInt($('#mc_slots').val())
     var slots_free = $('#slots').val() - (ic + rp + cp + mc)
     if (slots_free >= 0) {
-      $('#slots_free').remove() }
+      $('#slots_free').html()
+    }
     else {
-      if ($('#slots_free').length == 0) {
-        $('#system').prepend(`<div id="slots_free" class="container mx-auto text-center alert alert-danger">La población no puede ser superior a la habitabilidad.</div>`);
-      }
+      $('#slots_free').html(`<div class="container mx-auto text-center alert alert-danger">La población no puede ser superior a la habitabilidad. Elimina ` + (slots_free * -1) + `M de población</div>`);
     }
   });

@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="Title"><%= 'Nuevo diseño' %></h5>
+  <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<%= form_with url: new_design_path, remote: true do |form| %>
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.select "size", options_for_select(@available_sizes.map {|k,v| [v,k.to_s,{'data-imagesrc' => image_url('designs/' + k.to_s + 'm'), 'data-imagetitle' => v, 'data-description' => k.to_s + ' módulos'}]}), {}, {id: 'size_select'} %>
+    </div>
+    <% if current_user.is_master? || current_user.is_admin? %>
+      <div class="form-group form-inline">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
+          </div>
+          <%= form.select :house_id, options_for_select(@active_houses), {}, {class: "custom-select"} %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group form-inline">
+      <%= form.submit 'Seleccionar tamaño', class: "btn btn-primary", id: "select" %>
+    </div>
+  </div>
+<% end %>

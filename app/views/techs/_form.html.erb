@@ -24,7 +24,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-flag"></i>&nbsp;</div>
             </div>
-            <%= form.select :house_id, options_for_select(@active_houses, @tech.house.nil? ? 3 : @tech.house.id), {}, {class: "custom-select"} %>
+            <%= form.select :house_id, options_for_select(@active_houses, tech.house.nil? ? 3 : tech.house.id), {}, {class: "custom-select"} %>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -37,14 +37,14 @@
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fab fa-ethereum"></i>&nbsp;</div>
             </div>
-            <%= form.number_field :lvl, class: "form-control", style: "width: 90px", value: @tech.lvl || 0, min: 0 %>
+            <%= form.number_field :lvl, class: "form-control", style: "width: 90px", value: tech.lvl || 1, min: 1 %>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-cogs"></i>&nbsp;</div>
             </div>
-            <%= form.select :tech_type, options_for_select($tech_types.invert(), @tech.tech_type || 'misc'), {}, class: "custom-select" %>
+            <%= form.select :tech_type, options_for_select($tech_types.invert(), tech.tech_type || 'misc'), {}, class: "custom-select" %>
           </div>
           <div class="input-group mb-3 w-100">
             <%= form.text_area :desc, rows: 5, id: 'desc', class: "custom-control w-100", placeholder: 'Descripción' %>

@@ -19,10 +19,10 @@
           <%= form.text_field :confirm, class: "form-control" %>
         </div>
         <div class="input-group mb-3">
-          <%= form.submit 'Eliminar tecnología', class: "btn btn-primary" %>
-        </div>
+          Ten en cuenta que si la tecnología está en uso en algún diseño borrarla no tendrá efecto alguno en los diseños o naves
+        </div>        
         <div class="input-group mb-3">
-          Esta tecnología está en uso en los siguientes diseños:
+          <%= form.submit 'Eliminar tecnología', class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
