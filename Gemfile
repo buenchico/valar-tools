@@ -15,7 +15,7 @@ gem 'bootstrap', '>= 4.5.0'
 # Include Font Awesome Icons
 gem 'font-awesome-sass', '~> 5.9.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
