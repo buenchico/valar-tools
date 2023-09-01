@@ -1,3 +1,5 @@
+DEPRECATED, replace by https://github.com/buenchico/valar-tools2
+
 # Valar-tools
 
 Webapp containing tools to help players at 
